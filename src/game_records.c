@@ -5,7 +5,7 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
-#include "math.h"
+#include "math_util.h"
 #include "pokedex.h"
 
 #define START_ENCODED_RECORDS RECORD_TRAINER_SCORE
@@ -31,9 +31,9 @@ void GameRecords_Init(GameRecords *records)
     EncodeGameRecords(records, START_ENCODED_RECORDS);
 }
 
-GameRecords *SaveData_GetGameRecords(SaveData *savedata)
+GameRecords *SaveData_GetGameRecords(SaveData *saveData)
 {
-    return SaveData_SaveTable(savedata, SAVE_TABLE_ENTRY_GAME_RECORDS);
+    return SaveData_SaveTable(saveData, SAVE_TABLE_ENTRY_GAME_RECORDS);
 }
 
 // this inline does not match when operating on the substruct
@@ -122,7 +122,7 @@ static u8 sUsesHighLimit[MAX_RECORDS] = {
     [RECORD_UNK_032] = TRUE,
     [RECORD_UNK_033] = TRUE,
     [RECORD_UNK_034] = TRUE,
-    [RECORD_UNK_035] = TRUE,
+    [RECORD_MONEY_SPENT] = TRUE,
     [RECORD_UNK_036] = TRUE,
     [RECORD_UNK_037] = TRUE,
     [RECORD_UNK_038] = TRUE,

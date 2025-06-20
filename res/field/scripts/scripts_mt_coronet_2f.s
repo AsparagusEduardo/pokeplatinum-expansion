@@ -30,8 +30,8 @@ _0023:
 
 _0036:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    SetVar 0x40A9, 2
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    SetVar VAR_UNK_0x40A9, 2
     SetObjectEventPos 5, 20, 25
     ScrCmd_188 5, 16
     ScrCmd_189 5, 2
@@ -40,9 +40,9 @@ _0036:
     ApplyMovement 5, _0148
     WaitMovement
     CallCommonScript 0x807
-    CallIfEq 0x8005, 24, _0109
-    CallIfEq 0x8005, 25, _011D
-    CallIfEq 0x8005, 26, _0131
+    CallIfEq VAR_0x8005, 24, _0109
+    CallIfEq VAR_0x8005, 25, _011D
+    CallIfEq VAR_0x8005, 26, _0131
     Message 0
     ApplyMovement 5, _0184
     WaitMovement
@@ -50,9 +50,9 @@ _0036:
     ApplyMovement 5, _018C
     WaitMovement
     Message 2
-    SetVar 0x8004, ITEM_BLACK_FLUTE
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _00F2
+    SetVar VAR_0x8004, ITEM_BLACK_FLUTE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _00F2
     CallCommonScript 0x7FC
     Call _00E5
     CallCommonScript 0x808
@@ -98,45 +98,45 @@ _0131:
 
     .balign 4, 0
 _0148:
-    MoveAction_018 4
-    MoveAction_063
-    MoveAction_075
-    MoveAction_063
+    WalkFastWest 4
+    Delay8
+    EmoteExclamationMark
+    Delay8
     EndMovement
 
     .balign 4, 0
 _015C:
-    MoveAction_018 4
-    MoveAction_016
-    MoveAction_038
+    WalkFastWest 4
+    WalkFastNorth
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _016C:
-    MoveAction_018 4
+    WalkFastWest 4
     EndMovement
 
     .balign 4, 0
 _0174:
-    MoveAction_018 4
-    MoveAction_017
-    MoveAction_038
+    WalkFastWest 4
+    WalkFastSouth
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _0184:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _018C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0194:
-    MoveAction_063 4
-    MoveAction_035
+    Delay8 4
+    WalkOnSpotNormalEast
     EndMovement
 
 _01A0:
@@ -152,9 +152,9 @@ _01A0:
 
 _01BE:
     Message 5
-    SetVar 0x8004, ITEM_BLACK_FLUTE
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _01F0
+    SetVar VAR_0x8004, ITEM_BLACK_FLUTE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01F0
     CallCommonScript 0x7FC
     Call _00E5
     ReleaseAll

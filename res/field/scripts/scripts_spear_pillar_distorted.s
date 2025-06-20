@@ -28,16 +28,16 @@ _0022:
     WaitMovement
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    SetVar 0x40C3, 2
+    SetVar VAR_UNK_0x40C3, 2
     ApplyMovement 0, _0144
     WaitMovement
     Message 0
     CloseMessage
-    ScrCmd_20D 4, 0x800C
-    WaitTime 30, 0x800C
+    ScrCmd_20D 4, VAR_RESULT
+    WaitTime 30, VAR_RESULT
 _0088:
-    ScrCmd_20D 6, 0x800C
-    GoToIfEq 0x800C, 0, _0088
+    ScrCmd_20D 6, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0088
     RemoveObject 1
     ApplyMovement 241, _0178
     WaitMovement
@@ -56,9 +56,9 @@ _0088:
 
 _00DA:
     Message 6
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _00FD
-    GoToIfEq 0x800C, MENU_NO, _0130
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00FD
+    GoToIfEq VAR_RESULT, MENU_NO, _0130
     End
 
 _00FD:
@@ -83,38 +83,38 @@ _0130:
 
     .balign 4, 0
 _013C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_012 4
+    WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
 _014C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0154:
-    MoveAction_035
-    MoveAction_063 2
-    MoveAction_033
-    MoveAction_063
-    MoveAction_032
+    WalkOnSpotNormalEast
+    Delay8 2
+    WalkOnSpotNormalSouth
+    Delay8
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _016C:
-    MoveAction_015
-    MoveAction_012 5
+    WalkNormalEast
+    WalkNormalNorth 5
     EndMovement
 
     .balign 4, 0
 _0178:
-    MoveAction_013 5
-    MoveAction_014
+    WalkNormalSouth 5
+    WalkNormalWest
     EndMovement
 
 _0184:
@@ -122,9 +122,9 @@ _0184:
     LockAll
     FacePlayer
     Message 6
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _00FD
-    GoToIfEq 0x800C, MENU_NO, _01AF
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _00FD
+    GoToIfEq VAR_RESULT, MENU_NO, _01AF
     End
 
 _01AF:

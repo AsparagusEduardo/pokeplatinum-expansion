@@ -40,6 +40,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "sprite_system.h"
@@ -50,7 +51,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_02014A84.h"
 #include "unk_0207E0B8.h"
@@ -396,7 +396,7 @@ static void ov104_022324C8(SysTask *param0, void *param1)
         return;
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -616,7 +616,7 @@ static void ov104_0223296C(SysTask *param0, void *param1)
         return;
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return;
     }
 
@@ -906,7 +906,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapI
         v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
         Pokemon_BuildSpriteTemplate(&v3, param1, 2);
-        sub_020136A4(v3.archive, v3.character, heapID, 0, 0, 10, 10, v4, v9, 0, 2, v10);
+        sub_020136A4(v3.narcID, v3.character, heapID, 0, 0, 10, 10, v4, v9, 0, 2, v10);
     }
 
     {
@@ -921,7 +921,7 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapI
         v12 = Sprite_GetPaletteProxy(v5->sprite);
         v13 = PlttTransfer_GetPlttOffset(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        PaletteData_LoadBufferFromFileStart(v2, v3.archive, v3.palette, heapID, 2, 0x20, v13 * 16);
+        PaletteData_LoadBufferFromFileStart(v2, v3.narcID, v3.palette, heapID, 2, 0x20, v13 * 16);
 
         if (param8 > 0) {
             PaletteData_Blend(v2, 2, v13 * 16, 16, param8, param9);

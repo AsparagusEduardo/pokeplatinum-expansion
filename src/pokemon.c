@@ -1,4 +1,4 @@
-#include "constants/pokemon.h"
+#include "pokemon.h"
 
 #include <nitro.h>
 #include <string.h>
@@ -9,6 +9,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/narc.h"
+#include "constants/pokemon.h"
 #include "constants/sound.h"
 #include "generated/abilities.h"
 #include "generated/evolution_methods.h"
@@ -34,14 +35,13 @@
 #include "heap.h"
 #include "inlines.h"
 #include "item.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "message_util.h"
 #include "move_table.h"
 #include "narc.h"
 #include "palette.h"
 #include "party.h"
-#include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "rtc.h"
 #include "sound_chatot.h"
@@ -119,7 +119,7 @@ static BOOL Pokemon_HasMove(Pokemon *mon, u16 moveID);
 static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, int flavor);
 static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon);
 static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon);
-static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapId);
+static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapID);
 static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
@@ -231,13 +231,13 @@ void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BO
     Pokemon_EncryptData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
     Pokemon_SetValue(mon, MON_DATA_LEVEL, &monLevel);
 
-    Mail *v1 = sub_0202818C(0);
+    Mail *v1 = sub_0202818C(HEAP_ID_SYSTEM);
 
     Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
     Heap_FreeToHeap(v1);
 
     u32 zero = 0;
-    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &zero);
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
 
     UnkStruct_0202CA28 v2;
     MI_CpuClearFast(&v2, sizeof(UnkStruct_0202CA28));
@@ -531,8 +531,8 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
         result = mon->party.level;
         break;
 
-    case MON_DATA_MAIL_ID:
-        result = mon->party.mail;
+    case MON_DATA_BALL_CAPSULE_ID:
+        result = mon->party.ballCapsuleID;
         break;
 
     case MON_DATA_CURRENT_HP:
@@ -1121,8 +1121,8 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
         mon->party.level = *u8Value;
         break;
 
-    case MON_DATA_MAIL_ID:
-        mon->party.mail = *u8Value;
+    case MON_DATA_BALL_CAPSULE_ID:
+        mon->party.ballCapsuleID = *u8Value;
         break;
 
     case MON_DATA_CURRENT_HP:
@@ -1674,7 +1674,7 @@ static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam par
         break;
     case MON_DATA_STATUS_CONDITION:
     case MON_DATA_LEVEL:
-    case MON_DATA_MAIL_ID:
+    case MON_DATA_BALL_CAPSULE_ID:
     case MON_DATA_MAX_HP:
     case MON_DATA_ATK:
     case MON_DATA_DEF:
@@ -2547,91 +2547,91 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
 
     switch (species) {
     case SPECIES_BURMY:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 72 + (face / 2) + form * 2;
         spriteTemplate->palette = 166 + shiny + form * 2;
         break;
 
     case SPECIES_WORMADAM:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 78 + (face / 2) + form * 2;
         spriteTemplate->palette = 172 + shiny + form * 2;
         break;
 
     case SPECIES_SHELLOS:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 84 + face + form;
         spriteTemplate->palette = 178 + shiny + form * 2;
         break;
 
     case SPECIES_GASTRODON:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 88 + face + form;
         spriteTemplate->palette = 182 + shiny + form * 2;
         break;
 
     case SPECIES_CHERRIM:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 92 + face + form;
         spriteTemplate->palette = 186 + (shiny * 2) + form;
         break;
 
     case SPECIES_ARCEUS:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 96 + (face / 2) + form * 2;
         spriteTemplate->palette = 190 + shiny + form * 2;
         break;
 
     case SPECIES_CASTFORM:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 64 + (face * 2) + form;
         spriteTemplate->palette = 158 + (shiny * 4) + form;
         break;
 
     case SPECIES_DEOXYS:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 0 + (face / 2) + form * 2;
         spriteTemplate->palette = 154 + shiny;
         break;
 
     case SPECIES_UNOWN:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 8 + (face / 2) + form * 2;
         spriteTemplate->palette = 156 + shiny;
         break;
 
     case SPECIES_EGG:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 132 + form;
         spriteTemplate->palette = 226 + form;
         break;
 
     case SPECIES_BAD_EGG:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 132;
         spriteTemplate->palette = 226;
         break;
 
     case SPECIES_SHAYMIN:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 134 + (face / 2) + form * 2;
         spriteTemplate->palette = 228 + shiny + form * 2;
         break;
 
     case SPECIES_ROTOM:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 138 + (face / 2) + form * 2;
         spriteTemplate->palette = 232 + shiny + form * 2;
         break;
 
     case SPECIES_GIRATINA:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
         spriteTemplate->character = 150 + (face / 2) + form * 2;
         spriteTemplate->palette = 244 + shiny + form * 2;
         break;
 
     default:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
         spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0); // ternary must remain to match
         spriteTemplate->palette = species * 6 + 4 + shiny;
 
@@ -2746,78 +2746,78 @@ static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, 
 
     switch (species) {
     case SPECIES_BURMY:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 72 + (face / 2) + form * 2;
         spriteTemplate->palette = 146 + shiny + form * 2;
         break;
 
     case SPECIES_WORMADAM:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 78 + (face / 2) + form * 2;
         spriteTemplate->palette = 152 + shiny + form * 2;
         break;
 
     case SPECIES_SHELLOS:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 84 + face + form;
         spriteTemplate->palette = 158 + shiny + form * 2;
         break;
 
     case SPECIES_GASTRODON:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 88 + face + form;
         spriteTemplate->palette = 162 + shiny + form * 2;
         break;
 
     case SPECIES_CHERRIM:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 92 + face + form;
         spriteTemplate->palette = 166 + (shiny * 2) + form;
         break;
 
     case SPECIES_ARCEUS:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 96 + (face / 2) + form * 2;
         spriteTemplate->palette = 170 + shiny + form * 2;
         break;
 
     case SPECIES_CASTFORM:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 64 + (face * 2) + form;
         spriteTemplate->palette = 138 + (shiny * 4) + form;
         break;
 
     case SPECIES_DEOXYS:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 0 + (face / 2) + form * 2;
         spriteTemplate->palette = 134 + shiny;
         break;
 
     case SPECIES_UNOWN:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 8 + (face / 2) + form * 2;
         spriteTemplate->palette = 136 + shiny;
         break;
 
     case SPECIES_EGG:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 132 + form;
         spriteTemplate->palette = 206 + form;
         break;
 
     case SPECIES_BAD_EGG:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 132;
         spriteTemplate->palette = 206;
         break;
 
     case SPECIES_SHAYMIN:
         if (form > 0) {
-            spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
             spriteTemplate->character = 134 + (face / 2) + form * 2;
             spriteTemplate->palette = 230 + shiny;
         } else {
-            spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
+            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
             spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
             spriteTemplate->palette = species * 6 + 4 + shiny;
         }
@@ -2825,11 +2825,11 @@ static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, 
 
     case SPECIES_ROTOM:
         if (form > 0) {
-            spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
             spriteTemplate->character = 138 + (face / 2) + form * 2;
             spriteTemplate->palette = 232 + shiny + form * 2;
         } else {
-            spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
+            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
             spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
             spriteTemplate->palette = species * 6 + 4 + shiny;
         }
@@ -2837,18 +2837,18 @@ static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, 
 
     case SPECIES_GIRATINA:
         if (form > 0) {
-            spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
             spriteTemplate->character = 150 + (face / 2) + form * 2;
             spriteTemplate->palette = 244 + shiny + form * 2;
         } else {
-            spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
+            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
             spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
             spriteTemplate->palette = species * 6 + 4 + shiny;
         }
         break;
 
     default:
-        spriteTemplate->archive = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__POKEGRA;
         spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
         spriteTemplate->palette = species * 6 + 4 + shiny;
 
@@ -2900,87 +2900,87 @@ u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 person
 {
     form = Pokemon_SanitizeFormId(species, form);
 
-    int narcIndex;
+    enum NarcID narcID;
     int memberIndex;
     switch (species) {
     case SPECIES_BURMY:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 72 + (face / 2) + form * 2;
         break;
 
     case SPECIES_WORMADAM:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 78 + (face / 2) + form * 2;
         break;
 
     case SPECIES_SHELLOS:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 84 + face + form;
         break;
 
     case SPECIES_GASTRODON:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 88 + face + form;
         break;
 
     case SPECIES_CHERRIM:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 92 + face + form;
         break;
 
     case SPECIES_ARCEUS:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 96 + (face / 2) + form * 2;
         break;
 
     case SPECIES_CASTFORM:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 64 + face * 2 + form;
         break;
 
     case SPECIES_DEOXYS:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 0 + (face / 2) + form * 2;
         break;
 
     case SPECIES_UNOWN:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 8 + (face / 2) + form * 2;
         break;
 
     case SPECIES_EGG:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 132 + form;
         break;
 
     case SPECIES_BAD_EGG:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 132;
         break;
 
     case SPECIES_SHAYMIN:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 136 + (face / 2) + form * 2;
         break;
 
     case SPECIES_ROTOM:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 140 + (face / 2) + form * 2;
         break;
 
     case SPECIES_GIRATINA:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 152 + (face / 2) + form * 2;
         break;
 
     default:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT;
         memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         break;
     }
 
     u8 result;
-    NARC_ReadWholeMemberByIndexPair(&result, narcIndex, memberIndex);
+    NARC_ReadWholeMemberByIndexPair(&result, narcID, memberIndex);
     return result;
 }
 
@@ -2989,108 +2989,108 @@ static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u3
     // TODO enum values?
     form = Pokemon_SanitizeFormId(species, form);
 
-    int narcIndex;
+    enum NarcID narcID;
     int memberIndex;
     switch (species) {
     case SPECIES_BURMY:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 72 + (face / 2) + form * 2;
         break;
 
     case SPECIES_WORMADAM:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 78 + (face / 2) + form * 2;
         break;
 
     case SPECIES_SHELLOS:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 84 + face + form;
         break;
 
     case SPECIES_GASTRODON:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 88 + face + form;
         break;
 
     case SPECIES_CHERRIM:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 92 + face + form;
         break;
 
     case SPECIES_ARCEUS:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 96 + (face / 2) + form * 2;
         break;
 
     case SPECIES_CASTFORM:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 64 + face * 2 + form;
         break;
 
     case SPECIES_DEOXYS:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 0 + (face / 2) + form * 2;
         break;
 
     case SPECIES_UNOWN:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 8 + (face / 2) + form * 2;
         break;
 
     case SPECIES_EGG:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 132 + form;
         break;
 
     case SPECIES_BAD_EGG:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 132;
         break;
 
     case SPECIES_SHAYMIN:
         if (form > 0) {
-            narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+            narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
             memberIndex = 136 + (face / 2) + form * 2;
         } else {
-            narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
+            narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
             memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
 
     case SPECIES_ROTOM:
         if (form > 0) {
-            narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+            narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
             memberIndex = 140 + (face / 2) + form * 2;
         } else {
-            narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
+            narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
             memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
 
     case SPECIES_GIRATINA:
         if (form > 0) {
-            narcIndex = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
+            narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
             memberIndex = 152 + (face / 2) + form * 2;
         } else {
-            narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
+            narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
             memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         }
         break;
 
     default:
-        narcIndex = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
+        narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT;
         memberIndex = species * 4 + face + (gender != GENDER_FEMALE ? 1 : 0);
         break;
     }
 
     u8 result;
-    NARC_ReadWholeMemberByIndexPair(&result, narcIndex, memberIndex);
+    NARC_ReadWholeMemberByIndexPair(&result, narcID, memberIndex);
     return result;
 }
 
 void sub_0207697C(PokemonSpriteTemplate *param0, u16 param1)
 {
-    param0->archive = 60;
+    param0->narcID = 60;
     param0->character = param1 * 2;
     param0->palette = param1 * 2 + 1;
     param0->spindaSpots = 0;
@@ -3753,11 +3753,11 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
     Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &zero);
     Pokemon_SetValue(mon, MON_DATA_MAX_HP, &zero);
 
-    Mail *v1 = sub_0202818C(0);
+    Mail *v1 = sub_0202818C(HEAP_ID_SYSTEM);
     Pokemon_SetValue(mon, MON_DATA_MAIL, v1);
     Heap_FreeToHeap(v1);
 
-    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &zero);
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
 
     UnkStruct_0202CA28 v2;
     MI_CpuClearFast(&v2, sizeof(UnkStruct_0202CA28));
@@ -4362,9 +4362,9 @@ BOOL Pokemon_IsEligibleForAction(Pokemon *mon)
     return Sound_PlayPokemonCry(species, form);
 }
 
-void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapId)
+void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokeball, int metLocation, int metTerrain, enum HeapId heapID)
 {
-    InitializeBoxPokemonAfterCapture(&mon->box, trainerInfo, monPokeball, metLocation, metTerrain, heapId);
+    InitializeBoxPokemonAfterCapture(&mon->box, trainerInfo, monPokeball, metLocation, metTerrain, heapID);
 
     if (monPokeball == ITEM_HEAL_BALL) {
         int monMaxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
@@ -4375,9 +4375,9 @@ void Pokemon_SetCatchData(Pokemon *mon, TrainerInfo *trainerInfo, int monPokebal
     }
 }
 
-static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapId heapId)
+static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapId heapID)
 {
-    UpdateBoxMonStatusAndTrainerInfo(boxMon, trainer, 0, metLocation, heapId);
+    UpdateBoxMonStatusAndTrainerInfo(boxMon, trainer, 0, metLocation, heapID);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &gGameVersion);
     BoxPokemon_SetValue(boxMon, MON_DATA_POKEBALL, &monPokeball);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_TERRAIN, &metTerrain);
@@ -4829,7 +4829,7 @@ void sub_0207893C(Pokemon *mon)
     UnkStruct_0202CA28 v1;
     MI_CpuClearFast(&v1, sizeof(UnkStruct_0202CA28));
 
-    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &zero);
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &zero);
     Pokemon_SetValue(mon, MON_DATA_171, &v1);
 }
 
@@ -4925,7 +4925,7 @@ BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID)
 
     UnkStruct_0202CA28 v2;
     NARC_ReadFromMember(narc, 0, v0 * sizeof(UnkStruct_0202CA28), sizeof(UnkStruct_0202CA28), &v2);
-    Pokemon_SetValue(mon, MON_DATA_MAIL_ID, &one);
+    Pokemon_SetValue(mon, MON_DATA_BALL_CAPSULE_ID, &one);
     Pokemon_SetValue(mon, MON_DATA_171, &v2);
     NARC_dtor(narc);
 
@@ -4995,7 +4995,7 @@ void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1)
 
     param1->unk_5C = mon->party.status;
     param1->level = mon->party.level;
-    param1->unk_61 = mon->party.mail;
+    param1->unk_61 = mon->party.ballCapsuleID;
     param1->unk_62 = mon->party.hp;
     param1->unk_64 = mon->party.maxHP;
     param1->unk_66 = mon->party.attack;
@@ -5071,7 +5071,7 @@ void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon)
 
     mon->party.status = param0->unk_5C;
     mon->party.level = param0->level;
-    mon->party.mail = param0->unk_61;
+    mon->party.ballCapsuleID = param0->unk_61;
     mon->party.hp = param0->unk_62;
     mon->party.maxHP = param0->unk_64;
     mon->party.attack = param0->unk_66;

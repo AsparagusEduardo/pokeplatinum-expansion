@@ -26,30 +26,30 @@ _000E:
     RemoveObject 0
     CallCommonScript 0x7FB
     SetFlag FLAG_UNK_0x00EA
-    SetVar 0x40A3, 1
-    SetVar 0x4070, 2
+    SetVar VAR_UNK_0x40A3, 1
+    SetVar VAR_UNK_0x4070, 2
     ReleaseAll
     End
 
     .balign 4, 0
 _0060:
-    MoveAction_034
-    MoveAction_075
+    WalkOnSpotNormalWest
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _006C:
-    MoveAction_018 4
-    MoveAction_016
-    MoveAction_018 3
-    MoveAction_069
+    WalkFastWest 4
+    WalkFastNorth
+    WalkFastWest 3
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0080:
-    MoveAction_063 2
-    MoveAction_013
-    MoveAction_032
+    Delay8 2
+    WalkNormalSouth
+    WalkOnSpotNormalNorth
     EndMovement
 
 _0090:

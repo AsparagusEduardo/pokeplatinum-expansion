@@ -51,7 +51,7 @@ _0068:
 
     .balign 4, 0
 _0078:
-    MoveAction_000
+    FaceNorth
     EndMovement
 
 _0080:
@@ -77,12 +77,12 @@ _00A2:
     LockAll
     FacePlayer
     Message 7
-    GetRandom 0x8000, 5
-    CallIfEq 0x8000, 0, _00FC
-    CallIfEq 0x8000, 1, _0101
-    CallIfEq 0x8000, 2, _0106
-    CallIfEq 0x8000, 3, _010B
-    CallIfEq 0x8000, 4, _0110
+    GetRandom VAR_0x8000, 5
+    CallIfEq VAR_0x8000, 0, _00FC
+    CallIfEq VAR_0x8000, 1, _0101
+    CallIfEq VAR_0x8000, 2, _0106
+    CallIfEq VAR_0x8000, 3, _010B
+    CallIfEq VAR_0x8000, 4, _0110
     GoTo _0115
     End
 
@@ -109,10 +109,10 @@ _0110:
 _0115:
     Message 8
     CloseMessage
-    GetPlayerDir 0x8000
-    CallIfEq 0x8000, 0, _0155
-    CallIfEq 0x8000, 2, _0169
-    CallIfEq 0x8000, 3, _0175
+    GetPlayerDir VAR_0x8000
+    CallIfEq VAR_0x8000, 0, _0155
+    CallIfEq VAR_0x8000, 2, _0169
+    CallIfEq VAR_0x8000, 3, _0175
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 2
     WaitFanfare SEQ_SE_DP_KAIDAN2
@@ -138,28 +138,28 @@ _0175:
 
     .balign 4, 0
 _018C:
-    MoveAction_014 5
-    MoveAction_013 6
-    MoveAction_062
+    WalkNormalWest 5
+    WalkNormalSouth 6
+    Delay4
     EndMovement
 
     .balign 4, 0
 _019C:
-    MoveAction_013
-    MoveAction_014 5
-    MoveAction_013 5
-    MoveAction_062
+    WalkNormalSouth
+    WalkNormalWest 5
+    WalkNormalSouth 5
+    Delay4
     EndMovement
 
     .balign 4, 0
 _01B0:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _01BC:
-    MoveAction_063 2
-    MoveAction_062
-    MoveAction_034
+    Delay8 2
+    Delay4
+    WalkOnSpotNormalWest
     EndMovement

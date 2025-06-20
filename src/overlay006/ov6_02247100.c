@@ -21,9 +21,9 @@
 #include "location.h"
 #include "player_avatar.h"
 #include "pokemon.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sys_task_manager.h"
-#include "unk_0200F174.h"
 #include "unk_0203A7D8.h"
 #include "unk_020655F4.h"
 
@@ -39,7 +39,7 @@ typedef struct {
     Pokemon *unk_20;
 } UnkStruct_ov6_02247100;
 
-static void *ov6_02247590(u32 param0, u32 param1);
+static void *ov6_02247590(u32 heapID, u32 param1);
 static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param1);
 
 int (*const Unk_ov6_022495CC[])(FieldTask *, FieldSystem *, UnkStruct_ov6_02247100 *);
@@ -50,9 +50,9 @@ const MapObjectAnimCmd Unk_ov6_02249608[];
 const MapObjectAnimCmd Unk_ov6_022495DC[];
 const MapObjectAnimCmd Unk_ov6_0224966C[];
 
-void *ov6_02247100(FieldSystem *fieldSystem, u32 param1)
+void *ov6_02247100(FieldSystem *fieldSystem, u32 heapID)
 {
-    UnkStruct_ov6_02247100 *v0 = ov6_02247590(param1, sizeof(UnkStruct_ov6_02247100));
+    UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = 0;
     v0->fieldSystem = fieldSystem;
@@ -80,7 +80,7 @@ BOOL ov6_02247120(FieldTask *task)
 
 static int ov6_0224715C(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
 {
-    param2->unk_14 = ov5_021F0EB0(fieldSystem, 4);
+    param2->unk_14 = ov5_021F0EB0(fieldSystem, HEAP_ID_FIELD);
     ov5_021F0F10(param2->unk_14, 1, (FX32_ONE * -150), 15);
     param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_02249608);
     param2->unk_00++;
@@ -116,9 +116,9 @@ static int ov6_022471C0(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
     }
 
     if (param2->unk_08 == 2) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
     } else {
-        StartScreenTransition(0, 0, 0, 0x7fff, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELD);
     }
 
     param2->unk_00++;
@@ -132,7 +132,7 @@ static int ov6_02247244(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
         param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return 0;
     }
 
@@ -170,9 +170,9 @@ static int (*const Unk_ov6_022495CC[])(FieldTask *, FieldSystem *, UnkStruct_ov6
     ov6_02247288
 };
 
-void *ov6_022472C8(FieldSystem *fieldSystem, u32 param1, int param2)
+void *ov6_022472C8(FieldSystem *fieldSystem, u32 heapID, int param2)
 {
-    UnkStruct_ov6_02247100 *v0 = ov6_02247590(param1, sizeof(UnkStruct_ov6_02247100));
+    UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = param2;
     v0->fieldSystem = fieldSystem;
@@ -216,12 +216,12 @@ static void ov6_0224732C(FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param
 static int ov6_02247354(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6_02247100 *param2)
 {
     if (param2->unk_08 == 2) {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
     } else {
-        StartScreenTransition(0, 1, 1, 0x7fff, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_WHITE, 6, 1, HEAP_ID_FIELD);
     }
 
-    param2->unk_14 = ov5_021F0EB0(fieldSystem, 4);
+    param2->unk_14 = ov5_021F0EB0(fieldSystem, HEAP_ID_FIELD);
     ov5_021F0F10(param2->unk_14, 1, (FX32_ONE * -150), 1);
     param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     param2->unk_00++;
@@ -236,7 +236,7 @@ static int ov6_022473C8(FieldTask *task, FieldSystem *fieldSystem, UnkStruct_ov6
         param2->unk_0C = MapObject_StartAnimation(param2->unk_18, Unk_ov6_022495DC);
     }
 
-    if (IsScreenTransitionDone() == 0) {
+    if (IsScreenFadeDone() == FALSE) {
         return 0;
     }
 
@@ -289,9 +289,9 @@ static int (*const Unk_ov6_022495BC[])(FieldTask *, FieldSystem *, UnkStruct_ov6
     ov6_02247458
 };
 
-void *ov6_02247488(FieldSystem *fieldSystem, Pokemon *param1, u32 param2)
+void *ov6_02247488(FieldSystem *fieldSystem, Pokemon *param1, u32 heapID)
 {
-    UnkStruct_ov6_02247100 *v0 = ov6_02247590(param2, sizeof(UnkStruct_ov6_02247100));
+    UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = 1;
     v0->fieldSystem = fieldSystem;
@@ -348,9 +348,9 @@ static int (*const Unk_ov6_022495F0[])(FieldTask *, FieldSystem *, UnkStruct_ov6
     ov6_02247288
 };
 
-void *ov6_02247530(FieldSystem *fieldSystem, Pokemon *param1, u32 param2)
+void *ov6_02247530(FieldSystem *fieldSystem, Pokemon *param1, u32 heapID)
 {
-    UnkStruct_ov6_02247100 *v0 = ov6_02247590(param2, sizeof(UnkStruct_ov6_02247100));
+    UnkStruct_ov6_02247100 *v0 = ov6_02247590(heapID, sizeof(UnkStruct_ov6_02247100));
 
     v0->unk_08 = 2;
     v0->fieldSystem = fieldSystem;
@@ -377,9 +377,9 @@ BOOL ov6_02247554(FieldTask *task)
     return 0;
 }
 
-static void *ov6_02247590(u32 param0, u32 param1)
+static void *ov6_02247590(u32 heapID, u32 param1)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(param0, param1);
+    void *v0 = Heap_AllocFromHeapAtEnd(heapID, param1);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param1);

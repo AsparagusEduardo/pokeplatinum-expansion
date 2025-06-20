@@ -16,7 +16,7 @@ _000A:
     End
 
 _0024:
-    GoToIfNe 0x40F8, 2, _0035
+    GoToIfNe VAR_UNK_0x40F8, 2, _0035
     SetFlag FLAG_UNK_0x0279
 _0035:
     Return
@@ -25,19 +25,19 @@ _0037:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerDir 0x8004
+    GetPlayerDir VAR_0x8004
     Message 0
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _005D
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _005D
     GoTo _009D
 
 _005D:
     Message 1
     CloseMessage
     Call _00A8
-    CallIfEq 0x8004, 1, _00C2
-    CallIfEq 0x8004, 2, _00DC
-    CallIfEq 0x8004, 0, _00F6
+    CallIfEq VAR_0x8004, 1, _00C2
+    CallIfEq VAR_0x8004, 2, _00DC
+    CallIfEq VAR_0x8004, 0, _00F6
     ScrCmd_23D 0, 2, 33, 44, 0x2EE
     ReleaseAll
     End
@@ -83,31 +83,31 @@ _00F6:
 
     .balign 4, 0
 _0110:
-    MoveAction_014
-    MoveAction_064
+    WalkNormalWest
+    Delay15
     EndMovement
 
     .balign 4, 0
 _011C:
-    MoveAction_069
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0124:
-    MoveAction_013
-    MoveAction_014 2
-    MoveAction_064
+    WalkNormalSouth
+    WalkNormalWest 2
+    Delay15
     EndMovement
 
     .balign 4, 0
 _0134:
-    MoveAction_014 2
-    MoveAction_064
+    WalkNormalWest 2
+    Delay15
     EndMovement
 
     .balign 4, 0
 _0140:
-    MoveAction_012
-    MoveAction_014 2
-    MoveAction_064
+    WalkNormalNorth
+    WalkNormalWest 2
+    Delay15
     EndMovement

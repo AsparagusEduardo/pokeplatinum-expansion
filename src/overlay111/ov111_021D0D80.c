@@ -9,7 +9,6 @@
 #include "struct_defs/struct_0203E608.h"
 #include "struct_defs/struct_02099F80.h"
 
-#include "overlay072/struct_ov72_0223E2A8.h"
 #include "overlay111/ov111_021D2F80.h"
 #include "overlay111/ov111_021D33F4.h"
 #include "overlay111/ov111_021D3548.h"
@@ -24,7 +23,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -33,6 +32,7 @@
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -40,12 +40,11 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "touch_screen.h"
 #include "unk_0200C440.h"
-#include "unk_0200F174.h"
 #include "unk_0201567C.h"
 #include "unk_02015920.h"
-#include "unk_0201E3D8.h"
 #include "vram_transfer.h"
 
 typedef struct {
@@ -56,8 +55,8 @@ typedef struct {
 } UnkStruct_ov111_021D3728;
 
 struct UnkStruct_ov111_021D0F7C_t {
-    OverlayManager *unk_00;
-    OverlayManager *unk_04;
+    ApplicationManager *unk_00;
+    ApplicationManager *unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -84,7 +83,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     PaletteData *unk_15C;
     UnkStruct_0200C440 *unk_160;
     Options *unk_164;
-    SaveData *unk_168;
+    SaveData *saveData;
     UnkStruct_ov111_021D2F80 unk_16C;
     UnkStruct_ov111_021D33F4 *unk_35C[4];
     UnkStruct_ov111_021D33F4 *unk_36C[9];
@@ -116,13 +115,13 @@ struct UnkStruct_ov111_021D0F7C_t {
     u8 unk_411[9];
     u32 unk_41C;
     u32 unk_420;
-    UnkStruct_ov72_0223E2A8 unk_424;
+    TouchPadDataBuffer unk_424;
     u8 unk_466[38400];
 };
 
-int ov111_021D0D80(OverlayManager *param0, int *param1);
-int ov111_021D0E34(OverlayManager *param0, int *param1);
-int ov111_021D0F40(OverlayManager *param0, int *param1);
+int ov111_021D0D80(ApplicationManager *appMan, int *param1);
+int ov111_021D0E34(ApplicationManager *appMan, int *param1);
+int ov111_021D0F40(ApplicationManager *appMan, int *param1);
 static BOOL ov111_021D0F7C(UnkStruct_ov111_021D0F7C *param0);
 static BOOL ov111_021D0FC8(UnkStruct_ov111_021D0F7C *param0);
 static BOOL ov111_021D10B8(UnkStruct_ov111_021D0F7C *param0);
@@ -318,7 +317,7 @@ static const UnkStruct_ov111_021D3620 Unk_ov111_021D374C[9] = {
     { 0xBD, 0x78 }
 };
 
-int ov111_021D0D80(OverlayManager *param0, int *param1)
+int ov111_021D0D80(ApplicationManager *appMan, int *param1)
 {
     int v0;
     UnkStruct_ov111_021D0F7C *v1;
@@ -327,16 +326,16 @@ int ov111_021D0D80(OverlayManager *param0, int *param1)
     ov111_021D1D30();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_115, 0x48000);
 
-    v1 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov111_021D0F7C), HEAP_ID_115);
+    v1 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov111_021D0F7C), HEAP_ID_115);
     memset(v1, 0, sizeof(UnkStruct_ov111_021D0F7C));
 
     v1->unk_58 = BgConfig_New(HEAP_ID_115);
-    v1->unk_00 = param0;
-    v2 = (UnkStruct_0203E608 *)OverlayManager_Args(param0);
-    v1->unk_168 = v2->unk_00;
+    v1->unk_00 = appMan;
+    v2 = (UnkStruct_0203E608 *)ApplicationManager_Args(appMan);
+    v1->saveData = v2->saveData;
     v1->unk_09 = v2->unk_04;
     v1->unk_3D8 = &v2->unk_14;
-    v1->unk_164 = SaveData_GetOptions(v1->unk_168);
+    v1->unk_164 = SaveData_GetOptions(v1->saveData);
     v1->unk_3DC = &v2->unk_08[0];
     v1->unk_3E0 = &v2->unk_0E[0];
 
@@ -356,9 +355,9 @@ int ov111_021D0D80(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov111_021D0E34(OverlayManager *param0, int *param1)
+int ov111_021D0E34(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov111_021D0F7C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov111_021D0F7C *v0 = ApplicationManager_Data(appMan);
 
     switch (*param1) {
     case 0:
@@ -421,18 +420,18 @@ int ov111_021D0E34(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov111_021D0F40(OverlayManager *param0, int *param1)
+int ov111_021D0F40(ApplicationManager *appMan, int *param1)
 {
     int v0;
-    UnkStruct_ov111_021D0F7C *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov111_021D0F7C *v1 = ApplicationManager_Data(appMan);
 
-    sub_0201E530();
+    DisableTouchPad();
     *(v1->unk_3D8) = v1->unk_0C;
     VramTransfer_Free();
 
     ov111_021D1C0C(v1);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     Heap_Destroy(HEAP_ID_115);
 
@@ -443,11 +442,11 @@ static BOOL ov111_021D0F7C(UnkStruct_ov111_021D0F7C *param0)
 {
     switch (param0->unk_08) {
     case 0:
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1 * 3, HEAP_ID_115);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_115);
         param0->unk_08++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_0E = 0;
             return 1;
         }
@@ -744,7 +743,7 @@ static BOOL ov111_021D1508(UnkStruct_ov111_021D0F7C *param0)
         }
         break;
     case 3:
-        sub_0201E564(&param0->unk_424, 4, 2);
+        WriteAutoSamplingDataToBuffer(&param0->unk_424, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_ALL_DATA_WITHOUT_WRAPPING, 2);
         v1 = TouchScreen_CheckRectangleHeld((const TouchScreenRect *)Unk_ov111_021D3794);
 
         if (v1 != 0xffffffff) {
@@ -998,12 +997,12 @@ static BOOL ov111_021D1A88(UnkStruct_ov111_021D0F7C *param0)
 
         if (param0->unk_0D == 0) {
             Window_EraseMessageBox(&param0->unk_5C[0], 0);
-            StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_115);
+            StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_115);
             param0->unk_08++;
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 1;
         }
         break;
@@ -1193,8 +1192,8 @@ static void ov111_021D1D68(UnkStruct_ov111_021D0F7C *param0)
 
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
-    sub_0201E3D8();
-    sub_0201E450(1);
+    EnableTouchPad();
+    InitializeTouchPad(1);
     SetVBlankCallback(ov111_021D2090, (void *)param0);
 
     return;
@@ -1858,9 +1857,9 @@ static void ov111_021D297C(UnkStruct_ov111_021D0F7C *param0, int param1)
 {
     int v0, v1, v2, v3;
 
-    for (v0 = 0; v0 < param0->unk_424.unk_00; v0++) {
-        v2 = param0->unk_424.unk_02[v0].x;
-        v3 = param0->unk_424.unk_02[v0].y;
+    for (v0 = 0; v0 < param0->unk_424.bufferSize; v0++) {
+        v2 = param0->unk_424.buffer[v0].x;
+        v3 = param0->unk_424.buffer[v0].y;
 
         if ((Unk_ov111_021D3728[param1].unk_02 <= v2) && (v2 <= Unk_ov111_021D3728[param1].unk_03) && (Unk_ov111_021D3728[param1].unk_00 <= v3) && (v3 <= Unk_ov111_021D3728[param1].unk_01)) {
             ov111_021D2ECC(param0, v2, v3);
@@ -1875,9 +1874,9 @@ static void ov111_021D29D8(UnkStruct_ov111_021D0F7C *param0)
     int v0;
     u8 v1, v2;
 
-    for (v0 = 0; v0 < param0->unk_424.unk_00; v0++) {
-        v1 = param0->unk_424.unk_02[v0].x;
-        v2 = param0->unk_424.unk_02[v0].y;
+    for (v0 = 0; v0 < param0->unk_424.bufferSize; v0++) {
+        v1 = param0->unk_424.buffer[v0].x;
+        v2 = param0->unk_424.buffer[v0].y;
 
         ov111_021D2A18(param0, v1, v2);
     }

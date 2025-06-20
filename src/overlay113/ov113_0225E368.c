@@ -22,18 +22,17 @@
 #include "overlay113/struct_ov113_0226046C.h"
 #include "overlay113/struct_ov113_02260544.h"
 #include "overlay113/struct_ov113_02260818.h"
-#include "overlay115/camera_angle.h"
 
 #include "camera.h"
 #include "easy3d.h"
 #include "easy3d_object.h"
 #include "graphics.h"
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "pokemon.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
-#include "unk_0200F174.h"
 
 __attribute__((aligned(4))) static const s16 Unk_ov113_02260BCC[] = {
     0xFF,
@@ -529,7 +528,7 @@ void ov113_0225E65C(UnkStruct_ov113_0225EB20 *param0, int param1)
     }
 
     if (param0->unk_740 && (param1 != 3)) {
-        sub_0200F44C(0, param0->unk_742);
+        SetScreenMasterBrightness(DS_SCREEN_MAIN, param0->unk_742);
         param0->unk_740 = 0;
     }
 }
@@ -568,7 +567,7 @@ static UnkStruct_ov113_0225E6B8 *ov113_0225E6B8(UnkStruct_ov113_0225DBCC *param0
 
 static BOOL ov113_0225E774(UnkStruct_ov113_0225EB20 *param0, Easy3DModel *param1, NARC *param2, NARC *param3, const UnkStruct_ov113_02260818 *param4, BOOL param5)
 {
-    param1->data = LoadMemberFromOpenNARC(param2, 29, 0, 118, 0);
+    param1->data = LoadMemberFromOpenNARC(param2, 29, 0, HEAP_ID_118, 0);
 
     {
         BOOL v0;
@@ -675,10 +674,10 @@ static void ov113_0225E920(NNSG3dResTex *param0, NARC *param1, NARC *param2, con
     v1 = (u8 *)((u8 *)param0 + param0->texInfo.ofsTex);
 
     if (v4 == 1) {
-        v2 = LoadMemberFromOpenNARC(param2, 3 + param3->unk_02, 1, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param2, 3 + param3->unk_02, 1, HEAP_ID_118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
     } else {
-        v2 = LoadMemberFromOpenNARC(param1, 16, 0, 118, 1);
+        v2 = LoadMemberFromOpenNARC(param1, 16, 0, HEAP_ID_118, 1);
         NNS_G2dGetUnpackedCharacterData(v2, &v3);
     }
 

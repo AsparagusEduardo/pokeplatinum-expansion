@@ -6,8 +6,8 @@
 #include "bg_window.h"
 #include "heap.h"
 #include "narc.h"
+#include "screen_fade.h"
 #include "system.h"
-#include "unk_0200F174.h"
 
 __attribute__((aligned(4))) static const u16 Unk_020F4030[] = {
     0x20,
@@ -80,9 +80,9 @@ u8 HealthBar_Color(u16 curHP, u16 maxHP, u32 barSize)
 void sub_0208C120(u8 param0, u32 heapID)
 {
     if (param0 == 0) {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, heapID);
     } else {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, heapID);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, heapID);
     }
 }
 
@@ -149,7 +149,7 @@ u8 sub_0208C15C(s16 *param0, u16 param1)
     return 0;
 }
 
-void sub_0208C210(BgConfig *param0, int param1, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
+void sub_0208C210(BgConfig *param0, int heapID, NARC *param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
 {
     u32 v0;
     void *v1;
@@ -158,7 +158,7 @@ void sub_0208C210(BgConfig *param0, int param1, NARC *param2, int param3, int pa
     NNSG2dPaletteData *v4;
 
     v0 = NARC_GetMemberSize(param2, param4);
-    v1 = Heap_AllocFromHeapAtEnd(param1, v0);
+    v1 = Heap_AllocFromHeapAtEnd(heapID, v0);
 
     NARC_ReadWholeMember(param2, param4, (void *)v1);
 

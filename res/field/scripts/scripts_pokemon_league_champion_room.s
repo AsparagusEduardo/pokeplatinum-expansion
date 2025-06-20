@@ -19,14 +19,14 @@ _000E:
     CallIfSet FLAG_GAME_COMPLETED, _00F0
     CloseMessage
     SetFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
-    CallIfUnset FLAG_UNK_0x00D6, _00F5
-    CallIfSet FLAG_UNK_0x00D6, _00FD
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0121
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00F5
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _00FD
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0121
     Message 1
     SetFlag FLAG_UNK_0x00B4
-    CallIfUnset FLAG_UNK_0x00D6, _0105
-    CallIfSet FLAG_UNK_0x00D6, _0113
+    CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0105
+    CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, _0113
     Message 2
     CloseMessage
     ApplyMovement 0, _0144
@@ -35,9 +35,9 @@ _000E:
     WaitMovement
     ApplyMovement 0, _0150
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     TriggerPlatformLift
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     SetFlag FLAG_UNK_0x023A
     SetFlag FLAG_UNK_0x023B
     ApplyMovement LOCALID_PLAYER, _013C
@@ -83,26 +83,26 @@ _0121:
 
     .balign 4, 0
 _012C:
-    MoveAction_012 4
+    WalkNormalNorth 4
     EndMovement
 
     .balign 4, 0
 _0134:
-    MoveAction_012 6
+    WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _013C:
-    MoveAction_012 6
+    WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_014
-    MoveAction_033
+    WalkNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0150:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement

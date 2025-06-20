@@ -8,14 +8,13 @@
 
 #include "data/field/hidden_items.h"
 #include "field/field_system.h"
-#include "field/scripts/scr_seq.naix"
 
 #include "field_task.h"
 #include "heap.h"
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_object.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "player_avatar.h"
@@ -26,6 +25,7 @@
 
 #include "constdata/const_020EAB80.h"
 #include "constdata/const_020EAC58.h"
+#include "res/field/scripts/scr_seq.naix.h"
 
 static BOOL FieldTask_RunScript(FieldTask *taskManager);
 static ScriptManager *ScriptManager_New();
@@ -93,7 +93,7 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
     case 0:
         scriptManager->ctx[SCRIPT_CONTEXT_MAIN] = ScriptContext_CreateAndStart(fieldSystem, scriptManager->scriptID);
         scriptManager->numActiveContexts = 1;
-        scriptManager->strTemplate = StringTemplate_New(8, 64, 11);
+        scriptManager->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELDMAP);
         scriptManager->msgBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
         scriptManager->tmpBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
         scriptManager->state++;
@@ -474,11 +474,11 @@ u16 *FieldSystem_GetVarPointer(FieldSystem *fieldSystem, u16 varID)
         return NULL;
     }
 
-    if (varID < SPECIAL_VARS_START) {
+    if (varID < SCRIPT_LOCAL_VARS_START) {
         return VarsFlags_GetVarAddress(varsFlags, varID);
     }
 
-    return FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_START + varID - SPECIAL_VARS_START);
+    return FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_DATA_START + varID - SCRIPT_LOCAL_VARS_START);
 }
 
 u16 FieldSystem_TryGetVar(FieldSystem *fieldSystem, u16 varID)

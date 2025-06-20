@@ -34,6 +34,7 @@ c_args = [
     '-stdinc',
     '-sym', 'on',
     '-DPOKEPLATINUM_GENERATED_ENUM',
+    '-D_MSL_RESTRICT=',
 ]
 
 if get_option('gdb_debugging')
@@ -85,27 +86,27 @@ link_args = [
 ############################################################
 nitrosdk_dep = dependency('NitroSDK',
     default_options: {
-        'mwrap_ver': '2.0/sp1p2',
+        'mwrap_sdk': '2.0/sp1p2',
         'sp1p3_conditionals': true
     }
 )
 
 nitrosystem_dep = dependency('NitroSystem',
     default_options: {
-        'mwrap_ver': '2.0/sp2'
+        'mwrap_sdk': '2.0/sp2',
     }
 )
 
 nitrowifi_dep = dependency('NitroWiFi',
     default_options: {
-        'mwrap_ver': '2.0/sp1p2',
+        'mwrap_sdk': '2.0/sp1p2',
         'sp1p3_conditionals': true
     }
 )
 
 nitrodwc_dep = dependency('NitroDWC',
     default_options: {
-        'mwrap_ver': '2.0/sp2p2',
+        'mwrap_sdk': '2.0/sp2p2',
         'link_ppwlobby': true
     }
 )
@@ -211,32 +212,25 @@ ichneumon_sub_defs = subproject('NitroSDK'
 ###                        DS ROM                        ###
 ############################################################
 pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
-    output: [
-        'pokeplatinum.us.nds',
-        'pokeplatinum.us.nlf'
-    ],
+    output: 'pokeplatinum.us.nds',
     input: [
         main,
-        banner_bnr,
         rom_header_template,
-        rom_rsf,
+        icon_png,
         ichneumon_sub,
         ichneumon_sub_defs,
-        fixrom_exe,
-        nitrofs_files # Make sure this is always listed last
+        nitrofs_files,
     ],
     command : [
-        makerom_exe,
-        '-DTITLE_NAME=POKEMON PL',
-        '-DBNR=@INPUT1@',
-        '-DHEADER_TEMPLATE=@INPUT2@',
-        '-DARM7=@INPUT4@',
-        '-DARM7_DEFS=@INPUT5@',
-        '@INPUT3@',
-        '@OUTPUT0@',
-        '@OUTPUT1@',
-        '&&','sh', '-c',
-        '@INPUT6@ @OUTPUT0@ --secure-crc 0xF8B8 --game-code CPUE'
+        nitrorom_exe,
+        'pack',
+        '-DHEADER_TEMPLATE=@INPUT1@', # rom_header_template
+        '-DICON_PNG=@INPUT2@',        # icon_png
+        '-DARM7_STATIC=@INPUT3@',     # ichneumon_sub
+        '-DARM7_DEFINE=@INPUT4@',     # ichneumon_sub_defs
+        '--output=@OUTPUT0@',         # pokeplatinum.us.nds
+        rom_ini,
+        filesys_csv,
     ],
     build_by_default: true
 )

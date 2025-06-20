@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/savedata/vars_flags.h"
+#include "generated/first_arrival_to_zones.h"
 
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
@@ -169,7 +169,7 @@ static void sub_0206B878(FieldSystem *fieldSystem, UnkStruct_0203D8AC *param1, c
     v1 = FS_ReadFile(&v0, &v3, 4);
     GF_ASSERT(v1 >= 0);
 
-    v4 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_0206B878));
+    v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0206B878));
     MI_CpuClear8(v4, sizeof(UnkStruct_0206B878));
 
     param1->unk_13A = v3;

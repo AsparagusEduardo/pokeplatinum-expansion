@@ -5,7 +5,6 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 
@@ -63,16 +62,19 @@
 #include "field_comm_manager.h"
 #include "game_records.h"
 #include "heap.h"
-#include "math.h"
+#include "item_use_pokemon.h"
+#include "math_util.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -82,8 +84,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
-#include "unk_02014000.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202D05C.h"
 #include "unk_0202F1D4.h"
@@ -93,7 +93,6 @@
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
 #include "unk_0208694C.h"
-#include "unk_02096420.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"
 
@@ -825,9 +824,9 @@ static BOOL ov104_0222FF90(UnkStruct_ov104_0222E930 *param0)
     u16 v2 = ov104_0222EA48(param0);
     u16 v3 = ov104_0222EA48(param0);
 
-    StartScreenTransition(0, v2, v2, v3, v0, v1, HEAP_ID_FIELDMAP);
-    sub_0200F32C(0);
-    sub_0200F32C(1);
+    StartScreenFade(FADE_BOTH_SCREENS, v2, v2, v3, v0, v1, HEAP_ID_FIELDMAP);
+    ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+    ResetVisibleHardwareWindows(DS_SCREEN_SUB);
 
     return 0;
 }
@@ -840,7 +839,7 @@ static BOOL ov104_0222FFD8(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_0222FFE8(UnkStruct_ov104_0222E930 *param0)
 {
-    if (IsScreenTransitionDone() == 1) {
+    if (IsScreenFadeDone() == TRUE) {
         return 1;
     }
 
@@ -1643,7 +1642,7 @@ static BOOL ov104_02230B50(UnkStruct_ov104_0222E930 *param0)
 
     sub_0202F298(v2->saveData, 11, &v0, v1, 0);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_BATTLE, SEQ_BATTLE_TRAINER, 1);
-    sub_0209B988(param0->unk_00->unk_00, &gBattleOverlayTemplate, v1, 1, NULL);
+    sub_0209B988(param0->unk_00->unk_00, &gBattleApplicationTemplate, v1, 1, NULL);
 
     return 1;
 }
@@ -1957,7 +1956,7 @@ static BOOL ov104_02231050(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_02230BE4 *v0 = sub_0209B970(param0->unk_00->unk_00);
 
-    HealAllPokemonInParty(SaveData_GetParty(v0->saveData));
+    Party_HealAllMembers(SaveData_GetParty(v0->saveData));
     return 0;
 }
 
@@ -2052,13 +2051,13 @@ static BOOL ov104_02231148(UnkStruct_ov104_02231148 *param0)
             break;
         }
 
-        sub_0200F32C(0);
-        sub_0200F32C(1);
-        StartScreenTransition(0, 32, 32, 0x0, 12, 1, HEAP_ID_FIELDMAP);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELDMAP);
         param0->unk_04++;
         break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             return 0;
         }
         break;
@@ -2102,14 +2101,14 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
         }
     } break;
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);
             Window_Remove(param0->unk_28);
             Windows_Delete(param0->unk_28, 1);
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
             Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
@@ -2157,15 +2156,15 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
     } break;
 
     default:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             ov104_0223EBD0(param0->unk_2C);
 
             Window_ClearAndCopyToVRAM(param0->unk_28);
             Window_Remove(param0->unk_28);
             Windows_Delete(param0->unk_28, 1);
 
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
             Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
@@ -2500,8 +2499,8 @@ static BOOL ov104_02231AA8(UnkStruct_ov104_0222E930 *param0)
     v0 = Unk_ov104_0223F65C[v1->unk_08](v1);
 
     if (v0 == 0) {
-        sub_0200F344(0, 0x0);
-        sub_0200F344(1, 0x0);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
         sub_0209B980(param0->unk_00->unk_00, v1->unk_14);
         Heap_FreeToHeap(v1);
     }
@@ -2555,13 +2554,13 @@ static BOOL ov104_02231B74(UnkStruct_ov104_0222E930 *param0)
     UnkStruct_ov104_022320B4 *v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC *v1 = sub_0209B974(v0->unk_00);
     u16 v2, v3;
-    UnkStruct_02014014 *v4;
+    ParticleSystem *v4;
 
     v2 = ov104_0222FC00(param0);
     v3 = ov104_0222FC00(param0);
     v4 = ov104_0223D6D0(v1->unk_10, v2);
 
-    sub_020146F4(v4, v3, NULL, NULL);
+    ParticleSystem_CreateEmitterWithCallback(v4, v3, NULL, NULL);
 
     return 0;
 }

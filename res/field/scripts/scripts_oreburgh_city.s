@@ -53,8 +53,8 @@ _0090:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_COAL, 0x800C
-    GoToIfEq 0x800C, 1, _00C1
+    CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00C1
     GoToIfSet FLAG_UNK_0x007A, _00CC
     Message 8
     WaitABXPadPress
@@ -81,10 +81,10 @@ _00D7:
     ClearFlag FLAG_UNK_0x017C
     ScrCmd_188 3, 16
     ScrCmd_189 3, 2
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2EC, _011E
-    GoToIfEq 0x8005, 0x2ED, _0144
-    GoToIfEq 0x8005, 0x2EE, _016A
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2EC, _011E
+    GoToIfEq VAR_0x8005, 0x2ED, _0144
+    GoToIfEq VAR_0x8005, 0x2EE, _016A
     GoTo _0190
     End
 
@@ -140,10 +140,10 @@ _01B6:
     WaitMovement
     Message 5
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2EC, _021F
-    GoToIfEq 0x8005, 0x2ED, _0239
-    GoToIfEq 0x8005, 0x2EE, _0253
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2EC, _021F
+    GoToIfEq VAR_0x8005, 0x2ED, _0239
+    GoToIfEq VAR_0x8005, 0x2EE, _0253
     GoTo _026D
     End
 
@@ -179,88 +179,88 @@ _0287:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 3
     CallCommonScript 0x7FB
-    SetVar 0x4079, 3
+    SetVar VAR_UNK_0x4079, 3
     ReleaseAll
     End
 
     .balign 4, 0
 _02A0:
-    MoveAction_062 7
-    MoveAction_071
-    MoveAction_018
-    MoveAction_072
-    MoveAction_003
+    Delay4 7
+    LockDir
+    WalkFastWest
+    UnlockDir
+    FaceEast
     EndMovement
 
     .balign 4, 0
 _02B8:
-    MoveAction_018 9
+    WalkFastWest 9
     EndMovement
 
     .balign 4, 0
 _02C0:
-    MoveAction_017
-    MoveAction_018 4
-    MoveAction_038
+    WalkFastSouth
+    WalkFastWest 4
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _02D0:
-    MoveAction_017
-    MoveAction_018 3
-    MoveAction_016
-    MoveAction_018
-    MoveAction_038
+    WalkFastSouth
+    WalkFastWest 3
+    WalkFastNorth
+    WalkFastWest
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _02E8:
-    MoveAction_016
-    MoveAction_018 4
-    MoveAction_038
+    WalkFastNorth
+    WalkFastWest 4
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _02F8:
-    MoveAction_016
-    MoveAction_018 3
-    MoveAction_016
-    MoveAction_018
-    MoveAction_038
+    WalkFastNorth
+    WalkFastWest 3
+    WalkFastNorth
+    WalkFastWest
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _0310:
-    MoveAction_033
-    MoveAction_034
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _031C:
-    MoveAction_033
-    MoveAction_034
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0328:
-    MoveAction_032
-    MoveAction_034
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0334:
-    MoveAction_032
-    MoveAction_034
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0340:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0348:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
 _0350:
@@ -289,9 +289,9 @@ _0376:
     FacePlayer
     GoToIfSet FLAG_UNK_0x0109, _03BD
     Message 17
-    SetVar 0x8004, ITEM_SUPER_POTION
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _03C8
+    SetVar VAR_0x8004, ITEM_SUPER_POTION
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _03C8
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x0109
     GoTo _03BD
@@ -332,10 +332,10 @@ _03E5:
 
 _03F8:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2EC, _042F
-    GoToIfEq 0x8005, 0x2ED, _0449
-    GoToIfEq 0x8005, 0x2EE, _0463
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2EC, _042F
+    GoToIfEq VAR_0x8005, 0x2ED, _0449
+    GoToIfEq VAR_0x8005, 0x2EE, _0463
     GoTo _047D
     End
 
@@ -371,11 +371,11 @@ _0497:
     Message 6
     CloseMessage
     CallCommonScript 0x800
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x2EC, _04DC
-    GoToIfEq 0x8005, 0x2ED, _04F6
-    GoToIfEq 0x8005, 0x2EE, _0510
-    GoToIfEq 0x8005, 0x2EF, _052A
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x2EC, _04DC
+    GoToIfEq VAR_0x8005, 0x2ED, _04F6
+    GoToIfEq VAR_0x8005, 0x2EE, _0510
+    GoToIfEq VAR_0x8005, 0x2EF, _052A
     End
 
 _04DC:
@@ -411,101 +411,101 @@ _0544:
     WaitABXPadPress
     CloseMessage
     CallCommonScript 0x801
-    SetVar 0x4079, 1
+    SetVar VAR_UNK_0x4079, 1
     ReleaseAll
     End
 
     .balign 4, 0
 _055C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0564:
-    MoveAction_013
-    MoveAction_015
-    MoveAction_013 10
-    MoveAction_015 12
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth 10
+    WalkNormalEast 12
     EndMovement
 
     .balign 4, 0
 _0578:
-    MoveAction_013
-    MoveAction_015
-    MoveAction_013 9
-    MoveAction_015 12
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth 9
+    WalkNormalEast 12
     EndMovement
 
     .balign 4, 0
 _058C:
-    MoveAction_013
-    MoveAction_015
-    MoveAction_013 8
-    MoveAction_015 12
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth 8
+    WalkNormalEast 12
     EndMovement
 
     .balign 4, 0
 _05A0:
-    MoveAction_013
-    MoveAction_015
-    MoveAction_013 7
-    MoveAction_015 12
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth 7
+    WalkNormalEast 12
     EndMovement
 
     .balign 4, 0
 _05B4:
-    MoveAction_015
-    MoveAction_013 10
-    MoveAction_015 13
-    MoveAction_034
+    WalkNormalEast
+    WalkNormalSouth 10
+    WalkNormalEast 13
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _05C8:
-    MoveAction_015
-    MoveAction_013 9
-    MoveAction_015 13
-    MoveAction_034
+    WalkNormalEast
+    WalkNormalSouth 9
+    WalkNormalEast 13
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _05DC:
-    MoveAction_015
-    MoveAction_013 8
-    MoveAction_015 13
-    MoveAction_034
+    WalkNormalEast
+    WalkNormalSouth 8
+    WalkNormalEast 13
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _05F0:
-    MoveAction_015
-    MoveAction_013 7
-    MoveAction_015 13
-    MoveAction_034
+    WalkNormalEast
+    WalkNormalSouth 7
+    WalkNormalEast 13
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0604:
-    MoveAction_075
-    MoveAction_012 3
+    EmoteExclamationMark
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _0610:
-    MoveAction_075
-    MoveAction_012 2
+    EmoteExclamationMark
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _061C:
-    MoveAction_075
-    MoveAction_012
+    EmoteExclamationMark
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0628:
-    MoveAction_075
-    MoveAction_032
+    EmoteExclamationMark
+    WalkOnSpotNormalNorth
     EndMovement
 
 _0634:

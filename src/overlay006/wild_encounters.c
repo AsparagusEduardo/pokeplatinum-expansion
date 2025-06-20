@@ -36,7 +36,7 @@
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_tile_behavior.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "party.h"
 #include "player_avatar.h"
@@ -672,8 +672,8 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
         gettingEncounter = FALSE;
     }
 
-    GF_ASSERT(GF_heap_c_dummy_return_true(4));
-    GF_ASSERT(GF_heap_c_dummy_return_true(11));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELD));
+    GF_ASSERT(GF_heap_c_dummy_return_true(HEAP_ID_FIELDMAP));
 
     if (!gettingEncounter) {
         FieldBattleDTO_Free(*battleParams);

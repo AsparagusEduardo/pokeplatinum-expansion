@@ -9,7 +9,6 @@
 #include "struct_defs/struct_02099F80.h"
 
 #include "overlay005/struct_ov5_021DE5D0.h"
-#include "overlay115/camera_angle.h"
 
 #include "bg_window.h"
 #include "camera.h"
@@ -19,7 +18,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -28,6 +27,7 @@
 #include "pokemon.h"
 #include "pokemon_sprite.h"
 #include "render_oam.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite.h"
@@ -39,7 +39,6 @@
 #include "system.h"
 #include "text.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 
 typedef struct {
@@ -283,16 +282,16 @@ static BOOL ov86_0223D2A4(UnkStruct_ov86_0223D264 *param0);
 static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 *param0, Pokemon *param1, const TrainerInfo *param2);
 static SysTask *ov86_0223CAE4(UnkStruct_ov86_0223C9B0 *param0, fx16 param1, fx32 param2, int param3);
 
-int ov86_0223B140(OverlayManager *param0, int *param1)
+int ov86_0223B140(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov86_0223B3C8 *v0;
 
     SetVBlankCallback(NULL, NULL);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_63, 196608);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov86_0223B3C8), HEAP_ID_63);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov86_0223B3C8), HEAP_ID_63);
 
-    v0->unk_0C = OverlayManager_Args(param0);
+    v0->unk_0C = ApplicationManager_Args(appMan);
     v0->unk_1C50 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0351, HEAP_ID_63);
     v0->unk_1C48 = Strbuf_Init(500, HEAP_ID_63);
     v0->unk_1C4C = Strbuf_Init(500, HEAP_ID_63);
@@ -339,11 +338,11 @@ int ov86_0223B140(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov86_0223B2E4(OverlayManager *param0, int *param1)
+int ov86_0223B2E4(ApplicationManager *appMan, int *param1)
 {
     switch (*param1) {
     case 0: {
-        UnkStruct_ov86_0223B3C8 *v0 = OverlayManager_Data(param0);
+        UnkStruct_ov86_0223B3C8 *v0 = ApplicationManager_Data(appMan);
 
         SysTask_Done(v0->unk_1C28);
 
@@ -358,7 +357,7 @@ int ov86_0223B2E4(OverlayManager *param0, int *param1)
         Strbuf_Free(v0->unk_1C4C);
         MessageLoader_Free(v0->unk_1C50);
         NARC_dtor(v0->unk_1C54);
-        OverlayManager_FreeData(param0);
+        ApplicationManager_FreeData(appMan);
         Heap_Destroy(HEAP_ID_63);
     }
         (*param1)++;
@@ -372,7 +371,7 @@ int ov86_0223B2E4(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov86_0223B394(OverlayManager *param0, int *param1)
+int ov86_0223B394(ApplicationManager *appMan, int *param1)
 {
     static BOOL (*const v0[])(UnkStruct_ov86_0223B3C8 *) = {
         ov86_0223B3C8,
@@ -382,7 +381,7 @@ int ov86_0223B394(OverlayManager *param0, int *param1)
         ov86_0223B40C
     };
 
-    UnkStruct_ov86_0223B3C8 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov86_0223B3C8 *v1 = ApplicationManager_Data(appMan);
 
     if ((*param1) < NELEMS(v0)) {
         if (v0[(*param1)](v1)) {
@@ -401,11 +400,11 @@ static BOOL ov86_0223B3C8(UnkStruct_ov86_0223B3C8 *param0)
 {
     switch (param0->unk_00) {
     case 0:
-        StartScreenTransition(3, 1, 1, 0x0, 16, 1, HEAP_ID_63);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 16, 1, HEAP_ID_63);
         param0->unk_00++;
         break;
     case 1:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             return 1;
         }
     }
@@ -417,12 +416,12 @@ static BOOL ov86_0223B40C(UnkStruct_ov86_0223B3C8 *param0)
 {
     switch (param0->unk_00) {
     case 0:
-        StartScreenTransition(3, 0, 0, 0x0, 2, 1, HEAP_ID_63);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 2, 1, HEAP_ID_63);
         Sound_FadeOutBGM(0, 30);
         param0->unk_00++;
         break;
     case 1:
-        if (IsScreenTransitionDone() && (Sound_IsFadeActive() == FALSE)) {
+        if (IsScreenFadeDone() && (Sound_IsFadeActive() == FALSE)) {
             return 1;
         }
     }
@@ -818,7 +817,7 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     VEC_Set(&(v3.position), 0, 0, 0);
 
     v3.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
-    v3.heapID = 63;
+    v3.heapID = HEAP_ID_63;
 
     v9 = Graphics_GetCharDataFromOpenNARC(param3, 76, 0, &v7, HEAP_ID_63);
     v10 = Graphics_GetPlttDataFromOpenNARC(param3, 75, &v8, HEAP_ID_63);
@@ -839,17 +838,17 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
         param0->unk_2E0[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_SPECIES, NULL);
         param0->unk_2F8[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_FORM, NULL);
 
-        sub_02013720(v1.archive, v1.character, HEAP_ID_63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.narcID, v1.character, HEAP_ID_63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200, 3200);
 
-        sub_02013720(v1.archive, v1.character, HEAP_ID_63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.narcID, v1.character, HEAP_ID_63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200 + 3200, 3200);
 
-        Graphics_LoadPalette(v1.archive, v1.palette, 1, v12 * 0x20, 0x20, HEAP_ID_63);
+        Graphics_LoadPalette(v1.narcID, v1.palette, 1, v12 * 0x20, 0x20, HEAP_ID_63);
         PokeSprite_LoadAnimationFrames(param0->unk_1C54, &param0->unk_1D8[v12][0], param0->unk_2E0[v12], 1);
     }
 

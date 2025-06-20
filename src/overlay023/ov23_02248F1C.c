@@ -15,10 +15,11 @@
 #include "field_message.h"
 #include "graphics.h"
 #include "gx_layers.h"
-#include "math.h"
+#include "math_util.h"
 #include "narc.h"
 #include "player_avatar.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sprite.h"
 #include "sprite_resource.h"
 #include "sprite_transfer.h"
@@ -27,7 +28,6 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "unk_0200679C.h"
-#include "unk_0200F174.h"
 
 typedef struct {
     Strbuf *unk_00[32];
@@ -112,7 +112,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
             v3.affineZRotation = 0;
             v3.priority = 0;
             v3.vramType = NNS_G2D_VRAM_TYPE_2DSUB;
-            v3.heapID = 4;
+            v3.heapID = HEAP_ID_FIELD;
 
             for (v2 = 0; v2 < (7 + 1); v2++) {
                 v0->unk_390[v2] = SpriteList_AddAffine(&v3);
@@ -342,7 +342,7 @@ static void ov23_02249438(BgConfig *param0)
 
 static void ov23_0224944C(BgConfig *param0, Window *param1)
 {
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
     ov23_02249438(param0);
 
     {
@@ -423,7 +423,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
     FieldMessage_AddWindow(param0, param1, 7);
     Window_FillTilemap(param1, 0);
     Graphics_LoadPalette(50, 52, 4, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
-    sub_0200F338(1);
+    ResetScreenMasterBrightness(DS_SCREEN_SUB);
 }
 
 static void ov23_02249584(UnkStruct_ov23_0224942C *param0)

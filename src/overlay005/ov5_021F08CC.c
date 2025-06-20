@@ -22,7 +22,7 @@
 #include "game_records.h"
 #include "heap.h"
 #include "map_object.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "party.h"
 #include "player_avatar.h"
@@ -81,9 +81,9 @@ static u16 ov5_021F0E58(int param0);
 int (*const Unk_ov5_021FFA0C[])(UnkStruct_ov5_021F0D6C *, PlayerAvatar *, MapObject *);
 const int Unk_ov5_021FFA00[];
 
-void *ov5_021F08CC(FieldSystem *fieldSystem, u32 param1, int param2)
+void *ov5_021F08CC(FieldSystem *fieldSystem, u32 heapID, int param2)
 {
-    UnkStruct_ov5_021F08CC *v0 = Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_ov5_021F08CC));
+    UnkStruct_ov5_021F08CC *v0 = Heap_AllocFromHeapAtEnd(heapID, sizeof(UnkStruct_ov5_021F08CC));
 
     memset(v0, 0, sizeof(UnkStruct_ov5_021F08CC));
 
@@ -473,7 +473,7 @@ static int (*const Unk_ov5_021FFA0C[])(UnkStruct_ov5_021F0D6C *, PlayerAvatar *,
 
 static void *ov5_021F0D1C(u32 param0)
 {
-    void *v0 = Heap_AllocFromHeapAtEnd(4, param0);
+    void *v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, param0);
 
     GF_ASSERT(v0 != NULL);
     memset(v0, 0, param0);
@@ -504,7 +504,7 @@ static void ov5_021F0D6C(UnkStruct_ov5_021F0D6C *param0)
     param0->unk_48 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD);
     param0->unk_2C = Strbuf_Init(0x400, HEAP_ID_FIELD);
     param0->unk_30 = Strbuf_Init(0x400, HEAP_ID_FIELD);
-    param0->unk_34 = StringTemplate_New(8, 64, 4);
+    param0->unk_34 = StringTemplate_New(8, 64, HEAP_ID_FIELD);
 }
 
 static void ov5_021F0DA4(UnkStruct_ov5_021F0D6C *param0)

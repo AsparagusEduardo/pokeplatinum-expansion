@@ -16,16 +16,16 @@
     ScriptEntryEnd
 
 _002A:
-    GoToIfEq 0x40F9, 0, _0039
+    GoToIfEq VAR_UNK_0x40F9, 0, _0039
     End
 
 _0039:
-    ScrCmd_283 0x406, 50
+    SetInitialVolumeForSequence SEQ_TV_HOUSOU, 50
     End
 
 _0041:
     LockAll
-    SetVar 0x40F9, 1
+    SetVar VAR_UNK_0x40F9, 1
     Message 0
     PlaySound SEQ_TV_END
     Message 1
@@ -68,22 +68,22 @@ _0097:
     End
 
 _00A8:
-    SetVar 0x4000, 0
+    SetVar VAR_MAP_LOCAL_0, 0
     GoTo _00E0
     End
 
 _00B6:
-    SetVar 0x4000, 1
+    SetVar VAR_MAP_LOCAL_0, 1
     GoTo _00E0
     End
 
 _00C4:
-    SetVar 0x4000, 2
+    SetVar VAR_MAP_LOCAL_0, 2
     GoTo _00E0
     End
 
 _00D2:
-    SetVar 0x4000, 3
+    SetVar VAR_MAP_LOCAL_0, 3
     GoTo _00E0
     End
 
@@ -97,45 +97,45 @@ _00E0:
     BufferRivalName 0
     Message 6
     CloseMessage
-    CallIfEq 0x4000, 0, _0249
-    CallIfEq 0x4000, 1, _025D
-    CallIfEq 0x4000, 2, _0271
-    CallIfEq 0x4000, 3, _027D
+    CallIfEq VAR_MAP_LOCAL_0, 0, _0249
+    CallIfEq VAR_MAP_LOCAL_0, 1, _025D
+    CallIfEq VAR_MAP_LOCAL_0, 2, _0271
+    CallIfEq VAR_MAP_LOCAL_0, 3, _027D
     BufferPlayerName 1
     Message 7
     CloseMessage
     ApplyMovement 0, _03E0
     WaitMovement
-    CallIfEq 0x4000, 0, _0291
-    CallIfEq 0x4000, 1, _02A5
-    CallIfEq 0x4000, 2, _02B9
-    CallIfEq 0x4000, 3, _02CD
+    CallIfEq VAR_MAP_LOCAL_0, 0, _0291
+    CallIfEq VAR_MAP_LOCAL_0, 1, _02A5
+    CallIfEq VAR_MAP_LOCAL_0, 2, _02B9
+    CallIfEq VAR_MAP_LOCAL_0, 3, _02CD
     Message 8
     CloseMessage
-    CallIfEq 0x4000, 0, _02E1
-    CallIfEq 0x4000, 1, _02ED
-    CallIfEq 0x4000, 2, _02F9
-    CallIfEq 0x4000, 3, _0305
+    CallIfEq VAR_MAP_LOCAL_0, 0, _02E1
+    CallIfEq VAR_MAP_LOCAL_0, 1, _02ED
+    CallIfEq VAR_MAP_LOCAL_0, 2, _02F9
+    CallIfEq VAR_MAP_LOCAL_0, 3, _0305
     BufferRivalName 0
     Message 9
     CloseMessage
-    CallIfEq 0x4000, 0, _0311
-    CallIfEq 0x4000, 1, _031D
-    CallIfEq 0x4000, 2, _0329
-    CallIfEq 0x4000, 3, _0335
+    CallIfEq VAR_MAP_LOCAL_0, 0, _0311
+    CallIfEq VAR_MAP_LOCAL_0, 1, _031D
+    CallIfEq VAR_MAP_LOCAL_0, 2, _0329
+    CallIfEq VAR_MAP_LOCAL_0, 3, _0335
     BufferPlayerName 1
     Message 10
     CloseMessage
-    CallIfEq 0x4000, 0, _0341
-    CallIfEq 0x4000, 1, _0355
-    CallIfEq 0x4000, 2, _0369
-    CallIfEq 0x4000, 3, _037D
+    CallIfEq VAR_MAP_LOCAL_0, 0, _0341
+    CallIfEq VAR_MAP_LOCAL_0, 1, _0355
+    CallIfEq VAR_MAP_LOCAL_0, 2, _0369
+    CallIfEq VAR_MAP_LOCAL_0, 3, _037D
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 0
     CallCommonScript 0x7FB
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_UNK_0x0173
-    SetVar 0x40A5, 1
+    SetVar VAR_UNK_0x40A5, 1
     ReleaseAll
     End
 
@@ -252,189 +252,189 @@ _037D:
 
     .balign 4, 0
 _0394:
-    MoveAction_018 2
-    MoveAction_075
-    MoveAction_063
+    WalkFastWest 2
+    EmoteExclamationMark
+    Delay8
     EndMovement
 
     .balign 4, 0
 _03A4:
-    MoveAction_018
-    MoveAction_017
-    MoveAction_018 2
+    WalkFastWest
+    WalkFastSouth
+    WalkFastWest 2
     EndMovement
 
     .balign 4, 0
 _03B4:
-    MoveAction_018
-    MoveAction_017 2
-    MoveAction_018 3
+    WalkFastWest
+    WalkFastSouth 2
+    WalkFastWest 3
     EndMovement
 
     .balign 4, 0
 _03C4:
-    MoveAction_017 2
-    MoveAction_018 2
+    WalkFastSouth 2
+    WalkFastWest 2
     EndMovement
 
     .balign 4, 0
 _03D0:
-    MoveAction_018
-    MoveAction_017 3
-    MoveAction_018 2
+    WalkFastWest
+    WalkFastSouth 3
+    WalkFastWest 2
     EndMovement
 
     .balign 4, 0
 _03E0:
-    MoveAction_075
-    MoveAction_063
+    EmoteExclamationMark
+    Delay8
     EndMovement
 
     .balign 4, 0
 _03EC:
-    MoveAction_017
-    MoveAction_018 4
-    MoveAction_016
+    WalkFastSouth
+    WalkFastWest 4
+    WalkFastNorth
     EndMovement
 
     .balign 4, 0
 _03FC:
-    MoveAction_016
-    MoveAction_018 3
-    MoveAction_036
+    WalkFastNorth
+    WalkFastWest 3
+    WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
 _040C:
-    MoveAction_016
-    MoveAction_018 5
-    MoveAction_036
+    WalkFastNorth
+    WalkFastWest 5
+    WalkOnSpotFastNorth
     EndMovement
 
     .balign 4, 0
 _041C:
-    MoveAction_016
-    MoveAction_018 4
-    MoveAction_016
+    WalkFastNorth
+    WalkFastWest 4
+    WalkFastNorth
     EndMovement
 
     .balign 4, 0
 _042C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0434:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _043C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0444:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _044C:
-    MoveAction_019 2
+    WalkFastEast 2
     EndMovement
 
     .balign 4, 0
 _0454:
-    MoveAction_019
-    MoveAction_017
-    MoveAction_039
+    WalkFastEast
+    WalkFastSouth
+    WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
 _0464:
-    MoveAction_019
-    MoveAction_017
-    MoveAction_019 2
+    WalkFastEast
+    WalkFastSouth
+    WalkFastEast 2
     EndMovement
 
     .balign 4, 0
 _0474:
-    MoveAction_019
-    MoveAction_017 2
-    MoveAction_019
+    WalkFastEast
+    WalkFastSouth 2
+    WalkFastEast
     EndMovement
 
     .balign 4, 0
 _0484:
-    MoveAction_017
-    MoveAction_019 3
-    MoveAction_016 2
-    MoveAction_019 4
+    WalkFastSouth
+    WalkFastEast 3
+    WalkFastNorth 2
+    WalkFastEast 4
     EndMovement
 
     .balign 4, 0
 _0498:
-    MoveAction_016
-    MoveAction_019 4
-    MoveAction_016
-    MoveAction_019 3
+    WalkFastNorth
+    WalkFastEast 4
+    WalkFastNorth
+    WalkFastEast 3
     EndMovement
 
     .balign 4, 0
 _04AC:
-    MoveAction_016
-    MoveAction_019 2
-    MoveAction_016
-    MoveAction_019 3
+    WalkFastNorth
+    WalkFastEast 2
+    WalkFastNorth
+    WalkFastEast 3
     EndMovement
 
     .balign 4, 0
 _04C0:
-    MoveAction_016
-    MoveAction_019 3
-    MoveAction_016 2
-    MoveAction_019 3
+    WalkFastNorth
+    WalkFastEast 3
+    WalkFastNorth 2
+    WalkFastEast 3
     EndMovement
 
     .balign 4, 0
 _04D4:
-    MoveAction_063
-    MoveAction_062
-    MoveAction_035
+    Delay8
+    Delay4
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _04E4:
-    MoveAction_063 2
-    MoveAction_035
+    Delay8 2
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _04F0:
-    MoveAction_063 2
-    MoveAction_038
+    Delay8 2
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _04FC:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0508:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0514:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0520:
-    MoveAction_063 2
-    MoveAction_035
+    Delay8 2
+    WalkOnSpotNormalEast
     EndMovement

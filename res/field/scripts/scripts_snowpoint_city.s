@@ -18,7 +18,7 @@
     ScriptEntryEnd
 
 _0032:
-    GoToIfGe 0x407F, 1, _0041
+    GoToIfGe VAR_UNK_0x407F, 1, _0041
     End
 
 _0041:
@@ -31,8 +31,8 @@ _0047:
     WaitMovement
     Message 0
     CloseMessage
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 1, _0088
+    GetNationalDexEnabled VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0088
     GoTo _0072
     End
 
@@ -49,25 +49,25 @@ _0088:
 
     .balign 4, 0
 _009C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _00A4:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _00AC:
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
 _00B4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 1, _00DF
+    GetNationalDexEnabled VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _00DF
     GoTo _00D4
 
 _00D4:
@@ -79,7 +79,7 @@ _00D4:
 
 _00DF:
     GoToIfUnset FLAG_GAME_COMPLETED, _00D4
-    GoToIfEq 0x407F, 0, _0102
+    GoToIfEq VAR_UNK_0x407F, 0, _0102
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -99,7 +99,7 @@ _0111:
     End
 
 _011B:
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     ClearFlag FLAG_UNK_0x01F3
     AddObject 7
     ApplyMovement 7, _016C
@@ -109,7 +109,7 @@ _011B:
     ApplyMovement LOCALID_PLAYER, _0164
     ApplyMovement 6, _015C
     WaitMovement
-    SetVar 0x407F, 1
+    SetVar VAR_UNK_0x407F, 1
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -117,17 +117,17 @@ _011B:
 
     .balign 4, 0
 _015C:
-    MoveAction_001
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _0164:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _016C:
-    MoveAction_012 7
+    WalkNormalNorth 7
     EndMovement
 
 _0174:
@@ -174,7 +174,7 @@ _01C0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GoToIfGe 0x407F, 1, _01E0
+    GoToIfGe VAR_UNK_0x407F, 1, _01E0
     Message 7
     WaitABXPadPress
     CloseMessage
@@ -212,9 +212,9 @@ _022A:
     FacePlayer
     GoToIfUnset FLAG_GAME_COMPLETED, _0260
     Message 10
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_YES, _0276
-    GoToIfEq 0x800C, MENU_NO, _026B
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, _0276
+    GoToIfEq VAR_RESULT, MENU_NO, _026B
     End
 
 _0260:
@@ -254,7 +254,7 @@ _02A0:
     CloseMessage
     ApplyMovement 10, _0334
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     Message 16
     CloseMessage
     ApplyMovement 10, _033C
@@ -271,40 +271,40 @@ _02A0:
 
     .balign 4, 0
 _030C:
-    MoveAction_075
-    MoveAction_032
+    EmoteExclamationMark
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0318:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0320:
-    MoveAction_014 4
-    MoveAction_013 2
-    MoveAction_014 6
-    MoveAction_013 2
+    WalkNormalWest 4
+    WalkNormalSouth 2
+    WalkNormalWest 6
+    WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
 _0334:
-    MoveAction_015
+    WalkNormalEast
     EndMovement
 
     .balign 4, 0
 _033C:
-    MoveAction_014
-    MoveAction_033
+    WalkNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0348:
-    MoveAction_012 2
-    MoveAction_015 3
-    MoveAction_012 2
-    MoveAction_015 7
+    WalkNormalNorth 2
+    WalkNormalEast 3
+    WalkNormalNorth 2
+    WalkNormalEast 7
     EndMovement
 
 _035C:
@@ -325,17 +325,17 @@ _0376:
 
     .balign 4, 0
 _0390:
-    MoveAction_001
-    MoveAction_064
+    FaceSouth
+    Delay15
     EndMovement
 
     .balign 4, 0
 _039C:
-    MoveAction_069
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _03A4:
-    MoveAction_013
-    MoveAction_064
+    WalkNormalSouth
+    Delay15
     EndMovement

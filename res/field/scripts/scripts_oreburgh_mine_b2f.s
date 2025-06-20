@@ -41,12 +41,12 @@ _0034:
 _0044:
     Message 0
     CloseMessage
-    ScrCmd_29E 2, 0x8005
-    WaitTime 10, 0x800C
+    ScrCmd_29E 2, VAR_0x8005
+    WaitTime 10, VAR_RESULT
     RemoveObject 1
 _0059:
-    WaitTime 1, 0x800C
-    GoToIfEq 0x8005, 0, _0059
+    WaitTime 1, VAR_RESULT
+    GoToIfEq VAR_0x8005, 0, _0059
     FacePlayer
     Message 1
     CloseMessage
@@ -107,7 +107,7 @@ _00A1:
 
     .balign 4, 0
 _00C0:
-    MoveAction_015 10
+    WalkNormalEast 10
     EndMovement
 
     .byte 63
@@ -129,9 +129,9 @@ _00C0:
 
     .balign 4, 0
 _00D8:
-    MoveAction_063 2
-    MoveAction_035
-    MoveAction_063 4
+    Delay8 2
+    WalkOnSpotNormalEast
+    Delay8 4
     EndMovement
 
     .byte 63

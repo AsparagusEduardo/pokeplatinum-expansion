@@ -17,17 +17,17 @@
 #include "game_overlay.h"
 #include "game_start.h"
 #include "main.h"
-#include "math.h"
+#include "math_util.h"
 #include "overlay_manager.h"
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "screen_fade.h"
 #include "sound_system.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_0200F174.h"
+#include "touch_pad.h"
 #include "unk_02017428.h"
-#include "unk_0201E3D8.h"
 #include "unk_02022844.h"
 #include "unk_0202419C.h"
 #include "unk_0202CC64.h"
@@ -44,9 +44,9 @@ FS_EXTERN_OVERLAY(overlay77);
 
 typedef struct Application {
     FSOverlayID currOverlayID;
-    OverlayManager *currOverlay;
+    ApplicationManager *currApplication;
     FSOverlayID nextOverlayID;
-    const OverlayManagerTemplate *nextOverlay;
+    const ApplicationManagerTemplate *nextApplication;
     ApplicationArgs args;
 } Application;
 
@@ -63,7 +63,7 @@ static Application sApplication;
 // repeatedly try to restore the backlight to its saved state.
 static PMBackLightSwitch sSavedBacklightState;
 BOOL gIgnoreCartridgeForWake;
-extern const OverlayManagerTemplate gOpeningCutsceneOverlayTemplate;
+extern const ApplicationManagerTemplate gOpeningCutsceneAppTemplate;
 
 void NitroMain(void)
 {
@@ -93,19 +93,19 @@ void NitroMain(void)
     }
 
     if (SaveData_BackupExists(sApplication.args.saveData) == FALSE) {
-        sub_0209A74C(0);
+        sub_0209A74C(HEAP_ID_SYSTEM);
     } else {
         switch (OS_GetResetParameter()) {
         case RESET_CLEAN:
             sApplication.args.error = FALSE;
-            EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneOverlayTemplate);
+            EnqueueApplication(FS_OVERLAY_ID(overlay77), &gOpeningCutsceneAppTemplate);
             break;
 
         case RESET_ERROR:
-            sub_0200F344(0, 0x0);
-            sub_0200F344(1, 0x0);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
             sApplication.args.error = TRUE;
-            EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveOverlayTemplate);
+            EnqueueApplication(FS_OVERLAY_ID(game_start), &gGameStartLoadSaveAppTemplate);
             break;
 
         default:
@@ -154,7 +154,7 @@ void NitroMain(void)
         gSystem.frameCounter = 0;
 
         BrightnessController_Update();
-        sub_0200F27C();
+        ExecScreenFade();
 
         if (gSystem.vblankCallback != NULL) {
             gSystem.vblankCallback(gSystem.vblankCallbackData);
@@ -168,15 +168,15 @@ void NitroMain(void)
 static void InitApplication()
 {
     sApplication.currOverlayID = FS_OVERLAY_ID_NONE;
-    sApplication.currOverlay = NULL;
+    sApplication.currApplication = NULL;
     sApplication.nextOverlayID = FS_OVERLAY_ID_NONE;
-    sApplication.nextOverlay = NULL;
+    sApplication.nextApplication = NULL;
 }
 
 static void RunApplication(void)
 {
-    if (sApplication.currOverlay == NULL) {
-        if (sApplication.nextOverlay == NULL) {
+    if (sApplication.currApplication == NULL) {
+        if (sApplication.nextApplication == NULL) {
             return;
         }
 
@@ -185,14 +185,14 @@ static void RunApplication(void)
         }
 
         sApplication.currOverlayID = sApplication.nextOverlayID;
-        sApplication.currOverlay = OverlayManager_New(sApplication.nextOverlay, &sApplication.args, HEAP_ID_SYSTEM);
+        sApplication.currApplication = ApplicationManager_New(sApplication.nextApplication, &sApplication.args, HEAP_ID_SYSTEM);
         sApplication.nextOverlayID = FS_OVERLAY_ID_NONE;
-        sApplication.nextOverlay = NULL;
+        sApplication.nextApplication = NULL;
     }
 
-    if (OverlayManager_Exec(sApplication.currOverlay)) {
-        OverlayManager_Free(sApplication.currOverlay);
-        sApplication.currOverlay = NULL;
+    if (ApplicationManager_Exec(sApplication.currApplication)) {
+        ApplicationManager_Free(sApplication.currApplication);
+        sApplication.currApplication = NULL;
 
         if (sApplication.currOverlayID != FS_OVERLAY_ID_NONE) {
             Overlay_UnloadByID(sApplication.currOverlayID);
@@ -200,12 +200,12 @@ static void RunApplication(void)
     }
 }
 
-void EnqueueApplication(FSOverlayID overlayID, const OverlayManagerTemplate *template)
+void EnqueueApplication(FSOverlayID overlayID, const ApplicationManagerTemplate *template)
 {
-    GF_ASSERT(sApplication.nextOverlay == NULL);
+    GF_ASSERT(sApplication.nextApplication == NULL);
 
     sApplication.nextOverlayID = overlayID;
-    sApplication.nextOverlay = template;
+    sApplication.nextApplication = template;
 }
 
 static void WaitFrame(void)
@@ -250,8 +250,8 @@ static void CheckHeapCanary(void)
 
 static void SoftReset(enum OSResetParameter resetParam)
 {
-    sub_0200F344(DS_SCREEN_MAIN, 0x7fff);
-    sub_0200F344(DS_SCREEN_SUB, 0x7fff);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_WHITE);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
 
     if (sub_02037DB0()) {
         SaveData_SaveStateCancel(SaveData_Ptr());
@@ -268,18 +268,18 @@ static void HeapCanaryFailed(int resetParam, int param1)
     int elapsed;
 
     if (param1 == 3) {
-        sub_02039834(0, 3, 0);
+        sub_02039834(HEAP_ID_SYSTEM, 3, 0);
     } else if (resetParam == RESET_CLEAN) {
         if (sub_020389B8() == TRUE) {
-            sub_02039834(0, 6, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 6, 0);
         } else {
-            sub_02039834(0, 2, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 2, 0);
         }
     } else {
         if (sub_020389B8() == TRUE) {
-            sub_02039834(0, 5, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 5, 0);
         } else {
-            sub_02039834(0, 0, 0);
+            sub_02039834(HEAP_ID_SYSTEM, 0, 0);
         }
     }
 

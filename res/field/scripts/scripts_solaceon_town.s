@@ -21,8 +21,8 @@ _0032:
     End
 
 _0034:
-    CheckDaycareHasEgg 0x4000
-    GoToIfNe 0x4000, FALSE, _0047
+    CheckDaycareHasEgg VAR_MAP_LOCAL_0
+    GoToIfNe VAR_MAP_LOCAL_0, FALSE, _0047
     End
 
 _0047:
@@ -43,8 +43,8 @@ _0062:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckBadgeAcquired BADGE_ID_RELIC, 0x800C
-    GoToIfEq 0x800C, 1, _0088
+    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0088
     Message 4
     WaitABXPadPress
     CloseMessage
@@ -92,12 +92,12 @@ _00CC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, 0x800C
-    GoToIfEq 0x800C, 1, _0118
-    ScrCmd_11E 0x800C
-    GoToIfLt 0x800C, 50, _010D
+    CheckPoketchAppRegistered POKETCH_APPID_POKEMONHISTORY, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, _0118
+    ScrCmd_11E VAR_RESULT
+    GoToIfLt VAR_RESULT, 50, _010D
     Message 10
-    SetVar 0x8004, 9
+    SetVar VAR_0x8004, 9
     CallCommonScript 0x7D9
     WaitABXPadPress
     CloseMessage
@@ -135,8 +135,8 @@ _0168:
     ApplyMovement LOCALID_PLAYER, _0218
     WaitMovement
     CallCommonScript 0x7FA
-    GetPlayerMapPos 0x8004, 0x8005
-    SetObjectEventPos 18, 0x8004, 0x295
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    SetObjectEventPos 18, VAR_0x8004, 0x295
     ClearFlag FLAG_UNK_0x021E
     AddObject 18
     ScrCmd_062 18
@@ -158,42 +158,42 @@ _0168:
     WaitMovement
     RemoveObject 18
     CallCommonScript 0x7FB
-    SetVar 0x4073, 1
+    SetVar VAR_UNK_0x4073, 1
     ReleaseAll
     End
 
     .balign 4, 0
 _01E8:
-    MoveAction_017 7
+    WalkFastSouth 7
     EndMovement
 
     .balign 4, 0
 _01F0:
-    MoveAction_038
-    MoveAction_063
-    MoveAction_039
-    MoveAction_063
-    MoveAction_037
+    WalkOnSpotFastWest
+    Delay8
+    WalkOnSpotFastEast
+    Delay8
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0208:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _0210:
-    MoveAction_016 7
+    WalkFastNorth 7
     EndMovement
 
     .balign 4, 0
 _0218:
-    MoveAction_063
-    MoveAction_075
-    MoveAction_063 3
+    Delay8
+    EmoteExclamationMark
+    Delay8 3
     EndMovement
 
     .balign 4, 0
 _0228:
-    MoveAction_000
+    FaceNorth
     EndMovement

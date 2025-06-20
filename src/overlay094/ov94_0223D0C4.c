@@ -25,6 +25,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite.h"
 #include "strbuf.h"
@@ -32,7 +33,6 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020131EC.h"
 #include "unk_020393C8.h"
 
@@ -86,7 +86,7 @@ int ov94_0223D0C4(UnkStruct_ov94_0223FD4C *param0, int param1)
     ov94_02242368(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[7], param0->unk_12C.unk_F0.species, param0->unk_12C.unk_F0.gender, ov94_02242970(param0->unk_12C.unk_F0.level, param0->unk_12C.unk_F0.level2, 0));
     ov94_0223DB2C((Pokemon *)param0->unk_12C.unk_00.unk_00);
 
-    StartScreenTransition(3, 1, 1, 0x0, 6, 1, HEAP_ID_62);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
     param0->unk_2C = 0;
 
@@ -361,7 +361,7 @@ static int ov94_0223D5B8(UnkStruct_ov94_0223FD4C *param0)
 
 static int ov94_0223D618(UnkStruct_ov94_0223FD4C *param0)
 {
-    StartScreenTransition(3, 0, 0, 0x0, 6, 1, HEAP_ID_62);
+    StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_62);
 
     param0->unk_2C = 0;
     return 4;
@@ -589,13 +589,13 @@ void ov94_0223DB2C(Pokemon *param0)
         int v2 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
         int v3 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
-        sub_020136A4(v0.archive, v0.character, HEAP_ID_62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
+        sub_020136A4(v0.narcID, v0.character, HEAP_ID_62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
     }
 
     DC_FlushRange(v1, (0x20 * 10 * 10));
     GX_LoadOBJ(v1, ((18 * 32 + 16) * 32), (0x20 * 10 * 10));
 
-    Graphics_LoadPalette(v0.archive, v0.palette, 1, 0x20 * 13, 32, HEAP_ID_62);
+    Graphics_LoadPalette(v0.narcID, v0.palette, 1, 0x20 * 13, 32, HEAP_ID_62);
     Heap_FreeToHeap(v1);
 }
 

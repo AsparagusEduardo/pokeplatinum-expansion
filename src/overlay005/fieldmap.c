@@ -22,6 +22,7 @@
 #include "overlay005/const_ov5_021FF744.h"
 #include "overlay005/const_ov5_021FF7D0.h"
 #include "overlay005/dynamic_terrain_height.h"
+#include "overlay005/field_camera.h"
 #include "overlay005/hblank_system.h"
 #include "overlay005/honey_tree.h"
 #include "overlay005/land_data.h"
@@ -31,7 +32,6 @@
 #include "overlay005/model_attributes.h"
 #include "overlay005/ov5_021D1A94.h"
 #include "overlay005/ov5_021D57BC.h"
-#include "overlay005/ov5_021D5B40.h"
 #include "overlay005/ov5_021D5BC0.h"
 #include "overlay005/ov5_021D5CB0.h"
 #include "overlay005/ov5_021D5EB8.h"
@@ -60,6 +60,7 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "game_overlay.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "inlines.h"
@@ -75,9 +76,9 @@
 #include "pokeradar.h"
 #include "render_oam.h"
 #include "savedata_misc.h"
+#include "screen_fade.h"
 #include "script_manager.h"
 #include "system.h"
-#include "unk_0200F174.h"
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "unk_020553DC.h"
@@ -110,9 +111,9 @@ static void ov5_021D1790(FieldSystem *fieldSystem);
 static void ov5_021D17EC(FieldSystem *fieldSystem);
 static void ov5_021D1878(FieldSystem *fieldSystem);
 static void ov5_021D1968(FieldSystem *fieldSystem);
-static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1);
-static BOOL FieldMap_Main(OverlayManager *overlayMan, int *param1);
-static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1);
+static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1);
+static BOOL FieldMap_Main(ApplicationManager *appMan, int *param1);
+static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1);
 static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem);
 static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1);
 static BOOL ov5_021D119C(FieldSystem *fieldSystem);
@@ -144,12 +145,12 @@ static void fieldmap(void *param0)
     inline_fieldmap(fieldSystem);
 }
 
-static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
+static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
 {
     FieldSystem *fieldSystem;
     BOOL ret = FALSE;
 
-    fieldSystem = OverlayManager_Args(overlayMan);
+    fieldSystem = ApplicationManager_Args(appMan);
 
     switch (*param1) {
     case 0:
@@ -159,8 +160,8 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         G2_BlendNone();
         G2S_BlendNone();
 
-        sub_0200F32C(0);
-        sub_0200F32C(1);
+        ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
+        ResetVisibleHardwareWindows(DS_SCREEN_SUB);
         ov5_021D173C(fieldSystem);
         FieldMapChange_Set3DDisplay(fieldSystem);
 
@@ -199,7 +200,7 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
         GXLayers_SwapDisplay();
         fieldSystem->bgConfig = BgConfig_New(HEAP_ID_FIELD);
         ov5_021D1444(fieldSystem->bgConfig);
-        FieldMessage_LoadTextPalettes(0, TRUE);
+        FieldMessage_LoadTextPalettes(PAL_LOAD_MAIN_BG, TRUE);
         sub_0203F5C0(fieldSystem, 4);
         break;
     case 1:
@@ -240,9 +241,9 @@ static BOOL FieldMap_Init(OverlayManager *overlayMan, int *param1)
     return ret;
 }
 
-static BOOL FieldMap_Main(OverlayManager *overlayMan, int *param1)
+static BOOL FieldMap_Main(ApplicationManager *appMan, int *param1)
 {
-    FieldSystem *fieldSystem = OverlayManager_Args(overlayMan);
+    FieldSystem *fieldSystem = ApplicationManager_Args(appMan);
 
     if (ov5_021D119C(fieldSystem)) {
         sub_02055D94(fieldSystem);
@@ -261,9 +262,9 @@ static BOOL FieldMap_Main(OverlayManager *overlayMan, int *param1)
     }
 }
 
-static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
+static BOOL FieldMap_Exit(ApplicationManager *appMan, int *param1)
 {
-    FieldSystem *fieldSystem = OverlayManager_Args(overlayMan);
+    FieldSystem *fieldSystem = ApplicationManager_Args(appMan);
     LandDataManager_Tick(fieldSystem, fieldSystem->landDataMan);
 
     switch (*param1) {
@@ -307,7 +308,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
             AreaDataManager_Free(&fieldSystem->areaDataManager);
             LandDataManager_FreeNARCAndLoadedMapBuffers(fieldSystem->landDataMan);
             HoneyTree_FreeShakeData(&fieldSystem->unk_A8);
-            ov5_021D5BA8(fieldSystem);
+            FieldCamera_Delete(fieldSystem);
             AreaLightManager_Free(&fieldSystem->areaLightMan);
             Signpost_Free(fieldSystem->signpost);
             MapNamePopUp_Destroy(fieldSystem->unk_04->unk_08);
@@ -357,7 +358,7 @@ static BOOL FieldMap_Exit(OverlayManager *overlayMan, int *param1)
     return FALSE;
 }
 
-const OverlayManagerTemplate gFieldMapTemplate = {
+const ApplicationManagerTemplate gFieldMapTemplate = {
     FieldMap_Init,
     FieldMap_Main,
     FieldMap_Exit,
@@ -427,7 +428,7 @@ static BOOL FieldMap_ChangeZone(FieldSystem *fieldSystem)
     sub_0206184C(fieldSystem->mapObjMan, mapId, v0, objEventCount, objEventList);
 
     RadarChain_Clear(fieldSystem->chain);
-    sub_02055554(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
+    Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
     sub_0203A418(fieldSystem);
 
     if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -471,7 +472,7 @@ void ov5_021D12D0(FieldSystem *fieldSystem, u32 param1)
 
     sub_0206184C(fieldSystem->mapObjMan, mapId, param1, objEventCount, objEventList);
 
-    sub_02055554(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
+    Sound_TryFadeOutToBGM(fieldSystem, Sound_GetOverrideBGM(fieldSystem, fieldSystem->location->mapId), 1);
     sub_0203A418(fieldSystem);
 
     if (fieldSystem->unk_04->unk_0C != NULL) {
@@ -768,9 +769,9 @@ static void ov5_021D173C(FieldSystem *fieldSystem)
 void ov5_021D1744(const u8 param0)
 {
     if (param0 == 1) {
-        StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
     } else if (param0 == 0) {
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_FIELD);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_FIELD);
     } else {
         GF_ASSERT(FALSE);
     }
@@ -893,7 +894,7 @@ static void ov5_021D1968(FieldSystem *fieldSystem)
 
     {
         int v0 = FieldOverworldState_GetCameraType(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-        ov5_021D5B40(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
+        FieldCamera_Create(PlayerAvatar_PosVector(fieldSystem->playerAvatar), fieldSystem, v0, 1);
     }
 
     fieldSystem->areaLightMan = AreaLightManager_New(fieldSystem->areaModelAttrs, AreaDataManager_GetAreaLightArchiveID(fieldSystem->areaDataManager));

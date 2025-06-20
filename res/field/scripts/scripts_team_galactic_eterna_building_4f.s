@@ -29,8 +29,8 @@ _0022:
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0135
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0135
     Message 1
     CloseMessage
     FadeScreen 6, 1, 0, 0
@@ -38,11 +38,11 @@ _0022:
     RemoveObject 0
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
-    WaitTime 15, 0x800C
-    GetPlayerDir 0x8004
-    GoToIfEq 0x8004, 0, _00A4
-    GoToIfEq 0x8004, 2, _00BE
-    GoToIfEq 0x8004, 3, _00D0
+    WaitTime 15, VAR_RESULT
+    GetPlayerDir VAR_0x8004
+    GoToIfEq VAR_0x8004, 0, _00A4
+    GoToIfEq VAR_0x8004, 2, _00BE
+    GoToIfEq VAR_0x8004, 3, _00D0
     End
 
 _00A4:
@@ -79,7 +79,7 @@ _00E2:
     RemoveObject 2
     RemoveObject 1
     RemoveObject 3
-    SetVar 0x407A, 3
+    SetVar VAR_UNK_0x407A, 3
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
     SetFlag FLAG_ALT_MUSIC_GALACTIC_ETERNA_BUILDING
@@ -93,12 +93,12 @@ _0135:
 
     .balign 4, 0
 _013C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .byte 63
@@ -120,20 +120,20 @@ _0144:
 
     .balign 4, 0
 _015C:
-    MoveAction_012 3
-    MoveAction_035
+    WalkNormalNorth 3
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0168:
-    MoveAction_012 3
-    MoveAction_034
+    WalkNormalNorth 3
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0174:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .byte 34

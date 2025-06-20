@@ -33,8 +33,10 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_sprite.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
@@ -43,10 +45,8 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
-#include "unk_0200F174.h"
+#include "touch_pad.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
-#include "unk_0201E3D8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "unk_020933F8.h"
@@ -136,7 +136,7 @@ static const SpriteResourceCapacities Unk_ov17_02252DB0 = {
     0x8
 };
 
-int ov17_0223B140(OverlayManager *param0, int *param1)
+int ov17_0223B140(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov17_02246F24 *v0;
 
@@ -154,11 +154,11 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_21, 0x70000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov17_02246F24), HEAP_ID_21);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov17_02246F24), HEAP_ID_21);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov17_02246F24));
 
     v0->unk_08 = ov17_0223F140(HEAP_ID_21);
-    v0->unk_00 = OverlayManager_Args(param0);
+    v0->unk_00 = ApplicationManager_Args(appMan);
     v0->unk_00->unk_150 = v0;
     v0->unk_00->unk_154 = 2;
     v0->unk_0C.unk_00 = &v0->unk_00->unk_00;
@@ -182,8 +182,8 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
 
     ov17_0223B728(v0->unk_0C.unk_24);
 
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     Font_InitManager(FONT_SUBSCREEN, HEAP_ID_21);
 
     v0->unk_0C.unk_18 = SpriteSystem_Alloc(21);
@@ -244,7 +244,7 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     ov17_022415E4(&v0->unk_0C);
 
     sub_02039734();
-    StartScreenTransition(1, 31, 31, 0x0, 6, 1, HEAP_ID_21);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_31, FADE_TYPE_UNK_31, FADE_TO_BLACK, 6, 1, HEAP_ID_21);
 
     v0->unk_04 = SysTask_Start(ov17_0223B6F0, v0, 60000);
     v0->unk_7EC = 1;
@@ -259,16 +259,16 @@ int ov17_0223B140(OverlayManager *param0, int *param1)
     return 1;
 }
 
-int ov17_0223B444(OverlayManager *param0, int *param1)
+int ov17_0223B444(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov17_02246F24 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov17_02246F24 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
     sub_02094E98(v0->unk_00);
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             *param1 = 1;
         }
         break;
@@ -287,7 +287,7 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
             } else if ((v1 == 3) && (v0->unk_1614 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-                StartScreenTransition(2, 32, 32, 0x0, 6, 1, HEAP_ID_21);
+                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, FADE_TO_BLACK, 6, 1, HEAP_ID_21);
                 break;
             }
         }
@@ -298,12 +298,12 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
         if ((v0->unk_1614 == 1) && (ov17_0224F3D0(&v0->unk_BF8) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_160C, sizeof(UnkStruct_ov17_0223BCE8));
-            StartScreenTransition(2, 32, 32, 0x0, 6, 1, HEAP_ID_21);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, FADE_TO_BLACK, 6, 1, HEAP_ID_21);
         }
         break;
     case 2:
         if (v0->unk_1614 == 1) {
-            if (IsScreenTransitionDone() == 1) {
+            if (IsScreenFadeDone() == TRUE) {
                 return 1;
             }
         }
@@ -313,12 +313,12 @@ int ov17_0223B444(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov17_0223B580(OverlayManager *param0, int *param1)
+int ov17_0223B580(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov17_02246F24 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov17_02246F24 *v0 = ApplicationManager_Data(appMan);
     int v1;
 
-    sub_020141E4();
+    ParticleSystem_FreeAll();
 
     ov12_0221FDF4(v0->unk_0C.unk_20);
     ov17_0223B9A4(v0);
@@ -367,8 +367,8 @@ int ov17_0223B580(OverlayManager *param0, int *param1)
 
     ov17_0223F1E0(v0->unk_08);
 
-    sub_0201E530();
-    OverlayManager_FreeData(param0);
+    DisableTouchPad();
+    ApplicationManager_FreeData(appMan);
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
     Heap_Destroy(HEAP_ID_21);
@@ -537,7 +537,7 @@ static void ov17_0223B884(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 static void ov17_0223B8C4(UnkStruct_ov17_02246F24 *param0)

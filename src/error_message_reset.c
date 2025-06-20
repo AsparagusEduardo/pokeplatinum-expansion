@@ -11,15 +11,16 @@
 #include "brightness_controller.h"
 #include "communication_system.h"
 #include "font.h"
+#include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
 #include "main.h"
 #include "message.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "strbuf.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020366A0.h"
 
 static const UnkStruct_02099F80 sErrorMessageBanksConfig = {
@@ -88,7 +89,7 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     MessageLoader *errorMsgData;
     Strbuf *errorString;
     int v4;
-    int v5 = 0;
+    int heapID = HEAP_ID_SYSTEM;
 
     if (sErrorMessagePrinterLock == TRUE) {
         return;
@@ -101,8 +102,8 @@ void ErrorMessageReset_PrintErrorAndReset(void)
 
     v4 = 3;
 
-    sub_0200F344(0, 0x0);
-    sub_0200F344(1, 0x0);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
     OS_DisableIrqMask(OS_IE_V_BLANK);
     OS_SetIrqFunction(OS_IE_V_BLANK, VBlankIntr);
@@ -127,19 +128,19 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 
     GXLayers_SetBanks(&sErrorMessageBanksConfig);
-    bgConfig = BgConfig_New(v5);
+    bgConfig = BgConfig_New(heapID);
 
     SetAllGraphicsModes(&sErrorMessageBgModeSet);
     Bg_InitFromTemplate(bgConfig, 0, &sErrorMessageBgTemplate, 0);
     Bg_ClearTilemap(bgConfig, 0);
-    LoadStandardWindowGraphics(bgConfig, 0, (512 - 9), 2, 0, v5);
-    Font_LoadTextPalette(0, 1 * (2 * 16), v5);
-    Bg_ClearTilesRange(0, 32, 0, v5);
+    LoadStandardWindowGraphics(bgConfig, 0, (512 - 9), 2, 0, heapID);
+    Font_LoadTextPalette(PAL_LOAD_MAIN_BG, 1 * (2 * 16), heapID);
+    Bg_ClearTilesRange(0, 32, 0, heapID);
     Bg_MaskPalette(0, 0x6c21);
     Bg_MaskPalette(4, 0x6c21);
 
-    errorMsgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0214, v5);
-    errorString = Strbuf_Init(0x180, v5);
+    errorMsgData = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0214, heapID);
+    errorString = Strbuf_Init(0x180, heapID);
 
     Text_ResetAllPrinters();
 
@@ -151,8 +152,8 @@ void ErrorMessageReset_PrintErrorAndReset(void)
     Strbuf_Free(errorString);
 
     GXLayers_TurnBothDispOn();
-    sub_0200F338(0);
-    sub_0200F338(1);
+    ResetScreenMasterBrightness(DS_SCREEN_MAIN);
+    ResetScreenMasterBrightness(DS_SCREEN_SUB);
     BrightnessController_SetScreenBrightness(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), BRIGHTNESS_BOTH_SCREENS);
     sub_02037DB0();
 
@@ -177,8 +178,8 @@ void ErrorMessageReset_PrintErrorAndReset(void)
         OS_WaitIrq(1, OS_IE_V_BLANK);
     }
 
-    sub_0200F344(0, 0x7fff);
-    sub_0200F344(1, 0x7fff);
+    SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_WHITE);
+    SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_WHITE);
 
     Window_Remove(&window);
     MessageLoader_Free(errorMsgData);

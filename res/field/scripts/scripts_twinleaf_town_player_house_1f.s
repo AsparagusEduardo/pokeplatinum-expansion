@@ -17,7 +17,7 @@
     ScriptEntryEnd
 
 _002E:
-    CallIfEq 0x40A4, 3, _0048
+    CallIfEq VAR_UNK_0x40A4, 3, _0048
     CallIfSet FLAG_UNK_0x008F, _005E
     End
 
@@ -41,53 +41,53 @@ _0064:
     BufferRivalName 1
     Message 0
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 0, _00CC
     WaitMovement
-    SetVar 0x40A4, 1
+    SetVar VAR_UNK_0x40A4, 1
     ReleaseAll
     End
 
     .balign 4, 0
 _00A4:
-    MoveAction_062
-    MoveAction_033
+    Delay4
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _00B0:
-    MoveAction_032
-    MoveAction_075
-    MoveAction_063
-    MoveAction_012
-    MoveAction_015 3
-    MoveAction_012 3
+    WalkOnSpotNormalNorth
+    EmoteExclamationMark
+    Delay8
+    WalkNormalNorth
+    WalkNormalEast 3
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _00CC:
-    MoveAction_013 2
-    MoveAction_014 3
-    MoveAction_013 2
-    MoveAction_032
+    WalkNormalSouth 2
+    WalkNormalWest 3
+    WalkNormalSouth 2
+    WalkOnSpotNormalNorth
     EndMovement
 
 _00E0:
     LockAll
-    SetVar 0x410F, 2
+    SetVar VAR_UNK_0x410F, 2
     GoToIfSet FLAG_UNK_0x015C, _014B
     GoToIfUnset FLAG_UNK_0x015D, _0110
-    ScrCmd_22D 2, 0x800C
-    GoToIfEq 0x800C, 0, _014B
+    GetNationalDexEnabled VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _014B
 _0110:
     ApplyMovement LOCALID_PLAYER, _0164
     ApplyMovement 0, _0170
     WaitMovement
     BufferPlayerName 0
     BufferRivalName 1
-    ScrCmd_22D 2, 0x800C
-    CallIfEq 0x800C, 1, _014F
-    CallIfEq 0x800C, 0, _0158
+    GetNationalDexEnabled VAR_RESULT
+    CallIfEq VAR_RESULT, 1, _014F
+    CallIfEq VAR_RESULT, 0, _0158
     WaitABXPadPress
     CloseMessage
 _014B:
@@ -106,28 +106,28 @@ _0158:
 
     .balign 4, 0
 _0164:
-    MoveAction_062
-    MoveAction_033
+    Delay4
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0170:
-    MoveAction_032
-    MoveAction_075
+    WalkOnSpotNormalNorth
+    EmoteExclamationMark
     EndMovement
 
 _017C:
     LockAll
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     ApplyMovement 0, _01D4
     ApplyMovement LOCALID_PLAYER, _01F8
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     BufferRivalName 0
     BufferPlayerName 1
     Message 6
     CloseMessage
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     BufferPlayerName 0
     Message 7
     GiveRunningShoes
@@ -138,30 +138,30 @@ _017C:
     Message 9
     WaitABXPadPress
     CloseMessage
-    SetVar 0x40A4, 4
+    SetVar VAR_UNK_0x40A4, 4
     ReleaseAll
     End
 
     .balign 4, 0
 _01D4:
-    MoveAction_014
-    MoveAction_000
-    MoveAction_063 2
-    MoveAction_015 3
-    MoveAction_013 2
-    MoveAction_015 3
-    MoveAction_013 2
-    MoveAction_034
+    WalkNormalWest
+    FaceNorth
+    Delay8 2
+    WalkNormalEast 3
+    WalkNormalSouth 2
+    WalkNormalEast 3
+    WalkNormalSouth 2
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _01F8:
-    MoveAction_063 4
-    MoveAction_035
-    MoveAction_063 4
-    MoveAction_015 3
-    MoveAction_013 2
-    MoveAction_015
+    Delay8 4
+    WalkOnSpotNormalEast
+    Delay8 4
+    WalkNormalEast 3
+    WalkNormalSouth 2
+    WalkNormalEast
     EndMovement
 
 _0214:
@@ -169,13 +169,13 @@ _0214:
     LockAll
     FacePlayer
     GoToIfSet FLAG_UNK_0x0002, _02AF
-    GoToIfGe 0x40A4, 7, _0792
-    GoToIfEq 0x40A4, 6, _035E
+    GoToIfGe VAR_UNK_0x40A4, 7, _0792
+    GoToIfEq VAR_UNK_0x40A4, 6, _035E
     GoToIfSet FLAG_UNK_0x0090, _036C
-    GoToIfGe 0x40A4, 5, _0788
-    GoToIfGe 0x40A4, 4, _0711
+    GoToIfGe VAR_UNK_0x40A4, 5, _0788
+    GoToIfGe VAR_UNK_0x40A4, 4, _0711
     GoToIfSet FLAG_UNK_0x00F8, _075A
-    GoToIfGe 0x40A4, 2, _0768
+    GoToIfGe VAR_UNK_0x40A4, 2, _0768
     GoToIfSet FLAG_UNK_0x0087, _077A
     SetFlag FLAG_UNK_0x0087
     BufferPlayerName 0
@@ -205,20 +205,20 @@ _0214:
     .byte 0
 
 _02AF:
-    GoToIfGe 0x40B2, 2, _0300
+    GoToIfGe VAR_UNK_0x40B2, 2, _0300
     GoTo _02C4
     End
 
 _02C4:
-    GetRandom 0x800C, 4
-    GoToIfEq 0x800C, 0, _031B
-    GoToIfEq 0x800C, 1, _0329
-    GoToIfEq 0x800C, 2, _0337
-    GoToIfEq 0x800C, 3, _0345
+    GetRandom VAR_RESULT, 4
+    GoToIfEq VAR_RESULT, 0, _031B
+    GoToIfEq VAR_RESULT, 1, _0329
+    GoToIfEq VAR_RESULT, 2, _0337
+    GoToIfEq VAR_RESULT, 3, _0345
     End
 
 _0300:
-    GoToIfGe 0x40AA, 2, _02C4
+    GoToIfGe VAR_UNK_0x40AA, 2, _02C4
     BufferPlayerName 0
     Message 41
     GoTo _0356
@@ -267,13 +267,13 @@ _036C:
     Call _0688
     BufferPlayerName 0
     Message 15
-    SetVar 0x8004, 0x1B1
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1B1
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     GiveJournal
     Message 16
-    GetPlayerDir 0x8007
-    GoToIfEq 0x8007, 1, _03A6
+    GetPlayerDir VAR_0x8007
+    GoToIfEq VAR_0x8007, 1, _03A6
     GoTo _03B8
     End
 
@@ -304,7 +304,7 @@ _03CA:
     WaitMovement
     ApplyMovement 1, _07FC
     WaitMovement
-    CallIfEq 0x8007, 0, _0465
+    CallIfEq VAR_0x8007, 0, _0465
     BufferRivalName 1
     Message 19
     ApplyMovement 0, _07C0
@@ -314,10 +314,10 @@ _03CA:
     Message 21
     BufferPlayerName 0
     Message 22
-    GoToIfEq 0x8007, 0, _0471
-    GoToIfEq 0x8007, 1, _048B
-    GoToIfEq 0x8007, 2, _04A5
-    GoToIfEq 0x8007, 3, _04BF
+    GoToIfEq VAR_0x8007, 0, _0471
+    GoToIfEq VAR_0x8007, 1, _048B
+    GoToIfEq VAR_0x8007, 2, _04A5
+    GoToIfEq VAR_0x8007, 3, _04BF
     End
 
 _0465:
@@ -356,10 +356,10 @@ _04BF:
 _04D9:
     Message 23
     CloseMessage
-    GoToIfEq 0x8007, 0, _0514
-    GoToIfEq 0x8007, 1, _052E
-    GoToIfEq 0x8007, 2, _0548
-    GoToIfEq 0x8007, 3, _0562
+    GoToIfEq VAR_0x8007, 0, _0514
+    GoToIfEq VAR_0x8007, 1, _052E
+    GoToIfEq VAR_0x8007, 2, _0548
+    GoToIfEq VAR_0x8007, 3, _0562
     End
 
 _0514:
@@ -393,8 +393,8 @@ _0562:
 _057C:
     BufferPlayerName 0
     BufferRivalName 1
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _059B
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _059B
     GoTo _05A6
     End
 
@@ -409,18 +409,18 @@ _05A6:
     End
 
 _05B1:
-    SetVar 0x8004, 0x1CB
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, 0x1CB
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x008F
     Message 27
     BufferRivalName 1
     Message 26
     CloseMessage
-    GoToIfEq 0x8007, 0, _0606
-    GoToIfEq 0x8007, 1, _0620
-    GoToIfEq 0x8007, 2, _0642
-    GoToIfEq 0x8007, 3, _065C
+    GoToIfEq VAR_0x8007, 0, _0606
+    GoToIfEq VAR_0x8007, 1, _0620
+    GoToIfEq VAR_0x8007, 2, _0642
+    GoToIfEq VAR_0x8007, 3, _065C
     End
 
 _0606:
@@ -455,18 +455,18 @@ _065C:
 _0676:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 1
-    SetVar 0x40A4, 6
+    SetVar VAR_UNK_0x40A4, 6
     ReleaseAll
     End
 
 _0688:
     BufferPlayerName 0
-    GetTimeOfDay 0x800C
-    CallIfEq 0x800C, 0, _06F8
-    CallIfEq 0x800C, 1, _06FD
-    CallIfEq 0x800C, 2, _0702
-    CallIfEq 0x800C, 3, _0707
-    CallIfEq 0x800C, 4, _070C
+    GetTimeOfDay VAR_RESULT
+    CallIfEq VAR_RESULT, 0, _06F8
+    CallIfEq VAR_RESULT, 1, _06FD
+    CallIfEq VAR_RESULT, 2, _0702
+    CallIfEq VAR_RESULT, 3, _0707
+    CallIfEq VAR_RESULT, 4, _070C
     CloseMessage
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
@@ -605,12 +605,12 @@ _0792:
 
     .balign 4, 0
 _079C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _07A4:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .byte 34
@@ -624,159 +624,159 @@ _07A4:
 
     .balign 4, 0
 _07B4:
-    MoveAction_033
-    MoveAction_075
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _07C0:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _07C8:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _07D0:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _07D8:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _07E0:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _07E8:
-    MoveAction_063
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _07F4:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _07FC:
-    MoveAction_012
-    MoveAction_035
+    WalkNormalNorth
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0808:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0810:
-    MoveAction_012 2
-    MoveAction_035
+    WalkNormalNorth 2
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _081C:
-    MoveAction_015 2
-    MoveAction_032
+    WalkNormalEast 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0828:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0830:
-    MoveAction_013
-    MoveAction_033
+    WalkNormalSouth
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _083C:
-    MoveAction_013 3
-    MoveAction_033
+    WalkNormalSouth 3
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0848:
-    MoveAction_014 2
-    MoveAction_013
-    MoveAction_033
+    WalkNormalWest 2
+    WalkNormalSouth
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0858:
-    MoveAction_013
-    MoveAction_033
+    WalkNormalSouth
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0864:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _086C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0874:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _087C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0884:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _088C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0894:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _089C:
-    MoveAction_063 2
-    MoveAction_034
+    Delay8 2
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _08A8:
-    MoveAction_063 2
-    MoveAction_033
+    Delay8 2
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _08B4:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _08BC:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _08C4:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .byte 63
@@ -794,7 +794,7 @@ _08C4:
 
     .balign 4, 0
 _08D8:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
 _08E0:
@@ -810,7 +810,7 @@ _08EA:
     End
 
 _0904:
-    SetVar 0x40A4, 2
+    SetVar VAR_UNK_0x40A4, 2
     BufferPlayerName 0
     Message 4
     WaitABXPadPress
@@ -820,8 +820,8 @@ _0904:
 
     .balign 4, 0
 _0918:
-    MoveAction_063 2
-    MoveAction_032
+    Delay8 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .byte 62
@@ -839,7 +839,7 @@ _0918:
 
     .balign 4, 0
 _0930:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .byte 33
@@ -871,12 +871,12 @@ _0948:
     End
 
 _095E:
-    GetTimeOfDay 0x800C
-    GoToIfEq 0x800C, 0, _09A5
-    GoToIfEq 0x800C, 1, _09B6
-    GoToIfEq 0x800C, 2, _09B6
-    GoToIfEq 0x800C, 3, _09C7
-    GoToIfEq 0x800C, 4, _09C7
+    GetTimeOfDay VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _09A5
+    GoToIfEq VAR_RESULT, 1, _09B6
+    GoToIfEq VAR_RESULT, 2, _09B6
+    GoToIfEq VAR_RESULT, 3, _09C7
+    GoToIfEq VAR_RESULT, 4, _09C7
     End
 
 _09A5:

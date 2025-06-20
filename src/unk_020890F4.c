@@ -20,8 +20,8 @@
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
-#include "unk_0201E3D8.h"
-#include "unk_02023FCC.h"
+#include "touch_pad.h"
+#include "touch_screen_actions.h"
 #include "unk_020393C8.h"
 #include "unk_02089604.h"
 #include "unk_0208A3F4.h"
@@ -31,26 +31,26 @@
 
 static void sub_0208945C(BgConfig *param0);
 static void sub_020895CC(void *param0);
-static int sub_020890F4(OverlayManager *param0, int *param1);
-static int sub_0208924C(OverlayManager *param0, int *param1);
-static int sub_0208927C(OverlayManager *param0, int *param1);
+static int sub_020890F4(ApplicationManager *appMan, int *param1);
+static int sub_0208924C(ApplicationManager *appMan, int *param1);
+static int sub_0208927C(ApplicationManager *appMan, int *param1);
 
-const OverlayManagerTemplate Unk_020F2DBC = {
+const ApplicationManagerTemplate Unk_020F2DBC = {
     sub_020890F4,
     sub_0208924C,
     sub_0208927C,
     0xffffffff,
 };
 
-static int sub_020890F4(OverlayManager *param0, int *param1)
+static int sub_020890F4(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_02089688 *v0;
 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_101, 0x40000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_02089688), HEAP_ID_101);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_02089688), HEAP_ID_101);
     memset(v0, 0, sizeof(UnkStruct_02089688));
-    v0->unk_38C = *((UnkStruct_02089438 *)OverlayManager_Args(param0));
+    v0->unk_38C = *((UnkStruct_02089438 *)ApplicationManager_Args(appMan));
 
     SetVBlankCallback(NULL, NULL);
     DisableHBlank();
@@ -74,14 +74,14 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     sub_02089688(v0);
 
     {
-        sub_0201E3D8();
-        sub_0201E450(4);
+        EnableTouchPad();
+        InitializeTouchPad(4);
         sub_0208A0B8(v0);
     }
 
     if (v0->unk_38C.unk_30 != 0) {
         sub_02039734();
-        sub_020397C8(1, 101);
+        sub_020397C8(1, HEAP_ID_101);
     }
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 15, 7);
@@ -92,10 +92,10 @@ static int sub_020890F4(OverlayManager *param0, int *param1)
     return 1;
 }
 
-static int sub_0208924C(OverlayManager *param0, int *param1)
+static int sub_0208924C(ApplicationManager *appMan, int *param1)
 {
     BOOL v0;
-    UnkStruct_02089688 *v1 = OverlayManager_Data(param0);
+    UnkStruct_02089688 *v1 = ApplicationManager_Data(appMan);
     v0 = sub_02089BEC(v1);
 
     if (v1->unk_38C.unk_30 != 0) {
@@ -105,9 +105,9 @@ static int sub_0208924C(OverlayManager *param0, int *param1)
     return v0 ? 1 : 0;
 }
 
-static int sub_0208927C(OverlayManager *param0, int *param1)
+static int sub_0208927C(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_02089688 *v0 = OverlayManager_Data(param0);
+    UnkStruct_02089688 *v0 = ApplicationManager_Data(appMan);
 
     if (v0->unk_38C.unk_30 != 0) {
         sub_02039794();
@@ -139,13 +139,13 @@ static int sub_0208927C(OverlayManager *param0, int *param1)
 
     {
         u32 v1;
-        v1 = sub_0201E530();
+        v1 = DisableTouchPad();
     }
 
     SpriteSystem_FreeResourcesAndManager(v0->unk_2C0.unk_04, v0->unk_2C0.unk_08);
     SpriteSystem_Free(v0->unk_2C0.unk_04);
-    sub_02024034(v0->unk_2C0.unk_14);
-    OverlayManager_FreeData(param0);
+    TouchScreenActions_Free(v0->unk_2C0.unk_14);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_101);
 
     return 1;

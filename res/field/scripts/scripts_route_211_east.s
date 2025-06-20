@@ -16,12 +16,12 @@ _0012:
     Message 0
     CloseMessage
     FacePlayer
-    ApplyMovement 0x800D, _0080
+    ApplyMovement VAR_LAST_TALKED, _0080
     WaitMovement
     Message 1
-    SetVar 0x8004, ITEM_TM77
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _0073
+    SetVar VAR_0x8004, ITEM_TM77
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _0073
     CallCommonScript 0x7FC
     SetFlag FLAG_UNK_0x00C6
     GoTo _0066
@@ -42,7 +42,7 @@ _0073:
 
     .balign 4, 0
 _0080:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
 _0088:

@@ -182,11 +182,11 @@ void ov16_0225C038(BattleSystem *battleSys, BattlerData *param1, int param2, int
     }
 
     v0.type = Unk_ov16_0226F174[param1->battlerType];
-    v0.heapID = 5;
+    v0.heapID = HEAP_ID_BATTLE;
     v0.mode = 4;
     v0.target = param1->battler;
     v0.ballID = param2;
-    v0.cellActorSys = ov16_0223E010(battleSys);
+    v0.cellActorSys = BattleSystem_GetSpriteSystem(battleSys);
     v0.paletteSys = BattleSystem_PaletteSys(battleSys);
     v0.surface = 0;
     v0.bgPrio = 1;
@@ -738,9 +738,9 @@ static void ov16_0225C684(BattleSystem *battleSys, BattlerData *param1)
     *v2 = v1;
 
     PokemonSprite_ScheduleReloadFromNARC(param1->unk_20);
-    sub_02013750(v2->archive, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, 0, v4, v2->spindaSpots);
+    sub_02013750(v2->narcID, v2->character, HEAP_ID_BATTLE, ov16_0223F2B8(ov16_0223E0C8(battleSys), param1->battler), v0->unk_08, 0, v4, v2->spindaSpots);
 
-    ov16_0223F2CC(ov16_0223E0C8(battleSys), param1->battler, v2->archive);
+    ov16_0223F2CC(ov16_0223E0C8(battleSys), param1->battler, v2->narcID);
     ov16_0223F2E4(ov16_0223E0C8(battleSys), param1->battler, v2->palette);
 
     v3 = LoadPokemonSpriteYOffset(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
@@ -845,8 +845,8 @@ static void ov16_0225C8E0(BattleSystem *battleSys, BattlerData *param1)
     SpriteManager *v1;
     PaletteData *v2;
 
-    v0 = ov16_0223E010(battleSys);
-    v1 = ov16_0223E018(battleSys);
+    v0 = BattleSystem_GetSpriteSystem(battleSys);
+    v1 = BattleSystem_GetSpriteManager(battleSys);
     v2 = BattleSystem_PaletteSys(battleSys);
 
     PartyGauge_LoadGraphics(v0, v1, v2);
@@ -856,7 +856,7 @@ static void ov16_0225C8E0(BattleSystem *battleSys, BattlerData *param1)
 
 static void ov16_0225C91C(BattleSystem *battleSys, BattlerData *param1)
 {
-    SpriteManager *v0 = ov16_0223E018(battleSys);
+    SpriteManager *v0 = BattleSystem_GetSpriteManager(battleSys);
 
     PartyGauge_FreeGraphics(v0);
     ClearCommand(battleSys, param1->battler, 53);

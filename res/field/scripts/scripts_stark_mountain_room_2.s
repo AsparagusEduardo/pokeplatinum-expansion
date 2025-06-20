@@ -12,11 +12,11 @@
     ScriptEntryEnd
 
 _001A:
-    GoToIfLt 0x4094, 2, _0029
+    GoToIfLt VAR_UNK_0x4094, 2, _0029
     End
 
 _0029:
-    SetVar 0x4094, 0
+    SetVar VAR_UNK_0x4094, 0
     End
 
 _0031:
@@ -29,7 +29,7 @@ _0031:
     Message 1
     WaitSound
     SetFlag FLAG_UNK_0x00DD
-    SetVar 0x4094, 1
+    SetVar VAR_UNK_0x4094, 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -68,7 +68,7 @@ _00B7:
 
     .balign 4, 0
 _00DC:
-    MoveAction_012 8
+    WalkNormalNorth 8
     EndMovement
 
     .byte 12
@@ -82,7 +82,7 @@ _00DC:
 
     .balign 4, 0
 _00EC:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .byte 12
@@ -101,7 +101,7 @@ _00FC:
     WaitMovement
     Message 4
     CloseMessage
-    SetVar 0x4094, 0
+    SetVar VAR_UNK_0x4094, 0
     ClearHasPartner
     ScrCmd_06D 14, 15
     ApplyMovement 14, _013C
@@ -111,30 +111,30 @@ _00FC:
 
     .balign 4, 0
 _0134:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _013C:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _014C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
 _0154:
     LockAll
     ClearHasPartner
     ScrCmd_06D 14, 15
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _0177
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0177
     GoTo _0191
     End
 
@@ -164,37 +164,37 @@ _01AB:
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 14
     WaitFanfare SEQ_SE_DP_KAIDAN2
-    SetVar 0x4094, 2
+    SetVar VAR_UNK_0x4094, 2
     ReleaseAll
     End
 
     .balign 4, 0
 _01E4:
-    MoveAction_014
-    MoveAction_035
+    WalkNormalWest
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01F0:
-    MoveAction_012
-    MoveAction_034
+    WalkNormalNorth
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _01FC:
-    MoveAction_014
+    WalkNormalWest
     EndMovement
 
     .balign 4, 0
 _0204:
-    MoveAction_032
-    MoveAction_063 2
-    MoveAction_034
+    WalkOnSpotNormalNorth
+    Delay8 2
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0214:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
 _021C:

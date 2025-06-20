@@ -10,7 +10,7 @@
 #include "struct_defs/struct_020298B0.h"
 
 #include "heap.h"
-#include "math.h"
+#include "math_util.h"
 #include "rtc.h"
 #include "savedata.h"
 #include "system.h"
@@ -159,9 +159,9 @@ static int sub_02028638(UndergroundData *param0)
     return -1;
 }
 
-void sub_02028658(SaveData *param0, int param1)
+void sub_02028658(SaveData *saveData, int param1)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(param0);
+    UndergroundData *v0 = SaveData_GetUndergroundData(saveData);
     MATHRandContext16 v1;
     u8 v2[] = { 0, 2, 2, 4, 4, 5 };
     u8 v3[] = { 0, 1, 1, 3, 3, 5 };
@@ -198,9 +198,9 @@ void sub_02028658(SaveData *param0, int param1)
     v0->unk_9AC_0 = 1;
 }
 
-void sub_02028758(SaveData *param0, s32 param1, BOOL param2)
+void sub_02028758(SaveData *saveData, s32 param1, BOOL param2)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(param0);
+    UndergroundData *v0 = SaveData_GetUndergroundData(saveData);
 
     if ((param1 < 0) || (param2)) {
         return;
@@ -213,9 +213,9 @@ void sub_02028758(SaveData *param0, s32 param1, BOOL param2)
     }
 }
 
-void SaveData_LoadAndUpdateUnderground(SaveData *param0)
+void SaveData_LoadAndUpdateUnderground(SaveData *saveData)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(param0);
+    UndergroundData *v0 = SaveData_GetUndergroundData(saveData);
 
     if ((v0->unk_94 == 0) && (v0->unk_98 == 2)) {
         v0->unk_98 = 0;
@@ -230,27 +230,27 @@ void SaveData_LoadAndUpdateUnderground(SaveData *param0)
     }
 }
 
-void sub_020287E0(SaveData *param0)
+void sub_020287E0(SaveData *saveData)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(param0);
+    UndergroundData *v0 = SaveData_GetUndergroundData(saveData);
 
     if (v0->unk_98 == 0) {
         v0->unk_98 = 1;
     }
 }
 
-void sub_020287F8(SaveData *param0)
+void sub_020287F8(SaveData *saveData)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(param0);
+    UndergroundData *v0 = SaveData_GetUndergroundData(saveData);
 
     if (v0->unk_98 == 1) {
         v0->unk_98 = 0;
     }
 }
 
-BOOL sub_02028810(SaveData *param0)
+BOOL sub_02028810(SaveData *saveData)
 {
-    UndergroundData *v0 = SaveData_GetUndergroundData(param0);
+    UndergroundData *v0 = SaveData_GetUndergroundData(saveData);
 
     if (v0->unk_98 == 2) {
         return 0;
@@ -259,9 +259,9 @@ BOOL sub_02028810(SaveData *param0)
     return 1;
 }
 
-void sub_02028828(UndergroundData *param0)
+void UndergroundData_SetUnusedField(UndergroundData *undergroundData)
 {
-    param0->unk_99 = 1;
+    undergroundData->unused = 1;
 }
 
 void sub_02028830(UndergroundData *param0, const TrainerInfo *param1)

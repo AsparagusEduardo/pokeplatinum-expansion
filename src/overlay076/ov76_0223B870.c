@@ -27,9 +27,11 @@
 #include "message.h"
 #include "narc.h"
 #include "palette.h"
+#include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "strbuf.h"
@@ -38,9 +40,7 @@
 #include "sys_task_manager.h"
 #include "text.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
 #include "unk_02012744.h"
-#include "unk_02014000.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202C9F4.h"
@@ -153,7 +153,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     }
 
     v2 = 30000;
-    v3 = sub_02012898(&v5, NNS_G2D_VRAM_TYPE_2DSUB, 53);
+    v3 = sub_02012898(&v5, NNS_G2D_VRAM_TYPE_2DSUB, HEAP_ID_53);
     CharTransfer_AllocRange(v3, 1, NNS_G2D_VRAM_TYPE_2DSUB, &param0->unk_D4.unk_16C[param1]);
 
     v0.unk_00 = param0->unk_D4.unk_160;
@@ -167,7 +167,7 @@ void ov76_0223B98C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2, int 
     v0.unk_20 = 1;
     v0.unk_24 = 40;
     v0.unk_28 = NNS_G2D_VRAM_TYPE_2DSUB;
-    v0.unk_2C = 53;
+    v0.heapID = HEAP_ID_53;
     param0->unk_D4.unk_164[param1] = sub_020127E8(&v0);
 
     sub_02012AC0(param0->unk_D4.unk_164[param1], param4);
@@ -410,7 +410,7 @@ void ov76_0223BF10(void)
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);
 
-    sub_02014000();
+    ParticleSystem_ZeroAll();
 }
 
 void ov76_0223BF50(void)
@@ -420,14 +420,14 @@ void ov76_0223BF50(void)
 
     sub_020241B4();
 
-    v0 = sub_0201469C();
+    v0 = ParticleSystem_DrawAll();
 
     if (v0 > 0) {
         sub_020241B4();
         NNS_G2dSetupSoftwareSpriteCamera();
     }
 
-    sub_020146C0();
+    ParticleSystem_UpdateAll();
     G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 }
 
@@ -866,12 +866,12 @@ void ov76_0223C80C(UnkStruct_ov76_0223DE00 *param0, int param1, int param2)
 
     if (v1 != 0xff) {
         v3 = param2 + 1;
-        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_MAIL_ID, (u8 *)&v3);
+        Pokemon_SetValue(param0->unk_00->unk_04[v1], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v3);
     }
 
     if (v2 != 0xff) {
         v4 = param1 + 1;
-        Pokemon_SetValue(param0->unk_00->unk_04[v2], MON_DATA_MAIL_ID, (u8 *)&v4);
+        Pokemon_SetValue(param0->unk_00->unk_04[v2], MON_DATA_BALL_CAPSULE_ID, (u8 *)&v4);
     }
 
     v0 = param0->unk_04[param1].unk_00;
@@ -1078,12 +1078,12 @@ void ov76_0223CE2C(void)
 
 void ov76_0223CE44(void)
 {
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_53);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_53);
 }
 
 void ov76_0223CE64(void)
 {
-    StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_53);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_53);
 }
 
 void ov76_0223CE84(UnkStruct_ov76_0223DE00 *param0, NARC *param1)

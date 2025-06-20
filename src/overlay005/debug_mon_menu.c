@@ -29,7 +29,7 @@
 #include "sys_task.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
+#include "screen_fade.h"
 #include "unk_0203D1B8.h"
 #include "unk_0206B70C.h"
 #include "unk_02092494.h"

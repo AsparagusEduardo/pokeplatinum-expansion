@@ -29,7 +29,7 @@
 #include "sys_task.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
+#include "screen_fade.h"
 #include "unk_0203A7D8.h"
 #include "unk_0203D1B8.h"
 #include "unk_0206B70C.h"
@@ -255,10 +255,10 @@ static void Task_DebugMenu_Fly(SysTask *task, void *data)
     switch (fly->sequence) {
     case 0:
         fly->wipeFunc = 0;
-        StartScreenTransition(0, 0, 0, 0x0000, 6, 1, HEAP_ID_APPLICATION);
+        StartScreenFade(0, 0, 0, 0x0000, 6, 1, HEAP_ID_APPLICATION);
         break;
     case 1:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return;
         }
 
@@ -286,10 +286,10 @@ static void Task_DebugMenu_Fly(SysTask *task, void *data)
         }
 
         fly->wipeFunc = 0;
-        StartScreenTransition(0, 1, 1, 0x0000, 6, 1, HEAP_ID_APPLICATION);
+        StartScreenFade(0, 1, 1, 0x0000, 6, 1, HEAP_ID_APPLICATION);
         break;
     case 4:
-        if (!IsScreenTransitionDone()) {
+        if (!IsScreenFadeDone()) {
             return;
         }
 

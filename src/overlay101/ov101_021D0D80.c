@@ -28,6 +28,7 @@
 #include "pltt_transfer.h"
 #include "render_oam.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "strbuf.h"
@@ -36,7 +37,6 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
-#include "unk_0200F174.h"
 #include "unk_020711EC.h"
 #include "vram_transfer.h"
 
@@ -73,7 +73,7 @@ static void ov101_021D19D4(UnkStruct_ov101_021D13C8 *param0);
 static const WindowTemplate Unk_ov101_021D8588[1];
 static void ov101_021D1458(UnkStruct_ov101_021D13C8 *param0);
 
-int ov101_021D0D80(OverlayManager *param0, int *param1)
+int ov101_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov101_021D0F3C *v0;
     UnkStruct_ov101_021D13C8 *v1;
@@ -85,9 +85,9 @@ int ov101_021D0D80(OverlayManager *param0, int *param1)
     GXLayers_DisableEngineBLayers();
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_79, 0x80000);
 
-    v0 = OverlayManager_NewData(param0, (sizeof(UnkStruct_ov101_021D0F3C)), HEAP_ID_79);
+    v0 = ApplicationManager_NewData(appMan, (sizeof(UnkStruct_ov101_021D0F3C)), HEAP_ID_79);
     memset(v0, 0, (sizeof(UnkStruct_ov101_021D0F3C)));
-    v2 = OverlayManager_Args(param0);
+    v2 = ApplicationManager_Args(appMan);
     v0->unk_00 = v2;
     v1 = ov101_021D0F6C(v0->unk_00);
     v0->unk_04 = v1;
@@ -105,31 +105,31 @@ int ov101_021D0D80(OverlayManager *param0, int *param1)
     ov101_021D5C28(v1);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_SUB_66, SEQ_NONE, 0);
     ov101_021D18C0(v1);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_79);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_79);
 
     return 1;
 }
 
-int ov101_021D0E40(OverlayManager *param0, int *param1)
+int ov101_021D0E40(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov101_021D0F3C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov101_021D0F3C *v0 = ApplicationManager_Data(appMan);
     UnkStruct_ov101_021D13C8 *v1 = v0->unk_04;
 
     switch (*param1) {
     case 0:
-        if (IsScreenTransitionDone()) {
+        if (IsScreenFadeDone()) {
             (*param1)++;
         }
         break;
     case 1:
         if (ov101_021D1AAC(v1) == 1) {
             (*param1)++;
-            StartScreenTransition(2, 0, 0, 0x0, 8, 1, HEAP_ID_79);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_79);
             ov101_021D1894(v1, UnkEnum_ov101_021D1894_00);
         }
         break;
     case 2:
-        if (IsScreenTransitionDone() == 0) {
+        if (IsScreenFadeDone() == FALSE) {
             break;
         }
         (*param1)++;
@@ -145,9 +145,9 @@ int ov101_021D0E40(OverlayManager *param0, int *param1)
     return 0;
 }
 
-int ov101_021D0EE4(OverlayManager *param0, int *param1)
+int ov101_021D0EE4(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov101_021D0F3C *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov101_021D0F3C *v0 = ApplicationManager_Data(appMan);
     UnkStruct_ov101_021D13C8 *v1 = v0->unk_04;
 
     SetVBlankCallback(NULL, NULL);
@@ -164,7 +164,7 @@ int ov101_021D0EE4(OverlayManager *param0, int *param1)
     ov101_021D19D4(v1);
     ov101_021D0F94(v1);
 
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_79);
 
     return 1;
@@ -192,7 +192,7 @@ static UnkStruct_ov101_021D13C8 *ov101_021D0F6C(UnkStruct_0203E348 *param0)
 
     v0->unk_60 = *(param0->unk_00);
     v0->unk_88 = param0->unk_04;
-    v0->unk_4C4 = param0->unk_10;
+    v0->msgBoxFrame = param0->msgBoxFrame;
 
     return v0;
 }
@@ -430,7 +430,7 @@ void ov101_021D13C8(UnkStruct_ov101_021D13C8 *param0)
     UnkStruct_ov101_021D148C *v1 = &param0->unk_408;
 
     LoadStandardWindowGraphics(param0->unk_43C, 0, 1, 15, 0, HEAP_ID_79);
-    LoadMessageBoxGraphics(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, HEAP_ID_79);
+    LoadMessageBoxGraphics(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->msgBoxFrame, HEAP_ID_79);
     Font_LoadScreenIndicatorsPalette(0, 15 * 32, HEAP_ID_79);
 
     v1->unk_00 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0544, HEAP_ID_79);
@@ -622,7 +622,7 @@ static void ov101_021D18F4(SysTask *param0, void *param1)
     case 1:
         switch (v1->unk_08) {
         case UnkEnum_ov101_021D1894_00:
-            Sound_SetBGMPlayerPaused(1, 1);
+            Sound_SetBGMPlayerPaused(PLAYER_FIELD, TRUE);
             break;
         case UnkEnum_ov101_021D1894_01:
             Sound_StopBGM(SEQ_SLOT_ATARI, 0);
@@ -637,7 +637,7 @@ static void ov101_021D18F4(SysTask *param0, void *param1)
     case 2:
         switch (v1->unk_0C) {
         case UnkEnum_ov101_021D1894_00:
-            Sound_SetBGMPlayerPaused(1, 0);
+            Sound_SetBGMPlayerPaused(PLAYER_FIELD, FALSE);
             break;
         case UnkEnum_ov101_021D1894_01:
             Sound_PlayBasicBGM(SEQ_SLOT_ATARI);
@@ -691,7 +691,7 @@ void *ov101_021D19E4(UnkStruct_ov101_021D13C8 *param0, u32 param1, int param2)
     if (param2 == 1) {
         v0 = Heap_AllocFromHeap(HEAP_ID_79, v1);
     } else {
-        v0 = Heap_AllocFromHeapAtEnd(79, v1);
+        v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_79, v1);
     }
 
     GF_ASSERT(v0 != NULL);

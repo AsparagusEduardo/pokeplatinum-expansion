@@ -22,15 +22,15 @@ _0032:
     End
 
 _003F:
-    SetVar 0x40B1, 0
+    SetVar VAR_UNK_0x40B1, 0
     End
 
 _0047:
     LockAll
     SetPlayerBike FALSE
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 28, _006E
-    GoToIfEq 0x8004, 29, _007E
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 28, _006E
+    GoToIfEq VAR_0x8004, 29, _007E
     End
 
 _006E:
@@ -51,7 +51,7 @@ _008E:
     Message 1
     WaitSound
     SetFlag FLAG_UNK_0x008B
-    SetVar 0x40B1, 1
+    SetVar VAR_UNK_0x40B1, 1
     Message 2
     WaitABXPadPress
     CloseMessage
@@ -75,15 +75,15 @@ _00E0:
     .balign 4, 0
 _00E8:
     MoveAction_153
-    MoveAction_013
+    WalkNormalSouth
     EndMovement
 
     .balign 4, 0
 _00F4:
     MoveAction_153
-    MoveAction_013
-    MoveAction_015
-    MoveAction_033
+    WalkNormalSouth
+    WalkNormalEast
+    WalkOnSpotNormalSouth
     EndMovement
 
 _0108:
@@ -95,9 +95,9 @@ _0108:
     WaitMovement
     Message 4
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8004, 28, _0148
-    GoToIfEq 0x8004, 29, _0158
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8004, 28, _0148
+    GoToIfEq VAR_0x8004, 29, _0158
     End
 
 _0148:
@@ -111,26 +111,26 @@ _0158:
     GoTo _0168
 
 _0168:
-    SetVar 0x40B1, 0
+    SetVar VAR_UNK_0x40B1, 0
     ReleaseAll
     End
 
     .balign 4, 0
 _0174:
-    MoveAction_012 2
-    MoveAction_033
+    WalkNormalNorth 2
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0180:
-    MoveAction_012 2
-    MoveAction_014
-    MoveAction_033
+    WalkNormalNorth 2
+    WalkNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0190:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
 _0198:
@@ -140,9 +140,9 @@ _0198:
     WaitMovement
     BufferPlayerName 0
     Message 5
-    SetVar 0x8004, ITEM_SOOTHE_BELL
-    SetVar 0x8005, 1
-    GoToIfCannotFitItem 0x8004, 0x8005, 0x800C, _01EA
+    SetVar VAR_0x8004, ITEM_SOOTHE_BELL
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, _01EA
     GoTo _01DB
     End
 
@@ -154,12 +154,12 @@ _01DB:
 
 _01EA:
     CloseMessage
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 34, _023B
-    GoToIfEq 0x8005, 35, _0253
-    GoToIfEq 0x8005, 36, _026B
-    GoToIfEq 0x8005, 37, _0283
-    GoToIfEq 0x8005, 38, _029B
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 34, _023B
+    GoToIfEq VAR_0x8005, 35, _0253
+    GoToIfEq VAR_0x8005, 36, _026B
+    GoToIfEq VAR_0x8005, 37, _0283
+    GoToIfEq VAR_0x8005, 38, _029B
     GoTo _02B3
     End
 
@@ -211,115 +211,115 @@ _02CB:
     RemoveObject 0
     WaitFanfare SEQ_SE_DP_KAIDAN2
     SetFlag FLAG_UNK_0x00E3
-    SetVar 0x40B1, 2
+    SetVar VAR_UNK_0x40B1, 2
     ReleaseAll
     End
 
     .balign 4, 0
 _0300:
-    MoveAction_035
+    WalkOnSpotNormalEast
     MoveAction_153
     EndMovement
 
     .balign 4, 0
 _030C:
-    MoveAction_013 2
-    MoveAction_015 5
+    WalkNormalSouth 2
+    WalkNormalEast 5
     EndMovement
 
     .balign 4, 0
 _0318:
-    MoveAction_013
-    MoveAction_015 5
+    WalkNormalSouth
+    WalkNormalEast 5
     EndMovement
 
     .balign 4, 0
 _0324:
-    MoveAction_013
-    MoveAction_015 5
+    WalkNormalSouth
+    WalkNormalEast 5
     EndMovement
 
     .balign 4, 0
 _0330:
-    MoveAction_012
-    MoveAction_015 5
+    WalkNormalNorth
+    WalkNormalEast 5
     EndMovement
 
     .balign 4, 0
 _033C:
-    MoveAction_012
-    MoveAction_015 5
+    WalkNormalNorth
+    WalkNormalEast 5
     EndMovement
 
     .balign 4, 0
 _0348:
-    MoveAction_012 2
-    MoveAction_015 5
+    WalkNormalNorth 2
+    WalkNormalEast 5
     EndMovement
 
     .balign 4, 0
 _0354:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _035C:
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0368:
-    MoveAction_063 3
-    MoveAction_034
+    Delay8 3
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0374:
-    MoveAction_063 2
-    MoveAction_033
-    MoveAction_063
-    MoveAction_035
+    Delay8 2
+    WalkOnSpotNormalSouth
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0388:
-    MoveAction_063
-    MoveAction_033
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalSouth
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _039C:
-    MoveAction_063
-    MoveAction_033
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalSouth
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _03B0:
-    MoveAction_063
-    MoveAction_032
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalNorth
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _03C4:
-    MoveAction_063
-    MoveAction_032
-    MoveAction_063
-    MoveAction_035
+    Delay8
+    WalkOnSpotNormalNorth
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _03D8:
-    MoveAction_063 2
-    MoveAction_032
-    MoveAction_063
-    MoveAction_035
+    Delay8 2
+    WalkOnSpotNormalNorth
+    Delay8
+    WalkOnSpotNormalEast
     EndMovement
 
 _03EC:
@@ -356,11 +356,11 @@ _0411:
     FacePlayer
     Message 13
     CloseMessage
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _046C
-    GoToIfEq 0x800C, 1, _047E
-    GoToIfEq 0x800C, 2, _0490
-    GoToIfEq 0x800C, 3, _04A2
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _046C
+    GoToIfEq VAR_RESULT, 1, _047E
+    GoToIfEq VAR_RESULT, 2, _0490
+    GoToIfEq VAR_RESULT, 3, _04A2
     End
 
 _046C:
@@ -394,20 +394,20 @@ _04B4:
 
     .balign 4, 0
 _04BC:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _04C4:
-    MoveAction_013 2
-    MoveAction_015 9
+    WalkNormalSouth 2
+    WalkNormalEast 9
     EndMovement
 
     .balign 4, 0
 _04D0:
-    MoveAction_014
-    MoveAction_013 2
-    MoveAction_015 10
+    WalkNormalWest
+    WalkNormalSouth 2
+    WalkNormalEast 10
     EndMovement
 
 _04E0:
@@ -429,7 +429,7 @@ _050C:
 
 _051D:
     LockAll
-    SetVar 0x40CD, 2
+    SetVar VAR_UNK_0x40CD, 2
     ApplyMovement 0, _053C
     WaitMovement
     Message 8
@@ -440,5 +440,5 @@ _051D:
 
     .balign 4, 0
 _053C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement

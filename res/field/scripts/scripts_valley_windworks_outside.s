@@ -17,13 +17,13 @@ _0022:
     End
 
 _0024:
-    CallIfEq 0x40CF, 2, _0082
+    CallIfEq VAR_UNK_0x40CF, 2, _0082
     CallIfSet FLAG_UNK_0x010F, _00BB
     CallIfUnset FLAG_UNK_0x010F, _00C5
-    GoToIfLt 0x4089, 2, _007C
+    GoToIfLt VAR_UNK_0x4089, 2, _007C
     GoToIfSet FLAG_UNK_0x0AA8, _007C
-    GetDayOfWeek 0x4000
-    GoToIfNe 0x4000, 5, _007C
+    GetDayOfWeek VAR_MAP_LOCAL_0
+    GoToIfNe VAR_MAP_LOCAL_0, 5, _007C
     GoTo _0076
 
 _0076:
@@ -35,7 +35,7 @@ _007C:
     End
 
 _0082:
-    SetVar 0x40CF, 3
+    SetVar VAR_UNK_0x40CF, 3
     Return
 
 _008A:
@@ -65,8 +65,8 @@ _00CF:
     Message 0
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_1
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0133
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0133
     Message 1
     CloseMessage
     ApplyMovement 0, _013C
@@ -92,13 +92,13 @@ _0133:
 
     .balign 4, 0
 _013C:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0144:
-    MoveAction_012
-    MoveAction_069
+    WalkNormalNorth
+    SetInvisible
     EndMovement
 
 _0150:
@@ -114,8 +114,8 @@ _0150:
 _016C:
     BufferItemName 0, 0x1B6
     Message 6
-    ShowYesNoMenu 0x800C
-    GoToIfEq 0x800C, MENU_NO, _01A2
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, _01A2
     SetFlag FLAG_UNK_0x010F
     Call _00BB
     SetWarpEventPos 0, 243, 0x28E
@@ -145,8 +145,8 @@ _01BF:
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_DRIFLOON, 15
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _01FB
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _01FB
     SetFlag FLAG_UNK_0x0AA8
     ReleaseAll
     End
@@ -174,7 +174,7 @@ _0201:
     ScrCmd_16C 77
     ScrCmd_169 77
     ScrCmd_16A 77
-    WaitTime 120, 0x800C
+    WaitTime 120, VAR_RESULT
     ScrCmd_168 7, 20, 19, 14, 77
     ScrCmd_16B 77
     ScrCmd_169 77
@@ -191,68 +191,68 @@ _0201:
     ApplyMovement 6, _0324
     WaitMovement
     RemoveObject 6
-    SetVar 0x411E, 2
+    SetVar VAR_UNK_0x411E, 2
     ReleaseAll
     End
 
     .balign 4, 0
 _02AC:
-    MoveAction_063 5
-    MoveAction_062
-    MoveAction_034
+    Delay8 5
+    Delay4
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _02BC:
-    MoveAction_013
-    MoveAction_032
+    WalkNormalSouth
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _02C8:
-    MoveAction_063
-    MoveAction_034
-    MoveAction_033
+    Delay8
+    WalkOnSpotNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _02D8:
-    MoveAction_075
-    MoveAction_063
-    MoveAction_016 4
-    MoveAction_039
+    EmoteExclamationMark
+    Delay8
+    WalkFastNorth 4
+    WalkOnSpotFastEast
     EndMovement
 
     .balign 4, 0
 _02EC:
-    MoveAction_063
-    MoveAction_062
-    MoveAction_015
-    MoveAction_032
+    Delay8
+    Delay4
+    WalkNormalEast
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0300:
-    MoveAction_012
-    MoveAction_069
-    MoveAction_001
+    WalkNormalNorth
+    SetInvisible
+    FaceSouth
     EndMovement
 
     .balign 4, 0
 _0310:
-    MoveAction_070
-    MoveAction_017
+    SetVisible
+    WalkFastSouth
     EndMovement
 
     .balign 4, 0
 _031C:
-    MoveAction_037
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0324:
-    MoveAction_018
-    MoveAction_017
-    MoveAction_017 6
-    MoveAction_018 9
+    WalkFastWest
+    WalkFastSouth
+    WalkFastSouth 6
+    WalkFastWest 9
     EndMovement

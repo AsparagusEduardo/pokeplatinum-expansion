@@ -35,8 +35,8 @@ _002E:
     BufferPlayerName 0
     Message 3
     Message 4
-    SetVar 0x8004, ACCESSORY_GLITTER_POWDER
-    SetVar 0x8005, 1
+    SetVar VAR_0x8004, ACCESSORY_GLITTER_POWDER
+    SetVar VAR_0x8005, 1
     CallCommonScript 0x7FF
     Message 5
     ApplyMovement 6, _0158
@@ -48,7 +48,7 @@ _002E:
     ApplyMovement LOCALID_PLAYER, _01DC
     WaitMovement
     RemoveObject 6
-    SetVar 0x40F7, 1
+    SetVar VAR_UNK_0x40F7, 1
     ApplyMovement 5, _0190
     ApplyMovement LOCALID_PLAYER, _01E4
     WaitMovement
@@ -56,8 +56,8 @@ _002E:
     Message 7
     CloseMessage
     PlaySound SEQ_FANFA4
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _00EE
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _00EE
     GoTo _00F9
     End
 
@@ -75,7 +75,7 @@ _0104:
     WaitSound
     Message 10
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, _01C8
     ApplyMovement 5, _01B0
     WaitMovement
@@ -88,43 +88,43 @@ _0104:
 
     .balign 4, 0
 _0138:
-    MoveAction_012 2
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _0140:
-    MoveAction_033
-    MoveAction_075
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _014C:
-    MoveAction_038
-    MoveAction_033
+    WalkOnSpotFastWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0158:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0160:
-    MoveAction_015 3
-    MoveAction_012 3
-    MoveAction_015 3
-    MoveAction_012 6
+    WalkNormalEast 3
+    WalkNormalNorth 3
+    WalkNormalEast 3
+    WalkNormalNorth 6
     EndMovement
 
     .balign 4, 0
 _0174:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _017C:
-    MoveAction_062
-    MoveAction_035
+    Delay4
+    WalkOnSpotNormalEast
     EndMovement
 
     .byte 35
@@ -138,7 +138,7 @@ _017C:
 
     .balign 4, 0
 _0190:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .byte 14
@@ -168,39 +168,39 @@ _0190:
 
     .balign 4, 0
 _01B0:
-    MoveAction_014
-    MoveAction_013 2
-    MoveAction_015
-    MoveAction_013
-    MoveAction_033
+    WalkNormalWest
+    WalkNormalSouth 2
+    WalkNormalEast
+    WalkNormalSouth
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _01C8:
-    MoveAction_062
-    MoveAction_034
-    MoveAction_063
-    MoveAction_033
+    Delay4
+    WalkOnSpotNormalWest
+    Delay8
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _01DC:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _01E4:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
 _01EC:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12F 0, 0x800C
-    GoToIfEq 0x800C, 0, _031D
+    ScrCmd_12F 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _031D
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0A8 0, 0x800C
+    ScrCmd_0A8 0, VAR_RESULT
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -210,11 +210,11 @@ _01EC:
 _0229:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12F 1, 0x800C
-    GoToIfEq 0x800C, 0, _031D
+    ScrCmd_12F 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _031D
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0A8 1, 0x800C
+    ScrCmd_0A8 1, VAR_RESULT
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -224,11 +224,11 @@ _0229:
 _0266:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12F 2, 0x800C
-    GoToIfEq 0x800C, 0, _031D
+    ScrCmd_12F 2, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _031D
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0A8 2, 0x800C
+    ScrCmd_0A8 2, VAR_RESULT
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -238,11 +238,11 @@ _0266:
 _02A3:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12F 3, 0x800C
-    GoToIfEq 0x800C, 0, _031D
+    ScrCmd_12F 3, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _031D
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0A8 3, 0x800C
+    ScrCmd_0A8 3, VAR_RESULT
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -252,11 +252,11 @@ _02A3:
 _02E0:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
-    ScrCmd_12F 4, 0x800C
-    GoToIfEq 0x800C, 0, _031D
+    ScrCmd_12F 4, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _031D
     FadeScreen 6, 1, 0, 0
     WaitFadeScreen
-    ScrCmd_0A8 4, 0x800C
+    ScrCmd_0A8 4, VAR_RESULT
     ReturnToField
     FadeScreen 6, 1, 1, 0
     WaitFadeScreen
@@ -314,11 +314,11 @@ _037F:
     End
 
 _038A:
-    CheckItem ITEM_POFFIN_CASE, 1, 0x800C
-    GoToIfEq 0x800C, 0, _037F
+    CheckItem ITEM_POFFIN_CASE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _037F
     Message 13
-    ScrCmd_28A 0x800C
-    GoToIfEq 0x800C, 0, _03C8
+    ScrCmd_28A VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _03C8
     Call _0437
     SetFlag FLAG_UNK_0x015A
     Message 17
@@ -336,11 +336,11 @@ _03C8:
 
 _03D3:
     SetFlag FLAG_UNK_0x0159
-    CheckItem ITEM_POFFIN_CASE, 1, 0x800C
-    GoToIfEq 0x800C, 0, _0428
+    CheckItem ITEM_POFFIN_CASE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0428
     Message 13
-    ScrCmd_28A 0x800C
-    GoToIfEq 0x800C, 0, _0419
+    ScrCmd_28A VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _0419
     Call _0437
     SetFlag FLAG_UNK_0x015A
     Message 16
@@ -364,7 +364,7 @@ _0428:
     End
 
 _0437:
-    ScrCmd_289 0x800C, 60, 30, 30, 30, 30, 40
+    ScrCmd_289 VAR_RESULT, 60, 30, 30, 30, 30, 40
     PlaySound SEQ_FANFA4
     BufferPlayerName 0
     Message 14
@@ -373,8 +373,8 @@ _0437:
     Return
 
 _0458:
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 2, _0475
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 2, _0475
     ApplyMovement 9, _0484
     WaitMovement
     Return
@@ -386,38 +386,38 @@ _0475:
 
     .balign 4, 0
 _0484:
-    MoveAction_015 8
-    MoveAction_037
+    WalkNormalEast 8
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _0490:
-    MoveAction_013
-    MoveAction_015 8
-    MoveAction_012
-    MoveAction_037
+    WalkNormalSouth
+    WalkNormalEast 8
+    WalkNormalNorth
+    WalkOnSpotFastSouth
     EndMovement
 
 _04A4:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    WaitTime 30, 0x800C
-    GetPlayerDir 0x800C
-    GoToIfEq 0x800C, 0, _052B
-    GoToIfEq 0x800C, 1, _053D
-    GoToIfEq 0x800C, 2, _054F
-    GoToIfEq 0x800C, 3, _0561
+    WaitTime 30, VAR_RESULT
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, 0, _052B
+    GoToIfEq VAR_RESULT, 1, _053D
+    GoToIfEq VAR_RESULT, 2, _054F
+    GoToIfEq VAR_RESULT, 3, _0561
     End
 
 _04EC:
     Message 11
     CloseMessage
-    GetPlayerDir 0x8004
-    GoToIfEq 0x8004, 1, _0573
-    GoToIfEq 0x8004, 0, _058D
-    GoToIfEq 0x8004, 2, _05A7
-    GoToIfEq 0x8004, 3, _05B9
+    GetPlayerDir VAR_0x8004
+    GoToIfEq VAR_0x8004, 1, _0573
+    GoToIfEq VAR_0x8004, 0, _058D
+    GoToIfEq VAR_0x8004, 2, _05A7
+    GoToIfEq VAR_0x8004, 3, _05B9
     End
 
 _052B:
@@ -481,59 +481,59 @@ _05D3:
 
     .balign 4, 0
 _05E8:
-    MoveAction_014 6
-    MoveAction_013 4
+    WalkNormalWest 6
+    WalkNormalSouth 4
     EndMovement
 
     .balign 4, 0
 _05F4:
-    MoveAction_012
-    MoveAction_014 6
-    MoveAction_013 5
+    WalkNormalNorth
+    WalkNormalWest 6
+    WalkNormalSouth 5
     EndMovement
 
     .balign 4, 0
 _0604:
-    MoveAction_063
-    MoveAction_034
+    Delay8
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0610:
-    MoveAction_063 2
-    MoveAction_032
-    MoveAction_062
-    MoveAction_034
+    Delay8 2
+    WalkOnSpotNormalNorth
+    Delay4
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0624:
-    MoveAction_002 4
-    MoveAction_000 4
-    MoveAction_003 4
-    MoveAction_001 4
+    FaceWest 4
+    FaceNorth 4
+    FaceEast 4
+    FaceSouth 4
     EndMovement
 
     .balign 4, 0
 _0638:
-    MoveAction_003 4
-    MoveAction_001 4
-    MoveAction_002 4
-    MoveAction_000 4
+    FaceEast 4
+    FaceSouth 4
+    FaceWest 4
+    FaceNorth 4
     EndMovement
 
     .balign 4, 0
 _064C:
-    MoveAction_001 4
-    MoveAction_002 4
-    MoveAction_000 4
-    MoveAction_003 4
+    FaceSouth 4
+    FaceWest 4
+    FaceNorth 4
+    FaceEast 4
     EndMovement
 
     .balign 4, 0
 _0660:
-    MoveAction_000 4
-    MoveAction_003 4
-    MoveAction_001 4
-    MoveAction_002 4
+    FaceNorth 4
+    FaceEast 4
+    FaceSouth 4
+    FaceWest 4
     EndMovement

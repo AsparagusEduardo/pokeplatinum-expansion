@@ -61,10 +61,9 @@
 
 static void ov62_022349E4(Strbuf *param0, int param1);
 
-StringTemplate *ov62_02231690(u32 param0)
+StringTemplate *ov62_02231690(u32 heapID)
 {
-    StringTemplate *v0 = StringTemplate_New(4, 64, param0);
-    return v0;
+    return StringTemplate_New(4, 64, heapID);
 }
 
 int ov62_022316A0(UnkStruct_0208C06C *param0)
@@ -410,10 +409,10 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
         UnkStruct_02030A80 *v11;
 
         v11 = param0->unk_00;
-        v9 = ov62_02231690(102);
+        v9 = ov62_02231690(HEAP_ID_102);
 
         v10 = &param0->unk_0C[0];
-        v6 = sub_02030B94(v11, 102);
+        v6 = sub_02030B94(v11, HEAP_ID_102);
         ov62_022349A8(param1, v6);
         v7 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 13);
         v8 = Strbuf_Init(255, HEAP_ID_102);
@@ -435,7 +434,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
 
             v10 = &param0->unk_0C[2];
             v6 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 15);
-            v7 = sub_02030B94(v11, 102);
+            v7 = sub_02030B94(v11, HEAP_ID_102);
             ov62_022349A8(param1, v7);
             v8 = Strbuf_Init(255, HEAP_ID_102);
 
@@ -514,7 +513,7 @@ static void ov62_02231C78(UnkStruct_ov62_022323B8 *param0, UnkStruct_0208C06C *p
 
                 v10 = &param0->unk_0C[7];
 
-                v8 = sub_02030C28(v11, &v15, 102);
+                v8 = sub_02030C28(v11, &v15, HEAP_ID_102);
                 if (v8 == NULL) {
                     v8 = sub_02014B34(&v15, HEAP_ID_102);
                 }
@@ -775,7 +774,7 @@ static void ov62_022323CC(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *p
     if ((v4 == 0) && (v5 == 0)) {
         v0 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 125);
     } else {
-        v2 = ov62_02231690(102);
+        v2 = ov62_02231690(HEAP_ID_102);
 
         if (v5 != 0) {
             v0 = Strbuf_Init(255, HEAP_ID_102);
@@ -951,7 +950,7 @@ void ov62_02232778(UnkStruct_ov62_02233310 *param0, UnkStruct_0208C06C *param1, 
     Window_Add(param1->unk_14.unk_10, v1, param3->unk_20, param3->unk_0C, param3->unk_10, param3->unk_14, param3->unk_18, 14, param3->unk_1C);
     Window_FillTilemap(v1, 0x00);
 
-    v7 = ov62_02231690(102);
+    v7 = ov62_02231690(HEAP_ID_102);
 
     u64 v12 = param0->unk_28->unk_00[0].unk_08;
     int v13[] = { 16, 12, 20 };
@@ -1964,7 +1963,7 @@ void ov62_02233664(UnkStruct_ov62_0223359C *param0)
 
 void ov62_02233704(UnkStruct_0208C06C *param0, u32 param1)
 {
-    GameRecords *v0 = SaveData_GetGameRecords(param0->unk_830);
+    GameRecords *v0 = SaveData_GetGameRecords(param0->saveData);
     GameRecords_IncrementTrainerScore(v0, param1);
 }
 
@@ -1972,13 +1971,13 @@ void ov62_0223371C(UnkStruct_0208C06C *param0)
 {
     int v0;
 
-    sub_0202F1F8(param0->unk_830, HEAP_ID_119, &v0);
+    sub_0202F1F8(param0->saveData, HEAP_ID_119, &v0);
 
     {
         UnkStruct_02030A80 *v1 = (UnkStruct_02030A80 *)(&param0->unk_8B4.unk_00->unk_00);
         UnkStruct_0202F41C *v2 = (UnkStruct_0202F41C *)(&param0->unk_8B4.unk_00->unk_80);
         UnkStruct_0202F298 *v3 = (UnkStruct_0202F298 *)(&param0->unk_8B4.unk_00->unk_E4);
-        sub_0202FE20(v1, v2, v3, NULL, param0->unk_830);
+        sub_0202FE20(v1, v2, v3, NULL, param0->saveData);
     }
 }
 
@@ -2037,7 +2036,7 @@ void ov62_022337D4(UnkStruct_0208C06C *param0)
 
 BOOL ov62_022337F0(UnkStruct_0208C06C *param0, int param1, u8 param2)
 {
-    int v0 = ov62_02248598(param0->unk_830, param1, param2, &param0->unk_834, &param0->unk_836);
+    int v0 = ov62_02248598(param0->saveData, param1, param2, &param0->unk_834, &param0->unk_836);
 
     if ((v0 == 0) || (v0 == 1)) {
         return 0;
@@ -2079,7 +2078,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
     int v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0202F298(param0->unk_830, 102, &v1, NULL, v0);
+        sub_0202F298(param0->saveData, 102, &v1, NULL, v0);
 
         switch (v1) {
         case 0:
@@ -2088,7 +2087,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
 
             if (v0 == 0) {
                 param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
-                sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
+                sub_02030AA0(param0->unk_88C[v0], param0->saveData);
             }
             break;
         case 2:
@@ -2097,7 +2096,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
 
             if (v0 == 0) {
                 param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
-                sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
+                sub_02030AA0(param0->unk_88C[v0], param0->saveData);
             }
             break;
         case 3:
@@ -2106,7 +2105,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
 
             if (v0 == 0) {
                 param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
-                sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
+                sub_02030AA0(param0->unk_88C[v0], param0->saveData);
             }
             break;
         case 1:
@@ -2114,7 +2113,7 @@ void ov62_022338A8(UnkStruct_0208C06C *param0)
 
             if (v0 == 0) {
                 param0->unk_88C[v0] = sub_02030A80(HEAP_ID_102);
-                sub_02030AA0(param0->unk_88C[v0], param0->unk_830);
+                sub_02030AA0(param0->unk_88C[v0], param0->saveData);
             } else {
                 param0->unk_88C[v0] = sub_0202FDB8(HEAP_ID_102);
             }
@@ -2295,10 +2294,10 @@ static void ov62_02233B50(UnkStruct_ov62_02233F74 *param0, UnkStruct_0208C06C *p
         UnkStruct_02030A80 *v11;
 
         v11 = param0->unk_00;
-        v9 = ov62_02231690(102);
+        v9 = ov62_02231690(HEAP_ID_102);
 
         v10 = &param0->unk_3C[0];
-        v6 = sub_02030B94(v11, 102);
+        v6 = sub_02030B94(v11, HEAP_ID_102);
         ov62_022349A8(param1, v6);
         v7 = MessageLoader_GetNewStrbuf(param1->unk_14.unk_34, 7);
         v8 = Strbuf_Init(255, HEAP_ID_102);
@@ -2647,7 +2646,7 @@ void ov62_022342BC(UnkStruct_0208C06C *param0)
 
 BOOL ov62_022342CC(UnkStruct_0208C06C *param0)
 {
-    MiscSaveBlock *v0 = SaveData_MiscSaveBlock(param0->unk_830);
+    MiscSaveBlock *v0 = SaveData_MiscSaveBlock(param0->saveData);
     u32 v1, v2;
     u8 v3;
 
@@ -3179,10 +3178,10 @@ void ov62_022349A8(UnkStruct_0208C06C *param0, Strbuf *param1)
     Strbuf *v1;
     int v2 = 64;
 
-    v1 = Strbuf_Init(v2, v0->unk_144);
+    v1 = Strbuf_Init(v2, v0->heapID);
 
     if (Font_AreAllCharsValid(FONT_SYSTEM, param1, v1) == 0) {
-        ov62_022349E4(param1, v0->unk_144);
+        ov62_022349E4(param1, v0->heapID);
     }
 
     Strbuf_Free(v1);

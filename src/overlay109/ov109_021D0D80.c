@@ -16,10 +16,8 @@
 #include "struct_defs/struct_0209C194.h"
 
 #include "overlay005/struct_ov5_02201C58.h"
-#include "overlay072/struct_ov72_0223E2A8.h"
 #include "overlay109/struct_ov109_021D1048.h"
 #include "overlay109/struct_ov109_021D17EC.h"
-#include "overlay115/camera_angle.h"
 
 #include "bag.h"
 #include "bg_window.h"
@@ -31,7 +29,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "journal.h"
-#include "math.h"
+#include "math_util.h"
 #include "message.h"
 #include "narc.h"
 #include "overlay_manager.h"
@@ -39,6 +37,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
@@ -49,9 +48,8 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "text.h"
+#include "touch_pad.h"
 #include "trainer_info.h"
-#include "unk_0200F174.h"
-#include "unk_0201E3D8.h"
 #include "unk_0202419C.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -161,7 +159,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    UnkStruct_ov72_0223E2A8 unk_10;
+    TouchPadDataBuffer unk_10;
 } UnkStruct_ov109_021D294C;
 
 typedef struct {
@@ -426,10 +424,10 @@ static const fx32 Unk_ov109_021D5A98[5 + 1];
 static int (*const Unk_ov109_021D5CBC[54])(UnkStruct_ov109_021D0F70 *);
 static int (*const Unk_ov109_021D59D8[3])(UnkStruct_ov109_021D2FE0 *);
 
-int ov109_021D0D80(OverlayManager *param0, int *param1)
+int ov109_021D0D80(ApplicationManager *appMan, int *param1)
 {
     UnkStruct_ov109_021D0F70 *v0;
-    UnkStruct_0209C194 *v1 = OverlayManager_Args(param0);
+    UnkStruct_0209C194 *v1 = ApplicationManager_Args(appMan);
 
     CommMan_SetErrorHandling(1, 1);
     SetVBlankCallback(NULL, NULL);
@@ -437,18 +435,18 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     ResetLock(RESET_LOCK_0x2);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_95, 0x80000);
 
-    v0 = OverlayManager_NewData(param0, sizeof(UnkStruct_ov109_021D0F70), HEAP_ID_95);
+    v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov109_021D0F70), HEAP_ID_95);
     memset(v0, 0, sizeof(UnkStruct_ov109_021D0F70));
 
     v1->unk_38 = v0;
     v0->unk_CC = v1;
     v0->unk_D0 = v1->unk_34;
-    v0->unk_24 = SaveData_GetParty(v0->unk_CC->unk_14.unk_08);
+    v0->unk_24 = SaveData_GetParty(v0->unk_CC->unk_14.saveData);
     v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, HEAP_ID_95);
 
     VramTransfer_New(8, HEAP_ID_95);
-    sub_0201E3D8();
-    sub_0201E450(4);
+    EnableTouchPad();
+    InitializeTouchPad(4);
     ov109_021D1C28(v0);
     SetVBlankCallback(ov109_021D1C00, v0);
     ov109_021D29CC(v0);
@@ -482,16 +480,16 @@ int ov109_021D0D80(OverlayManager *param0, int *param1)
     ov109_021D3584(v0);
     ov109_021D379C(v0);
     ov109_021D3884(v0);
-    StartScreenTransition(0, 1, 1, 0x0, 8, 1, HEAP_ID_95);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 8, 1, HEAP_ID_95);
 
     return 1;
 }
 
-int ov109_021D0EB4(OverlayManager *param0, int *param1)
+int ov109_021D0EB4(ApplicationManager *appMan, int *param1)
 {
-    UnkStruct_ov109_021D0F70 *v0 = OverlayManager_Data(param0);
+    UnkStruct_ov109_021D0F70 *v0 = ApplicationManager_Data(appMan);
 
-    if (sub_0201E530() != 1) {
+    if (DisableTouchPad() != 1) {
         GF_ASSERT(0);
     }
 
@@ -508,17 +506,17 @@ int ov109_021D0EB4(OverlayManager *param0, int *param1)
     SetVBlankCallback(NULL, NULL);
     VramTransfer_Free();
     NARC_dtor(v0->unk_D80);
-    OverlayManager_FreeData(param0);
+    ApplicationManager_FreeData(appMan);
     Heap_Destroy(HEAP_ID_95);
     ResetUnlock(RESET_LOCK_0x2);
 
     return 1;
 }
 
-int ov109_021D0F2C(OverlayManager *param0, int *param1)
+int ov109_021D0F2C(ApplicationManager *appMan, int *param1)
 {
     int v0;
-    UnkStruct_ov109_021D0F70 *v1 = OverlayManager_Data(param0);
+    UnkStruct_ov109_021D0F70 *v1 = ApplicationManager_Data(appMan);
 
     ov109_021D294C(v1);
 
@@ -553,7 +551,7 @@ static int ov109_021D0F78(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D0F8C(UnkStruct_ov109_021D0F70 *param0)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         if (CommSys_CurNetId() == 0) {
             param0->unk_00 = 2;
         } else {
@@ -1245,7 +1243,7 @@ static int ov109_021D18A0(UnkStruct_ov109_021D0F70 *param0)
     }
 
     {
-        Sound_PlayFanfare(1158);
+        Sound_PlayFanfare(SEQ_FANFA4);
     }
 
     param0->unk_00 = 38;
@@ -1287,8 +1285,8 @@ static int ov109_021D1918(UnkStruct_ov109_021D0F70 *param0)
 
         ov109_021D2714(param0, 3, v0);
 
-        BOOL removedItem = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.unk_08), v0, 1, HEAP_ID_95);
-        Sound_PlayFanfare(1158);
+        BOOL removedItem = Bag_TryAddItem(SaveData_GetBag(param0->unk_CC->unk_14.saveData), v0, 1, HEAP_ID_95);
+        Sound_PlayFanfare(SEQ_FANFA4);
 
         if (removedItem == TRUE) {
             param0->unk_00 = 40;
@@ -1368,7 +1366,7 @@ static int ov109_021D1A6C(UnkStruct_ov109_021D0F70 *param0)
 static int ov109_021D1AA8(UnkStruct_ov109_021D0F70 *param0)
 {
     int v0 = sub_02038EDC(
-        param0->unk_CC->unk_14.unk_08, 2, &param0->unk_04);
+        param0->unk_CC->unk_14.saveData, 2, &param0->unk_04);
 
     if (v0) {
         gSystem.inhibitReset = 0;
@@ -1452,7 +1450,7 @@ static int ov109_021D1B8C(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 {
-    StartScreenTransition(2, 0, 0, 0x0, 8, 1, HEAP_ID_95);
+    StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 8, 1, HEAP_ID_95);
 
     if (param0->unk_1C != Sound_Impl_GetCurrentBGM()) {
         Sound_SetSceneAndPlayBGM(SOUND_SCENE_FIELD, param0->unk_1C, 1);
@@ -1464,7 +1462,7 @@ static int ov109_021D1BA4(UnkStruct_ov109_021D0F70 *param0)
 
 static int ov109_021D1BE4(UnkStruct_ov109_021D0F70 *param0)
 {
-    if (IsScreenTransitionDone()) {
+    if (IsScreenFadeDone()) {
         param0->unk_00 = 53;
         return 1;
     }
@@ -1976,7 +1974,7 @@ static void ov109_021D2408(UnkStruct_ov109_021D0F70 *param0)
 
     {
         NNSG2dPaletteData *v5;
-        void *v6 = sub_020394A8(95);
+        void *v6 = sub_020394A8(HEAP_ID_95);
 
         NNS_G2dGetUnpackedPaletteData(v6, &v5);
         PaletteData_LoadBuffer(v2, v5->pRawData, 2, 14 * 16, 32);
@@ -2202,12 +2200,12 @@ static void ov109_021D294C(UnkStruct_ov109_021D0F70 *param0)
     int v0 = 0, v1 = 4 - 1;
     UnkStruct_ov109_021D294C *v2 = &param0->unk_D2C;
 
-    sub_0201E564(&v2->unk_10, 2, 0);
+    WriteAutoSamplingDataToBuffer(&v2->unk_10, TOUCH_PAD_EXTERNAL_BUFFER_WRITE_METHOD_NO_WRITE, 0);
 
     while (v1 >= 0) {
-        if (v2->unk_10.unk_02[v1].touch == 1) {
-            v2->unk_00 = v2->unk_10.unk_02[v1].x;
-            v2->unk_04 = v2->unk_10.unk_02[v1].y;
+        if (v2->unk_10.buffer[v1].touch == 1) {
+            v2->unk_00 = v2->unk_10.buffer[v1].x;
+            v2->unk_04 = v2->unk_10.buffer[v1].y;
             v0 = 1;
         }
 
@@ -2259,7 +2257,7 @@ static void ov109_021D29CC(UnkStruct_ov109_021D0F70 *param0)
     v0 = param0->unk_CC->unk_08;
     v1 = Unk_ov109_021D5A80[v0];
 
-    sub_0207389C(&v2->unk_54, 0, v3, v1, 95, 0);
+    sub_0207389C(&v2->unk_54, 0, v3, v1, HEAP_ID_95, 0);
     sub_020738EC(&v2->unk_54);
     sub_02073B70(&v2->unk_68, &v2->unk_54);
 
@@ -2349,19 +2347,19 @@ static void ov109_021D2B00(UnkStruct_ov109_021D0F70 *param0)
     const u32 *v1, *v2;
     UnkStruct_ov109_021D1334 *v3 = &param0->unk_190;
 
-    sub_0207389C(&v3->unk_00, 0, param0->unk_D80, 0, 95, 0);
+    sub_0207389C(&v3->unk_00, 0, param0->unk_D80, 0, HEAP_ID_95, 0);
     sub_020738EC(&v3->unk_00);
-    sub_0207389C(&v3->unk_14, 0, param0->unk_D80, 5, 95, 0);
+    sub_0207389C(&v3->unk_14, 0, param0->unk_D80, 5, HEAP_ID_95, 0);
     sub_020738EC(&v3->unk_14);
 
     v1 = Unk_ov109_021D5A14;
     v2 = Unk_ov109_021D5A3C;
 
     for (v0 = 0; v0 < 5; v0++, v1++, v2++) {
-        sub_0207389C(&v3->unk_28[v0], 0, param0->unk_D80, *v1, 95, 0);
+        sub_0207389C(&v3->unk_28[v0], 0, param0->unk_D80, *v1, HEAP_ID_95, 0);
         sub_020738EC(&v3->unk_28[v0]);
-        sub_020739B4(&v3->unk_8C[v0], 0, param0->unk_D80, *v2, 95, 0);
-        sub_02073A3C(&v3->unk_8C[v0], &v3->unk_28[v0], 95);
+        sub_020739B4(&v3->unk_8C[v0], 0, param0->unk_D80, *v2, HEAP_ID_95, 0);
+        sub_02073A3C(&v3->unk_8C[v0], &v3->unk_28[v0], HEAP_ID_95);
         sub_02073A5C(&v3->unk_8C[v0], &v3->unk_28[v0]);
     }
 }
@@ -2589,7 +2587,7 @@ static SysTask *ov109_021D2FE0(UnkStruct_ov109_021D0F70 *param0, int param1, int
     param6->unk_00 = 1;
     param6->unk_08 = 0;
 
-    v1 = Heap_AllocFromHeapAtEnd(95, sizeof(UnkStruct_ov109_021D2FE0));
+    v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_95, sizeof(UnkStruct_ov109_021D2FE0));
     memset(v1, 0, sizeof(UnkStruct_ov109_021D2FE0));
     v1->unk_14 = param0;
     v1->unk_10 = param6;
@@ -3081,7 +3079,7 @@ static void ov109_021D3600(SysTask *param0, void *param1)
 static SysTask *ov109_021D3684(UnkStruct_ov109_021D0F70 *param0)
 {
     SpriteTemplate v0;
-    UnkStruct_ov109_021D3600 *v1 = Heap_AllocFromHeapAtEnd(95, sizeof(UnkStruct_ov109_021D3600));
+    UnkStruct_ov109_021D3600 *v1 = Heap_AllocFromHeapAtEnd(HEAP_ID_95, sizeof(UnkStruct_ov109_021D3600));
 
     memset(v1, 0, sizeof(UnkStruct_ov109_021D3600));
 
@@ -3303,7 +3301,7 @@ static void ov109_021D3990(UnkStruct_ov109_021D0F70 *param0, int param1)
 {
     SysTask *v0;
     u32 v1[2] = { 0, 8 };
-    UnkStruct_ov109_021D3948 *v2 = Heap_AllocFromHeapAtEnd(95, sizeof(UnkStruct_ov109_021D3948));
+    UnkStruct_ov109_021D3948 *v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_95, sizeof(UnkStruct_ov109_021D3948));
 
     v2->unk_00 = param0;
     v2->unk_04 = param1;
@@ -3350,7 +3348,7 @@ static void *ov109_021D3A2C(UnkStruct_ov109_021D0F70 *param0, u32 param1, BOOL p
     if (param2 == 1) {
         v0 = Heap_AllocFromHeap(HEAP_ID_95, v1);
     } else {
-        v0 = Heap_AllocFromHeapAtEnd(95, v1);
+        v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_95, v1);
     }
 
     NARC_ReadWholeMember(param0->unk_D80, param1, v0);

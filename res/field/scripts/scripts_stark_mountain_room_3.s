@@ -11,8 +11,8 @@
     ScriptEntryEnd
 
 _0016:
-    SetVar 0x4000, 0x409E
-    CallIfGe 0x409E, 1, _0031
+    SetVar VAR_MAP_LOCAL_0, VAR_UNK_0x409E
+    CallIfGe VAR_UNK_0x409E, 1, _0031
     Call _0037
     End
 
@@ -22,12 +22,12 @@ _0031:
 
 _0037:
     GoToIfSet FLAG_UNK_0x0120, _0083
-    CheckGameCompleted 0x4000
-    GoToIfEq 0x4000, 0, _0083
-    ScrCmd_22D 2, 0x4000
-    GoToIfEq 0x4000, 0, _0083
+    CheckGameCompleted VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
+    GetNationalDexEnabled VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, 0, _0083
     GoToIfUnset FLAG_MESPRIT_CAUGHT, _0083
-    GoToIfNe 0x409E, 1, _0083
+    GoToIfNe VAR_UNK_0x409E, 1, _0083
     ClearFlag FLAG_UNK_0x01DD
     Return
 
@@ -64,7 +64,7 @@ _0096:
 
     .balign 4, 0
 _00B4:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .byte 32
@@ -104,19 +104,19 @@ _00E6:
     PlayFanfare SEQ_SE_CONFIRM
     WaitFanfare SEQ_SE_CONFIRM
     CallIfUnset FLAG_UNK_0x00D7, _0174
-    SetVar 0x409E, 2
+    SetVar VAR_UNK_0x409E, 2
     PlayCry SPECIES_HEATRAN
     Message 15
     CloseMessage
     SetFlag FLAG_UNK_0x008E
     StartLegendaryBattle SPECIES_HEATRAN, 50
     ClearFlag FLAG_UNK_0x008E
-    CheckWonBattle 0x800C
-    GoToIfEq 0x800C, FALSE, _0168
-    CheckLostBattle 0x800C
-    CallIfEq 0x800C, FALSE, _017A
-    CheckDidNotCapture 0x800C
-    GoToIfEq 0x800C, TRUE, _015D
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _0168
+    CheckLostBattle VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, _017A
+    CheckDidNotCapture VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, _015D
     GoTo _0155
     End
 
@@ -133,7 +133,7 @@ _015D:
     End
 
 _0168:
-    SetVar 0x409E, 1
+    SetVar VAR_UNK_0x409E, 1
     BlackOutFromBattle
     ReleaseAll
     End
@@ -182,7 +182,7 @@ _019C:
     WaitFanfare SEQ_SE_CONFIRM
     PlayFanfare SEQ_SE_DP_FW089
     ScrCmd_29F 0
-    ScrCmd_04A 0x65C
+    StopFanfare SEQ_SE_DP_FW089
     ApplyMovement 2, _03A4
     ApplyMovement LOCALID_PLAYER, _0388
     WaitMovement
@@ -208,7 +208,7 @@ _019C:
     WaitMovement
     Message 4
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     Message 5
     CloseMessage
     RemoveObject 0
@@ -231,7 +231,7 @@ _019C:
     WaitMovement
     Message 9
     CloseMessage
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 9, _0454
     ApplyMovement 10, _045C
     WaitMovement
@@ -268,11 +268,11 @@ _019C:
     BufferPlayerName 0
     Message 14
     CloseMessage
-    SetVar 0x40A0, 2
+    SetVar VAR_UNK_0x40A0, 2
     SetFlag FLAG_UNK_0x01DB
     SetFlag FLAG_UNK_0x0231
-    SetVar 0x409E, 1
-    SetFlag FLAG_UNK_0x00D6
+    SetVar VAR_UNK_0x409E, 1
+    SetFlag FLAG_ARRESTED_CHARON_STARK_MOUNTAIN
     ClearFlag FLAG_UNK_0x01A3
     ClearFlag FLAG_UNK_0x01D9
     ClearFlag FLAG_UNK_0x01D6
@@ -288,179 +288,179 @@ _019C:
 
     .balign 4, 0
 _0388:
-    MoveAction_012 3
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _0390:
-    MoveAction_063 2
-    MoveAction_035
-    MoveAction_063 2
-    MoveAction_032
+    Delay8 2
+    WalkOnSpotNormalEast
+    Delay8 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _03A4:
-    MoveAction_063
-    MoveAction_012 2
+    Delay8
+    WalkNormalNorth 2
     EndMovement
 
     .balign 4, 0
 _03B0:
-    MoveAction_012 2
-    MoveAction_063 2
-    MoveAction_033
+    WalkNormalNorth 2
+    Delay8 2
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _03C0:
-    MoveAction_038
-    MoveAction_063
-    MoveAction_039
-    MoveAction_063
-    MoveAction_037
+    WalkOnSpotFastWest
+    Delay8
+    WalkOnSpotFastEast
+    Delay8
+    WalkOnSpotFastSouth
     EndMovement
 
     .balign 4, 0
 _03D8:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _03E0:
-    MoveAction_063 2
-    MoveAction_013 3
+    Delay8 2
+    WalkNormalSouth 3
     EndMovement
 
     .balign 4, 0
 _03EC:
-    MoveAction_013
-    MoveAction_015
-    MoveAction_013 3
-    MoveAction_014
-    MoveAction_013
-    MoveAction_069
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth 3
+    WalkNormalWest
+    WalkNormalSouth
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0408:
-    MoveAction_063 3
-    MoveAction_062
-    MoveAction_032
+    Delay8 3
+    Delay4
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0418:
-    MoveAction_063
-    MoveAction_033
-    MoveAction_063
-    MoveAction_034
-    MoveAction_062
-    MoveAction_032
+    Delay8
+    WalkOnSpotNormalSouth
+    Delay8
+    WalkOnSpotNormalWest
+    Delay4
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0434:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _043C:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0444:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _044C:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _0454:
-    MoveAction_039 3
+    WalkOnSpotFastEast 3
     EndMovement
 
     .balign 4, 0
 _045C:
-    MoveAction_038 3
+    WalkOnSpotFastWest 3
     EndMovement
 
     .balign 4, 0
 _0464:
-    MoveAction_019 2
-    MoveAction_017 5
-    MoveAction_018
-    MoveAction_017
-    MoveAction_069
+    WalkFastEast 2
+    WalkFastSouth 5
+    WalkFastWest
+    WalkFastSouth
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _047C:
-    MoveAction_017 5
-    MoveAction_018
-    MoveAction_017
-    MoveAction_069
+    WalkFastSouth 5
+    WalkFastWest
+    WalkFastSouth
+    SetInvisible
     EndMovement
 
     .balign 4, 0
 _0490:
-    MoveAction_018 2
-    MoveAction_016 3
-    MoveAction_032
-    MoveAction_017 3
-    MoveAction_019 2
+    WalkFastWest 2
+    WalkFastNorth 3
+    WalkOnSpotNormalNorth
+    WalkFastSouth 3
+    WalkFastEast 2
     EndMovement
 
     .balign 4, 0
 _04A8:
-    MoveAction_014 3
-    MoveAction_012 3
+    WalkNormalWest 3
+    WalkNormalNorth 3
     EndMovement
 
     .balign 4, 0
 _04B4:
-    MoveAction_014
-    MoveAction_012
-    MoveAction_015
-    MoveAction_013 2
+    WalkNormalWest
+    WalkNormalNorth
+    WalkNormalEast
+    WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
 _04C8:
-    MoveAction_012 2
-    MoveAction_015
-    MoveAction_012 3
-    MoveAction_014 2
-    MoveAction_032
+    WalkNormalNorth 2
+    WalkNormalEast
+    WalkNormalNorth 3
+    WalkNormalWest 2
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _04E0:
-    MoveAction_015
-    MoveAction_013
-    MoveAction_015
-    MoveAction_013 3
-    MoveAction_014
-    MoveAction_013 2
+    WalkNormalEast
+    WalkNormalSouth
+    WalkNormalEast
+    WalkNormalSouth 3
+    WalkNormalWest
+    WalkNormalSouth 2
     EndMovement
 
     .balign 4, 0
 _04FC:
-    MoveAction_015
-    MoveAction_012 4
-    MoveAction_014
-    MoveAction_032
+    WalkNormalEast
+    WalkNormalNorth 4
+    WalkNormalWest
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0510:
-    MoveAction_015
-    MoveAction_013 3
-    MoveAction_014
-    MoveAction_013 2
-    MoveAction_069
+    WalkNormalEast
+    WalkNormalSouth 3
+    WalkNormalWest
+    WalkNormalSouth 2
+    SetInvisible
     EndMovement

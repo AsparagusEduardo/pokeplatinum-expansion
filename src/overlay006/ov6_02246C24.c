@@ -46,7 +46,7 @@ void ov6_02246C24(FieldSystem *fieldSystem, const u8 param1)
     v0 = FieldSystem_FindLoadedMapPropByModelID(fieldSystem, v3, &v1, &v2);
 
     if (v0) {
-        UnkStruct_ov6_02246C24 *v4 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov6_02246C24));
+        UnkStruct_ov6_02246C24 *v4 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(UnkStruct_ov6_02246C24));
 
         v4->unk_0C = param1;
         v4->unk_0D = 0;
@@ -138,7 +138,7 @@ static BOOL ov6_02246C9C(FieldTask *param0)
     case 3:
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 0x10, 0);
         MapPropOneShotAnimationManager_PlayAnimation(fieldSystem->mapPropOneShotAnimMan, 0x20, 0);
-        Sound_PlayFanfare(1166);
+        Sound_PlayFanfare(SEQ_ASA);
         (v1->unk_0F)++;
         break;
     case 4:

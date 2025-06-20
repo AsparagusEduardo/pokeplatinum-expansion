@@ -7,13 +7,13 @@
 
 #include "heap.h"
 #include "palette.h"
+#include "screen_fade.h"
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "strbuf.h"
 #include "system.h"
 #include "touch_screen.h"
-#include "unk_0200F174.h"
-#include "unk_02023FCC.h"
+#include "touch_screen_actions.h"
 #include "unk_020393C8.h"
 #include "unk_0208A3F4.h"
 
@@ -120,7 +120,7 @@ BOOL sub_02089820(UnkStruct_02089688 *param0)
 
     if (param0->unk_38C.unk_30 != 0) {
         NNSG2dPaletteData *v0;
-        void *v1 = sub_020394A8(101);
+        void *v1 = sub_020394A8(HEAP_ID_101);
 
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         PaletteData_LoadBuffer(param0->unk_2C0.unk_10, v0->pRawData, 0x1 | 0x2, 0xe0, 0x20);
@@ -128,7 +128,7 @@ BOOL sub_02089820(UnkStruct_02089688 *param0)
     }
 
     sub_02089808(param0, 1);
-    StartScreenTransition(0, 1, 1, 0x0, 6, 1, HEAP_ID_101);
+    StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1, HEAP_ID_101);
 
     return 0;
 }
@@ -137,11 +137,11 @@ BOOL sub_020898DC(UnkStruct_02089688 *param0)
 {
     switch (param0->unk_29C) {
     case 0:
-        StartScreenTransition(0, 0, 0, 0x0, 6, 1, HEAP_ID_101);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_0, FADE_TYPE_UNK_0, FADE_TO_BLACK, 6, 1, HEAP_ID_101);
         param0->unk_29C++;
         break;
     case 1:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_29C++;
         }
         break;
@@ -156,13 +156,13 @@ BOOL sub_02089938(UnkStruct_02089688 *param0)
 {
     switch (param0->unk_29C) {
     case 0:
-        if (IsScreenTransitionDone() == 1) {
+        if (IsScreenFadeDone() == TRUE) {
             param0->unk_29C++;
         }
         break;
     default:
         sub_0208A328(param0);
-        sub_0202404C(param0->unk_2C0.unk_14);
+        TouchScreenActions_HandleAction(param0->unk_2C0.unk_14);
         sub_02089C20(param0);
         break;
     }
@@ -844,10 +844,10 @@ void sub_0208A0B8(UnkStruct_02089688 *param0)
         }
     }
 
-    param0->unk_2C0.unk_14 = sub_02023FCC(param0->unk_2C0.unk_18, 0x1c, sub_0208A180, param0, HEAP_ID_101);
+    param0->unk_2C0.unk_14 = TouchScreenActions_RegisterHandler(param0->unk_2C0.unk_18, 0x1c, sub_0208A180, param0, HEAP_ID_101);
 }
 
-void sub_0208A180(u32 param0, u32 param1, void *param2)
+void sub_0208A180(u32 param0, enum TouchScreenButtonState param1, void *param2)
 {
     UnkStruct_02089688 *v0 = param2;
 
@@ -859,7 +859,7 @@ void sub_0208A180(u32 param0, u32 param1, void *param2)
         v0->unk_2C0.unk_88 = 1;
     }
 
-    if (param1 == 0) {
+    if (param1 == TOUCH_BUTTON_PRESSED) {
         if ((param0 >= 0) && (param0 < 16)) {
             if (param0 < v0->unk_3C4) {
                 return;

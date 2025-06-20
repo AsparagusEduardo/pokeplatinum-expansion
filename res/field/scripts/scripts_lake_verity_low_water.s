@@ -13,17 +13,17 @@
     ScriptEntryEnd
 
 _001E:
-    GetPlayerGender 0x4000
-    GoToIfEq 0x4000, GENDER_MALE, _003E
-    GoToIfEq 0x4000, GENDER_FEMALE, _0046
+    GetPlayerGender VAR_MAP_LOCAL_0
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_MALE, _003E
+    GoToIfEq VAR_MAP_LOCAL_0, GENDER_FEMALE, _0046
     End
 
 _003E:
-    SetVar 0x4020, 97
+    SetVar VAR_OBJ_GFX_ID_0, 97
     End
 
 _0046:
-    SetVar 0x4020, 0
+    SetVar VAR_OBJ_GFX_ID_0, 0
     End
 
 _004E:
@@ -50,10 +50,10 @@ _006F:
     ScrCmd_066 46, 53
     ApplyMovement 241, _01B4
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     Message 1
     CloseMessage
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     ApplyMovement 4, _01E0
     ApplyMovement 241, _01C0
     WaitMovement
@@ -67,7 +67,7 @@ _006F:
     WaitMovement
     PlayFanfare SEQ_SE_DP_KAIDAN2
     RemoveObject 4
-    WaitTime 50, 0x800C
+    WaitTime 50, VAR_RESULT
     ApplyMovement LOCALID_PLAYER, _0378
     ApplyMovement 5, _02AC
     WaitMovement
@@ -77,7 +77,7 @@ _006F:
     ApplyMovement 5, _02B8
     ApplyMovement LOCALID_PLAYER, _0380
     WaitMovement
-    WaitTime 30, 0x800C
+    WaitTime 30, VAR_RESULT
     BufferPlayerName 1
     Message 4
     PlayCry SPECIES_MESPRIT
@@ -87,7 +87,7 @@ _006F:
     ApplyMovement 5, _02C0
     ApplyMovement LOCALID_PLAYER, _0388
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     ApplyMovement 5, _02F0
     WaitMovement
     BufferRivalName 0
@@ -96,7 +96,7 @@ _006F:
     CloseMessage
     ApplyMovement 5, _02E8
     WaitMovement
-    WaitTime 15, 0x800C
+    WaitTime 15, VAR_RESULT
     BufferPlayerName 1
     Message 7
     CloseMessage
@@ -111,19 +111,19 @@ _006F:
 
 _01A1:
     SetVar VAR_FOLLOWER_RIVAL_STATE, 4
-    SetVar 0x4095, 1
+    SetVar VAR_UNK_0x4095, 1
     ReleaseAll
     End
 
     .balign 4, 0
 _01B4:
-    MoveAction_063
-    MoveAction_012 9
+    Delay8
+    WalkNormalNorth 9
     EndMovement
 
     .balign 4, 0
 _01C0:
-    MoveAction_013 9
+    WalkNormalSouth 9
     EndMovement
 
     .byte 35
@@ -153,15 +153,15 @@ _01C0:
 
     .balign 4, 0
 _01E0:
-    MoveAction_013 5
-    MoveAction_014
-    MoveAction_013 4
+    WalkNormalSouth 5
+    WalkNormalWest
+    WalkNormalSouth 4
     EndMovement
 
     .balign 4, 0
 _01F0:
-    MoveAction_013 3
-    MoveAction_069
+    WalkNormalSouth 3
+    SetInvisible
     EndMovement
 
     .byte 63
@@ -323,52 +323,52 @@ _01F0:
 
     .balign 4, 0
 _0298:
-    MoveAction_016
+    WalkFastNorth
     EndMovement
 
     .balign 4, 0
 _02A0:
-    MoveAction_015
-    MoveAction_034
+    WalkNormalEast
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _02AC:
-    MoveAction_014
-    MoveAction_033
+    WalkNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _02B8:
-    MoveAction_038
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _02C0:
-    MoveAction_075
-    MoveAction_016 3
-    MoveAction_063 3
-    MoveAction_038
-    MoveAction_063
-    MoveAction_036
-    MoveAction_063 2
-    MoveAction_017 3
-    MoveAction_038
+    EmoteExclamationMark
+    WalkFastNorth 3
+    Delay8 3
+    WalkOnSpotFastWest
+    Delay8
+    WalkOnSpotFastNorth
+    Delay8 2
+    WalkFastSouth 3
+    WalkOnSpotFastWest
     EndMovement
 
     .balign 4, 0
 _02E8:
-    MoveAction_075
+    EmoteExclamationMark
     EndMovement
 
     .balign 4, 0
 _02F0:
-    MoveAction_038 4
+    WalkOnSpotFastWest 4
     EndMovement
 
     .balign 4, 0
 _02F8:
-    MoveAction_017 2
+    WalkFastSouth 2
     EndMovement
 
     .byte 35
@@ -478,35 +478,35 @@ _02F8:
 
     .balign 4, 0
 _0368:
-    MoveAction_012
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _0370:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0378:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0380:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _0388:
-    MoveAction_063 4
-    MoveAction_032
-    MoveAction_063 9
-    MoveAction_035
+    Delay8 4
+    WalkOnSpotNormalNorth
+    Delay8 9
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _039C:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .byte 33
@@ -651,8 +651,8 @@ _044B:
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
-    GetPlayerGender 0x800C
-    GoToIfEq 0x800C, GENDER_MALE, _046A
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_MALE, _046A
     GoTo _0476
 
 _046A:

@@ -19,7 +19,7 @@
 #include "field/field_system_sub2_t.h"
 #include "overlay006/ov6_022465FC.h"
 #include "overlay006/ov6_02246A30.h"
-#include "overlay025/poketch_system.h"
+#include "poketch/poketch_system.h"
 #include "savedata/save_table.h"
 
 #include "field_script_context.h"
@@ -197,7 +197,7 @@ BOOL ScrCmd_27C(ScriptContext *param0)
         Party *v1 = SaveData_GetParty(param0->fieldSystem->saveData);
         Pokemon *v2 = Party_GetPokemonBySlotIndex(v1, ScriptContext_GetVar(param0));
 
-        sub_0206CF48(v0, v2, 4);
+        sub_0206CF48(v0, v2, HEAP_ID_FIELD);
     } break;
     case 1:
         sub_0206CFB4(v0, ScriptContext_GetVar(param0));

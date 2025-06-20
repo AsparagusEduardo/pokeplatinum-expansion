@@ -37,12 +37,12 @@ _002C:
 
     .balign 4, 0
 _0060:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0068:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
 _0070:
@@ -70,32 +70,32 @@ _00B6:
 
     .balign 4, 0
 _00BC:
-    MoveAction_035
+    WalkOnSpotNormalEast
     EndMovement
 
     .balign 4, 0
 _00C4:
-    MoveAction_034
+    WalkOnSpotNormalWest
     EndMovement
 
     .balign 4, 0
 _00CC:
-    MoveAction_019
-    MoveAction_037
-    MoveAction_063 2
-    MoveAction_014
-    MoveAction_033
+    WalkFastEast
+    WalkOnSpotFastSouth
+    Delay8 2
+    WalkNormalWest
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _00E4:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _00EC:
-    MoveAction_013
-    MoveAction_036
+    WalkNormalSouth
+    WalkOnSpotFastNorth
     EndMovement
 
 _00F8:
@@ -140,17 +140,17 @@ _0142:
 _014D:
     SetFlag FLAG_UNK_0x01A1
     SetFlag FLAG_UNK_0x0091
-    SetVar 0x4089, 1
+    SetVar VAR_UNK_0x4089, 1
     Return
 
 _015D:
     LockAll
-    GetPlayerMapPos 0x8004, 0x8005
-    GoToIfEq 0x8005, 0x293, _01A8
-    GoToIfEq 0x8005, 0x294, _01C2
-    GoToIfEq 0x8005, 0x295, _01DC
-    GoToIfEq 0x8005, 0x296, _01E2
-    GoToIfEq 0x8005, 0x297, _01FC
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0x293, _01A8
+    GoToIfEq VAR_0x8005, 0x294, _01C2
+    GoToIfEq VAR_0x8005, 0x295, _01DC
+    GoToIfEq VAR_0x8005, 0x296, _01E2
+    GoToIfEq VAR_0x8005, 0x297, _01FC
     End
 
 _01A8:
@@ -194,42 +194,42 @@ _0216:
 
     .balign 4, 0
 _0228:
-    MoveAction_033
+    WalkOnSpotNormalSouth
     EndMovement
 
     .balign 4, 0
 _0230:
-    MoveAction_032
+    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
 _0238:
-    MoveAction_032
-    MoveAction_075
-    MoveAction_063
-    MoveAction_012
+    WalkOnSpotNormalNorth
+    EmoteExclamationMark
+    Delay8
+    WalkNormalNorth
     EndMovement
 
     .balign 4, 0
 _024C:
-    MoveAction_032
-    MoveAction_075
-    MoveAction_063
+    WalkOnSpotNormalNorth
+    EmoteExclamationMark
+    Delay8
     EndMovement
 
     .balign 4, 0
 _025C:
-    MoveAction_033
-    MoveAction_075
-    MoveAction_063
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
+    Delay8
     EndMovement
 
     .balign 4, 0
 _026C:
-    MoveAction_033
-    MoveAction_075
-    MoveAction_063
-    MoveAction_013
+    WalkOnSpotNormalSouth
+    EmoteExclamationMark
+    Delay8
+    WalkNormalSouth
     EndMovement
 
 _0280:
