@@ -20,11 +20,11 @@ _0022:
 
 _0035:
     SetObjectEventPos 5, 21, 5
-    ScrCmd_189 5, 2
-    ScrCmd_188 5, 16
+    SetObjectEventDir 5, DIR_WEST
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
     SetObjectEventPos 2, 18, 4
-    ScrCmd_189 2, 1
-    ScrCmd_188 2, 15
+    SetObjectEventDir 2, DIR_SOUTH
+    SetObjectEventMovementType 2, MOVEMENT_TYPE_LOOK_SOUTH
     End
 
 _005F:
@@ -140,7 +140,7 @@ _01DB:
     CloseMessage
     SetFlag FLAG_UNK_0x01F8
     ClearFlag FLAG_UNK_0x01F9
-    ScrCmd_188 5, 16
+    SetObjectEventMovementType 5, MOVEMENT_TYPE_LOOK_LEFT
     AddObject 5
     ScrCmd_062 5
     GetPlayerMapPos VAR_0x8004, VAR_0x8005

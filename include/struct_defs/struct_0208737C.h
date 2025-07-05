@@ -13,11 +13,11 @@ typedef struct {
     int unk_0C;
     int unk_10;
     int unk_14;
-    Strbuf *unk_18;
+    Strbuf *textInputStr;
     u16 unk_1C[20];
     int unk_44;
-    PCBoxes *unk_48;
-    Options *unk_4C;
+    PCBoxes *pcBoxes;
+    Options *options;
 } UnkStruct_0208737C;
 
 #endif // POKEPLATINUM_STRUCT_0208737C_H

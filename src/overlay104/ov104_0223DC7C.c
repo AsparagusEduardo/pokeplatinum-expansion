@@ -175,11 +175,8 @@ static const SpriteTemplate Unk_ov104_022418E8 = {
 
 void ov104_0223DC7C(int param0, BgConfig *param1, SpriteSystem *param2, SpriteManager *param3, PaletteData *param4, u16 *param5, s16 param6, s16 param7)
 {
-    SysTask *v0;
-    UnkStruct_ov104_0223DD30 *v1;
-
-    v0 = SysTask_StartAndAllocateParam(ov104_0223DDB4, sizeof(UnkStruct_ov104_0223DD30), 1000, 94);
-    v1 = SysTask_GetParam(v0);
+    SysTask *v0 = SysTask_StartAndAllocateParam(ov104_0223DDB4, sizeof(UnkStruct_ov104_0223DD30), 1000, 94);
+    UnkStruct_ov104_0223DD30 *v1 = SysTask_GetParam(v0);
 
     v1->unk_10 = param1;
     v1->unk_14 = param2;
@@ -621,7 +618,7 @@ static void ov104_0223E5A8(UnkStruct_ov104_0223DD30 *param0, const UnkStruct_ov1
         void *v0;
         NNSG2dPaletteData *v1;
 
-        v0 = Graphics_GetPlttData(112, param1->unk_08, &v1, HEAP_ID_94);
+        v0 = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, param1->unk_08, &v1, HEAP_ID_94);
 
         MI_CpuCopy16(v1->pRawData, param0->unk_40, 8 * 32);
         Heap_FreeToHeap(v0);

@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222E63C.h"
 #include "overlay104/ov104_0222E930.h"
@@ -126,11 +128,8 @@ BOOL ov104_02233324(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_0223338C(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_ov104_0223ADA0 *v0;
-    FieldBattleDTO *v1;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
-    v1 = v0->unk_4FC;
+    UnkStruct_ov104_0223ADA0 *v0 = sub_0209B978(param0->unk_00->unk_00);
+    FieldBattleDTO *v1 = v0->unk_4FC;
 
     v0->unk_14 = CheckPlayerWonBattle(v1->resultMask);
 
@@ -382,8 +381,8 @@ BOOL ov104_022334DC(UnkStruct_ov104_0222E930 *param0)
         }
         break;
     case 33:
-        ov104_0222E278(&(v4->unk_34[0]), v4->unk_18[v4->unk_06], 11, 178);
-        ov104_0222E278(&(v4->unk_34[1]), v4->unk_18[v4->unk_06 + 7], 11, 178);
+        ov104_0222E278(&(v4->unk_34[0]), v4->unk_18[v4->unk_06], HEAP_ID_FIELDMAP, 178);
+        ov104_0222E278(&(v4->unk_34[1]), v4->unk_18[v4->unk_06 + 7], HEAP_ID_FIELDMAP, 178);
         break;
     case 34:
         v6 = ov104_0223AA50(v4->unk_04);

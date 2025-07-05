@@ -31,8 +31,8 @@ _0040:
     SetFlag FLAG_UNK_0x00A7
     ClearFlag FLAG_UNK_0x0229
     SetObjectEventPos 0, 4, 11
-    ScrCmd_189 0, 0
-    ScrCmd_188 0, 14
+    SetObjectEventDir 0, DIR_NORTH
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     AddObject 0
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 9, _0110
@@ -48,8 +48,8 @@ _0040:
     SetFlag FLAG_UNK_0x01AC
     ClearFlag FLAG_UNK_0x029B
     SetObjectEventPos 1, 4, 11
-    ScrCmd_189 1, 0
-    ScrCmd_188 1, 14
+    SetObjectEventDir 1, DIR_NORTH
+    SetObjectEventMovementType 1, MOVEMENT_TYPE_LOOK_NORTH
     AddObject 1
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 9, _0285

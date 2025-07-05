@@ -259,7 +259,7 @@ void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 ma
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
         shopMenu->destInventory = SaveData_GetUndergroundData(fieldSystem->saveData);
     } else {
-        shopMenu->destInventory = SaveData_GetBallSeals(fieldSystem->saveData);
+        shopMenu->destInventory = SaveData_GetSealCase(fieldSystem->saveData);
     }
 
     Shop_SetItemsForSale(shopMenu, shopItems);
@@ -279,11 +279,8 @@ static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem)
 
 BOOL FieldTask_InitShop(FieldTask *task)
 {
-    FieldSystem *fieldSystem;
-    ShopMenu *shopMenu;
-
-    fieldSystem = FieldTask_GetFieldSystem(task);
-    shopMenu = FieldTask_GetEnv(task);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    ShopMenu *shopMenu = FieldTask_GetEnv(task);
 
     switch (shopMenu->state) {
     case SHOP_STATE_SHOW_CONTEXT_MENU:

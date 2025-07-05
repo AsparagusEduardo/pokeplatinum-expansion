@@ -105,7 +105,7 @@ struct UnkStruct_ov107_02246170_t {
     StringList *unk_13C;
     PaletteData *unk_140;
     UnkStruct_0200C440 * unk_144;
-    Options * unk_148;
+    Options *options;
     SaveData *saveData;
     UnkStruct_020302DC * unk_150;
     UnkStruct_0203041C * unk_154;
@@ -258,7 +258,7 @@ int ov107_02245EB0 (ApplicationManager *appMan, int * param1)
     v1->unk_154 = sub_0203041C(v1->saveData);
     v1->unk_09 = v2->unk_04;
     v1->unk_3C8 = &v2->unk_20;
-    v1->unk_148 = SaveData_GetOptions(v1->saveData);
+    v1->options = SaveData_GetOptions(v1->saveData);
     v1->unk_3DC = v2->unk_1C;
     v1->unk_3CC = &v2->unk_08[0];
     v1->unk_3D0 = &v2->unk_0C[0];
@@ -309,7 +309,7 @@ int ov107_02245FD0 (ApplicationManager *appMan, int * param1)
                 v0->unk_0F_0 = 0;
             }
 
-            ov107_02249DBC(&v0->unk_50[7], Options_Frame(v0->unk_148));
+            ov107_02249DBC(&v0->unk_50[7], Options_Frame(v0->options));
             ov104_0222E5D0(v0->unk_24, 0);
             v0->unk_0A = ov107_022477CC(v0, 7, FONT_MESSAGE);
             ov107_02248350(v0, param1, 3);
@@ -826,7 +826,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
 
             if (v1 < 50) {
                 ov107_02248BB4(param0);
-                ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
+                ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
                 param0->unk_0A = ov107_022477CC(param0, 69, FONT_MESSAGE);
                 param0->unk_08 = 14;
                 break;
@@ -1223,11 +1223,11 @@ static void ov107_022472A4(BgConfig *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 0);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
     Heap_FreeToHeap(param0);
 
     return;
@@ -1297,9 +1297,9 @@ static void ov107_02247340(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_100);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_100);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -1319,9 +1319,9 @@ static void ov107_02247340(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v2, 0);
-        Bg_ClearTilesRange(0, 32, 0, HEAP_ID_100);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v2, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_100);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -1341,9 +1341,9 @@ static void ov107_02247340(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_100);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_100);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
@@ -1363,9 +1363,9 @@ static void ov107_02247340(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 3, &v4, 0);
-        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_100);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v4, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_100);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
     }
 
     {
@@ -1385,8 +1385,8 @@ static void ov107_02247340(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v5, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v5, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     G2_SetBG0Priority(0);
@@ -1413,7 +1413,7 @@ static void ov107_022474F8 (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = Graphics_GetPlttData(150, 138, &v1, HEAP_ID_100);
+    v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 138, &v1, HEAP_ID_100);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
@@ -1435,7 +1435,7 @@ static void ov107_02247574 (void)
     void * v0;
     NNSG2dPaletteData * v1;
 
-    v0 = Graphics_GetPlttData(150, 138, &v1, HEAP_ID_100);
+    v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 138, &v1, HEAP_ID_100);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 4));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 4));
@@ -1963,7 +1963,7 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
     ov107_02249D84(param0->unk_4C, &param0->unk_50[5]);
     Window_FillTilemap(&param0->unk_50[5], 15);
 
-    param0->unk_13C = StringList_New((NELEMS(Unk_ov107_0224A1BC)), 100);
+    param0->unk_13C = StringList_New((NELEMS(Unk_ov107_0224A1BC)), HEAP_ID_100);
 
     for (v0 = 0; v0 < (NELEMS(Unk_ov107_0224A1BC)); v0++) {
         StringList_AddFromMessageBank(param0->unk_13C, param0->unk_20, Unk_ov107_0224A1BC[v0][0], Unk_ov107_0224A1BC[v0][1]);
@@ -1980,7 +1980,7 @@ static void ov107_02247E5C (UnkStruct_ov107_02246170 * param0)
     v1.textColorBg = 15;
     v1.maxDisplay = 4;
 
-    param0->unk_138 = ListMenu_New(&v1, param0->unk_1C, param0->unk_1E, 100);
+    param0->unk_138 = ListMenu_New(&v1, param0->unk_1C, param0->unk_1E, HEAP_ID_100);
     param0->unk_0F_1 = 1;
 
     Window_ScheduleCopyToVRAM(&param0->unk_50[5]);
@@ -2025,7 +2025,7 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
     ov107_02249D84(param0->unk_4C, &param0->unk_50[6]);
     Window_FillTilemap(&param0->unk_50[6], 15);
 
-    param0->unk_13C = StringList_New((NELEMS(Unk_ov107_0224A19C)), 100);
+    param0->unk_13C = StringList_New((NELEMS(Unk_ov107_0224A19C)), HEAP_ID_100);
 
     for (v0 = 0; v0 < (NELEMS(Unk_ov107_0224A19C)); v0++) {
         StringList_AddFromMessageBank(param0->unk_13C, param0->unk_20, Unk_ov107_0224A19C[v0][0], Unk_ov107_0224A19C[v0][1]);
@@ -2042,7 +2042,7 @@ static void ov107_02247F6C (UnkStruct_ov107_02246170 * param0)
     v1.textColorBg = 15;
     v1.maxDisplay = 4;
 
-    param0->unk_138 = ListMenu_New(&v1, 0, 0, 100);
+    param0->unk_138 = ListMenu_New(&v1, 0, 0, HEAP_ID_100);
     param0->unk_0F_1 = 1;
 
     Window_ScheduleCopyToVRAM(&param0->unk_50[6]);
@@ -2193,7 +2193,7 @@ static void ov107_022481FC (UnkStruct_ov107_02246170 * param0, Window * param1, 
 static void ov107_02248240 (UnkStruct_ov107_02246170 * param0)
 {
     param0->unk_0A = ov107_02247680(param0, &param0->unk_50[1], 5, 16, 1 + 4, TEXT_SPEED_NO_TRANSFER, 1, 2, 0, FONT_SYSTEM, 1);
-    ov107_02249DBC(&param0->unk_50[8], Options_Frame(param0->unk_148));
+    ov107_02249DBC(&param0->unk_50[8], Options_Frame(param0->options));
     param0->unk_0A = ov107_02247650(param0, &param0->unk_50[8], 4, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
 }
 
@@ -2205,7 +2205,7 @@ static void ov107_022482A4 (UnkStruct_ov107_02246170 * param0)
 
 static void ov107_022482B0 (UnkStruct_ov107_02246170 * param0)
 {
-    ov107_02249DBC(&param0->unk_50[9], Options_Frame(param0->unk_148));
+    ov107_02249DBC(&param0->unk_50[9], Options_Frame(param0->options));
 
     param0->unk_18 = 0;
     ov107_02247E5C(param0);
@@ -2225,7 +2225,7 @@ static void ov107_022482D4 (UnkStruct_ov107_02246170 * param0)
 
 static void ov107_022482FC (UnkStruct_ov107_02246170 * param0)
 {
-    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
+    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
 
     param0->unk_0A = ov107_02247650(param0, &param0->unk_50[7], 37, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_MESSAGE);
     param0->unk_18 = 0;
@@ -2818,7 +2818,7 @@ static void ov107_02248A8C (UnkStruct_ov107_02246170 * param0, u8 param1)
 {
     Pokemon * v0;
 
-    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
+    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
     ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v0));
@@ -2858,7 +2858,7 @@ static void ov107_02248B50 (UnkStruct_ov107_02246170 * param0, u8 param1)
 {
     Pokemon * v0;
 
-    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
+    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
     ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v0));
@@ -2886,7 +2886,7 @@ static void ov107_02248BB4 (UnkStruct_ov107_02246170 * param0)
 
 static void ov107_02248BEC (UnkStruct_ov107_02246170 * param0)
 {
-    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
+    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
     return;
 }
 
@@ -3281,7 +3281,7 @@ static void ov107_02249024 (UnkStruct_ov107_02246170 * param0, u8 param1)
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
 
-    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
+    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
     ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v0));
 
     param0->unk_0A = ov107_022477CC(param0, 20, FONT_MESSAGE);
@@ -3304,7 +3304,7 @@ static void ov107_022490E8 (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
     u32 v0;
     Pokemon * v1;
 
-    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
+    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
     v1 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
     ov107_02248104(param0, 0, Pokemon_GetBoxPokemon(v1));
 
@@ -3499,7 +3499,7 @@ static void ov107_022493CC (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
 
     ov107_02248BB4(param0);
     ov107_02248C08(param0, &param0->unk_50[0]);
-    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->unk_148));
+    ov107_02249DBC(&param0->unk_50[7], Options_Frame(param0->options));
 
     param0->unk_0A = ov107_022477CC(param0, Unk_ov107_0224A0DC[v2][v4], FONT_MESSAGE);
     return;

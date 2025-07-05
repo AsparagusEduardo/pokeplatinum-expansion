@@ -2,7 +2,6 @@
 #define POKEPLATINUM_STRUCT_OV88_0223C370_H
 
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_defs/wi_fi_history.h"
 
 #include "field/field_system_decl.h"
@@ -10,6 +9,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "journal.h"
+#include "pal_pad.h"
 #include "party.h"
 #include "pokemon.h"
 #include "savedata.h"
@@ -22,7 +22,7 @@ typedef struct {
     PalPad *unk_0C;
     SaveData *saveData;
     WiFiHistory *wiFiHistory;
-    Options *unk_18;
+    Options *options;
     JournalEntry *unk_1C;
     GameRecords *records;
     Pokedex *unk_24;

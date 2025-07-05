@@ -130,7 +130,7 @@ static void sub_020833BC(GameWindowLayout *param0, int *param1)
     sub_0208337C(param0);
     sub_020826F4(param0, 38, 0);
 
-    param0->unk_6FC = StringList_New(3, 12);
+    param0->unk_6FC = StringList_New(3, HEAP_ID_12);
 
     StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[3], sub_02083370(3));
     StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[4], sub_02083370(4));
@@ -258,7 +258,7 @@ static void sub_02083700(GameWindowLayout *param0, int *param1)
     sub_0208337C(param0);
     sub_020826F4(param0, 39, 0);
 
-    param0->unk_6FC = StringList_New(3, 12);
+    param0->unk_6FC = StringList_New(3, HEAP_ID_12);
 
     StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[6], sub_02083370(6));
     StringList_AddFromStrbuf(param0->unk_6FC, param0->unk_6AC[7], sub_02083370(7));
@@ -309,7 +309,7 @@ static int sub_0208384C(void *param0)
     v0 = param0;
     v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->party, v0->partySlot);
 
-    if (sub_02097788(v0->partyManagementData->mailBox, v1, HEAP_ID_12) != 0xFFFFFFFF) {
+    if (sub_02097788(v0->partyManagementData->mailbox, v1, HEAP_ID_12) != 0xFFFFFFFF) {
         v0->unk_704[v0->partySlot].unk_0C = 0;
         sub_02083040(v0, v0->partySlot, v0->unk_704[v0->partySlot].unk_0C);
         sub_02082708(v0, 46, 0);
@@ -407,11 +407,8 @@ static void sub_020839FC(GameWindowLayout *param0, int *param1)
 
 int sub_02083A78(void *param0)
 {
-    GameWindowLayout *v0;
-    Pokemon *v1;
-
-    v0 = param0;
-    v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->party, v0->partySlot);
+    GameWindowLayout *v0 = param0;
+    Pokemon *v1 = Party_GetPokemonBySlotIndex(v0->partyManagementData->party, v0->partySlot);
 
     sub_0207893C(v1);
 

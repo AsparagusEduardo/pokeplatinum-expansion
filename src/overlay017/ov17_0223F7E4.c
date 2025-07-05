@@ -536,10 +536,10 @@ void ov17_0223F80C(BgConfig *param0)
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_ov17_02253448); v0++) {
-        Bg_InitFromTemplate(param0, 4 + v0, &Unk_ov17_02253448[v0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0 + v0, &Unk_ov17_02253448[v0], 0);
         Bg_FillTilemap(param0, 4 + v0, 0);
-        Bg_SetOffset(param0, 4 + v0, 0, 0);
-        Bg_SetOffset(param0, 4 + v0, 3, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0 + v0, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0 + v0, 3, 0);
     }
 }
 
@@ -548,8 +548,8 @@ void ov17_0223F864(BgConfig *param0)
     int v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_ov17_02253448); v0++) {
-        Bg_ToggleLayer(4 + v0, 0);
-        Bg_FreeTilemapBuffer(param0, 4 + v0);
+        Bg_ToggleLayer(BG_LAYER_SUB_0 + v0, 0);
+        Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0 + v0);
     }
 }
 
@@ -646,7 +646,7 @@ void ov17_0223F9C4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2, void
 
     {
         for (v2 = 0; v2 < 4; v2++) {
-            Bg_SetPriority(4 + v2, v0->unk_0C_val2[v2]);
+            Bg_SetPriority(BG_LAYER_SUB_0 + v2, v0->unk_0C_val2[v2]);
         }
     }
 
@@ -670,7 +670,7 @@ void ov17_0223F9C4(UnkStruct_ov17_0223F7E4 *param0, int param1, int param2, void
     }
 
     if ((v0->unk_00 != 0xffff) && ((param2 == 1) || (v0->unk_00 != v1->unk_00))) {
-        param0->unk_2C0 = Graphics_GetCharData(45, v0->unk_00, 1, &param0->unk_2C4, HEAP_ID_21);
+        param0->unk_2C0 = Graphics_GetCharData(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, v0->unk_00, 1, &param0->unk_2C4, HEAP_ID_21);
         SysTask_ExecuteAfterVBlank(ov17_022411E4, param0, 10);
     }
 
@@ -1064,11 +1064,8 @@ static void ov17_022402E8(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
 static void ov17_02240388(UnkStruct_ov17_0223F7E4 *param0)
 {
     int v0;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-
-    v1 = param0->unk_04->unk_18;
-    v2 = param0->unk_04->unk_1C;
+    SpriteSystem *v1 = param0->unk_04->unk_18;
+    SpriteManager *v2 = param0->unk_04->unk_1C;
 
     for (v0 = 0; v0 < 4; v0++) {
         if (param0->unk_118[v0] != NULL) {
@@ -1467,7 +1464,7 @@ void ov17_02240A80(UnkStruct_ov17_0223F7E4 *param0, u16 param1[])
     }
 
     for (v1 = 0; v1 < (1 + 2); v1++) {
-        v5 = ov17_0223F310(param0->unk_04->unk_00->unk_C0[v1].unk_00, 21);
+        v5 = ov17_0223F310(param0->unk_04->unk_00->unk_C0[v1].unk_00, HEAP_ID_21);
         ov17_02240BF4(param0, v5, FONT_SUBSCREEN, &v0->unk_F0[v1], TEXT_COLOR(1, 9, 0xa));
         Strbuf_Free(v5);
     }
@@ -1810,9 +1807,9 @@ static void ov17_02241220(SysTask *param0, void *param1)
 
     for (v2 = 0; v2 < 4; v2++) {
         if (v1->unk_04_val2[v2] == 0xffff) {
-            Bg_ToggleLayer(4 + v2, 0);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + v2, 0);
         } else {
-            Bg_ToggleLayer(4 + v2, 1);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + v2, 1);
         }
     }
 

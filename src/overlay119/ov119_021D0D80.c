@@ -3,6 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+#include "constants/narc.h"
+
 #include "struct_defs/sprite_animation_frame.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -188,12 +191,12 @@ void ov119_021D0EB8(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2[0], 0);
-        Bg_InitFromTemplate(param0, 2, &v2[1], 0);
-        Bg_InitFromTemplate(param0, 3, &v2[2], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_ClearTilemap(param0, 2);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[2], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
 
         G2_SetBG0Priority(1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -221,8 +224,8 @@ void ov119_021D0EB8(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 4, &v3[0], 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v3[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 }
 
@@ -271,9 +274,9 @@ void ov119_021D1068(BgConfig *param0, PaletteData *param1, int param2)
 {
     int v0 = 71;
 
-    LoadMessageBoxGraphics(param0, 1, 20, 15, param2, v0);
+    LoadMessageBoxGraphics(param0, BG_LAYER_MAIN_1, 20, 15, param2, v0);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetMessageBoxPaletteNARCMember(param2), v0, 0, 0x20, 12 * 16);
-    LoadStandardWindowGraphics(param0, 1, (20 + (18 + 12)), 13, 0, v0);
+    LoadStandardWindowGraphics(param0, BG_LAYER_MAIN_1, (20 + (18 + 12)), 13, 0, v0);
     PaletteData_LoadBufferFromFileStart(param1, 38, GetStandardWindowPaletteNARCMember(), v0, 0, 0x20, 13 * 16);
     PaletteData_LoadBufferFromFileStart(param1, 14, 7, v0, 0, 0x20, 14 * 16);
 }
@@ -324,7 +327,7 @@ void ov119_021D11E4(UnkStruct_ov119_021D0FD0 *param0, BgConfig *param1, Window *
     Window_Init(param2);
     Window_Add(param1, param2, param3, param4, param5, param6, param7, param9, param8);
 
-    param0->unk_04.unk_44 = StringList_New(2, 71);
+    param0->unk_04.unk_44 = StringList_New(2, HEAP_ID_71);
 
     {
         int v1;
@@ -370,30 +373,16 @@ void ov119_021D12F8(Window *param0)
 
 void ov119_021D1308(BgConfig *param0, PaletteData *param1)
 {
-    int v0 = 118;
-    int v1 = 0;
-    int v2 = 1;
-    int v3 = 8;
-    int v4 = 3;
-    int v5 = 71;
-
-    Graphics_LoadTilesToBgLayer(v0, v1, param0, v4, 0, 0, 1, v5);
-    Graphics_LoadTilemapToBgLayer(v0, v2, param0, v4, 0, 0, 1, v5);
-    PaletteData_LoadBufferFromFileStart(param1, v0, v3, v5, 0, 0x20 * 2, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 0, param0, 3, 0, 0, 1, HEAP_ID_71);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 1, param0, 3, 0, 0, 1, HEAP_ID_71);
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_DEMO__EGG__DATA__EGG_DATA, 8, HEAP_ID_71, 0, 0x20 * 2, 0);
 }
 
 void ov119_021D135C(BgConfig *param0, PaletteData *param1)
 {
-    int v0 = 12;
-    int v1 = 10;
-    int v2 = 11;
-    int v3 = 12;
-    int v4 = 4;
-    int v5 = 71;
-
-    Graphics_LoadTilesToBgLayer(v0, v1, param0, v4, 0, 0, 1, v5);
-    Graphics_LoadTilemapToBgLayer(v0, v2, param0, v4, 0, 0, 1, v5);
-    PaletteData_LoadBufferFromFileStart(param1, v0, v3, v5, 1, 0x20 * 1, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, param0, 4, 0, 0, 1, HEAP_ID_71);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, param0, 4, 0, 0, 1, HEAP_ID_71);
+    PaletteData_LoadBufferFromFileStart(param1, NARC_INDEX_GRAPHIC__POKETCH, 12, HEAP_ID_71, 1, 0x20 * 1, 0);
 }
 
 static u32 ov119_021D13B4(u32 param0, BOOL param1)

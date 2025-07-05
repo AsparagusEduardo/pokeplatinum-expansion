@@ -143,7 +143,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
-        Bg_MaskPalette(4, 0);
+        Bg_MaskPalette(BG_LAYER_SUB_0, 0);
         v0->unk_00++;
         break;
     case 4:
@@ -173,7 +173,7 @@ static void ov23_02248F1C(SysTask *param0, void *param1)
         SpriteList_Delete(v0->unk_1BC);
         Window_EraseMessageBox(&v0->unk_3F4, 0);
         Window_Remove(&v0->unk_3F4);
-        Bg_FreeTilemapBuffer(v1, 7);
+        Bg_FreeTilemapBuffer(v1, BG_LAYER_SUB_3);
 
         ov23_02249438(v1);
         ov23_02249778(&v0->unk_410);
@@ -315,9 +315,8 @@ static void ov23_0224937C(int param0[][4], Sprite *param1[])
 
 UnkStruct_ov23_0224942C *ov23_02249404(FieldSystem *fieldSystem)
 {
-    UnkStruct_ov23_0224942C *v0;
     SysTask *v1 = SysTask_StartAndAllocateParam(ov23_02248F1C, sizeof(UnkStruct_ov23_0224942C), 4, 4);
-    v0 = SysTask_GetParam(v1);
+    UnkStruct_ov23_0224942C *v0 = SysTask_GetParam(v1);
 
     v0->fieldSystem = fieldSystem;
     v0->unk_1B8 = fieldSystem->bgConfig;
@@ -336,8 +335,8 @@ void ov23_0224942C(UnkStruct_ov23_0224942C *param0)
 
 static void ov23_02249438(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 5);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
 }
 
 static void ov23_0224944C(BgConfig *param0, Window *param1)
@@ -362,7 +361,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v0, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
     }
     {
@@ -382,7 +381,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
             0
         };
 
-        Bg_InitFromTemplate(param0, 5, &v1, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v1, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
     }
     {
@@ -402,9 +401,9 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
             0
         };
 
-        Bg_InitFromTemplate(param0, 7, &v2, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v2, 0);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
-        Bg_ClearTilemap(param0, 7);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
     }
 
     {
@@ -422,7 +421,7 @@ static void ov23_0224944C(BgConfig *param0, Window *param1)
     Bg_ClearTilesRange(7, 32, 0, HEAP_ID_FIELD);
     FieldMessage_AddWindow(param0, param1, 7);
     Window_FillTilemap(param1, 0);
-    Graphics_LoadPalette(50, 52, 4, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
+    Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 4, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
     ResetScreenMasterBrightness(DS_SCREEN_SUB);
 }
 

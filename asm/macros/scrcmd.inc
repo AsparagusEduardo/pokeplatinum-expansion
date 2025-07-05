@@ -12,6 +12,7 @@
 #include "generated/mart_frontier_id.h"
 #include "generated/mart_seal_id.h"
 #include "generated/mart_specialties_id.h"
+#include "generated/movement_types.h"
 #include "generated/moves.h"
 #include "generated/mystery_gift_delivery_stages.h"
 #include "generated/npc_trades.h"
@@ -961,10 +962,10 @@
     .short \partySlot
     .endm
 
-    .macro ScrCmd_09A arg0, arg1
+    .macro FindPartySlotWithMove destVar, move
     .short 154
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \move
     .endm
 
     .macro ScrCmd_09B arg0, arg1
@@ -1143,19 +1144,19 @@
     .short \direction
     .endm
 
-    .macro ScrCmd_0BF arg0
+    .macro UseRockClimb partySlot
     .short 191
-    .short \arg0
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_0C0 arg0
+    .macro UseSurf partySlot
     .short 192
-    .short \arg0
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_0C1 arg0
+    .macro UseWaterfall partySlot
     .short 193
-    .short \arg0
+    .short \partySlot
     .endm
 
     .macro ScrCmd_0C2 arg0, arg1, arg2
@@ -1918,7 +1919,7 @@
     .short 339
     .endm
 
-    .macro ScrCmd_154
+    .macro LoadTrainerAppearances
     .short 340
     .endm
 
@@ -2177,16 +2178,16 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_188 arg0, arg1
+    .macro SetObjectEventMovementType localID, movementType
     .short 392
-    .short \arg0
-    .short \arg1
+    .short \localID
+    .short \movementType
     .endm
 
-    .macro ScrCmd_189 arg0, arg1
+    .macro SetObjectEventDir localID, dir
     .short 393
-    .short \arg0
-    .short \arg1
+    .short \localID
+    .short \dir
     .endm
 
     .macro SetWarpEventPos index, x, z
@@ -2493,29 +2494,29 @@
     .short \species
     .endm
 
-    .macro ScrCmd_1C1 arg0, arg1
+    .macro CalcSizeContestResult destVar, partySlot
     .short 449
-    .short \arg0
-    .short \arg1
+    .short \destVar
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_1C2 arg0
+    .macro UpdateSizeContestRecord partySlot
     .short 450
-    .short \arg0
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_1C3 arg0, arg1, arg2
+    .macro BufferPartyPokemonSize intPartIdx, fracPartIdx, partySlot
     .short 451
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \intPartIdx
+    .short \fracPartIdx
+    .short \partySlot
     .endm
 
-    .macro ScrCmd_1C4 arg0, arg1, arg2
+    .macro BufferSizeContestRecord intPartIdx, fracPartIdx, species
     .short 452
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \intPartIdx
+    .short \fracPartIdx
+    .short \species
     .endm
 
     .macro InitSizeContestRecord
@@ -2625,10 +2626,11 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_1D6 arg0, arg1
+    // destVarID will be set to TRUE if the player has the specified backdrop
+    .macro CheckBackdrop backdrop, destVar
     .short 470
-    .short \arg0
-    .short \arg1
+    .short \backdrop
+    .short \destVar
     .endm
 
     .macro ScrCmd_1D7 arg0
@@ -3341,9 +3343,9 @@
     .short \arg4
     .endm
 
-    .macro ScrCmd_24A arg0
+    .macro GetCapturedFlagCount destFlagCount
     .short 586
-    .short \arg0
+    .short \destFlagCount
     .endm
 
     .macro ScrCmd_24B arg0
@@ -3384,22 +3386,31 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_252 arg0
+    .macro GetPCBoxesFreeSlotCount destVar
     .short 594
-    .short \arg0
+    .short \destVar
     .endm
 
-    .macro ScrCmd_253 arg0
+    .macro SetClearInCatchingShowFlag getClear
     .short 595
-    .short \arg0
+    .short \getClear
     .endm
 
-    .macro ScrCmd_254 arg0
-    .short 596
-    .short \arg0
+    .macro SetInCatchingShowFlag
+    SetClearInCatchingShowFlag 0
     .endm
 
-    .macro ScrCmd_255
+    .macro ClearInCatchingShowFlag
+    SetClearInCatchingShowFlag 1
+    .endm
+
+    .macro GoToIfNotEnoughMonForCatchingShow offset
+    .short 596 /* CheckHasEnoughMonForCatchingShow */
+    .short VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, \offset
+    .endm
+
+    .macro MoveCatchingShowMonsToPCBoxes
     .short 597
     .endm
 
@@ -3892,7 +3903,7 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_2AC
+    .macro UnlockMysteryGift
     .short 684
     .endm
 
@@ -4526,7 +4537,7 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_31F
+    .macro ResetDistortionWorldPersistedCameraAngles
     .short 799
     .endm
 

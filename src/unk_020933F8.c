@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
@@ -418,7 +419,7 @@ UnkStruct_02095C48 *sub_02093800(const UnkStruct_02093800 *param0)
     v0->unk_00.unk_10D = v0->unk_00.unk_115;
     v0->unk_00.unk_10E = 1;
     v0->unk_1980 = param0->unk_14;
-    v0->unk_196C = param0->unk_18;
+    v0->options = param0->options;
     v0->saveData = param0->saveData;
     v0->unk_1974 = param0->unk_08;
     v0->unk_197C = param0->unk_05;
@@ -490,7 +491,7 @@ static void sub_020939E0(UnkStruct_02095C48 *param0, int param1, int param2)
     sub_02094F04(param0, HEAP_ID_FIELDMAP, v0, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_111, param1, param2);
 
     for (v1 = 1; v1 < 4; v1++) {
-        sub_02095380(&param0->unk_00.unk_10[v1], param0->unk_00.unk_00[v1], 20);
+        sub_02095380(&param0->unk_00.unk_10[v1], param0->unk_00.unk_00[v1], HEAP_ID_20);
     }
 
     for (v1 = 1; v1 < 4; v1++) {
@@ -599,7 +600,7 @@ void sub_02093BBC(UnkStruct_02095C48 *param0)
     v0->unk_14 = param0->unk_00.unk_10F;
     v0->unk_18 = sub_02029D04(param0->unk_1980);
     v0->unk_1C = &param0->unk_1984;
-    v0->unk_20 = param0->unk_196C;
+    v0->options = param0->options;
     v0->unk_24 = param0->unk_1978;
 
     param0->unk_199C = v0;
@@ -1596,8 +1597,8 @@ void sub_02094C44(UnkStruct_02095C48 *param0, SaveData *saveData, u32 param2, Jo
             sub_0206DDB8(param0->saveData, param0->unk_1974, v2);
         }
 
-        TVBroadcast *v4 = SaveData_GetTVBroadcast(param0->saveData);
-        sub_0206CF14(v4, param0->unk_1974, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);
+        TVBroadcast *broadcast = SaveData_GetTVBroadcast(param0->saveData);
+        sub_0206CF14(broadcast, param0->unk_1974, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);
 
         GameRecords *v5 = SaveData_GetGameRecords(param0->saveData);
         GameRecords_IncrementRecordValue(v5, RECORD_UNK_090);

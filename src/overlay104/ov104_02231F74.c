@@ -231,7 +231,7 @@ static void ov104_0223214C(UnkStruct_ov104_022320B4 *param0, UnkStruct_ov104_022
     int v0;
 
     if (param8 == NULL) {
-        param1->unk_8C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS_2, param0->heapID);
+        param1->unk_8C = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MENU_ENTRIES, param0->heapID);
         param1->unk_97_1 = 1;
     } else {
         param1->unk_8C = param8;
@@ -853,7 +853,7 @@ void ov104_02232C80(UnkStruct_ov63_0222CCB8 *param0, UnkStruct_ov63_0222BEC0 *pa
     }
 }
 
-void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, int heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
+void ov104_02232CE0(UnkStruct_ov104_0223C4CC *param0, Pokemon *param1, enum HeapId heapID, int param3, int param4, int param5, int param6, int param7, int param8, u16 param9)
 {
     SpriteSystem *v0 = param0->unk_34.unk_00;
     SpriteManager *v1 = param0->unk_34.unk_04;

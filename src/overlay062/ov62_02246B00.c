@@ -22,7 +22,7 @@
 
 static inline void inline_ov62_02247CE0(UnkStruct_ov62_02246BF4 *param0, int param1, s16 param2, s16 param3);
 
-UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Options *param3)
+UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Options *options)
 {
     int v0;
     UnkStruct_ov62_02246B00 *v1 = NULL;
@@ -31,7 +31,7 @@ UnkStruct_ov62_02246B00 *ov62_02246B00(int heapID, int param1, int param2[], Opt
     MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov62_02246B00));
     v1->unk_00 = param1;
     v1->unk_18 = Strbuf_Init(param1 + 1, heapID);
-    v1->unk_1C = param3;
+    v1->options = options;
 
     for (v0 = 0; v0 < 3; v0++) {
         v1->unk_04[v0] = param2[v0];
@@ -578,13 +578,9 @@ void ov62_02247574(UnkStruct_ov62_02246BF4 *param0)
 {
     NARC *v0;
     BgConfig *v1;
-    SpriteSystem *v2;
-    SpriteManager *v3;
-    PaletteData *v4;
-
-    v2 = param0->unk_220.unk_04;
-    v3 = param0->unk_220.unk_08;
-    v4 = param0->unk_220.unk_10;
+    SpriteSystem *v2 = param0->unk_220.unk_04;
+    SpriteManager *v3 = param0->unk_220.unk_08;
+    PaletteData *v4 = param0->unk_220.unk_10;
     v1 = param0->unk_220.unk_0C;
     v0 = param0->unk_220.unk_00;
 
@@ -632,13 +628,9 @@ void ov62_02247754(UnkStruct_ov62_02246BF4 *param0)
     int v1 = 0;
     int v2 = 0;
     SpriteTemplate v3;
-    SpriteSystem *v4;
-    SpriteManager *v5;
-    PaletteData *v6;
-
-    v4 = param0->unk_220.unk_04;
-    v5 = param0->unk_220.unk_08;
-    v6 = param0->unk_220.unk_10;
+    SpriteSystem *v4 = param0->unk_220.unk_04;
+    SpriteManager *v5 = param0->unk_220.unk_08;
+    PaletteData *v6 = param0->unk_220.unk_10;
 
     v3.x = 0;
     v3.y = 0;
@@ -677,13 +669,9 @@ void ov62_02247754(UnkStruct_ov62_02246BF4 *param0)
 void ov62_0224784C(UnkStruct_ov62_02246BF4 *param0)
 {
     SpriteTemplate v0;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-    PaletteData *v3;
-
-    v1 = param0->unk_220.unk_04;
-    v2 = param0->unk_220.unk_08;
-    v3 = param0->unk_220.unk_10;
+    SpriteSystem *v1 = param0->unk_220.unk_04;
+    SpriteManager *v2 = param0->unk_220.unk_08;
+    PaletteData *v3 = param0->unk_220.unk_10;
 
     v0.x = 0;
     v0.y = 0;

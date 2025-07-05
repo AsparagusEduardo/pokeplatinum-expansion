@@ -69,13 +69,9 @@ void sub_0208A490(UnkStruct_02089688 *param0)
 {
     NARC *v0;
     BgConfig *v1;
-    SpriteSystem *v2;
-    SpriteManager *v3;
-    PaletteData *v4;
-
-    v2 = param0->unk_2C0.unk_04;
-    v3 = param0->unk_2C0.unk_08;
-    v4 = param0->unk_2C0.unk_10;
+    SpriteSystem *v2 = param0->unk_2C0.unk_04;
+    SpriteManager *v3 = param0->unk_2C0.unk_08;
+    PaletteData *v4 = param0->unk_2C0.unk_10;
     v1 = param0->unk_2C0.unk_0C;
     v0 = param0->unk_2C0.unk_00;
 
@@ -103,9 +99,9 @@ void sub_0208A490(UnkStruct_02089688 *param0)
     SpriteSystem_LoadAnimResObjFromOpenNarc(v2, v3, v0, 11, FALSE, 1002);
 
     {
-        int v5 = Options_Frame(param0->unk_38C.unk_20);
+        int v5 = Options_Frame(param0->unk_38C.options);
 
-        LoadMessageBoxGraphics(v1, 4, 1, 10, v5, HEAP_ID_101);
+        LoadMessageBoxGraphics(v1, BG_LAYER_SUB_0, 1, 10, v5, HEAP_ID_101);
         PaletteData_LoadBufferFromFileStart(v4, 38, GetMessageBoxPaletteNARCMember(v5), 101, 1, 0x20, 11 * 16);
         PaletteData_LoadBufferFromFileStart(v4, 14, 7, 101, 1, 0x20, 12 * 16);
     }
@@ -304,13 +300,9 @@ asm void sub_0208A758 (UnkStruct_02089688 * param0)
 void sub_0208A8A0(UnkStruct_02089688 *param0)
 {
     SpriteTemplate v0;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-    PaletteData *v3;
-
-    v1 = param0->unk_2C0.unk_04;
-    v2 = param0->unk_2C0.unk_08;
-    v3 = param0->unk_2C0.unk_10;
+    SpriteSystem *v1 = param0->unk_2C0.unk_04;
+    SpriteManager *v2 = param0->unk_2C0.unk_08;
+    PaletteData *v3 = param0->unk_2C0.unk_10;
 
     v0.x = 0;
     v0.y = 0;
@@ -360,13 +352,9 @@ void sub_0208A8A0(UnkStruct_02089688 *param0)
 void sub_0208A9BC(UnkStruct_02089688 *param0)
 {
     SpriteTemplate v0;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-    PaletteData *v3;
-
-    v1 = param0->unk_2C0.unk_04;
-    v2 = param0->unk_2C0.unk_08;
-    v3 = param0->unk_2C0.unk_10;
+    SpriteSystem *v1 = param0->unk_2C0.unk_04;
+    SpriteManager *v2 = param0->unk_2C0.unk_08;
+    PaletteData *v3 = param0->unk_2C0.unk_10;
 
     v0.x = 0;
     v0.y = 0;

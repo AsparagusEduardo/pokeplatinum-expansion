@@ -6,13 +6,13 @@
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0204AFC4.h"
 #include "struct_defs/struct_02098C44.h"
+#include "struct_defs/underground_data.h"
 
 #include "field/field_system.h"
 #include "savedata/save_table.h"
@@ -275,11 +275,8 @@ u16 sub_0204A064(SaveData *saveData)
 {
     u8 v0;
     int v1;
-    UnkStruct_0202D060 *v2;
-    UnkStruct_0202D750 *v3;
-
-    v2 = sub_0202D740(saveData);
-    v3 = sub_0202D750(saveData);
+    UnkStruct_0202D060 *v2 = sub_0202D740(saveData);
+    UnkStruct_0202D750 *v3 = sub_0202D750(saveData);
     v0 = (u8)sub_0202D0BC(v2, 0, NULL);
 
     if (v0 == 5) {

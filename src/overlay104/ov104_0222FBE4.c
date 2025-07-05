@@ -198,7 +198,7 @@ static BOOL ov104_02230E20(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230EB8(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230ED8(UnkStruct_ov104_0222E930 *param0);
-static Strbuf *ov104_02230E90(u16 param0, u32 param1);
+static Strbuf *ov104_02230E90(u16 param0, u32 heapID);
 static BOOL ov104_02230EFC(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230F28(UnkStruct_ov104_0222E930 *param0);
 static BOOL ov104_02230F6C(UnkStruct_ov104_0222E930 *param0);
@@ -643,11 +643,8 @@ static BOOL ov104_0222FD6C(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_0222FD84(UnkStruct_ov104_0222E930 *param0)
 {
-    u16 *v0;
-    u16 *v1;
-
-    v0 = ov104_0222FBE4(param0);
-    v1 = ov104_0222FBE4(param0);
+    u16 *v0 = ov104_0222FBE4(param0);
+    u16 *v1 = ov104_0222FBE4(param0);
 
     *v0 = *v1;
 
@@ -1450,9 +1447,8 @@ static BOOL ov104_02230900(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02230910(UnkStruct_ov104_0222E930 *param0)
 {
-    void *v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = sub_0208712C(HEAP_ID_FIELDMAP, 0, 0, 8, (void *)v1->options);
+    void *v0 = sub_0208712C(HEAP_ID_FIELDMAP, 0, 0, 8, (void *)v1->options);
 
     sub_0209B988(param0->unk_00->unk_00, &Unk_020F2DAC, v0, 0, ov104_02230950);
 
@@ -1820,7 +1816,7 @@ BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0)
     u16 v1 = ov104_0222FC00(param0);
     u16 v2 = ov104_0222EA48(param0);
     u8 v3 = (*((param0)->unk_1C++));
-    Strbuf *v4 = ov104_02230E90(v1, 11);
+    Strbuf *v4 = ov104_02230E90(v1, HEAP_ID_FIELDMAP);
 
     StringTemplate_SetStrbuf(param0->unk_00->unk_44, v0, v4, v2, v3, GAME_LANGUAGE);
     Strbuf_Free(v4);
@@ -1828,13 +1824,10 @@ BOOL ov104_02230E40(UnkStruct_ov104_0222E930 *param0)
     return 0;
 }
 
-static Strbuf *ov104_02230E90(u16 param0, u32 param1)
+static Strbuf *ov104_02230E90(u16 param0, u32 heapID)
 {
-    MessageLoader *v0;
-    Strbuf *v1;
-
-    v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, param1);
-    v1 = MessageLoader_GetNewStrbuf(v0, param0);
+    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, heapID);
+    Strbuf *v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
     MessageLoader_Free(v0);
     return v1;
@@ -1869,13 +1862,13 @@ static BOOL ov104_02230EFC(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02230F28(UnkStruct_ov104_0222E930 *param0)
 {
-    TVBroadcast *v0;
+    TVBroadcast *broadcast;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
     u16 v2 = ov104_0222FC00(param0);
 
-    v0 = SaveData_GetTVBroadcast(v1->saveData);
+    broadcast = SaveData_GetTVBroadcast(v1->saveData);
 
-    sub_0206D0C8(v0, v2);
+    sub_0206D0C8(broadcast, v2);
     GameRecords_AddToRecordValue(SaveData_GetGameRecords(v1->saveData), RECORD_UNK_068, v2);
     sub_0202D230(sub_0202D750(v1->saveData), v2, 5);
 
@@ -2109,7 +2102,7 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
             Windows_Delete(param0->unk_28, 1);
             SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
             SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
-            Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
+            Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
             return 0;
@@ -2166,7 +2159,7 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
             SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
             SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
 
-            Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELDMAP);
+            Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
             return 0;
@@ -2367,7 +2360,7 @@ static BOOL ov104_02231720(UnkStruct_ov104_02231148 *param0)
 
         param0->unk_10 = 1;
 
-        Bg_ToggleLayer(3, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 0, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 3, 0);
 
@@ -2437,7 +2430,7 @@ static BOOL ov104_02231864(UnkStruct_ov104_02231148 *param0)
 
         param0->unk_10 = 1;
 
-        Bg_ToggleLayer(3, 0);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 0, 0);
         Bg_SetOffset(param0->unk_00->unk_00, 3, 3, 0);
 
@@ -2454,7 +2447,7 @@ static BOOL ov104_022319CC(UnkStruct_ov104_02231148 *param0)
 {
     switch (param0->unk_04) {
     case 0:
-        ov104_0223F094(&param0->unk_18, 94);
+        ov104_0223F094(&param0->unk_18, HEAP_ID_94);
         param0->unk_04++;
         break;
     case 1:
@@ -2792,9 +2785,8 @@ static BOOL ov104_02231EC4(UnkStruct_ov104_0222E930 *param0)
 
 static BOOL ov104_02231ED8(UnkStruct_ov104_0222E930 *param0)
 {
-    WiFiList *v0;
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    v0 = SaveData_GetWiFiList(v1->saveData);
+    WiFiList *v0 = SaveData_GetWiFiList(v1->saveData);
 
     sub_0202B13C(v0, ov4_021D2388());
     return 0;
@@ -2803,14 +2795,14 @@ static BOOL ov104_02231ED8(UnkStruct_ov104_0222E930 *param0)
 static BOOL ov104_02231EFC(UnkStruct_ov104_0222E930 *param0)
 {
     u16 v0;
-    TVBroadcast *v1;
+    TVBroadcast *broadcast;
     TrainerInfo *v2;
     UnkStruct_ov104_02230BE4 *v3 = sub_0209B970(param0->unk_00->unk_00);
-    v1 = SaveData_GetTVBroadcast(v3->saveData);
+    broadcast = SaveData_GetTVBroadcast(v3->saveData);
     v0 = ov104_0222FC00(param0);
     v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
 
-    sub_0206D088(v1, v0, v2);
+    sub_0206D088(broadcast, v0, v2);
     return 0;
 }
 

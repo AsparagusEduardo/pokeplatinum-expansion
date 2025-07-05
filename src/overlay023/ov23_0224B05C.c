@@ -3,12 +3,13 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
 #include "generated/movement_actions.h"
 #include "generated/trainer_score_events.h"
 
-#include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
-#include "struct_decls/struct_020298B0_decl.h"
+#include "struct_defs/underground_data.h"
+#include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
 #include "overlay005/map_prop.h"
@@ -374,13 +375,10 @@ void ov23_0224B144(void *param0, FieldSystem *fieldSystem)
 
 void ov23_0224B2C8(FieldSystem *fieldSystem)
 {
-    UnkStruct_02029894 *v0;
-    SecretBaseRecord *v1;
+    UnkStruct_02029894 *v0 = sub_02029894(FieldSystem_GetSaveData(fieldSystem));
+    UndergroundRecord *undergroundRecord = sub_020298AC(v0);
 
-    v0 = sub_02029894(FieldSystem_GetSaveData(fieldSystem));
-    v1 = sub_020298AC(v0);
-
-    sub_020294D4(v1, GameRecords_GetTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData)));
+    UndergroundRecord_SetTrainerScore(undergroundRecord, GameRecords_GetTrainerScore(SaveData_GetGameRecords(fieldSystem->saveData)));
 
     MI_CpuCopy8(v0, Unk_ov23_022577AC->unk_08[16].unk_02, 148);
     ov23_0224B39C(v0, Unk_ov23_022577AC->unk_A04[16]);
@@ -969,7 +967,7 @@ static UnkStruct_ov23_0224BA48 *ov23_0224BCC4(FieldSystem *fieldSystem, int para
         v0->unk_2B = param4;
         v0->unk_2C = param5;
 
-        GF_ASSERT(fieldSystem->location->mapId == 2);
+        GF_ASSERT(fieldSystem->location->mapId == MAP_HEADER_UNDERGROUND);
 
         v0->unk_14 = 2;
         v0->unk_24 = param3;
@@ -1009,17 +1007,17 @@ static int ov23_0224BD1C(int param0, BOOL param1)
     return v1;
 }
 
-static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 param4)
+static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 param2, u8 param3, u32 heapID)
 {
     MenuTemplate v0;
     MessageLoader *v1 = ov23_02253E3C(ov23_0224219C());
-    StringList *v2 = StringList_New(2, param4);
+    StringList *v2 = StringList_New(2, heapID);
 
     StringList_AddFromMessageBank(v2, v1, 38, 0);
     StringList_AddFromMessageBank(v2, v1, 39, 1);
 
     v0.choices = v2;
-    v0.window = Window_New(param4, 1);
+    v0.window = Window_New(heapID, 1);
     v0.fontID = FONT_SYSTEM;
     v0.xSize = 1;
     v0.ySize = 2;
@@ -1030,7 +1028,7 @@ static Menu *ov23_0224BD90(BgConfig *param0, const WindowTemplate *param1, u16 p
     Window_AddFromTemplate(param0, v0.window, param1);
     Window_DrawStandardFrame(v0.window, 1, param2, param3);
 
-    return Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, param4, PAD_BUTTON_B);
+    return Menu_NewAndCopyToVRAM(&v0, 8, 0, 0, heapID, PAD_BUTTON_B);
 }
 
 static void ov23_0224BE28(SysTask *param0, void *param1)
@@ -1101,7 +1099,7 @@ static void ov23_0224BE28(SysTask *param0, void *param1)
         break;
     case 6:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            v0->unk_04 = ov23_0224BD90(fieldSystem->bgConfig, &Unk_ov23_0225686C, 1024 - (18 + 12) - 9, 11, 4);
+            v0->unk_04 = ov23_0224BD90(fieldSystem->bgConfig, &Unk_ov23_0225686C, 1024 - (18 + 12) - 9, 11, HEAP_ID_FIELD);
             v0->unk_0C = 7;
         }
         break;
@@ -1633,8 +1631,8 @@ static BOOL ov23_0224C790(FieldTask *param0)
         CommSys_EnableSendMovementData();
         sub_020594FC();
 
-        Graphics_LoadPalette(50, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
-        LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+        Graphics_LoadPalette(NARC_INDEX_DATA__UG_TRAP, 52, 0, 10 * 0x20, 4 * 0x20, HEAP_ID_FIELD);
+        LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 
         if (v1->unk_2D) {
             sub_020594EC();
@@ -1977,7 +1975,7 @@ static void ov23_0224CEC8(void)
 void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
 {
     UnkStruct_ov23_0224CF18 *v0 = param2;
-    SecretBaseRecord *v1 = SaveData_SecretBaseRecord(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
+    UndergroundRecord *undergroundRecord = SaveData_UndergroundRecord(FieldSystem_GetSaveData(Unk_ov23_022577AC->fieldSystem));
 
     if (v0->unk_00 != CommSys_CurNetId()) {
         return;
@@ -2008,14 +2006,14 @@ void ov23_0224CF18(int param0, int param1, void *param2, void *param3)
         ov23_0224C1EC(v3, v4, v5, 16);
 
         if (v0->unk_01 == 3) {
-            sub_02029824(v1);
+            sub_02029824(undergroundRecord);
         }
 
         if (v0->unk_01 == 3 || v0->unk_01 == 4) {
             void *journalEntryLocationEvent = JournalEntry_CreateEventBuiltSecretBase(HEAP_ID_FIELDMAP);
 
             JournalEntry_SaveData(Unk_ov23_022577AC->fieldSystem->journalEntry, journalEntryLocationEvent, JOURNAL_LOCATION);
-            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577AC->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNK_35);
+            GameRecords_IncrementTrainerScore(SaveData_GetGameRecords(Unk_ov23_022577AC->fieldSystem->saveData), TRAINER_SCORE_EVENT_UNDERGROUND_NEW_SECRET_BASE);
         }
     }
 }
@@ -2297,7 +2295,7 @@ void ov23_0224D4CC(int param0, int param1, void *param2, void *param3)
 {
     u8 *v0 = param2;
     UnkStruct_02029894 *v1 = (UnkStruct_02029894 *)Unk_ov23_022577AC->unk_A00->unk_02;
-    SecretBaseRecord *v2 = sub_020298AC(v1);
+    UndergroundRecord *v2 = sub_020298AC(v1);
 
     if (v0[0] == CommSys_CurNetId()) {
         ov23_02253A00(v2, v0[1]);

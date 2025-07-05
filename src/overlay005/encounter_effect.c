@@ -179,11 +179,8 @@ static UnkStruct_ov5_02202120 *Unk_ov5_02202120 = NULL;
 
 void EncounterEffect_Start(enum EncEffectCutIn effect, FieldSystem *fieldSystem, BOOL *done)
 {
-    SysTask *effectTask;
-    EncounterEffect *encEffect;
-
-    effectTask = SysTask_StartAndAllocateParam(sEncounterEffectTaskFuncs[effect], sizeof(EncounterEffect), 5, HEAP_ID_FIELD);
-    encEffect = SysTask_GetParam(effectTask);
+    SysTask *effectTask = SysTask_StartAndAllocateParam(sEncounterEffectTaskFuncs[effect], sizeof(EncounterEffect), 5, HEAP_ID_FIELD);
+    EncounterEffect *encEffect = SysTask_GetParam(effectTask);
     encEffect->fieldSystem = fieldSystem;
     encEffect->done = done;
     encEffect->narc = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, HEAP_ID_FIELD);
@@ -780,7 +777,7 @@ void ov5_021DE5D0(Sprite *param0, u32 heapID, u32 param2, u8 param3, u16 param4)
 
     sub_02076AAC(param2, 2, &v0);
     v3 = Heap_AllocFromHeap(heapID, 32);
-    v2 = Graphics_GetPlttData(v0.unk_00, v0.unk_08, &v1, heapID);
+    v2 = Graphics_GetPlttData(v0.narcID, v0.unk_08, &v1, heapID);
     BlendPalette(v1->pRawData, v3, 16, param3, param4);
 
     ov5_021DE67C(param0, v3, 32);
@@ -1526,7 +1523,7 @@ static void ov5_021DF28C(SysTask *param0, void *param1)
         ov5_021D16F4(v0->fieldSystem, 0);
         ov5_021D1718(v0->fieldSystem, 0);
 
-        Bg_SetPriority(0, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_0, 0);
 
         v0->unk_02 = 1;
         SysTask_Done(param0);
@@ -1575,7 +1572,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
         {
             G2_SetBG3ControlDCBmp(GX_BG_SCRSIZE_DCBMP_256x256, GX_BG_AREAOVER_XLU, GX_BG_BMPSCRBASE_0x20000);
 
-            Bg_SetPriority(3, 3);
+            Bg_SetPriority(BG_LAYER_MAIN_3, 3);
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
 
             {
@@ -1603,9 +1600,9 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
                 0
             };
 
-            Bg_InitFromTemplate(fieldSystem->bgConfig, 2, &v3, 0);
-            Bg_ClearTilesRange(2, 32, 0, HEAP_ID_FIELD);
-            Bg_ClearTilemap(fieldSystem->bgConfig, 2);
+            Bg_InitFromTemplate(fieldSystem->bgConfig, BG_LAYER_MAIN_2, &v3, 0);
+            Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_FIELD);
+            Bg_ClearTilemap(fieldSystem->bgConfig, BG_LAYER_MAIN_2);
         }
     }
 
@@ -1614,7 +1611,7 @@ static void ov5_021DF30C(FieldSystem *fieldSystem)
 
 static void ov5_021DF3D4(FieldSystem *fieldSystem)
 {
-    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, 2);
+    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, BG_LAYER_MAIN_2);
     ov5_021D1434(fieldSystem->bgConfig);
 }
 

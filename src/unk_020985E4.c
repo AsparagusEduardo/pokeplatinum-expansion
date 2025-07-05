@@ -22,13 +22,10 @@ FS_EXTERN_OVERLAY(overlay100);
 
 void sub_020985E4(FieldTask *param0, SaveData *saveData)
 {
-    UnkStruct_0209862C *v0;
-    UnkStruct_020985E4 *v1;
+    UnkStruct_0209862C *v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209862C));
+    UnkStruct_020985E4 *v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020985E4));
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_0209862C));
-    v1 = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(UnkStruct_020985E4));
-
-    v1->unk_04 = SaveData_GetOptions(saveData);
+    v1->options = SaveData_GetOptions(saveData);
     v1->unk_08 = SaveData_GetTrainerInfo(saveData);
     v1->unk_00 = TrainerInfo_Gender(v1->unk_08);
 
@@ -40,11 +37,8 @@ void sub_020985E4(FieldTask *param0, SaveData *saveData)
 
 BOOL sub_0209862C(FieldTask *param0)
 {
-    FieldSystem *fieldSystem;
-    UnkStruct_0209862C *v1;
-
-    fieldSystem = FieldTask_GetFieldSystem(param0);
-    v1 = FieldTask_GetEnv(param0);
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(param0);
+    UnkStruct_0209862C *v1 = FieldTask_GetEnv(param0);
 
     switch (v1->unk_00) {
     case 0:

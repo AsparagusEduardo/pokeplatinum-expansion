@@ -5,12 +5,12 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0206BC70.h"
 #include "struct_defs/struct_02098C44.h"
+#include "struct_defs/underground_data.h"
 
 #include "applications/pokemon_summary_screen/main.h"
 #include "field/field_system.h"
@@ -516,11 +516,11 @@ u32 sub_0206C068(SaveData *saveData)
     return v2;
 }
 
-BOOL sub_0206C0D0(FieldSystem *fieldSystem)
+BOOL FieldSystem_IsInBattleTowerSalon(FieldSystem *fieldSystem)
 {
-    if (fieldSystem->location->mapId == SPECIES_ARCEUS) {
-        return 1;
+    if (fieldSystem->location->mapId == MAP_HEADER_BATTLE_TOWER_BATTLE_SALON) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }

@@ -6,6 +6,7 @@
 #include "constants/items.h"
 #include "constants/narc.h"
 #include "constants/pokemon.h"
+#include "constants/rtc.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
 #include "generated/abilities.h"
@@ -10123,8 +10124,8 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         PaletteData *paletteSys = BattleSystem_PaletteSys(data->battleSys);
 
         G2_SetBG0Priority(1 + 1); // this is the background + 1; could do with a constant
-        Bg_SetPriority(1, 1);
-        Bg_SetPriority(2, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 0);
 
         BattleSystem_SetGaugePriority(data->battleSys, 0 + 2); // gauge's default is 0
 
@@ -10212,8 +10213,8 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         Window_Remove(window);
 
         G2_SetBG0Priority(1);
-        Bg_SetPriority(1, 0);
-        Bg_SetPriority(2, 1);
+        Bg_SetPriority(BG_LAYER_MAIN_1, 0);
+        Bg_SetPriority(BG_LAYER_MAIN_2, 1);
 
         BattleSystem_SetGaugePriority(data->battleSys, 0);
 
@@ -10447,9 +10448,8 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
     u16 item;
     int itemEffect;
     int itemPower;
-    Pokemon *mon;
     SpeciesData *personal = SpeciesData_FromMonForm(species, form, HEAP_ID_BATTLE);
-    mon = Party_GetPokemonBySlotIndex(party, slot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
     item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     itemEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE);
     itemPower = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT_PARAM, HEAP_ID_BATTLE);
@@ -10870,9 +10870,9 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 }
 
                 v16->unk_08 = Pokemon_GetValue(v3, MON_DATA_FORM, NULL);
-                v16->unk_48 = ov16_0223E228(v2->battleSys);
+                v16->pcBoxes = BattleSystem_PCBoxes(v2->battleSys);
                 v16->unk_10 = Pokemon_GetValue(v3, MON_DATA_GENDER, NULL);
-                v2->tmpPtr[0] = ApplicationManager_New(&Unk_020F2DAC, v16, 5);
+                v2->tmpPtr[0] = ApplicationManager_New(&Unk_020F2DAC, v16, HEAP_ID_BATTLE);
                 v2->seqNum = 21;
 
                 ov16_0223F414(v2->battleSys);
@@ -10906,7 +10906,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
                 if (v19->unk_14 == 0) {
-                    Pokemon_SetValue(v3, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v19->unk_18);
+                    Pokemon_SetValue(v3, MON_DATA_NICKNAME_STRBUF_AND_FLAG, v19->textInputStr);
                     ov16_0223F24C(v2->battleSys, (1 + 48));
                 }
 
@@ -10945,18 +10945,18 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     v2->seqNum = 32;
                 } else {
                     {
-                        PCBoxes *v24;
+                        PCBoxes *pcBoxes;
                         u32 v25;
                         u32 v26;
                         int v27;
                         int v28;
                         int v29;
 
-                        v24 = ov16_0223E228(v2->battleSys);
-                        v25 = PCBoxes_GetCurrentBoxID(v24);
-                        v26 = PCBoxes_FirstEmptyBox(v24);
+                        pcBoxes = BattleSystem_PCBoxes(v2->battleSys);
+                        v25 = PCBoxes_GetCurrentBoxID(pcBoxes);
+                        v26 = PCBoxes_FirstEmptyBox(pcBoxes);
 
-                        PCBoxes_SetCurrentBox(v24, v26);
+                        PCBoxes_SetCurrentBox(pcBoxes, v26);
 
                         for (v27 = 0; v27 < LEARNED_MOVES_MAX; v27++) {
                             v28 = Pokemon_GetValue(v3, MON_DATA_MOVE1_MAX_PP + v27, NULL);
@@ -10967,7 +10967,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                             ov16_0223F9A0(v2->battleSys, v1);
                         }
 
-                        PCBoxes_TryStoreBoxMonInBox(v24, v26, Pokemon_GetBoxPokemon(v3));
+                        PCBoxes_TryStoreBoxMonInBox(pcBoxes, v26, Pokemon_GetBoxPokemon(v3));
 
                         if (v2->seqNum == 22) {
                             if (v25 == v26) {
@@ -11190,8 +11190,8 @@ static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *
             break;
 
         case ITEM_DUSK_BALL:
-            if (BattleSystem_Time(battleSys) == TIME_NIGHT
-                || BattleSystem_Time(battleSys) == TIME_MIDNIGHT
+            if (BattleSystem_Time(battleSys) == TIMEOFDAY_NIGHT
+                || BattleSystem_Time(battleSys) == TIMEOFDAY_LATE_NIGHT
                 || BattleSystem_Terrain(battleSys) == TERRAIN_CAVE) {
                 ballMod = 35;
             }

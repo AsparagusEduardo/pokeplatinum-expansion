@@ -348,7 +348,7 @@ typedef struct {
     SaveData *saveData;
     Pokedex *unk_0C;
     TrainerInfo *unk_10;
-    Options *unk_14;
+    Options *options;
     Window unk_18;
     Window unk_28;
     Window unk_38;
@@ -536,14 +536,14 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
 
     Text_ResetAllPrinters();
     Font_LoadTextPalette(0, 0 * 32, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 1, 0, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_04, BG_LAYER_MAIN_0, 1, 1, 0, param0->heapID);
 
-    v0 = Options_Frame(param0->unk_14);
+    v0 = Options_Frame(param0->options);
 
-    LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 2, v0, param0->heapID);
-    Graphics_LoadPalette(116, 0, 0, 16 * 2 * 8, 16 * 2, param0->heapID);
-    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_04, 1, 0, 10 * 16 * 0x20, 1, param0->heapID);
-    Graphics_LoadTilemapToBgLayer(116, 2, param0->unk_04, 1, 0, 32 * 24 * 2, 1, param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_MAIN_0, (1 + 9), 2, v0, param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, 0, 16 * 2 * 8, 16 * 2, param0->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, param0->unk_04, 1, 0, 10 * 16 * 0x20, 1, param0->heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 2, param0->unk_04, 1, 0, 32 * 24 * 2, 1, param0->heapID);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 1, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0->unk_04, 1);
 
@@ -552,9 +552,9 @@ static void ov97_0222C254(UnkStruct_ov97_0222C388 *param0)
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 *param0)
 {
-    Graphics_LoadPalette(116, 0, 4, 16 * 2 * 8, 16 * 2, param0->heapID);
-    Graphics_LoadTilesToBgLayer(116, 1, param0->unk_04, 4, 0, 10 * 16 * 0x20, 1, param0->heapID);
-    Graphics_LoadTilemapToBgLayer(116, 2, param0->unk_04, 4, 0, 32 * 24 * 2, 1, param0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 0, 4, 16 * 2 * 8, 16 * 2, param0->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 1, param0->unk_04, 4, 0, 10 * 16 * 0x20, 1, param0->heapID);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 2, param0->unk_04, 4, 0, 32 * 24 * 2, 1, param0->heapID);
     Bg_ChangeTilemapRectPalette(param0->unk_04, 4, 0, 0, 32, 24, 8);
     Bg_CopyTilemapBufferToVRAM(param0->unk_04, 4);
 }
@@ -657,10 +657,10 @@ static void ov97_0222C688(ApplicationManager *appMan)
         Window_Remove(&v1->unk_38);
     }
 
-    Bg_FreeTilemapBuffer(v1->unk_04, 0);
-    Bg_FreeTilemapBuffer(v1->unk_04, 1);
-    Bg_FreeTilemapBuffer(v1->unk_04, 4);
-    Bg_FreeTilemapBuffer(v1->unk_04, 5);
+    Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(v1->unk_04, BG_LAYER_SUB_1);
     Heap_FreeToHeap(v1->unk_04);
 }
 
@@ -673,7 +673,7 @@ static int ov97_0222C6F8(ApplicationManager *appMan, int *param1)
     v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
     v0->unk_10 = SaveData_GetTrainerInfo(v0->saveData);
     v0->unk_0C = SaveData_GetPokedex(v0->saveData);
-    v0->unk_14 = SaveData_GetOptions(v0->saveData);
+    v0->options = SaveData_GetOptions(v0->saveData);
 
     ov97_02237694(v0->heapID);
 
@@ -1122,7 +1122,7 @@ int ov97_0222CB10(UnkStruct_ov97_0222C388 *param0)
     return 0;
 }
 
-const ApplicationManagerTemplate Unk_ov97_0223D6BC = {
+const ApplicationManagerTemplate gRangerLinkAppTemplate = {
     ov97_0222C6F8,
     ov97_0222C78C,
     ov97_0222C948,

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_defs/struct_02099F80.h"
 #include "struct_defs/wi_fi_history.h"
@@ -67,7 +67,7 @@ typedef struct {
 typedef struct {
     int heapID;
     WiFiHistory *wiFiHistory;
-    Options *unk_08;
+    Options *options;
     UnkStruct_ov92_021D1B24_sub1 unk_0C;
     BgConfig *unk_B810;
     Window unk_B814;
@@ -121,7 +121,6 @@ typedef struct {
     u32 unk_04;
 } UnkStruct_ov92_021D2958;
 
-BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int param4);
 BOOL ov92_021D2854(int param0);
 int ov92_021D0D80(ApplicationManager *appMan, int *param1);
 int ov92_021D0EB8(ApplicationManager *appMan, int *param1);
@@ -323,15 +322,13 @@ int ov92_021D0D80(ApplicationManager *appMan, int *param1)
         v0->unk_BAF0 = 0;
     }
 
-    {
-        SaveData *saveData = ApplicationManager_Args(appMan);
+    SaveData *saveData = ApplicationManager_Args(appMan);
 
-        v0->wiFiHistory = SaveData_WiFiHistory(saveData);
-        v0->unk_BB14 = WiFiHistory_GetCountry(v0->wiFiHistory);
-        v0->unk_BB18 = sub_0202C8C4(v0->wiFiHistory);
-        v0->unk_BB24 = sub_0202C990(v0->wiFiHistory);
-        v0->unk_08 = SaveData_GetOptions(saveData);
-    }
+    v0->wiFiHistory = SaveData_WiFiHistory(saveData);
+    v0->unk_BB14 = WiFiHistory_GetCountry(v0->wiFiHistory);
+    v0->unk_BB18 = sub_0202C8C4(v0->wiFiHistory);
+    v0->unk_BB24 = sub_0202C990(v0->wiFiHistory);
+    v0->options = SaveData_GetOptions(saveData);
 
     ov92_021D14F0();
     ov92_021D1510();
@@ -911,33 +908,33 @@ static void ov92_021D1818(int param0, int param1, int *param2, int *param3, int 
 
 static void ov92_021D1888(UnkStruct_ov92_021D1B24 *param0, NARC *param1)
 {
-    Bg_InitFromTemplate(param0->unk_B810, 6, &Unk_ov92_021D2970, 0);
-    Bg_ClearTilemap(param0->unk_B810, 6);
-    Bg_InitFromTemplate(param0->unk_B810, 7, &Unk_ov92_021D298C, 0);
+    Bg_InitFromTemplate(param0->unk_B810, BG_LAYER_SUB_2, &Unk_ov92_021D2970, 0);
+    Bg_ClearTilemap(param0->unk_B810, BG_LAYER_SUB_2);
+    Bg_InitFromTemplate(param0->unk_B810, BG_LAYER_SUB_3, &Unk_ov92_021D298C, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->unk_B810, 7, 0, 0, 0, param0->heapID);
     Graphics_LoadPaletteFromOpenNARC(param1, 6, 4, 0 * (2 * 16), (2 * 16) * 4, param0->heapID);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->unk_B810, 7, 0, 0, 0, param0->heapID);
-    LoadMessageBoxGraphics(param0->unk_B810, 6, (512 - (18 + 12)), 6, Options_Frame(param0->unk_08), param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_B810, 6, ((512 - (18 + 12)) - 9), 7, 0, param0->heapID);
+    LoadMessageBoxGraphics(param0->unk_B810, BG_LAYER_SUB_2, (512 - (18 + 12)), 6, Options_Frame(param0->options), param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_B810, BG_LAYER_SUB_2, ((512 - (18 + 12)) - 9), 7, 0, param0->heapID);
     Font_LoadTextPalette(4, 4 * (2 * 16), param0->heapID);
     Bg_ClearTilesRange(6, 32, 0, param0->heapID);
-    Bg_MaskPalette(6, 0x4753);
+    Bg_MaskPalette(BG_LAYER_SUB_2, 0x4753);
     Window_AddFromTemplate(param0->unk_B810, &param0->unk_B814, &Unk_ov92_021D2934);
     Window_FillRectWithColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
     Window_DrawMessageBoxWithScrollCursor(&param0->unk_B814, 0, (512 - (18 + 12)), 6);
 
     param0->unk_B864 = 0;
 
-    Bg_InitFromTemplate(param0->unk_B810, 2, &Unk_ov92_021D2970, 0);
-    Bg_ClearTilemap(param0->unk_B810, 2);
-    Bg_InitFromTemplate(param0->unk_B810, 3, &Unk_ov92_021D298C, 0);
+    Bg_InitFromTemplate(param0->unk_B810, BG_LAYER_MAIN_2, &Unk_ov92_021D2970, 0);
+    Bg_ClearTilemap(param0->unk_B810, BG_LAYER_MAIN_2);
+    Bg_InitFromTemplate(param0->unk_B810, BG_LAYER_MAIN_3, &Unk_ov92_021D298C, 0);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 5, param0->unk_B810, 3, 0, 0, 0, param0->heapID);
     Graphics_LoadPaletteFromOpenNARC(param1, 6, 0, 0 * (2 * 16), (2 * 16) * 4, param0->heapID);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 7, param0->unk_B810, 3, 0, 0, 0, param0->heapID);
-    LoadStandardWindowGraphics(param0->unk_B810, 2, ((512 - (18 + 12)) - 9), 7, 0, param0->heapID);
+    LoadStandardWindowGraphics(param0->unk_B810, BG_LAYER_MAIN_2, ((512 - (18 + 12)) - 9), 7, 0, param0->heapID);
     Font_LoadTextPalette(0, 4 * (2 * 16), param0->heapID);
-    Bg_ClearTilesRange(2, 32, 0, param0->heapID);
-    Bg_MaskPalette(2, 0x0);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, param0->heapID);
+    Bg_MaskPalette(BG_LAYER_MAIN_2, 0x0);
 
     {
         Strbuf *v0 = Strbuf_Init(16, param0->heapID);
@@ -975,10 +972,10 @@ static void ov92_021D1B24(UnkStruct_ov92_021D1B24 *param0)
 {
     Window_Remove(&param0->unk_B834);
     Window_Remove(&param0->unk_B814);
-    Bg_FreeTilemapBuffer(param0->unk_B810, 2);
-    Bg_FreeTilemapBuffer(param0->unk_B810, 6);
-    Bg_FreeTilemapBuffer(param0->unk_B810, 3);
-    Bg_FreeTilemapBuffer(param0->unk_B810, 7);
+    Bg_FreeTilemapBuffer(param0->unk_B810, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_B810, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0->unk_B810, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0->unk_B810, BG_LAYER_SUB_3);
 }
 
 static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param2)
@@ -990,7 +987,7 @@ static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 *param0, u32 param1, int param
         Window_FillRectWithColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
         param0->unk_B86C = Strbuf_Init(0x400, param0->heapID);
         MessageLoader_GetStrbuf(param0->unk_B860, param1, param0->unk_B86C);
-        param0->unk_B868 = Text_AddPrinterWithParams(&param0->unk_B814, FONT_MESSAGE, param0->unk_B86C, 0, 0, Options_TextFrameDelay(param0->unk_08), NULL);
+        param0->unk_B868 = Text_AddPrinterWithParams(&param0->unk_B814, FONT_MESSAGE, param0->unk_B86C, 0, 0, Options_TextFrameDelay(param0->options), NULL);
         param0->unk_B864 = 1;
         break;
     case 1:
@@ -1480,13 +1477,13 @@ static void ov92_021D26D0(UnkStruct_ov92_021D1B24 *param0)
     }
 }
 
-BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int param4)
+BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int heapID)
 {
     MessageLoader *v0;
     int v1 = ov92_021D16F8(param0);
     BOOL v2;
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTRY_NAMES, param4);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COUNTRY_NAMES, heapID);
 
     MessageLoader_GetStrbuf(v0, param0, param2);
     MessageLoader_Free(v0);
@@ -1499,7 +1496,7 @@ BOOL ov92_021D27E8(int param0, int param1, Strbuf *param2, Strbuf *param3, int p
         v2 = 1;
     }
 
-    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, sub_0209972C(v1), param4);
+    v0 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, sub_0209972C(v1), heapID);
 
     MessageLoader_GetStrbuf(v0, param1, param3);
     MessageLoader_Free(v0);

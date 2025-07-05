@@ -23,8 +23,8 @@ _002E:
 
 _0048:
     SetObjectEventPos 0, 2, 4
-    ScrCmd_189 0, 0
-    ScrCmd_188 0, 14
+    SetObjectEventDir 0, DIR_NORTH
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _005E:

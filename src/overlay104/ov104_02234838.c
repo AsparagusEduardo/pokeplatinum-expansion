@@ -139,11 +139,8 @@ BOOL ov104_022348BC(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02234994(UnkStruct_ov104_0222E930 *param0)
 {
-    UnkStruct_ov104_0223B5C0 *v0;
-    FieldBattleDTO *v1;
-
-    v0 = sub_0209B978(param0->unk_00->unk_00);
-    v1 = v0->unk_700;
+    UnkStruct_ov104_0223B5C0 *v0 = sub_0209B978(param0->unk_00->unk_00);
+    FieldBattleDTO *v1 = v0->unk_700;
 
     v0->unk_14 = CheckPlayerWonBattle(v1->resultMask);
     FieldBattleDTO_Free(v1);
@@ -279,8 +276,8 @@ BOOL ov104_02234A1C(UnkStruct_ov104_0222E930 *param0)
         }
         break;
     case 32:
-        ov104_0222E278(&(v3->unk_40[0]), v3->unk_18[v3->unk_05 * 2], 11, 178);
-        ov104_0222E278(&(v3->unk_40[1]), v3->unk_18[v3->unk_05 * 2 + 1], 11, 178);
+        ov104_0222E278(&(v3->unk_40[0]), v3->unk_18[v3->unk_05 * 2], HEAP_ID_FIELDMAP, 178);
+        ov104_0222E278(&(v3->unk_40[1]), v3->unk_18[v3->unk_05 * 2 + 1], HEAP_ID_FIELDMAP, 178);
         break;
     case 33:
         *v11 = sub_020301E0(v3->unk_6F5, &v3->unk_704[v3->unk_04][0]);
@@ -398,7 +395,7 @@ BOOL ov104_02234D50(UnkStruct_ov104_0222E930 *param0)
 
 BOOL ov104_02234D6C(UnkStruct_ov104_0222E930 *param0)
 {
-    TVBroadcast *v0;
+    TVBroadcast *broadcast;
     u16 v1;
     Party *v2;
     Pokemon *v3;
@@ -411,8 +408,8 @@ BOOL ov104_02234D6C(UnkStruct_ov104_0222E930 *param0)
     v1 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
 
     if (v4->unk_04 == 0) {
-        v0 = SaveData_GetTVBroadcast(v5->saveData);
-        sub_0206D048(v0, v3);
+        broadcast = SaveData_GetTVBroadcast(v5->saveData);
+        sub_0206D048(broadcast, v3);
     }
 
     return 0;

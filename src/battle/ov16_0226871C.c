@@ -1028,10 +1028,10 @@ void ov16_02268744(BgConfig *param0)
     int i;
 
     for (i = 0; i < NELEMS(Unk_ov16_02270540); i++) {
-        Bg_InitFromTemplate(param0, 4 + i, &Unk_ov16_02270540[i], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0 + i, &Unk_ov16_02270540[i], 0);
         Bg_FillTilemap(param0, 4 + i, (0x6000 / 0x20 - 1));
-        Bg_SetOffset(param0, 4 + i, 0, 0);
-        Bg_SetOffset(param0, 4 + i, 3, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0 + i, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0 + i, 3, 0);
     }
 }
 
@@ -1040,8 +1040,8 @@ void ov16_022687A0(BgConfig *param0)
     int i;
 
     for (i = 0; i < NELEMS(Unk_ov16_02270540); i++) {
-        Bg_ToggleLayer(4 + i, 0);
-        Bg_FreeTilemapBuffer(param0, 4 + i);
+        Bg_ToggleLayer(BG_LAYER_SUB_0 + i, 0);
+        Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0 + i);
     }
 }
 
@@ -1063,7 +1063,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
     }
 
     v1 = BattleSystem_PaletteSys(battleSys);
-    v2 = ov16_0223E240(battleSys);
+    v2 = BattleSystem_Background(battleSys);
 
     if (v2 >= NELEMS(Unk_ov16_022704E4)) {
         v2 = 0;
@@ -1088,7 +1088,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
                 v6 = Unk_ov16_02270264[i];
             }
 
-            v4 = Graphics_GetScrnData(7, v6, 1, &v3, 5);
+            v4 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v6, 1, &v3, 5);
 
             MI_CpuCopy32(v3->rawData, v0->unk_3C[i], 0x800);
             Heap_FreeToHeap(v4);
@@ -1149,7 +1149,7 @@ void *ov16_022687C8(NARC *param0, NARC *param1, BattleSystem *battleSys, int par
             v15 = 267;
         }
 
-        v14 = Graphics_GetPlttData(7, v15, &v13, HEAP_ID_BATTLE);
+        v14 = Graphics_GetPlttData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v15, &v13, HEAP_ID_BATTLE);
 
         if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_FRONTIER) {
             MI_CpuCopy16(v13->pRawData, v0->unk_60, 0x40);
@@ -1216,7 +1216,7 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
             v5 = 28;
         }
 
-        Graphics_LoadTilesToBgLayer(7, v5, v0, 4, 0, 0x6000, 1, HEAP_ID_BATTLE);
+        Graphics_LoadTilesToBgLayer(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, v5, v0, 4, 0, 0x6000, 1, HEAP_ID_BATTLE);
     }
 
     TypeIcon_LoadAnim(spriteSys, spriteMan, 20017, 20017);
@@ -1235,11 +1235,8 @@ void ov16_02268A88(UnkStruct_ov16_02268A14 *param0)
 void ov16_02268B8C(UnkStruct_ov16_02268A14 *param0)
 {
     int i;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-
-    v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
-    v2 = BattleSystem_GetSpriteManager(param0->battleSys);
+    SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    SpriteManager *v2 = BattleSystem_GetSpriteManager(param0->battleSys);
 
     for (i = 0; i < 4; i++) {
         TypeIcon_UnloadChar(v2, 20025 + i);
@@ -1677,13 +1674,13 @@ static void ov16_022694A8(SysTask *param0, void *param1)
         v1 = 1;
     }
 
-    Bg_SetOffset(v2, 6, 0, v0->unk_6AC / 0x100);
+    Bg_SetOffset(v2, BG_LAYER_SUB_2, 0, v0->unk_6AC / 0x100);
     ov16_0226940C(v0);
 
     if (v1 == 1) {
         Bg_FillTilemap(v2, 7, (0x6000 / 0x20 - 1));
-        Bg_ToggleLayer(7, 0);
-        Bg_SetPriority(7, 0);
+        Bg_ToggleLayer(BG_LAYER_SUB_3, 0);
+        Bg_SetPriority(BG_LAYER_SUB_3, 0);
         GXS_SetVisibleWnd(GX_WNDMASK_NONE);
         SysTask_Done(param0);
         return;
@@ -2013,7 +2010,7 @@ static void ov16_02269E94(UnkStruct_ov16_02268A14 *param0, int param1, int param
         NNSG2dScreenData *v3;
         void *v4;
 
-        v4 = Graphics_GetScrnData(7, 46, 1, &v3, 5);
+        v4 = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 46, 1, &v3, 5);
         MI_CpuCopy32(v3->rawData, param0->unk_3C[6], 0x800);
         Heap_FreeToHeap(v4);
 
@@ -2866,11 +2863,8 @@ static void DrawMoveTypeIcons(UnkStruct_ov16_02268A14 *param0)
 static void ov16_0226AFF4(UnkStruct_ov16_02268A14 *param0)
 {
     int i;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-
-    v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
-    v2 = BattleSystem_GetSpriteManager(param0->battleSys);
+    SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    SpriteManager *v2 = BattleSystem_GetSpriteManager(param0->battleSys);
 
     for (i = 0; i < 4; i++) {
         if (param0->moveSelectSprites[i] != NULL) {
@@ -2883,11 +2877,8 @@ static void ov16_0226AFF4(UnkStruct_ov16_02268A14 *param0)
 static void ov16_0226B028(UnkStruct_ov16_02268A14 *param0)
 {
     int i;
-    SpriteSystem *v1;
-    SpriteManager *v2;
-
-    v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
-    v2 = BattleSystem_GetSpriteManager(param0->battleSys);
+    SpriteSystem *v1 = BattleSystem_GetSpriteSystem(param0->battleSys);
+    SpriteManager *v2 = BattleSystem_GetSpriteManager(param0->battleSys);
 
     for (i = 0; i < 4; i++) {
         if (param0->unk_5FC[i] != NULL) {
@@ -2938,9 +2929,9 @@ static void ov16_0226B198(void)
 
     for (i = 0; i < 4; i++) {
         if (4 + i != 6) {
-            Bg_ToggleLayer(4 + i, 0);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + i, 0);
         } else {
-            Bg_ToggleLayer(4 + i, 1);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + i, 1);
         }
     }
 }
@@ -3503,10 +3494,10 @@ static void ov16_0226B988(SysTask *param0, void *param1)
             break;
         }
 
-        Bg_SetOffset(v1, 4, 0, 0);
-        Bg_SetOffset(v1, 4, 3, 0);
-        Bg_SetOffset(v1, 5, 0, 0);
-        Bg_SetOffset(v1, 5, 3, 0);
+        Bg_SetOffset(v1, BG_LAYER_SUB_0, 0, 0);
+        Bg_SetOffset(v1, BG_LAYER_SUB_0, 3, 0);
+        Bg_SetOffset(v1, BG_LAYER_SUB_1, 0, 0);
+        Bg_SetOffset(v1, BG_LAYER_SUB_1, 3, 0);
         BattleSystem_SetCommandSelectionFlags(v0->unk_00->battleSys, 1);
         Heap_FreeToHeap(param1);
         SysTask_Done(param0);
@@ -3530,8 +3521,8 @@ static void ov16_0226BA88(SysTask *param0, void *param1)
             v4 = 0;
         }
 
-        Bg_SetOffset(v1, 4, 0, v4);
-        Bg_SetOffset(v1, 5, 0, 255 - v0->unk_0C);
+        Bg_SetOffset(v1, BG_LAYER_SUB_0, 0, v4);
+        Bg_SetOffset(v1, BG_LAYER_SUB_1, 0, 255 - v0->unk_0C);
         v2 = -v0->unk_08 / 100;
     } else {
         v4 = v0->unk_0C;
@@ -3540,14 +3531,14 @@ static void ov16_0226BA88(SysTask *param0, void *param1)
             v4 = 0;
         }
 
-        Bg_SetOffset(v1, 4, 0, v4);
-        Bg_SetOffset(v1, 5, 0, v0->unk_0C);
+        Bg_SetOffset(v1, BG_LAYER_SUB_0, 0, v4);
+        Bg_SetOffset(v1, BG_LAYER_SUB_1, 0, v0->unk_0C);
 
         v2 = 255 + v0->unk_08 / 100;
     }
 
-    Bg_SetOffset(v1, 4, 3, 0);
-    Bg_SetOffset(v1, 5, 3, 0);
+    Bg_SetOffset(v1, BG_LAYER_SUB_0, 3, 0);
+    Bg_SetOffset(v1, BG_LAYER_SUB_1, 3, 0);
 
     v3 = (18 * 8) + (v0->unk_0A) / 100;
 
@@ -3587,10 +3578,10 @@ static void ov16_0226BB94(void *param0)
     if (v1 == (18 * 8)) {
         BgConfig *v3 = BattleSystem_BGL(v0->unk_00->battleSys);
 
-        Bg_SetOffset(v3, 4, 0, 0);
-        Bg_SetOffset(v3, 4, 3, v0->unk_10);
-        Bg_SetOffset(v3, 5, 0, 0);
-        Bg_SetOffset(v3, 5, 3, v0->unk_10);
+        Bg_SetOffset(v3, BG_LAYER_SUB_0, 0, 0);
+        Bg_SetOffset(v3, BG_LAYER_SUB_0, 3, v0->unk_10);
+        Bg_SetOffset(v3, BG_LAYER_SUB_1, 0, 0);
+        Bg_SetOffset(v3, BG_LAYER_SUB_1, 3, v0->unk_10);
     } else if (v1 > 192) {
         BgConfig *v4 = BattleSystem_BGL(v0->unk_00->battleSys);
 
@@ -3601,8 +3592,8 @@ static void ov16_0226BB94(void *param0)
                 v2 = 0;
             }
 
-            Bg_SetOffset(v4, 4, 0, 255 - v0->unk_0C);
-            Bg_SetOffset(v4, 5, 0, 255 - v0->unk_0C);
+            Bg_SetOffset(v4, BG_LAYER_SUB_0, 0, 255 - v0->unk_0C);
+            Bg_SetOffset(v4, BG_LAYER_SUB_1, 0, 255 - v0->unk_0C);
         } else {
             v2 = v0->unk_0C;
 
@@ -3610,12 +3601,12 @@ static void ov16_0226BB94(void *param0)
                 v2 = 0;
             }
 
-            Bg_SetOffset(v4, 4, 0, v0->unk_0C);
-            Bg_SetOffset(v4, 5, 0, v0->unk_0C);
+            Bg_SetOffset(v4, BG_LAYER_SUB_0, 0, v0->unk_0C);
+            Bg_SetOffset(v4, BG_LAYER_SUB_1, 0, v0->unk_0C);
         }
 
-        Bg_SetOffset(v4, 4, 3, 0);
-        Bg_SetOffset(v4, 5, 3, 0);
+        Bg_SetOffset(v4, BG_LAYER_SUB_0, 3, 0);
+        Bg_SetOffset(v4, BG_LAYER_SUB_1, 3, 0);
     }
 }
 
@@ -3629,14 +3620,14 @@ static void ov16_0226BC50(SysTask *param0, void *param1)
 
     for (i = 0; i < 4; i++) {
         if (v1->unk_04_val2[i] == 0xffff) {
-            Bg_ToggleLayer(4 + i, 0);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + i, 0);
         } else {
-            Bg_ToggleLayer(4 + i, 1);
+            Bg_ToggleLayer(BG_LAYER_SUB_0 + i, 1);
         }
     }
 
     for (i = 0; i < 4; i++) {
-        Bg_SetPriority(4 + i, v1->unk_0C_val2[i]);
+        Bg_SetPriority(BG_LAYER_SUB_0 + i, v1->unk_0C_val2[i]);
     }
 
     SysTask_Done(param0);
@@ -4538,7 +4529,7 @@ void ov16_0226CEB0(UnkStruct_ov16_02268A14 *param0, int param1)
 
     GF_ASSERT(param0->unk_66B == 18);
 
-    LoadStandardWindowGraphics(v0, 5, 0x20, 1, 0, HEAP_ID_BATTLE);
+    LoadStandardWindowGraphics(v0, BG_LAYER_SUB_1, 0x20, 1, 0, HEAP_ID_BATTLE);
     PaletteData_LoadBufferFromHardware(v1, 1, 1 * 16, 0x20);
 
     {

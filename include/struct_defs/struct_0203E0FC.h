@@ -20,13 +20,13 @@ typedef struct {
     GlobalTrade *unk_00;
     SystemData *unk_04;
     Party *unk_08;
-    PCBoxes *unk_0C;
+    PCBoxes *pcBoxes;
     Pokedex *unk_10;
     WiFiList *unk_14;
     WiFiHistory *wiFiHistory;
     TrainerInfo *unk_1C;
     SaveData *saveData;
-    Options *unk_24;
+    Options *options;
     GameRecords *records;
     JournalEntry *unk_2C;
     Bag *unk_30;

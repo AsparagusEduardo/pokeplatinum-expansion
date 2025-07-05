@@ -59,7 +59,7 @@ static void ov98_02247134(UnkStruct_ov98_02246E88 *param0);
 
 static NNSFndHeapHandle Unk_ov98_02249E20;
 
-const ApplicationManagerTemplate Unk_ov98_02249BAC = {
+const ApplicationManagerTemplate gWiiMessageAppTemplate = {
     ov98_02246C20,
     ov98_02246C98,
     ov98_02246DC0,
@@ -104,7 +104,7 @@ int ov98_02246C20(ApplicationManager *appMan, int *param1)
     v0 = ApplicationManager_NewData(appMan, sizeof(UnkStruct_ov98_02246E88), HEAP_ID_108);
     MI_CpuClear8(v0, sizeof(UnkStruct_ov98_02246E88));
     v0->saveData = ((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData;
-    v0->unk_08 = SaveData_GetOptions(v0->saveData);
+    v0->options = SaveData_GetOptions(v0->saveData);
     v0->unk_114 = Strbuf_Init(100, HEAP_ID_108);
     v0->unk_118 = Strbuf_Init(100, HEAP_ID_108);
     Sound_SetSceneAndPlayBGM(SOUND_SCENE_17, SEQ_WIFILOBBY, 1);
@@ -138,7 +138,7 @@ int ov98_02246C98(ApplicationManager *appMan, int *param1)
         }
         break;
     case 2:
-        v0->appMan = ApplicationManager_New(Unk_ov98_02249B4C[v0->unk_8C].unk_08, Unk_ov98_02249B4C[v0->unk_8C].unk_00(v0), 108);
+        v0->appMan = ApplicationManager_New(Unk_ov98_02249B4C[v0->unk_8C].unk_08, Unk_ov98_02249B4C[v0->unk_8C].unk_00(v0), HEAP_ID_108);
         v0->unk_84 = v0->unk_8C;
         v0->unk_8C = 6;
         *param1 = 3;

@@ -345,7 +345,7 @@ static void ov94_0223C0D4(UnkStruct_ov94_0223FD4C *param0)
         int v4, v5, v6, v7;
         u16 *v8;
 
-        v2 = Graphics_GetPlttData(19, PokeIconPalettesFileIndex(), &v3, HEAP_ID_62);
+        v2 = Graphics_GetPlttData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), &v3, HEAP_ID_62);
 
         DC_FlushRange(v3->pRawData, (3 * 16) * 2);
         GX_LoadOBJPltt(v3->pRawData, 3 * 0x20, (3 * 16) * 2);
@@ -485,7 +485,7 @@ void ov94_0223C4C8(UnkStruct_ov94_0223FD4C *param0)
 
 int ov94_0223C4D4(UnkStruct_ov94_0223FD4C *param0)
 {
-    return Options_TextFrameDelay(param0->unk_00->unk_24);
+    return Options_TextFrameDelay(param0->unk_00->options);
 }
 
 static void ov94_0223C4E0(UnkStruct_ov94_0223FD4C *param0)
@@ -537,7 +537,7 @@ void ov94_0223C584(UnkStruct_ov94_0223FD4C *param0)
 static void ov94_0223C598(UnkStruct_ov94_0223FD4C *param0)
 {
     if (param0->unk_110E) {
-        param0->unk_110C += PCBoxes_CountMonsInBox(param0->unk_00->unk_0C, param0->unk_110E - 1);
+        param0->unk_110C += PCBoxes_CountMonsInBox(param0->unk_00->pcBoxes, param0->unk_110E - 1);
         param0->unk_110E++;
 
         if (param0->unk_110E == 19) {

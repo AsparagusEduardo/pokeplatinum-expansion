@@ -7,6 +7,7 @@
 #include "constants/field/map.h"
 #include "constants/field/map_prop.h"
 #include "generated/movement_actions.h"
+#include "generated/movement_types.h"
 
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
@@ -604,11 +605,8 @@ void PastoriaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
     fx32 v2;
     fx32 v3;
     BOOL v4, v5, v6;
-    PersistedMapFeatures *v7;
-    UnkStruct_02071B10 *v8;
-
-    v7 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v8 = (UnkStruct_02071B10 *)PersistedMapFeatures_GetBuffer(v7, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
+    PersistedMapFeatures *v7 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02071B10 *v8 = (UnkStruct_02071B10 *)PersistedMapFeatures_GetBuffer(v7, DYNAMIC_MAP_FEATURES_PASTORIA_GYM);
 
     {
         VecFx32 v9 = { FX32_ONE * 16 * 16, 0, FX32_ONE * 16 * 16 };
@@ -1238,11 +1236,8 @@ static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
     int v0;
     u8 v1;
     UnkStruct_ov8_0224997C *v2;
-    PersistedMapFeatures *v3;
-    UnkStruct_02071B30 *v4;
-
-    v3 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(param0->fieldSystem));
-    v4 = (UnkStruct_02071B30 *)PersistedMapFeatures_GetBuffer(v3, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
+    PersistedMapFeatures *v3 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(param0->fieldSystem));
+    UnkStruct_02071B30 *v4 = (UnkStruct_02071B30 *)PersistedMapFeatures_GetBuffer(v3, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
     v2 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov8_0224997C));
 
     v2->unk_00 = 0;
@@ -1295,13 +1290,9 @@ static void ov8_0224A254(UnkStruct_ov8_0224A1E4 *param0, const u8 param1)
 
 static void ov8_0224A434(UnkStruct_ov8_0224A1E4 *param0, const fx32 param1)
 {
-    MapProp *v0;
-    MapProp *v1;
-    MapProp *v2;
-
-    v0 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_04);
-    v1 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_08);
-    v2 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_0C);
+    MapProp *v0 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_04);
+    MapProp *v1 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_08);
+    MapProp *v2 = MapPropManager_GetLoadedProp(param0->fieldSystem->mapPropManager, param0->unk_0C);
 
     if (param1 >= (FX32_ONE * 16) * (10 - 9)) {
         MapProp_SetHidden(v0, 0);
@@ -1560,11 +1551,8 @@ static BOOL ov8_0224A770(FieldTask *taskMan)
 void CanalaveGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     UnkStruct_ov8_0224A1E4 *v0;
-    PersistedMapFeatures *v1;
-    UnkStruct_02071B30 *v2;
-
-    v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v2 = (UnkStruct_02071B30 *)PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
+    PersistedMapFeatures *v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02071B30 *v2 = (UnkStruct_02071B30 *)PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_CANALAVE_GYM);
 
     fieldSystem->unk_04->dynamicMapFeaturesData = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224A1E4));
 
@@ -2067,11 +2055,8 @@ static void ov8_0224AB64(const UnkStruct_ov8_0224C788 *param0, const u8 param1, 
 void SunyshoreGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
     UnkStruct_ov8_0224ABD4 *v0;
-    PersistedMapFeatures *v1;
-    UnkStruct_02071B6C *v2;
-
-    v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v2 = (UnkStruct_02071B6C *)PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
+    PersistedMapFeatures *v1 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02071B6C *v2 = (UnkStruct_02071B6C *)PersistedMapFeatures_GetBuffer(v1, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
 
     fieldSystem->unk_04->dynamicMapFeaturesData = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224ABD4));
 
@@ -2152,11 +2137,8 @@ void ov8_0224AD34(FieldSystem *fieldSystem, const u8 param1)
 {
     UnkStruct_ov8_0224997C *v0;
     UnkStruct_ov8_0224ABD4 *v1;
-    PersistedMapFeatures *v2;
-    UnkStruct_02071B6C *v3;
-
-    v2 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v3 = (UnkStruct_02071B6C *)PersistedMapFeatures_GetBuffer(v2, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
+    PersistedMapFeatures *v2 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02071B6C *v3 = (UnkStruct_02071B6C *)PersistedMapFeatures_GetBuffer(v2, DYNAMIC_MAP_FEATURES_SUNYSHORE_GYM);
     v1 = (UnkStruct_ov8_0224ABD4 *)fieldSystem->unk_04->dynamicMapFeaturesData;
     v0 = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELDMAP, sizeof(UnkStruct_ov8_0224997C));
 
@@ -2407,13 +2389,9 @@ static void ov8_0224AF84(UnkStruct_ov8_0224AF00 *param0)
 
 void EternaGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0;
-    UnkStruct_02071BD0 *v1;
-    UnkStruct_ov8_0224AF00 *v2;
-
-    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
-    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224AF00));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02071BD0 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
+    UnkStruct_ov8_0224AF00 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224AF00));
 
     memset(v2, 0, sizeof(UnkStruct_ov8_0224AF00));
     fieldSystem->unk_04->dynamicMapFeaturesData = v2;
@@ -2471,11 +2449,8 @@ BOOL EternaGym_DynamicMapFeaturesCheckCollision(FieldSystem *fieldSystem, const 
 {
     BOOL v0;
     int v1, v2, v3;
-    PersistedMapFeatures *v4;
-    UnkStruct_02071BD0 *v5;
-
-    v4 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v5 = PersistedMapFeatures_GetBuffer(v4, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
+    PersistedMapFeatures *v4 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02071BD0 *v5 = PersistedMapFeatures_GetBuffer(v4, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
     v1 = v5->unk_00;
     v0 = 0;
 
@@ -2855,11 +2830,8 @@ static BOOL ov8_0224B3D4(FieldTask *param0)
 
 BOOL ov8_0224B67C(FieldSystem *fieldSystem, Window *param1, MessageLoader *param2, Strbuf *param3)
 {
-    PersistedMapFeatures *v0;
-    UnkStruct_02071BD0 *v1;
-
-    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02071BD0 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_ETERNA_GYM);
 
     if (v1->unk_00 >= 4) {
         return 0;
@@ -2951,13 +2923,9 @@ static int (*const Unk_ov8_0224C818[11])(UnkStruct_ov8_0224C098 *);
 
 void VeilstoneGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0;
-    UnkStruct_02071BF8 *v1;
-    UnkStruct_ov8_0224B8D0 *v2;
-
-    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM);
-    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224B8D0));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02071BF8 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_VEILSTONE_GYM);
+    UnkStruct_ov8_0224B8D0 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224B8D0));
 
     memset(v2, 0, sizeof(UnkStruct_ov8_0224B8D0));
 
@@ -3690,13 +3658,9 @@ static const UnkStruct_ov8_0224C7D0 *const Unk_ov8_0224C708[2] = {
 
 void HearthomeGym_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
 {
-    PersistedMapFeatures *v0;
-    UnkStruct_02071C18 *v1;
-    UnkStruct_ov8_0224C444 *v2;
-
-    v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
-    v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
-    v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224C444));
+    PersistedMapFeatures *v0 = MiscSaveBlock_GetPersistedMapFeatures(FieldSystem_GetSaveData(fieldSystem));
+    UnkStruct_02071C18 *v1 = PersistedMapFeatures_GetBuffer(v0, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM);
+    UnkStruct_ov8_0224C444 *v2 = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(UnkStruct_ov8_0224C444));
 
     memset(v2, 0, sizeof(UnkStruct_ov8_0224C444));
 
@@ -3818,7 +3782,7 @@ static void ov8_0224C3B4(UnkStruct_ov8_0224C444 *param0)
 
         if (v3 == 1) {
             v2 = 91;
-        } else if (param0->fieldSystem->location->mapId == 90) {
+        } else if (param0->fieldSystem->location->mapId == MAP_HEADER_HEARTHOME_CITY_GYM_TRAINER_ROOM_2) {
             v2 = 119;
         }
 
@@ -3939,7 +3903,7 @@ BOOL ov8_0224C5DC(FieldSystem *fieldSystem, void *param1)
         MapObject_SetZInitial(v1, MapObject_GetZ(v1));
         MapObject_SetMovementRangeX(v1, 2);
         MapObject_SetMovementRangeZ(v1, 2);
-        MapObject_SetMoveCode(v1, 0x3);
+        MapObject_SetMoveCode(v1, MOVEMENT_TYPE_WANDER_AROUND);
 
         return 1;
     }

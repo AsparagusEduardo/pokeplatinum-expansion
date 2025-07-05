@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_defs/struct_0206A844.h"
+#include "struct_defs/underground_data.h"
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"
@@ -105,7 +105,7 @@ void ov23_022542D8(UnkStruct_ov23_022542D8 *param0, FieldSystem *fieldSystem, u1
     param0->unk_34 = param3;
     param0->unk_40 = 0;
 
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 }
 
 void ov23_0225430C(UnkStruct_ov23_022542D8 *param0)
@@ -155,7 +155,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
     int v3 = 3;
     int v4 = 4;
 
-    param0->unk_24 = StringList_New(v3 + 1, 4);
+    param0->unk_24 = StringList_New(v3 + 1, HEAP_ID_FIELD);
 
     v1 = 12 * v4 * 2;
     v2 = 7 * (1 * 2);
@@ -176,7 +176,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
             4,
         };
 
-        v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD);
+        v5 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD);
 
         {
             Strbuf *v8;
@@ -201,7 +201,7 @@ static void ov23_0225437C(UnkStruct_ov23_022542D8 *param0)
     v0.window = &param0->unk_04;
     v0.cursorCallback = ov23_02254350;
 
-    param0->unk_28 = ListMenu_New(&v0, *(param0->unk_30), *(param0->unk_34), 4);
+    param0->unk_28 = ListMenu_New(&v0, *(param0->unk_30), *(param0->unk_34), HEAP_ID_FIELD);
     Window_CopyToVRAM(&param0->unk_04);
     Window_CopyToVRAM(&param0->unk_14);
     param0->unk_38 = 1;
@@ -275,7 +275,7 @@ void ov23_02254594(UnkStruct_ov23_02254594 *param0, FieldSystem *fieldSystem, u1
     param0->unk_38 = param2;
     param0->unk_3C = param3;
 
-    LoadStandardWindowGraphics(fieldSystem->bgConfig, 3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
+    LoadStandardWindowGraphics(fieldSystem->bgConfig, BG_LAYER_MAIN_3, 1024 - (18 + 12) - 9, 11, 2, HEAP_ID_FIELD);
 }
 
 void ov23_022545C4(UnkStruct_ov23_02254594 *param0, const u8 param1, const u8 param2)
@@ -390,7 +390,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
         v5 = 7;
     }
 
-    param0->unk_28 = StringList_New(v4 + 1, 4);
+    param0->unk_28 = StringList_New(v4 + 1, HEAP_ID_FIELD);
 
     v2 = 12 * 7 * 2;
     v3 = 8 * (2 * 2);
@@ -417,7 +417,7 @@ static void ov23_022546E0(UnkStruct_ov23_02254594 *param0)
             Strbuf *v15;
             StringTemplate *v16;
 
-            v12 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0637, HEAP_ID_FIELD);
+            v12 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_DECORATE_BASE, HEAP_ID_FIELD);
 
             Window_FillTilemap(&param0->unk_18, 15);
 

@@ -531,8 +531,8 @@ static void ov91_021D0FE4(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -552,8 +552,8 @@ static void ov91_021D0FE4(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -573,19 +573,19 @@ static void ov91_021D0FE4(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_67);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_67);
 }
 
 static void ov91_021D1098(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, 0);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
     Heap_FreeToHeapExplicit(HEAP_ID_67, param0);
 }
 
@@ -595,8 +595,8 @@ static void ov91_021D10C8(UnkStruct_ov91_021D0ED8 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 11, param0->unk_04, 2, 0, 0, 0, HEAP_ID_67);
     Graphics_LoadPaletteFromOpenNARC(param1, 12, 0, 0, 0, HEAP_ID_67);
     Font_LoadScreenIndicatorsPalette(0, 14 * 32, HEAP_ID_67);
-    LoadStandardWindowGraphics(param0->unk_04, 0, 1, 12, 0, HEAP_ID_67);
-    LoadMessageBoxGraphics(param0->unk_04, 0, (1 + 9), 13, Options_Frame(param0->unk_00->unk_08), HEAP_ID_67);
+    LoadStandardWindowGraphics(param0->unk_04, BG_LAYER_MAIN_0, 1, 12, 0, HEAP_ID_67);
+    LoadMessageBoxGraphics(param0->unk_04, BG_LAYER_MAIN_0, (1 + 9), 13, Options_Frame(param0->unk_00->options), HEAP_ID_67);
 }
 
 static void ov91_021D1154(UnkStruct_ov91_021D0ED8 *param0)
@@ -893,7 +893,7 @@ static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0)
     u32 v2;
 
     param0->unk_184 = (u8)ov91_021D175C(param0) + 1;
-    param0->unk_108 = StringList_New(param0->unk_184, 67);
+    param0->unk_108 = StringList_New(param0->unk_184, HEAP_ID_67);
 
     v0 = MessageLoader_Init(
         0, 26, 647, 67);
@@ -917,7 +917,7 @@ static void ov91_021D1784(UnkStruct_ov91_021D0ED8 *param0)
     v1.count = param0->unk_184;
     v1.parent = (void *)param0;
 
-    param0->unk_104 = ListMenu_New(&v1, param0->unk_00->unk_12, param0->unk_00->unk_10, 67);
+    param0->unk_104 = ListMenu_New(&v1, param0->unk_00->unk_12, param0->unk_00->unk_10, HEAP_ID_67);
 
     Window_ScheduleCopyToVRAM(&param0->unk_08[13]);
 }
@@ -1139,7 +1139,7 @@ static void ov91_021D1DF8(UnkStruct_ov91_021D0ED8 *param0, u32 param1)
     RenderControlFlags_SetCanABSpeedUpPrint(1);
     RenderControlFlags_SetAutoScrollFlags(0);
 
-    param0->unk_185 = Text_AddPrinterWithParams(&param0->unk_08[12], FONT_MESSAGE, param0->unk_100, 0, 0, Options_TextFrameDelay(param0->unk_00->unk_08), ov91_021D1E50);
+    param0->unk_185 = Text_AddPrinterWithParams(&param0->unk_08[12], FONT_MESSAGE, param0->unk_100, 0, 0, Options_TextFrameDelay(param0->unk_00->options), ov91_021D1E50);
 }
 
 static BOOL ov91_021D1E50(TextPrinterTemplate *param0, u16 param1)
@@ -1496,7 +1496,7 @@ static int ov91_021D261C(UnkStruct_ov91_021D0ED8 *param0)
     ov91_021D0F6C(param0);
 
     param0->unk_14C.monData = param0->unk_00->unk_00;
-    param0->unk_14C.options = param0->unk_00->unk_08;
+    param0->unk_14C.options = param0->unk_00->options;
     param0->unk_14C.dataType = SUMMARY_DATA_MON;
     param0->unk_14C.monIndex = 0;
     param0->unk_14C.monMax = 1;
@@ -1507,7 +1507,7 @@ static int ov91_021D261C(UnkStruct_ov91_021D0ED8 *param0)
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_14C, v0);
 
-    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_14C, 67);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_14C, HEAP_ID_67);
     return 12;
 }
 

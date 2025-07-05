@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+
 #include "field/field_system.h"
 #include "field/field_system_sub2_t.h"
 #include "overlay005/hblank_system.h"
@@ -807,11 +809,8 @@ static void ov5_021D6284(SysTask *param0, void *param1)
 
 static void ov5_021D6290(SpriteResourceTable *param0, int param1, int param2)
 {
-    SpriteResourceTable *v0;
-    void *v1;
-
-    v0 = SpriteResourceTable_GetArrayElement(param0, param1);
-    v1 = LoadMemberFromNARC(65, param2, 0, 4, 1);
+    SpriteResourceTable *v0 = SpriteResourceTable_GetArrayElement(param0, param1);
+    void *v1 = LoadMemberFromNARC(NARC_INDEX_DATA__WEATHER_SYS, param2, 0, HEAP_ID_FIELD, 1);
 
     SpriteResourceTable_LoadFromBinary(v1, v0, HEAP_ID_FIELD);
     Heap_FreeToHeap(v1);
@@ -1622,11 +1621,8 @@ static void ov5_021D6FD8(UnkStruct_ov5_021D6FA8 *param0)
 
 static void ov5_021D6FF0(UnkStruct_ov5_021D6FA8 *param0, UnkFuncPtr_ov5_021D6FF0 param1)
 {
-    UnkStruct_ov5_021D6FA8 *v0;
-    UnkStruct_ov5_021D6FA8 *v1;
-
-    v0 = param0->unk_34;
-    v1 = v0->unk_34;
+    UnkStruct_ov5_021D6FA8 *v0 = param0->unk_34;
+    UnkStruct_ov5_021D6FA8 *v1 = v0->unk_34;
 
     while (v0 != param0) {
         param1(v0);
@@ -5302,11 +5298,8 @@ static void ov5_021DB500(UnkStruct_ov5_021DB614 *param0)
     int v0;
     int v1;
     int v2;
-    u16 *v3;
-    u16 *v4;
-
-    v3 = BufferManager_GetWriteBuffer(param0->bufferManagers[0]);
-    v4 = BufferManager_GetWriteBuffer(param0->bufferManagers[1]);
+    u16 *v3 = BufferManager_GetWriteBuffer(param0->bufferManagers[0]);
+    u16 *v4 = BufferManager_GetWriteBuffer(param0->bufferManagers[1]);
 
     for (v0 = 0; v0 < 192; v0++) {
         if (v0 <= param0->unk_02) {
@@ -5366,8 +5359,8 @@ static void ov5_021DB614(UnkStruct_ov5_021DB614 *param0, HBlankSystem *param1)
 
     memset(param0, 0, sizeof(UnkStruct_ov5_021DB614));
 
-    param0->bufferManagers[0] = BufferManager_New(4, param0->unk_2C[0], param0->unk_2C[1]);
-    param0->bufferManagers[1] = BufferManager_New(4, param0->unk_2C[2], param0->unk_2C[3]);
+    param0->bufferManagers[0] = BufferManager_New(HEAP_ID_FIELD, param0->unk_2C[0], param0->unk_2C[1]);
+    param0->bufferManagers[1] = BufferManager_New(HEAP_ID_FIELD, param0->unk_2C[2], param0->unk_2C[3]);
 
     for (v0 = 0; v0 < 192; v0++) {
         param0->unk_2C[2][v0] = 255;

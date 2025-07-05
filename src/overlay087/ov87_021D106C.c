@@ -299,18 +299,18 @@ static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     SetAllGraphicsModes(&v1);
-    Bg_InitFromTemplate(param0->unk_10, 1, &v2, 0);
-    Bg_InitFromTemplate(param0->unk_10, 2, &v3, 0);
-    Graphics_LoadTilesToBgLayer(101, 1, param0->unk_10, 2, 0, 0, 1, HEAP_ID_61);
-    Graphics_LoadTilemapToBgLayer(101, 0, param0->unk_10, 2, 0, 0, 1, HEAP_ID_61);
-    Graphics_LoadPalette(101, 2, 0, 0, 0x40, HEAP_ID_61);
+    Bg_InitFromTemplate(param0->unk_10, BG_LAYER_MAIN_1, &v2, 0);
+    Bg_InitFromTemplate(param0->unk_10, BG_LAYER_MAIN_2, &v3, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__DENDOU_PC, 1, param0->unk_10, BG_LAYER_MAIN_2, 0, 0, 1, HEAP_ID_61);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DENDOU_PC, 0, param0->unk_10, BG_LAYER_MAIN_2, 0, 0, 1, HEAP_ID_61);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__DENDOU_PC, 2, 0, 0, 0x40, HEAP_ID_61);
     Bg_FillTilesRange(param0->unk_10, 1, 0x0, 1, 0);
     Bg_FillTilemapRect(param0->unk_10, 1, 0x0, 0, 0, 32, 32, 0);
 
     v4 = ov87_021D14D4(param0, 1);
 
     ov87_021D1558(param0);
-    LoadStandardWindowGraphics(param0->unk_10, 1, v4, 2, 0, HEAP_ID_61);
+    LoadStandardWindowGraphics(param0->unk_10, BG_LAYER_MAIN_1, v4, 2, 0, HEAP_ID_61);
     Window_DrawStandardFrame(&(param0->unk_14[0]), 0, v4, 2);
     Window_DrawStandardFrame(&(param0->unk_14[1]), 0, v4, 2);
     Bg_CopyTilemapBufferToVRAM(param0->unk_10, 1);
@@ -321,8 +321,8 @@ static void ov87_021D139C(UnkStruct_ov87_021D106C *param0)
 
 static void ov87_021D14B8(UnkStruct_ov87_021D106C *param0)
 {
-    Bg_FreeTilemapBuffer(param0->unk_10, 1);
-    Bg_FreeTilemapBuffer(param0->unk_10, 2);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_2);
     ov87_021D1540(param0);
 }
 
@@ -502,8 +502,8 @@ static void ov87_021D18A0(UnkStruct_ov87_021D106C *param0, NNSG2dCellDataBank *p
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v2.heapID = HEAP_ID_61;
 
-    v7 = Graphics_GetCharData(27, 76, 0, &v5, HEAP_ID_61);
-    v8 = Graphics_GetPlttData(27, 75, &v6, HEAP_ID_61);
+    v7 = Graphics_GetCharData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 76, 0, &v5, HEAP_ID_61);
+    v8 = Graphics_GetPlttData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 75, &v6, HEAP_ID_61);
 
     for (v9 = 0; v9 < 6; v9++) {
         NNS_G2dInitImageProxy(&v3);

@@ -103,7 +103,7 @@ struct UnkStruct_ov105_02241FF4_t {
     GenericPointerData *unk_124;
     PokemonSpriteManager *unk_128;
     PokemonSprite *unk_12C[3];
-    Options *unk_138;
+    Options *options;
     SaveData *saveData;
     PokemonSummary *unk_140;
     UnkStruct_ov105_02245AAC unk_144;
@@ -370,7 +370,7 @@ int ov105_02241AE0(ApplicationManager *appMan, int *param1)
     v1->unk_31C = v2->unk_08;
     v1->unk_320 = v2->unk_0C;
     v1->unk_330 = &v2->unk_10[0];
-    v1->unk_138 = SaveData_GetOptions(v1->saveData);
+    v1->options = SaveData_GetOptions(v1->saveData);
     v1->unk_14 = (4 * 2);
 
     if (ov105_022454F8(v1, 0) == 1) {
@@ -635,7 +635,7 @@ static BOOL ov105_02241FF4(UnkStruct_ov105_02241FF4 *param0)
             ov105_02245F5C(param0->unk_2F4[v0]);
         }
 
-        Bg_SetOffset(param0->unk_4C, 2, 0, (33 * 8));
+        Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, (33 * 8));
         PokemonSprite_SetAttribute(param0->unk_12C[0], MON_SPRITE_HIDE, 1);
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_1, FADE_TYPE_UNK_1, FADE_TO_BLACK, 6, 1 * 3, HEAP_ID_93);
         param0->unk_08++;
@@ -753,7 +753,7 @@ static void ov105_0224227C(UnkStruct_ov105_02241FF4 *param0)
     }
 
     ov105_02244FF8(param0, &param0->unk_50[2 + param0->unk_11], ov105_022461A0(param0->unk_30C), 0, 0, 15, 2, 0, 0, param0->unk_31C);
-    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
+    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
     ov105_02244EE8(param0, 0, (param0->unk_11 + 1));
 
     param0->unk_10 = ov105_02244D14(param0, 0);
@@ -803,7 +803,7 @@ static void ov105_022424CC(UnkStruct_ov105_02241FF4 *param0)
     int v0;
 
     ov105_02245528(param0, 0);
-    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
+    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
 
     if (ov104_0223AED4(param0->unk_09) == 0) {
         param0->unk_30C = ov105_02245FB8(&param0->unk_144, param0->unk_1A, (NELEMS(Unk_ov105_02246340) - 1), 2, param0->unk_334, Unk_ov105_02246340, Unk_ov105_022462D0);
@@ -967,7 +967,7 @@ static BOOL ov105_022426E0(UnkStruct_ov105_02241FF4 *param0)
         if (IsScreenFadeDone() == TRUE) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
-            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
+            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, HEAP_ID_93);
             param0->unk_13_1 = 1;
             return 1;
         }
@@ -1482,7 +1482,7 @@ static BOOL ov105_022434BC(UnkStruct_ov105_02241FF4 *param0)
         if (IsScreenFadeDone() == TRUE) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
-            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, 93);
+            param0->unk_04 = ApplicationManager_New(&gPokemonSummaryScreenApp, param0->unk_140, HEAP_ID_93);
             param0->unk_13_1 = 1;
             return 1;
         }
@@ -1625,7 +1625,7 @@ static BOOL ov105_02243A3C(UnkStruct_ov105_02241FF4 *param0)
         v3 = ov105_022461A0(param0->unk_30C);
 
         ov105_02244FF8(param0, &param0->unk_50[2], v3, 0, 0, 15, 2, 0, 0, param0->unk_320);
-        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
+        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
 
         param0->unk_10 = ov105_02244D14(param0, 13);
         param0->unk_08++;
@@ -1749,7 +1749,7 @@ static void ov105_02243DE4(UnkStruct_ov105_02241FF4 *param0)
     ov105_02246260(param0->unk_4C, &param0->unk_50[7]);
     param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[7], 23, 1, 1, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
     param0->unk_10 = ov105_02244CC0(param0, &param0->unk_50[7], 24, 1, 1 + 16, TEXT_SPEED_NO_TRANSFER, 1, 2, 15, FONT_SYSTEM);
-    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
+    ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
     param0->unk_10 = ov105_02244D14(param0, 13);
     Window_ScheduleCopyToVRAM(&param0->unk_50[7]);
 }
@@ -1765,7 +1765,7 @@ static BOOL ov105_02243E84(UnkStruct_ov105_02241FF4 *param0)
         Window_ScheduleCopyToVRAM(&param0->unk_50[2]);
         PokemonSprite_Delete(param0->unk_12C[0]);
 
-        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
+        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
         param0->unk_10 = ov105_02244D14(param0, 10);
         ov105_02246074(param0->unk_30C, 0);
 
@@ -1888,7 +1888,7 @@ static BOOL ov105_0224400C(UnkStruct_ov105_02241FF4 *param0)
         ov105_02244A60(param0, 2);
         ov105_02244A18(param0, 3);
 
-        Bg_SetOffset(param0->unk_4C, 2, 0, param0->unk_0C);
+        Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, param0->unk_0C);
         Sound_PlayEffect(SEQ_SE_DP_ELEBETA2);
 
         param0->unk_19 = 0;
@@ -2088,7 +2088,7 @@ static BOOL ov105_02244424(UnkStruct_ov105_02241FF4 *param0)
         v2 = Pokemon_GetBoxPokemon(v1);
 
         ov105_02244F00(param0, 2, v2);
-        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->unk_138));
+        ov105_0224628C(&param0->unk_50[5], Options_Frame(param0->options));
 
         param0->unk_10 = ov105_02244C60(param0, &param0->unk_50[5], 16, 1, 1, Options_TextFrameDelay(SaveData_GetOptions(param0->saveData)), 1, 2, 15, FONT_MESSAGE);
 
@@ -2180,9 +2180,9 @@ static void ov105_02244584(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_93);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_93);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -2202,8 +2202,8 @@ static void ov105_02244584(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v2, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
@@ -2223,8 +2223,8 @@ static void ov105_02244584(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 3, &v3, 0);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
     }
 
     {
@@ -2244,8 +2244,8 @@ static void ov105_02244584(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v4, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v4, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     G2_SetBG0Priority(0);
@@ -2278,7 +2278,7 @@ static void ov105_02244678(UnkStruct_ov105_02241FF4 *param0)
         ov105_022449A4(param0, 3);
         ov105_02244A60(param0, 2);
 
-        Bg_SetOffset(param0->unk_4C, 2, 0, param0->unk_0C);
+        Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 0, param0->unk_0C);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -2299,10 +2299,10 @@ static void ov105_0224473C(BgConfig *param0)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
 
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
     Heap_FreeToHeap(param0);
 
     return;
@@ -2322,7 +2322,7 @@ static BOOL ov105_02244780(UnkStruct_ov105_02241FF4 *param0)
 
     v3 = 0;
 
-    Bg_SetOffset(param0->unk_4C, 2, 1, 8);
+    Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 1, 8);
     param0->unk_0C = Bg_GetXOffset(param0->unk_4C, 2);
 
     for (v0 = 0; v0 < param0->unk_12; v0++) {
@@ -2354,7 +2354,7 @@ static BOOL ov105_02244830(UnkStruct_ov105_02241FF4 *param0)
 
     v3 = 0;
 
-    Bg_SetOffset(param0->unk_4C, 2, 1, 8);
+    Bg_SetOffset(param0->unk_4C, BG_LAYER_MAIN_2, 1, 8);
     param0->unk_0C = Bg_GetXOffset(param0->unk_4C, 2);
 
     for (v0 = 0; v0 < param0->unk_12; v0++) {
@@ -2464,7 +2464,7 @@ static void ov105_02244AA8(UnkStruct_ov105_02241FF4 *param0, u32 param1)
 {
     Graphics_LoadTilesToBgLayerFromOpenNARC(param0->unk_338, 4, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param0->unk_338, 9, param0->unk_4C, param1, 0, 0, 1, HEAP_ID_93);
-    Bg_SetPriority(1, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 2);
 
     return;
 }
@@ -2474,7 +2474,7 @@ static void ov105_02244AF8(void)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = Graphics_GetPlttData(150, 130, &v1, HEAP_ID_93);
+    v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 130, &v1, HEAP_ID_93);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 11));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 11));
@@ -2627,11 +2627,8 @@ static void ov105_02244F00(UnkStruct_ov105_02241FF4 *param0, u32 param1, BoxPoke
 static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4)
 {
     TextColor v0;
-    const TrainerInfo *v1;
-    Strbuf *v2;
-
-    v1 = SaveData_GetTrainerInfo(param0->saveData);
-    v2 = Strbuf_Init((7 + 1), HEAP_ID_93);
+    const TrainerInfo *v1 = SaveData_GetTrainerInfo(param0->saveData);
+    Strbuf *v2 = Strbuf_Init((7 + 1), HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
     Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
@@ -2652,9 +2649,8 @@ static void ov105_02244F0C(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32
 static void ov105_02244F84(UnkStruct_ov105_02241FF4 *param0, Window *param1, u32 param2, u32 param3, u8 param4)
 {
     TextColor v0;
-    Strbuf *v1;
     TrainerInfo *v2 = CommInfo_TrainerInfo(1 - CommSys_CurNetId());
-    v1 = Strbuf_Init((7 + 1), HEAP_ID_93);
+    Strbuf *v1 = Strbuf_Init((7 + 1), HEAP_ID_93);
 
     Window_FillTilemap(param1, 0);
     TrainerInfo_NameStrbuf(v2, v1);
@@ -2882,7 +2878,7 @@ static void ov105_02245464(UnkStruct_ov105_02241FF4 *param0)
     memset(param0->unk_140, 0, sizeof(PokemonSummary));
 
     param0->unk_140->monData = param0->unk_31C;
-    param0->unk_140->options = param0->unk_138;
+    param0->unk_140->options = param0->options;
     param0->unk_140->dataType = SUMMARY_DATA_PARTY_MON;
     param0->unk_140->mode = SUMMARY_MODE_LOCK_MOVES;
     param0->unk_140->monMax = param0->unk_12;
@@ -3300,9 +3296,9 @@ static void ov105_02245A30(UnkStruct_ov105_02241FF4 *param0)
 
 static void ov105_02245A64(UnkStruct_ov105_02241FF4 *param0)
 {
-    Bg_SetPriority(1, 1);
-    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_93);
-    Bg_ClearTilemap(param0->unk_4C, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 1);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_93);
+    Bg_ClearTilemap(param0->unk_4C, BG_LAYER_MAIN_1);
     ov105_02246214(param0->unk_4C, param0->unk_50);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
 

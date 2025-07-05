@@ -194,7 +194,7 @@ void sub_02052E58(FieldTask *param0)
     v5->unk_10.unk_08 = SaveData_GetPokedex(fieldSystem->saveData);
 
     if (SystemFlag_CheckGameCompleted(v3) == 0) {
-        sub_02055C2C(fieldSystem);
+        FieldSystem_RecordFirstCompletion(fieldSystem);
     }
 
     v7 = SaveData_GetParty(fieldSystem->saveData);
@@ -257,23 +257,23 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
     SetAllGraphicsModes(&v1);
-    Bg_MaskPalette(3, 0x0);
-    Bg_InitFromTemplate(fieldSystem->bgConfig, 3, &v2, 0);
-    Bg_ClearTilesRange(3, 0x20, 0, HEAP_ID_FIELD_TASK);
+    Bg_MaskPalette(BG_LAYER_MAIN_3, 0x0);
+    Bg_InitFromTemplate(fieldSystem->bgConfig, BG_LAYER_MAIN_3, &v2, 0);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_3, 0x20, 0, HEAP_ID_FIELD_TASK);
     Bg_FillTilemapRect(fieldSystem->bgConfig, 3, 0x0, 0, 0, 32, 32, 17);
     Bg_CopyTilemapBufferToVRAM(fieldSystem->bgConfig, 3);
 }
 
 static void sub_02052FA8(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
 {
-    Options *v0 = SaveData_GetOptions(fieldSystem->saveData);
+    Options *options = SaveData_GetOptions(fieldSystem->saveData);
 
     param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
     FieldMessage_AddWindow(fieldSystem->bgConfig, &param1->unk_1C, 3);
-    FieldMessage_DrawWindow(&param1->unk_1C, v0);
+    FieldMessage_DrawWindow(&param1->unk_1C, options);
 
-    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, v0, 1);
+    param1->unk_34 = FieldMessage_Print(&param1->unk_1C, param1->unk_2C, options, 1);
     param1->unk_30 = Window_AddWaitDial(&param1->unk_1C, 1024 - (18 + 12));
 }
 
@@ -318,5 +318,5 @@ static void sub_02053098(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
         Window_Remove(&param1->unk_1C);
     }
 
-    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, 3);
+    Bg_FreeTilemapBuffer(fieldSystem->bgConfig, BG_LAYER_MAIN_3);
 }

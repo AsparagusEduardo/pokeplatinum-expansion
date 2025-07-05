@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_defs/struct_02089438.h"
 #include "struct_defs/struct_02089688.h"
@@ -151,40 +151,40 @@ static int sub_0208927C(ApplicationManager *appMan, int *param1)
     return 1;
 }
 
-UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Options *param3, u32 param4, u32 param5)
+static UnkStruct_02089438 *sub_020893B4(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
 {
-    int v0;
+    int i;
     UnkStruct_02089438 *v1 = NULL;
 
     v1 = Heap_AllocFromHeap(heapID, sizeof(UnkStruct_02089438));
 
     v1->unk_00 = param1;
     v1->unk_1C = Strbuf_Init(param1 + 1, heapID);
-    v1->unk_20 = param3;
+    v1->options = options;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        v1->unk_04[v0] = param2[v0];
+    for (i = 0; i < 4; i++) {
+        v1->unk_04[i] = param2[i];
     }
 
-    v1->unk_04[v0] = param2[v0 - 1];
+    v1->unk_04[i] = param2[i - 1];
     v1->unk_2C = param4;
     v1->unk_30 = param5;
 
     return v1;
 }
 
-UnkStruct_02089438 *sub_02089400(int heapID, int param1, int param2[], Options *param3, u32 param4, u32 param5)
+UnkStruct_02089438 *sub_02089400(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5)
 {
-    UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, param3, param4, param5);
+    UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, options, param4, param5);
 
     v0->unk_24 = 0;
     v0->unk_28 = 0;
     return v0;
 }
 
-UnkStruct_02089438 *sub_0208941C(int heapID, int param1, int param2[], Options *param3, u32 param4, u32 param5, u32 param6, u32 param7)
+UnkStruct_02089438 *sub_0208941C(int heapID, int param1, int param2[], Options *options, u32 param4, u32 param5, u32 param6, u32 param7)
 {
-    UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, param3, param4, param5);
+    UnkStruct_02089438 *v0 = sub_020893B4(heapID, param1, param2, options, param4, param5);
 
     v0->unk_24 = param6;
     v0->unk_28 = param7;
@@ -275,12 +275,12 @@ static void sub_0208945C(BgConfig *param0)
             },
         };
 
-        Bg_InitFromTemplate(param0, 1, &v1[0], 0);
-        Bg_InitFromTemplate(param0, 2, &v1[1], 0);
-        Bg_InitFromTemplate(param0, 3, &v1[2], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_ClearTilemap(param0, 2);
-        Bg_ClearTilemap(param0, 3);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1[0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v1[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v1[2], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -323,14 +323,14 @@ static void sub_0208945C(BgConfig *param0)
             { 0 },
         };
 
-        Bg_InitFromTemplate(param0, 4, &v2[0], 0);
-        Bg_InitFromTemplate(param0, 5, &v2[1], 0);
-        Bg_InitFromTemplate(param0, 6, &v2[2], 0);
-        Bg_InitFromTemplate(param0, 7, &v2[3], 0);
-        Bg_ClearTilemap(param0, 4);
-        Bg_ClearTilemap(param0, 5);
-        Bg_ClearTilemap(param0, 6);
-        Bg_ClearTilemap(param0, 7);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v2[0], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v2[1], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v2[2], 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v2[3], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_2);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG2, 0);

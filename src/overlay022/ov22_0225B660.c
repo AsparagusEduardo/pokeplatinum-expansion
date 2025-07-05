@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
@@ -209,9 +209,9 @@ static void ov22_0225B85C(UnkStruct_ov22_0225B85C *param0)
 
 static void ov22_0225B910(UnkStruct_ov22_0225B85C *param0)
 {
-    Graphics_LoadPalette(12, 12, 4, 0, 32, HEAP_ID_14);
-    Graphics_LoadTilemapToBgLayer(12, 11, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
-    Graphics_LoadTilesToBgLayer(12, 10, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 12, 4, 0, 32, HEAP_ID_14);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, param0->unk_14.unk_40, 4, 0, 0, 1, HEAP_ID_14);
 }
 
 static void ov22_0225B964(UnkStruct_ov22_0225B85C *param0)
@@ -241,9 +241,9 @@ static void ov22_0225BA40(UnkStruct_ov22_0225B85C *param0)
 
     Window_Add(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
     Font_LoadTextPalette(0, 5 * 32, HEAP_ID_14);
-    Bg_SetPriority(3, 0);
-    Bg_SetPriority(0, 2);
-    Bg_SetPriority(1, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_3, 0);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 1);
     Bg_SetOffset(param0->unk_14.unk_40, 3, 3, 0);
 }
 

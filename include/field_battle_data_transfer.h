@@ -2,11 +2,11 @@
 #define POKEPLATINUM_FIELD_BATTLE_DATA_TRANSFER_H
 
 #include "constants/battle.h"
+#include "generated/evolution_methods.h"
 #include "generated/map_headers.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/pokedexdata_decl.h"
-#include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "struct_defs/chatot_cry.h"
 #include "struct_defs/trainer.h"
@@ -18,6 +18,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "journal.h"
+#include "pal_pad.h"
 #include "party.h"
 #include "poketch.h"
 #include "rtc.h"
@@ -49,13 +50,13 @@ typedef struct FieldBattleDTO {
     BattleRecords battleRecords;
     GameRecords *records;
     JournalEntry *journalEntry;
-    PalPad *unk_124;
-    int background;
+    PalPad *palPad;
+    enum BattleBackground background;
     enum BattleTerrain terrain;
     int mapLabelTextID;
     int mapHeaderID;
     enum TimeOfDay timeOfDay;
-    int mapEvolutionMethod;
+    enum EvolutionMethod mapEvolutionMethod;
     BOOL visitedContestHall;
     BOOL metBebe;
     int caughtBattlerIdx;

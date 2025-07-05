@@ -82,7 +82,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     Window unk_5C[16];
     PaletteData *unk_15C;
     UnkStruct_0200C440 *unk_160;
-    Options *unk_164;
+    Options *options;
     SaveData *saveData;
     UnkStruct_ov111_021D2F80 unk_16C;
     UnkStruct_ov111_021D33F4 *unk_35C[4];
@@ -335,7 +335,7 @@ int ov111_021D0D80(ApplicationManager *appMan, int *param1)
     v1->saveData = v2->saveData;
     v1->unk_09 = v2->unk_04;
     v1->unk_3D8 = &v2->unk_14;
-    v1->unk_164 = SaveData_GetOptions(v1->saveData);
+    v1->options = SaveData_GetOptions(v1->saveData);
     v1->unk_3DC = &v2->unk_08[0];
     v1->unk_3E0 = &v2->unk_0E[0];
 
@@ -469,7 +469,7 @@ static BOOL ov111_021D0FC8(UnkStruct_ov111_021D0F7C *param0)
             ov111_021D3468(param0->unk_390[v0], (20 + v0));
         }
 
-        ov111_021D35C0(&param0->unk_5C[15], Options_Frame(param0->unk_164));
+        ov111_021D35C0(&param0->unk_5C[15], Options_Frame(param0->options));
         ov111_021D24D4(param0);
         GXLayers_EngineBToggleLayers((GX_PLANEMASK_BG0), 1);
         param0->unk_12 = (4 - 1);
@@ -613,9 +613,9 @@ static BOOL ov111_021D1284(UnkStruct_ov111_021D0F7C *param0)
 
         param0->unk_12 = 256;
 
-        Bg_SetOffset(param0->unk_58, 6, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, 0, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, 1, 0, param0->unk_12);
+        Bg_SetOffset(param0->unk_58, BG_LAYER_SUB_2, 0, param0->unk_12);
+        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_0, 0, param0->unk_12);
+        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_1, 0, param0->unk_12);
 
         GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG0), 1);
         GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG1), 1);
@@ -667,9 +667,9 @@ static BOOL ov111_021D1284(UnkStruct_ov111_021D0F7C *param0)
         param0->unk_08 = 2;
         break;
     case 2:
-        Bg_SetOffset(param0->unk_58, 6, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, 0, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, 1, 0, param0->unk_12);
+        Bg_SetOffset(param0->unk_58, BG_LAYER_SUB_2, 0, param0->unk_12);
+        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_0, 0, param0->unk_12);
+        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_1, 0, param0->unk_12);
 
         param0->unk_12 += -16;
 
@@ -950,9 +950,9 @@ static BOOL ov111_021D1980(UnkStruct_ov111_021D0F7C *param0)
         break;
 
     case 1:
-        Bg_SetOffset(param0->unk_58, 6, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, 0, 0, param0->unk_12);
-        Bg_SetOffset(param0->unk_58, 1, 0, param0->unk_12);
+        Bg_SetOffset(param0->unk_58, BG_LAYER_SUB_2, 0, param0->unk_12);
+        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_0, 0, param0->unk_12);
+        Bg_SetOffset(param0->unk_58, BG_LAYER_MAIN_1, 0, param0->unk_12);
         param0->unk_12 += -16;
 
         if (param0->unk_10 >= 256) {
@@ -1260,12 +1260,12 @@ static void ov111_021D2044(BgConfig *param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
-    Bg_FreeTilemapBuffer(param0, 7);
-    Bg_FreeTilemapBuffer(param0, 6);
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
-    Bg_FreeTilemapBuffer(param0, 2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
     Heap_FreeToHeap(param0);
 
     return;
@@ -1339,9 +1339,9 @@ static void ov111_021D20EC(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v1, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v1, 0);
         Bg_ClearTilesRange(4, 32, 0, HEAP_ID_115);
-        Bg_ClearTilemap(param0, 4);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     {
@@ -1361,8 +1361,8 @@ static void ov111_021D20EC(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 7, &v2, 0);
-        Bg_ClearTilemap(param0, 7);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_3, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_3);
     }
 
     {
@@ -1382,8 +1382,8 @@ static void ov111_021D20EC(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 6, &v3, 0);
-        Bg_ClearTilemap(param0, 6);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_2);
     }
 
     {
@@ -1403,8 +1403,8 @@ static void ov111_021D20EC(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v4, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v4, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -1424,8 +1424,8 @@ static void ov111_021D20EC(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v5, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v5, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -1445,9 +1445,9 @@ static void ov111_021D20EC(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v6, 0);
-        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_115);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v6, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_115);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG0), 0);
@@ -1478,7 +1478,7 @@ static void ov111_021D22D0(void)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = Graphics_GetPlttData(184, 34, &v1, HEAP_ID_115);
+    v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__SCRATCH__SCRATCH, 34, &v1, HEAP_ID_115);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 5));
     GXS_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 5));
@@ -1492,7 +1492,7 @@ static void ov111_021D2304(void)
     void *v0;
     NNSG2dPaletteData *v1;
 
-    v0 = Graphics_GetPlttData(184, 0, &v1, HEAP_ID_115);
+    v0 = Graphics_GetPlttData(NARC_INDEX_RESOURCE__ENG__SCRATCH__SCRATCH, 0, &v1, HEAP_ID_115);
 
     DC_FlushRange(v1->pRawData, (sizeof(u16) * 16 * 9));
     GX_LoadBGPltt(v1->pRawData, 0, (sizeof(u16) * 16 * 10));
@@ -2108,7 +2108,7 @@ static void ov111_021D2E28(UnkStruct_ov111_021D0F7C *param0)
 
 static void ov111_021D2E4C(UnkStruct_ov111_021D0F7C *param0)
 {
-    param0->unk_3F0 = Graphics_GetCharData(184, 7, 0, &param0->unk_3F4, HEAP_ID_115);
+    param0->unk_3F0 = Graphics_GetCharData(NARC_INDEX_RESOURCE__ENG__SCRATCH__SCRATCH, 7, 0, &param0->unk_3F4, HEAP_ID_115);
 
     Bg_LoadTiles(param0->unk_58, 0, param0->unk_3F4->pRawData, param0->unk_3F4->szByte, 0);
     Bg_CopyTilemapBufferToVRAM(param0->unk_58, 0);

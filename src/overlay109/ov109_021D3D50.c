@@ -417,8 +417,8 @@ static void ov109_021D40F0(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v1, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     {
@@ -438,8 +438,8 @@ static void ov109_021D40F0(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 5, &v2, 0);
-        Bg_ClearTilemap(param0, 5);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
     }
 
     {
@@ -459,7 +459,7 @@ static void ov109_021D40F0(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 6, &v3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v3, 0);
     }
 
     {
@@ -479,8 +479,8 @@ static void ov109_021D40F0(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v4, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v4, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -500,10 +500,10 @@ static void ov109_021D40F0(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v5, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v5, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_95);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_95);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_95);
 }
 
@@ -553,11 +553,11 @@ static void ov109_021D4294(UnkStruct_ov109_021D5140 *param0)
 
 static void ov109_021D42CC(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 6);
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
     Heap_FreeToHeap(param0);
 }
 
@@ -566,15 +566,15 @@ static void ov109_021D4300(UnkStruct_ov109_021D5140 *param0, NARC *param1)
     BgConfig *v0 = param0->unk_14;
 
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 16 * 2, HEAP_ID_95);
-    Graphics_LoadPalette(12, 12, 4, 0, 16 * 2, HEAP_ID_95);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__POKETCH, 12, 4, 0, 16 * 2, HEAP_ID_95);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_95);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_95);
-    Graphics_LoadTilesToBgLayer(12, 10, v0, 6, 0, 0, 1, HEAP_ID_95);
-    Graphics_LoadTilemapToBgLayer(12, 11, v0, 6, 0, 0, 1, HEAP_ID_95);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 10, v0, 6, 0, 0, 1, HEAP_ID_95);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 11, v0, 6, 0, 0, 1, HEAP_ID_95);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 2, v0, 1, 0, 32 * 8 * 0x20, 1, HEAP_ID_95);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 3, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_95);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_0C->unk_14.unk_10), HEAP_ID_95);
-    LoadStandardWindowGraphics(v0, 0, 1 + (18 + 12), 11, 0, HEAP_ID_95);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_0C->unk_14.options), HEAP_ID_95);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, 1 + (18 + 12), 11, 0, HEAP_ID_95);
 }
 
 static void ov109_021D43EC(void)
@@ -1646,9 +1646,9 @@ static void ov109_021D5668(UnkStruct_ov109_021D5140 *param0)
 
 static void ov109_021D577C(UnkStruct_ov109_021D5140 *param0, NARC *param1)
 {
-    param0->unk_3A8[0] = Graphics_GetPlttData(104, 8, &(param0->unk_3B0[0]), HEAP_ID_95);
+    param0->unk_3A8[0] = Graphics_GetPlttData(NARC_INDEX_GRAPHIC__WORLDTRADE, 8, &(param0->unk_3B0[0]), HEAP_ID_95);
     param0->unk_3A8[1] = Graphics_GetPlttDataFromOpenNARC(param1, 7, &(param0->unk_3B0[1]), HEAP_ID_95);
-    param0->unk_398[0] = Graphics_GetCharData(104, 32, 1, &(param0->unk_3A0[0]), HEAP_ID_95);
+    param0->unk_398[0] = Graphics_GetCharData(NARC_INDEX_GRAPHIC__WORLDTRADE, 32, 1, &(param0->unk_3A0[0]), HEAP_ID_95);
     param0->unk_398[1] = Graphics_GetCharDataFromOpenNARC(param1, 9, 1, &(param0->unk_3A0[1]), HEAP_ID_95);
 }
 

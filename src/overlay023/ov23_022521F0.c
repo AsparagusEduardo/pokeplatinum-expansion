@@ -3,8 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
+#include "struct_defs/underground_data.h"
 
 #include "field/field_system.h"
 #include "overlay023/ov23_02241F74.h"
@@ -88,7 +88,7 @@ static void ov23_022521F0(UnkStruct_ov23_02250CD4 *param0, int param1)
     int v1, v2, v3, v4, v5;
     UndergroundData *v6 = SaveData_GetUndergroundData(FieldSystem_GetSaveData(param0->fieldSystem));
 
-    MATH_InitRand16(&v0, sub_02028930(v6) + param1);
+    MATH_InitRand16(&v0, UndergroundData_GetRandomSeed(v6) + param1);
 
     for (v5 = 0; v5 < 5; v5++) {
         if (v5 == 0) {
@@ -135,7 +135,7 @@ static void ov23_022522F0(UnkStruct_ov23_02250CD4 *param0, int param1)
     UndergroundData *v7 = SaveData_GetUndergroundData(saveData);
     BOOL natdexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(saveData));
 
-    MATH_InitRand16(&v0, sub_02028930(v7) + param1);
+    MATH_InitRand16(&v0, UndergroundData_GetRandomSeed(v7) + param1);
 
     for (v5 = 0; v5 < 5; v5++) {
         v1 = MATH_Rand16(&v0, 139 - 1) + 1;
@@ -214,7 +214,7 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = StringList_New(v1, 4);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -253,7 +253,7 @@ static void *ov23_022524B8(UnkStruct_ov23_02250CD4 *param0)
 
     ov23_02251238(param0, v0.maxDisplay, v0.count);
 
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD);
     param0->unk_2AE = param0->unk_290;
 
     Window_CopyToVRAM(&param0->unk_10);
@@ -308,7 +308,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
     if (param1 != 0xfffffffe) {
         if (v1->unk_2AC == 1) {
             v6 = ov23_0224F66C(v3, v1);
-            MATH_InitRand16(&v0, sub_02028930(v2) + v1->unk_288 + v6);
+            MATH_InitRand16(&v0, UndergroundData_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = ov23_0225429C(v6);
 
             if (v7 == 6) {
@@ -321,7 +321,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
             v8 = v8 / 2;
         } else if (v1->unk_2AC == 0) {
             v6 = ov23_0224F61C(v3, v1);
-            MATH_InitRand16(&v0, sub_02028930(v2) + v1->unk_288 + v6);
+            MATH_InitRand16(&v0, UndergroundData_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = sub_0205742C(v6);
 
             if (v7 == 6) {
@@ -334,7 +334,7 @@ static void ov23_02252754(ListMenu *param0, u32 param1, u8 param2)
             v8 = v8 / 2;
         } else {
             v6 = ov23_0224F6C8(v3, v1);
-            MATH_InitRand16(&v0, sub_02028930(v2) + v1->unk_288 + v6);
+            MATH_InitRand16(&v0, UndergroundData_GetRandomSeed(v2) + v1->unk_288 + v6);
             v7 = ov23_0225426C(v6);
 
             if (v7 == 6) {
@@ -396,7 +396,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
     const int v1 = 5 + 1;
 
     ov23_0224FB7C(param0);
-    param0->unk_40 = StringList_New(v1, 4);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 19, 3, 12, v1 * 2, 13, (((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - 12 * 6) - 12 * 12));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -439,7 +439,7 @@ static void ov23_02252A18(UnkStruct_ov23_02250CD4 *param0)
     param0->unk_2AE = param0->unk_290;
 
     ov23_02251238(param0, v0.maxDisplay, v0.count);
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD);
     Window_CopyToVRAM(&param0->unk_10);
 }
 

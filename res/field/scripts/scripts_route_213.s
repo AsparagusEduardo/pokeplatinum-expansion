@@ -33,8 +33,8 @@ _0051:
 
 _0062:
     SetObjectEventPos 30, 0x28E, 0x32C
-    ScrCmd_189 30, 3
-    ScrCmd_188 30, 17
+    SetObjectEventDir 30, DIR_EAST
+    SetObjectEventMovementType 30, MOVEMENT_TYPE_LOOK_RIGHT
     Return
 
 _0078:
@@ -78,8 +78,8 @@ _010B:
     SetFlag FLAG_UNK_0x0118
     RemoveObject 30
     SetObjectEventPos 30, 0x2AB, 0x341
-    ScrCmd_189 30, 3
-    ScrCmd_188 30, 17
+    SetObjectEventDir 30, DIR_EAST
+    SetObjectEventMovementType 30, MOVEMENT_TYPE_LOOK_RIGHT
     ClearFlag FLAG_UNK_0x021A
     AddObject 30
     ReleaseAll

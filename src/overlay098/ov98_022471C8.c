@@ -4,7 +4,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_02099F80.h"
@@ -539,25 +539,25 @@ static void ov98_02247510(BgConfig *param0)
                 0 },
         };
 
-        Bg_InitFromTemplate(param0, 0, &v2[0], 0);
-        Bg_ClearTilemap(param0, 0);
-        Bg_SetOffset(param0, 0, 0, 0);
-        Bg_SetOffset(param0, 0, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v2[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_0, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_0, 3, 0);
 
-        Bg_InitFromTemplate(param0, 1, &v2[1], 0);
-        Bg_ClearTilemap(param0, 1);
-        Bg_SetOffset(param0, 1, 0, 0);
-        Bg_SetOffset(param0, 1, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2[1], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_1, 3, 0);
 
-        Bg_InitFromTemplate(param0, 2, &v2[2], 0);
-        Bg_ClearTilemap(param0, 2);
-        Bg_SetOffset(param0, 2, 0, 0);
-        Bg_SetOffset(param0, 2, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2[2], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_2, 3, 0);
 
-        Bg_InitFromTemplate(param0, 3, &v2[3], 0);
-        Bg_ClearTilemap(param0, 3);
-        Bg_SetOffset(param0, 3, 0, 0);
-        Bg_SetOffset(param0, 3, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v2[3], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_3);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_MAIN_3, 3, 0);
     }
 
     {
@@ -590,29 +590,29 @@ static void ov98_02247510(BgConfig *param0)
                 0 },
         };
 
-        Bg_InitFromTemplate(param0, 4, &v3[0], 0);
-        Bg_ClearTilemap(param0, 4);
-        Bg_SetOffset(param0, 4, 0, 0);
-        Bg_SetOffset(param0, 4, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v3[0], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_0, 3, 0);
 
-        Bg_InitFromTemplate(param0, 5, &v3[1], 0);
-        Bg_ClearTilemap(param0, 5);
-        Bg_SetOffset(param0, 5, 0, 0);
-        Bg_SetOffset(param0, 5, 3, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v3[1], 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_1);
+        Bg_SetOffset(param0, BG_LAYER_SUB_1, 0, 0);
+        Bg_SetOffset(param0, BG_LAYER_SUB_1, 3, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_109);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_109);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_109);
 }
 
 static void ov98_022476D0(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
 static void ov98_02247704(UnkStruct_ov98_02247704 *param0)
@@ -624,15 +624,15 @@ static void ov98_02247704(UnkStruct_ov98_02247704 *param0)
     Graphics_LoadPaletteFromOpenNARC(v1, 3, 4, 0, 0, HEAP_ID_109);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_109);
     Font_LoadScreenIndicatorsPalette(4, 13 * 0x20, HEAP_ID_109);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_08), HEAP_ID_109);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_109);
-    LoadStandardWindowGraphics(v0, 2, (1 + (18 + 12)), 11, 0, HEAP_ID_109);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_109);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_109);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_2, (1 + (18 + 12)), 11, 0, HEAP_ID_109);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 2, v0, 1, 0, 0, 0, HEAP_ID_109);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 5, v0, 1, 0, 32 * 24 * 2, 0, HEAP_ID_109);
     Graphics_LoadTilesToBgLayerFromOpenNARC(v1, 10, v0, 5, 0, 0, 0, HEAP_ID_109);
     Graphics_LoadTilemapToBgLayerFromOpenNARC(v1, 11, v0, 5, 0, 32 * 24 * 2, 0, HEAP_ID_109);
-    Bg_MaskPalette(0, 0);
-    Bg_MaskPalette(4, 0);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0);
 
     inline_ov61_0222C3B0(&param0->unk_EC, v1, 4, 109);
 
@@ -740,7 +740,7 @@ static int ov98_02247B98(UnkStruct_ov98_02247704 *param0)
 
         Window_Add(param0->unk_04, &param0->unk_78, 0, v3[0], v3[1], v3[2], v3[3], 13, (((1 + (18 + 12)) + 9) + 27 * 4));
 
-        param0->unk_A0 = StringList_New(v5, 109);
+        param0->unk_A0 = StringList_New(v5, HEAP_ID_109);
 
         for (v1 = 0; v1 < v5; v1++) {
             StringList_AddFromMessageBank(param0->unk_A0, param0->unk_34, v4[v1].unk_00, v4[v1].unk_04);
@@ -748,7 +748,7 @@ static int ov98_02247B98(UnkStruct_ov98_02247704 *param0)
 
         v2.window = &param0->unk_78;
         v2.choices = param0->unk_A0;
-        param0->unk_A4 = ListMenu_New(&v2, 0, 0, 109);
+        param0->unk_A4 = ListMenu_New(&v2, 0, 0, HEAP_ID_109);
 
         Window_DrawStandardFrame(&param0->unk_78, 1, (1 + (18 + 12)), 11);
         Window_EraseMessageBox(&param0->unk_48, 1);
@@ -1707,17 +1707,16 @@ static int ov98_02248BFC(UnkStruct_ov98_02247704 *param0)
 {
     DWCUserData *v0;
     s32 v1;
-    SystemData *v2;
     WiFiList *v3 = SaveData_GetWiFiList(param0->unk_00->saveData);
-    v2 = SaveData_GetSystemData(param0->unk_00->saveData);
-    v0 = sub_0202AD28(v3);
-    v1 = sub_02025D74(v2);
+    SystemData *v2 = SaveData_GetSystemData(param0->unk_00->saveData);
+    v0 = WiFiList_GetUserData(v3);
+    v1 = SystemData_GetDWCProfileId(v2);
 
     if (v1 == 0) {
-        sub_02025D78(v2, sub_02039058(v3));
+        SystemData_SetDWCProfileId(v2, WiFiList_GetUserGsProfileId(v3));
     }
 
-    v1 = sub_02025D74(v2);
+    v1 = SystemData_GetDWCProfileId(v2);
 
     ov94_0223B140(v1, DWC_CreateFriendKey(v0));
 

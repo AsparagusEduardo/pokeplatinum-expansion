@@ -495,7 +495,7 @@ static BOOL ov86_0223B574(UnkStruct_ov86_0223B3C8 *param0)
 
     switch (param0->unk_00) {
     case 0:
-        Graphics_LoadTilemapToBgLayer(105, 1, param0->unk_10, 3, 0, 0, 1, HEAP_ID_63);
+        Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__DENDOU_DEMO, 1, param0->unk_10, 3, 0, 0, 1, HEAP_ID_63);
         param0->unk_00++;
         break;
     case 1:
@@ -673,9 +673,9 @@ static void ov86_0223B74C(UnkStruct_ov86_0223B3C8 *param0)
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
     SetAllGraphicsModes(&v2);
-    Bg_InitFromTemplate(param0->unk_10, 1, &v3, 0);
-    Bg_InitFromTemplate(param0->unk_10, 2, &v4, 0);
-    Bg_InitFromTemplate(param0->unk_10, 3, &v5, 0);
+    Bg_InitFromTemplate(param0->unk_10, BG_LAYER_MAIN_1, &v3, 0);
+    Bg_InitFromTemplate(param0->unk_10, BG_LAYER_MAIN_2, &v4, 0);
+    Bg_InitFromTemplate(param0->unk_10, BG_LAYER_MAIN_3, &v5, 0);
     Bg_FillTilesRange(param0->unk_10, 1, 0x0, 1, 0);
     Bg_FillTilemapRect(param0->unk_10, 1, 0x0, 0, 0, 32, 32, 0);
     Window_Add(param0->unk_10, &(param0->unk_14), 1, 0, 0, 32, 24, 1, 1);
@@ -704,9 +704,9 @@ static void ov86_0223B8C4(UnkStruct_ov86_0223B3C8 *param0)
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
     Window_Remove(&(param0->unk_14));
-    Bg_FreeTilemapBuffer(param0->unk_10, 1);
-    Bg_FreeTilemapBuffer(param0->unk_10, 2);
-    Bg_FreeTilemapBuffer(param0->unk_10, 3);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0->unk_10, BG_LAYER_MAIN_3);
     Heap_FreeToHeap(param0->unk_10);
 }
 
@@ -858,12 +858,12 @@ static void ov86_0223BAC8(UnkStruct_ov86_0223B3C8 *param0, NNSG2dCellDataBank *p
     NNS_G2dLoadPalette(v8, 192, NNS_G2D_VRAM_TYPE_2DMAIN, &v6);
 
     sub_02076AAC(((TrainerInfo_Gender(param0->unk_0C->unk_00) == 1) ? 1 : 0), 2, &v4);
-    sub_020135F0(v4.unk_00, v4.unk_14, HEAP_ID_63, &v0[0], param0->unk_310);
+    sub_020135F0(v4.narcID, v4.unk_14, HEAP_ID_63, &v0[0], param0->unk_310);
 
     DC_FlushRange(param0->unk_310, 3200);
     GX_LoadOBJ(param0->unk_310, 38400, 3200);
 
-    Graphics_LoadPalette(v4.unk_00, v4.unk_08, 1, 192, 0x20, HEAP_ID_63);
+    Graphics_LoadPalette(v4.narcID, v4.unk_08, 1, 192, 0x20, HEAP_ID_63);
 
     v3.priority = 0;
     param0->unk_1CC = SpriteList_Add(&v3);

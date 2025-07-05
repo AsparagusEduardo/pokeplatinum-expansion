@@ -350,8 +350,8 @@ static void ov94_022415F8(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v0, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v0, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -371,7 +371,7 @@ static void ov94_022415F8(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v1, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v1, 0);
     }
 
     {
@@ -391,7 +391,7 @@ static void ov94_022415F8(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v2, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v2, 0);
     }
 
     {
@@ -411,8 +411,8 @@ static void ov94_022415F8(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v3, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     {
@@ -432,32 +432,32 @@ static void ov94_022415F8(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 5, &v4, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v4, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_62);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_62);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_62);
 }
 
 static void ov94_022416E0(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
 static void ov94_0224170C(UnkStruct_ov94_0223FD4C *param0)
 {
     BgConfig *v0 = param0->unk_04;
 
-    Graphics_LoadPalette(104, 1, 0, 0, 16 * 3 * 2, HEAP_ID_62);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__WORLDTRADE, 1, 0, 0, 16 * 3 * 2, HEAP_ID_62);
     Font_LoadScreenIndicatorsPalette(0, 13 * 0x20, HEAP_ID_62);
-    LoadMessageBoxGraphics(v0, 0, 1, 10, Options_Frame(param0->unk_00->unk_24), HEAP_ID_62);
-    LoadStandardWindowGraphics(v0, 0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
-    Graphics_LoadTilesToBgLayer(104, 11, v0, 1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
-    Graphics_LoadTilemapToBgLayer(104, 23, v0, 1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, 1, 10, Options_Frame(param0->unk_00->options), HEAP_ID_62);
+    LoadStandardWindowGraphics(v0, BG_LAYER_MAIN_0, (1 + (18 + 12)), 11, 0, HEAP_ID_62);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 11, v0, BG_LAYER_MAIN_1, 0, 16 * 5 * 0x20, 1, HEAP_ID_62);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__WORLDTRADE, 23, v0, BG_LAYER_MAIN_1, 0, 32 * 24 * 2, 1, HEAP_ID_62);
 }
 
 static void ov94_022417A0(UnkStruct_ov94_0223FD4C *param0)
@@ -1091,7 +1091,7 @@ ListMenu *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Wi
     ListMenuTemplate v0;
     int v1;
 
-    *param1 = StringList_New(9, 62);
+    *param1 = StringList_New(9, HEAP_ID_62);
 
     for (v1 = 0; v1 < 9; v1++) {
         StringList_AddFromMessageBank(*param1, param3, 104 + v1, v1 + 1);
@@ -1103,7 +1103,7 @@ ListMenu *ov94_022426A8(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Wi
 
     Window_DrawStandardFrame(param2, 0, (1 + (18 + 12)), 11);
 
-    return ListMenu_New(&v0, param0->unk_10E4->unk_06, param0->unk_10E4->unk_04, 62);
+    return ListMenu_New(&v0, param0->unk_10E4->unk_06, param0->unk_10E4->unk_04, HEAP_ID_62);
 }
 
 static u16 Unk_ov94_02246928[] = {
@@ -1141,7 +1141,7 @@ static int ov94_02242718(StringList **param0, MessageLoader *param1, MessageLoad
         }
     }
 
-    *param0 = StringList_New(v2 + 1, 62);
+    *param0 = StringList_New(v2 + 1, HEAP_ID_62);
 
     for (v0 = 0; v0 < v3; v0++) {
         if (v4) {
@@ -1179,7 +1179,7 @@ ListMenu *ov94_022427C0(UnkStruct_ov94_0223FD4C *param0, StringList **param1, Wi
 
     Window_DrawStandardFrame(param2, 0, (1 + (18 + 12)), 11);
 
-    return ListMenu_New(&v0, param0->unk_111C.unk_04[v3], param0->unk_111C.unk_16[v3], 62);
+    return ListMenu_New(&v0, param0->unk_111C.unk_04[v3], param0->unk_111C.unk_16[v3], HEAP_ID_62);
 }
 
 static Unk_ov94_0224693C[][2] = {
@@ -1194,7 +1194,7 @@ ListMenu *ov94_02242840(StringList **param0, Window *param1, MessageLoader *para
     ListMenuTemplate v0;
     int v1;
 
-    *param0 = StringList_New(4, 62);
+    *param0 = StringList_New(4, HEAP_ID_62);
 
     for (v1 = 0; v1 < 4; v1++) {
         StringList_AddFromMessageBank(*param0, param2, Unk_ov94_0224693C[v1][0], Unk_ov94_0224693C[v1][1]);
@@ -1207,7 +1207,7 @@ ListMenu *ov94_02242840(StringList **param0, Window *param1, MessageLoader *para
 
     Window_DrawStandardFrame(param1, 0, (1 + (18 + 12)), 11);
 
-    return ListMenu_New(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, HEAP_ID_62);
 }
 
 ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *param2, int param3)
@@ -1225,7 +1225,7 @@ ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *para
         v3 = (NELEMS(Unk_ov94_022460AC));
     }
 
-    *param0 = StringList_New(v3, 62);
+    *param0 = StringList_New(v3, HEAP_ID_62);
 
     for (v1 = 0; v1 < v3; v1++) {
         StringList_AddFromMessageBank(*param0, param2, v2[v1].unk_00, v1);
@@ -1238,7 +1238,7 @@ ListMenu *ov94_022428B0(StringList **param0, Window *param1, MessageLoader *para
 
     Window_DrawStandardFrame(param1, 0, (1 + (18 + 12)), 11);
 
-    return ListMenu_New(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, HEAP_ID_62);
 }
 
 void ov94_02242934(UnkStruct_ov94_0223BA88_sub3 *param0, int param1, int param2)
@@ -1286,7 +1286,7 @@ ListMenu *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *para
     int v1;
     int v2 = NELEMS(Unk_ov94_02246174) + 2;
 
-    *param0 = StringList_New(v2, 62);
+    *param0 = StringList_New(v2, HEAP_ID_62);
 
     StringList_AddFromMessageBank(*param0, param3, 167, 0);
 
@@ -1303,7 +1303,7 @@ ListMenu *ov94_022429B4(StringList **param0, Window *param1, MessageLoader *para
 
     Window_DrawStandardFrame(param1, 1, (1 + (18 + 12)), 11);
 
-    return ListMenu_New(&v0, 0, 0, 62);
+    return ListMenu_New(&v0, 0, 0, HEAP_ID_62);
 }
 
 void ov94_02242A44(UnkStruct_ov94_0223FD4C *param0, int param1)

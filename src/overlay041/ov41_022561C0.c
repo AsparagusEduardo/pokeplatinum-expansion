@@ -2,11 +2,11 @@
 #include <nitro/sinit.h>
 #include <string.h>
 
+#include "applications/poketch/poketch_button.h"
+#include "applications/poketch/poketch_system.h"
 #include "overlay041/ov41_022567B0.h"
 #include "overlay041/struct_ov41_022567B0_1.h"
 #include "overlay041/struct_ov41_022567B0_decl.h"
-#include "poketch/poketch_button.h"
-#include "poketch/poketch_system.h"
 
 #include "bg_window.h"
 #include "heap.h"
@@ -88,7 +88,7 @@ static BOOL ov41_02256220(UnkStruct_ov41_02256220 *param0, PoketchSystem *poketc
 
         ov41_02256790(&param0->unk_04);
 
-        param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov41_02256300, param0, 8);
+        param0->buttonManager = PoketchButtonManager_New(v0, NELEMS(v0), ov41_02256300, param0, HEAP_ID_POKETCH_APP);
         param0->unk_5B88 = 0;
         param0->poketchSys = poketchSys;
 

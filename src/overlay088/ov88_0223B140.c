@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_02095E80_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02095E80_t.h"
 #include "struct_defs/struct_02099F80.h"
 
@@ -41,6 +40,7 @@
 #include "message_util.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "pal_pad.h"
 #include "party.h"
 #include "pltt_transfer.h"
 #include "pokemon.h"
@@ -305,14 +305,14 @@ int ov88_0223B140(ApplicationManager *appMan, int *param1)
     ov88_0223C63C();
     ov88_0223C66C(v0, v1);
     ov88_0223CBA0(v0);
-    ov88_0223E9C4(v0->unk_174, v0->unk_49C, v0->unk_08->unk_18);
+    ov88_0223E9C4(v0->unk_174, v0->unk_49C, v0->unk_08->options);
 
     v0->fieldSystem = v0->unk_08->fieldSystem;
 
     sub_02095E60(v0->fieldSystem, v0);
     ov88_0223ECBC(&v0->unk_49C[23], 20, FONT_MESSAGE, v0->unk_184, v0->unk_178);
     sub_02095CD4(v0->fieldSystem);
-    Bg_ToggleLayer(0, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     sub_02038A1C(26, v0->unk_174);
     sub_02039734();
@@ -368,20 +368,20 @@ static void ov88_0223B3C0(UnkStruct_02095E80 *param0)
     ov88_0223B4F0(param0);
     ov88_0223B320(param0);
 
-    LoadMessageBoxGraphics(param0->unk_174, 0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->unk_18), HEAP_ID_26);
-    LoadStandardWindowGraphics(param0->unk_174, 0, (512 - 9), 11, 0, HEAP_ID_26);
+    LoadMessageBoxGraphics(param0->unk_174, BG_LAYER_MAIN_0, (512 - (9 + (18 + 12))), 10, Options_Frame(param0->unk_08->options), HEAP_ID_26);
+    LoadStandardWindowGraphics(param0->unk_174, BG_LAYER_MAIN_0, (512 - 9), 11, 0, HEAP_ID_26);
 
     ov88_0223ECBC(&param0->unk_49C[21], 15, FONT_MESSAGE, param0->unk_184, param0->unk_178);
 
-    Bg_ToggleLayer(4, 1);
-    Bg_ToggleLayer(5, 1);
-    Bg_ToggleLayer(6, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    Bg_ToggleLayer(0, 1);
-    Bg_ToggleLayer(1, 1);
-    Bg_ToggleLayer(2, 1);
-    Bg_ToggleLayer(3, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
     ov88_0223C63C();
@@ -513,13 +513,13 @@ static void ov88_0223B748(Window *param0, StringTemplate *param1, MessageLoader 
 
 static void ov88_0223B7A0(Party *param0, int param1, UnkStruct_02095E80 *param2)
 {
-    int v0;
+    int i;
     int v1;
 
-    for (v0 = 0; v0 < Party_GetCurrentCount(param0); v0++) {
-        v1 = v0 + param1;
+    for (i = 0; i < Party_GetCurrentCount(param0); i++) {
+        v1 = i + param1;
 
-        param2->unk_7E8[v1] = Graphics_GetCharData(19, PokeIconSpriteIndex(param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_05, param2->unk_6F4[v1].unk_06), 0, &param2->unk_818[v1], HEAP_ID_26);
+        param2->unk_7E8[v1] = Graphics_GetCharData(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconSpriteIndex(param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_05, param2->unk_6F4[v1].unk_06), 0, &param2->unk_818[v1], HEAP_ID_26);
 
         DC_FlushRange(param2->unk_818[v1]->pRawData, 0x20 * 4 * 4);
 
@@ -541,10 +541,10 @@ static void ov88_0223B7A0(Party *param0, int param1, UnkStruct_02095E80 *param2)
         }
     }
 
-    for (; v0 < 6; v0++) {
-        Sprite_SetDrawFlag(param2->unk_3D4[v0 + param1], 0);
-        Sprite_SetDrawFlag(param2->unk_404[v0 + param1], 0);
-        Sprite_SetDrawFlag(param2->unk_434[v0 + param1], 0);
+    for (; i < 6; i++) {
+        Sprite_SetDrawFlag(param2->unk_3D4[i + param1], 0);
+        Sprite_SetDrawFlag(param2->unk_404[i + param1], 0);
+        Sprite_SetDrawFlag(param2->unk_434[i + param1], 0);
     }
 }
 
@@ -697,9 +697,9 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         break;
     case 16:
         BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_MAIN_SCREEN);
-        Bg_ToggleLayer(1, 1);
-        Bg_ToggleLayer(2, 1);
-        Bg_ToggleLayer(3, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_1, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_2, 1);
+        Bg_ToggleLayer(BG_LAYER_MAIN_3, 1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         param0->unk_4C++;
@@ -715,9 +715,9 @@ static int ov88_0223B914(UnkStruct_02095E80 *param0)
         break;
     case 18:
         BrightnessController_StartTransition(8, 0, -16, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_OBJ, BRIGHTNESS_SUB_SCREEN);
-        Bg_ToggleLayer(4, 1);
-        Bg_ToggleLayer(5, 1);
-        Bg_ToggleLayer(6, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_0, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_1, 1);
+        Bg_ToggleLayer(BG_LAYER_SUB_2, 1);
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         param0->unk_4C++;
@@ -956,8 +956,8 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 0, &v1, 0);
-        Bg_ClearTilemap(param0, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_0, &v1, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_0);
     }
 
     {
@@ -977,8 +977,8 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 1, &v2, 0);
-        Bg_ClearTilemap(param0, 1);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_1, &v2, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_1);
     }
 
     {
@@ -998,8 +998,8 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 2, &v3, 0);
-        Bg_ClearTilemap(param0, 2);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_2, &v3, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_MAIN_2);
     }
 
     {
@@ -1019,7 +1019,7 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 3, &v4, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_MAIN_3, &v4, 0);
     }
 
     {
@@ -1039,8 +1039,8 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 4, &v5, 0);
-        Bg_ClearTilemap(param0, 4);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_0, &v5, 0);
+        Bg_ClearTilemap(param0, BG_LAYER_SUB_0);
     }
 
     {
@@ -1060,7 +1060,7 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 5, &v6, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_1, &v6, 0);
     }
 
     {
@@ -1080,31 +1080,31 @@ static void ov88_0223C17C(BgConfig *param0)
             0
         };
 
-        Bg_InitFromTemplate(param0, 6, &v7, 0);
+        Bg_InitFromTemplate(param0, BG_LAYER_SUB_2, &v7, 0);
     }
 
-    Bg_ClearTilesRange(0, 32, 0, HEAP_ID_26);
-    Bg_ClearTilesRange(1, 32, 0, HEAP_ID_26);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_0, 32, 0, HEAP_ID_26);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_26);
     Bg_ClearTilesRange(4, 32, 0, HEAP_ID_26);
 
     {
         int v8;
 
         for (v8 = 0; v8 < 4; v8++) {
-            Bg_SetOffset(param0, 0 + v8, 0, 0);
-            Bg_SetOffset(param0, 0 + v8, 3, 0);
-            Bg_SetOffset(param0, 4 + v8, 0, 0);
-            Bg_SetOffset(param0, 4 + v8, 3, 0);
+            Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v8, 0, 0);
+            Bg_SetOffset(param0, BG_LAYER_MAIN_0 + v8, 3, 0);
+            Bg_SetOffset(param0, BG_LAYER_SUB_0 + v8, 0, 0);
+            Bg_SetOffset(param0, BG_LAYER_SUB_0 + v8, 3, 0);
         }
     }
 
-    Bg_ToggleLayer(0, 0);
-    Bg_ToggleLayer(1, 0);
-    Bg_ToggleLayer(2, 0);
-    Bg_ToggleLayer(3, 0);
-    Bg_ToggleLayer(4, 0);
-    Bg_ToggleLayer(5, 0);
-    Bg_ToggleLayer(6, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_0, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_1, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_2, 0);
+    Bg_ToggleLayer(BG_LAYER_MAIN_3, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_0, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_1, 0);
+    Bg_ToggleLayer(BG_LAYER_SUB_2, 0);
 
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 }
@@ -1150,14 +1150,14 @@ static void ov88_0223C370(UnkStruct_02095E80 *param0, ApplicationManager *appMan
 
 static void ov88_0223C44C(BgConfig *param0)
 {
-    Bg_FreeTilemapBuffer(param0, 6);
-    Bg_FreeTilemapBuffer(param0, 5);
-    Bg_FreeTilemapBuffer(param0, 4);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_SUB_0);
 
-    Bg_FreeTilemapBuffer(param0, 3);
-    Bg_FreeTilemapBuffer(param0, 2);
-    Bg_FreeTilemapBuffer(param0, 1);
-    Bg_FreeTilemapBuffer(param0, 0);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_3);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(param0, BG_LAYER_MAIN_0);
 }
 
 static void ov88_0223C488(NARC *param0, u32 param1, BgConfig *param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 heapID)
@@ -1193,8 +1193,8 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
 
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 4, 0, 16 * 9 * 2, HEAP_ID_26);
     Graphics_LoadPaletteFromOpenNARC(param1, 0, 0, 0, 16 * 9 * 2, HEAP_ID_26);
-    Bg_MaskPalette(0, 0);
-    Bg_MaskPalette(4, 0);
+    Bg_MaskPalette(BG_LAYER_MAIN_0, 0);
+    Bg_MaskPalette(BG_LAYER_SUB_0, 0);
     Font_LoadScreenIndicatorsPalette(0, 13 * 32, HEAP_ID_26);
     Graphics_LoadTilesToBgLayerFromOpenNARC(param1, 1, v0, 2, 0, 16 * 18 * 0x20, 1, HEAP_ID_26);
 
@@ -1208,7 +1208,7 @@ static void ov88_0223C504(UnkStruct_02095E80 *param0, NARC *param1)
     Graphics_LoadTilemapToBgLayerFromOpenNARC(param1, 6, v0, 6, 0, 32 * 24 * 2, 1, HEAP_ID_26);
     Font_LoadScreenIndicatorsPalette(4, 2 * 32, HEAP_ID_26);
     Font_LoadTextPalette(4, 3 * 32, HEAP_ID_26);
-    Bg_ClearTilemap(v0, 4);
+    Bg_ClearTilemap(v0, BG_LAYER_SUB_0);
 }
 
 static void ov88_0223C63C(void)
@@ -1252,7 +1252,7 @@ static void ov88_0223C66C(UnkStruct_02095E80 *param0, NARC *param1)
     SpriteTransfer_RequestChar(param0->unk_334[1][0]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_334[0][1]);
     SpriteTransfer_RequestPlttWholeRange(param0->unk_334[1][1]);
-    Graphics_LoadPalette(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_26);
+    Graphics_LoadPalette(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, HEAP_ID_26);
 }
 
 static int ov88_0223C800(int param0, Pokemon *param1, u8 *param2, PokemonSpriteTemplate *param3)
@@ -1647,20 +1647,21 @@ static void ov88_0223D0C0(SaveData *saveData)
 
 static void ov88_0223D0D4(TrainerInfo *param0, PalPad *param1, PalPad *param2)
 {
+    // this is the exact same as PalPad_CreateNetworkObject ?
     int v0;
 
-    CharCode_Copy(param2->unk_00, TrainerInfo_Name(param0));
+    CharCode_Copy(param2->trainerName, TrainerInfo_Name(param0));
 
-    param2->unk_10 = TrainerInfo_ID(param0);
-    param2->unk_14 = TrainerInfo_RegionCode(param0);
-    param2->unk_15 = TrainerInfo_GameCode(param0);
-    param2->unk_16 = TrainerInfo_Gender(param0);
+    param2->trainerId = TrainerInfo_ID(param0);
+    param2->regionCode = TrainerInfo_RegionCode(param0);
+    param2->gameCode = TrainerInfo_GameCode(param0);
+    param2->gender = TrainerInfo_Gender(param0);
 
     for (v0 = 0; v0 < 16; v0++) {
-        param2->unk_18[v0] = param1[v0].unk_10;
-        param2->unk_58[v0] = param1[v0].unk_15;
-        param2->unk_68[v0] = param1[v0].unk_14;
-        param2->unk_78[v0] = param1[v0].unk_16;
+        param2->associatedTrainerIds[v0] = param1[v0].trainerId;
+        param2->associatedTrainerGameCodes[v0] = param1[v0].gameCode;
+        param2->associatedTrainerRegionCodes[v0] = param1[v0].regionCode;
+        param2->associatedTrainerGenders[v0] = param1[v0].gender;
     }
 
     CommSys_SendDataHuge(28, param2, sizeof(PalPad));
@@ -1730,12 +1731,12 @@ static void ov88_0223D1EC(UnkStruct_02095E80 *param0, int param1)
     param0->unk_0C.move = 0;
     param0->unk_0C.showContest = PokemonSummaryScreen_ShowContestData(param0->unk_08->saveData);
     param0->unk_0C.dexMode = param0->unk_08->unk_30;
-    param0->unk_0C.options = param0->unk_08->unk_18;
+    param0->unk_0C.options = param0->unk_08->options;
     param0->unk_0C.specialRibbons = sub_0202D79C(param0->unk_08->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(&param0->unk_0C, Unk_ov88_0223F13C);
 
-    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, 26);
+    param0->appMan = ApplicationManager_New(&gPokemonSummaryScreenApp, &param0->unk_0C, HEAP_ID_26);
     param0->unk_3C = param1;
 }
 
@@ -1862,13 +1863,11 @@ static int ov88_0223D5B8(UnkStruct_02095E80 *param0)
         Sound_PlayEffect(SEQ_SE_CONFIRM);
         param0->unk_36C8 = v0;
 
-        {
-            TrainerInfo *v2 = TrainerInfo_New(26);
+        TrainerInfo *v2 = TrainerInfo_New(HEAP_ID_26);
 
-            TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
-            StringTemplate_SetPlayerName(param0->unk_36CC, 0, v2);
-            Heap_FreeToHeap(v2);
-        }
+        TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
+        StringTemplate_SetPlayerName(param0->unk_36CC, 0, v2);
+        Heap_FreeToHeap(v2);
 
         ov88_0223D49C(param0, 60);
         param0->unk_226C = ov88_0223D514;
@@ -1889,7 +1888,7 @@ static int ov88_0223D69C(UnkStruct_02095E80 *param0)
     int v1 = sub_0202AF94(param0->unk_36EC);
     int v2 = 5;
 
-    param0->unk_36D4 = StringList_New(v1 + 1, 26);
+    param0->unk_36D4 = StringList_New(v1 + 1, HEAP_ID_26);
 
     {
         MessageLoader *v3;
@@ -2072,7 +2071,7 @@ static int ov88_0223DA3C(UnkStruct_02095E80 *param0)
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
-    param0->unk_6C0 = StringList_New(3, 26);
+    param0->unk_6C0 = StringList_New(3, HEAP_ID_26);
 
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 18, 1);
@@ -2421,7 +2420,7 @@ static int ov88_0223E4BC(UnkStruct_02095E80 *param0)
     Bg_FillTilemapRect(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
     ov88_0223ECBC(&param0->unk_49C[22], 16, FONT_MESSAGE, param0->unk_184, param0->unk_17C);
 
-    param0->unk_6C0 = StringList_New(2, 26);
+    param0->unk_6C0 = StringList_New(2, HEAP_ID_26);
 
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 17, 0);
     StringList_AddFromMessageBank(param0->unk_6C0, param0->unk_184, 19, 1);
@@ -2502,7 +2501,7 @@ static void ov88_0223E694(Party *param0, Party *param1, int param2, int param3, 
         ResetChatotCryDataStatus(v4);
     }
 
-    sub_0202F180(param4->saveData, v1);
+    SaveData_UpdateCatchRecords(param4->saveData, v1);
     Pokemon_Copy(v1, Party_GetPokemonBySlotIndex(param0, param2));
     Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param1, param3));
     ov88_0223E7F0(param4->unk_1C, v1);
@@ -2525,8 +2524,8 @@ static void ov88_0223E7F0(JournalEntry *journalEntry, Pokemon *mon)
 static void ov88_0223E848(UnkStruct_02095E80 *param0)
 {
     param0->unk_2310 += 2;
-    Bg_SetOffset(param0->unk_174, 6, 0, param0->unk_2310);
-    Bg_SetOffset(param0->unk_174, 3, 0, param0->unk_2310);
+    Bg_SetOffset(param0->unk_174, BG_LAYER_SUB_2, 0, param0->unk_2310);
+    Bg_SetOffset(param0->unk_174, BG_LAYER_MAIN_3, 0, param0->unk_2310);
 }
 
 static void ov88_0223E87C(Sprite *param0, int param1, int param2)

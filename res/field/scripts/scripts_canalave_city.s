@@ -53,8 +53,8 @@ _00F8:
 
 _0100:
     SetObjectEventPos 16, 55, 0x2CC
-    ScrCmd_189 16, 3
-    ScrCmd_188 16, 17
+    SetObjectEventDir 16, DIR_EAST
+    SetObjectEventMovementType 16, MOVEMENT_TYPE_LOOK_RIGHT
     Return
 
 _0116:
@@ -63,14 +63,14 @@ _0116:
 
 _011C:
     SetObjectEventPos 11, 37, 0x2D1
-    ScrCmd_189 11, 1
-    ScrCmd_188 11, 15
+    SetObjectEventDir 11, DIR_SOUTH
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _0132:
     SetObjectEventPos 11, 39, 0x2DD
-    ScrCmd_189 11, 0
-    ScrCmd_188 11, 14
+    SetObjectEventDir 11, DIR_NORTH
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_NORTH
     Return
 
 _0148:
@@ -145,7 +145,7 @@ _027C:
     GoTo _028A
 
 _028A:
-    ScrCmd_188 11, 17
+    SetObjectEventMovementType 11, MOVEMENT_TYPE_LOOK_RIGHT
     ClearFlag FLAG_UNK_0x01B2
     AddObject 11
     ApplyMovement 11, _0340
@@ -674,8 +674,8 @@ _0959:
     WaitMovement
     RemoveObject 16
     SetObjectEventPos 16, 45, 0x2EE
-    ScrCmd_189 16, 2
-    ScrCmd_188 16, 16
+    SetObjectEventDir 16, DIR_WEST
+    SetObjectEventMovementType 16, MOVEMENT_TYPE_LOOK_LEFT
     AddObject 16
     SetVar VAR_UNK_0x40F8, 4
     ReleaseAll
@@ -701,7 +701,7 @@ _09BC:
     FacePlayer
     CheckItem ITEM_HM04, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, 1, _09FA
-    ScrCmd_09A VAR_RESULT, 70
+    FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
     GoToIfNe VAR_RESULT, 6, _09FA
     BufferRivalName 0
     Message 3

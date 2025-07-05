@@ -82,7 +82,7 @@ UnkStruct_ov20_021D30F8 *ov20_021D2EA4(UnkStruct_ov20_021D2128 *param0, const Un
     v0->unk_44 = NULL;
     v0->unk_4C = Strbuf_Init(128, HEAP_ID_35);
     v0->unk_48 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNK_0437, HEAP_ID_35);
-    v0->unk_50 = ColoredArrow_New(35);
+    v0->unk_50 = ColoredArrow_New(HEAP_ID_35);
 
     return v0;
 }
@@ -141,12 +141,12 @@ void ov20_021D2F50(UnkStruct_ov20_021D30F8 *param0, NARC *param1)
     Window_Add(v0, &param0->unk_2C, 0, 23, 15, 8, 4, 11, v1);
     v1 += 32;
 
-    Graphics_LoadTilesToBgLayer(38, 0, v0, 0, v1, 0, 0, HEAP_ID_35);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__PL_WINFRAME, 0, v0, 0, v1, 0, 0, HEAP_ID_35);
     param0->unk_60 = v1;
     v1 += 9;
 
-    Graphics_LoadPalette(38, 24, 0, 14 * 0x20, 0x20, HEAP_ID_35);
-    LoadMessageBoxGraphics(v0, 0, v1, 15, ov20_021D2080(param0->unk_04), HEAP_ID_35);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__PL_WINFRAME, 24, 0, 14 * 0x20, 0x20, HEAP_ID_35);
+    LoadMessageBoxGraphics(v0, BG_LAYER_MAIN_0, v1, 15, ov20_021D2080(param0->unk_04), HEAP_ID_35);
     Window_DrawMessageBox(&param0->unk_1C, v1, 15);
     Window_PutToTilemap(&param0->unk_0C);
     Window_PutToTilemap(&param0->unk_1C);

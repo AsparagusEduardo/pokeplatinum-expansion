@@ -92,9 +92,9 @@ void *ov97_022376C4(ApplicationManager *appMan, int heapID, int param2, int para
     return v0;
 }
 
-void ov97_022376FC(BgConfig *param0, int param1, u8 param2, u32 param3, u32 param4)
+void ov97_022376FC(BgConfig *bgConfig, int bgLayer, u8 param2, u32 param3, u32 param4)
 {
-    BgTemplate v0 = {
+    BgTemplate bgTemplate = {
         0,
         0,
         0x800,
@@ -110,28 +110,28 @@ void ov97_022376FC(BgConfig *param0, int param1, u8 param2, u32 param3, u32 para
         0
     };
 
-    v0.screenSize = param2;
+    bgTemplate.screenSize = param2;
 
     switch (param2) {
     case 1:
-        v0.bufferSize = 0x800;
+        bgTemplate.bufferSize = 0x800;
         break;
     case 2:
-        v0.bufferSize = 0x1000;
+        bgTemplate.bufferSize = 0x1000;
         break;
     case 3:
-        v0.bufferSize = 0x1000;
+        bgTemplate.bufferSize = 0x1000;
         break;
     case 4:
-        v0.bufferSize = 0x2000;
+        bgTemplate.bufferSize = 0x2000;
         break;
     }
 
-    v0.screenBase = param3 / 0x800;
-    v0.charBase = param4 / 0x4000;
+    bgTemplate.screenBase = param3 / 0x800;
+    bgTemplate.charBase = param4 / 0x4000;
 
-    Bg_InitFromTemplate(param0, param1, &v0, 0);
-    Bg_ClearTilemap(param0, param1);
+    Bg_InitFromTemplate(bgConfig, bgLayer, &bgTemplate, 0);
+    Bg_ClearTilemap(bgConfig, bgLayer);
 }
 
 void ov97_02237784(int param0)
@@ -655,7 +655,7 @@ static void ov97_022380C8(UnkStruct_ov97_0223F550 *param0, int param1, WonderCar
 static void ov97_02238174(void *param0)
 {
     UnkStruct_ov97_0223F550 *v0 = (UnkStruct_ov97_0223F550 *)param0;
-    Graphics_LoadPalette(116, 29, 4, 16 * 2 * 8, 16 * 2 * 6, v0->heapID);
+    Graphics_LoadPalette(NARC_INDEX_GRAPHIC__MYSTERY, 29, 4, 16 * 2 * 8, 16 * 2 * 6, v0->heapID);
 }
 
 void ov97_02238194(BgConfig *param0, WonderCard *param1)
@@ -666,11 +666,11 @@ void ov97_02238194(BgConfig *param0, WonderCard *param1)
     v1 = param1->pgt.type;
     v0 = ov97_02237EA8(v1);
 
-    Graphics_LoadTilesToBgLayer(116, 30, param0, 5, 0, 10 * 16 * 0x20, 1, v2->heapID);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__MYSTERY, 30, param0, 5, 0, 10 * 16 * 0x20, 1, v2->heapID);
 
     {
         NNSG2dScreenData *v3;
-        void *v4 = LoadMemberFromNARC(116, 31, 1, v2->heapID, 1);
+        void *v4 = LoadMemberFromNARC(NARC_INDEX_GRAPHIC__MYSTERY, 31, 1, v2->heapID, 1);
 
         NNS_G2dGetUnpackedScreenData(v4, &v3);
 

@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/poketch/poketch_graphics.h"
+#include "applications/poketch/poketch_task.h"
 #include "overlay031/struct_ov31_02256554_1.h"
 #include "overlay031/struct_ov31_02256554_decl.h"
-#include "poketch/poketch_graphics.h"
-#include "poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "heap.h"
@@ -99,7 +99,7 @@ static void ov31_022565E0(SysTask *param0, void *param1)
     GXSDispCnt v1;
     UnkStruct_ov31_02256554 *v2 = PoketchTask_GetTaskData(param1);
 
-    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->unk_04, BG_LAYER_SUB_2, &v0, 0);
 
     ov31_02256644(v2->unk_04);
     ov31_0225672C(v2->unk_04, v2->unk_00);
@@ -143,7 +143,7 @@ static void ov31_02256710(SysTask *param0, void *param1)
 {
     UnkStruct_ov31_02256554 *v0 = PoketchTask_GetTaskData(param1);
 
-    Bg_FreeTilemapBuffer(v0->unk_04, 6);
+    Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
     ov31_022565CC(param1);
 }
 

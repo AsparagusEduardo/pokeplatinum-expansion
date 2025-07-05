@@ -37,8 +37,8 @@ _0077:
 
 _0083:
     SetObjectEventPos 18, 0x349, 0x316
-    ScrCmd_188 18, 16
-    ScrCmd_189 18, 2
+    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_LEFT
+    SetObjectEventDir 18, DIR_WEST
     End
 
 _0099:
@@ -479,8 +479,8 @@ _05D7:
     RemoveObject 18
     WaitTime 1, VAR_RESULT
     SetObjectEventPos 18, 0x34D, 0x2EC
-    ScrCmd_188 18, 15
-    ScrCmd_189 18, 1
+    SetObjectEventMovementType 18, MOVEMENT_TYPE_LOOK_SOUTH
+    SetObjectEventDir 18, DIR_SOUTH
     ClearFlag FLAG_UNK_0x0239
     AddObject 18
     SetVar VAR_UNK_0x407E, 1

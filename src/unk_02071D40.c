@@ -5,11 +5,11 @@
 
 #include "generated/game_records.h"
 
-#include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_02072014.h"
+#include "struct_defs/underground_record.h"
 
 #include "field/field_system.h"
 
@@ -120,41 +120,41 @@ void sub_02071F20(TrainerCard *param0)
 
 u8 sub_02071F28(FieldSystem *fieldSystem)
 {
-    u8 v0;
+    u8 trainerCardStars;
     SaveData *saveData;
     GameRecords *gameRecords;
     VarsFlags *varsFlags;
-    SecretBaseRecord *v4;
+    UndergroundRecord *undergroundRecord;
     BattleFrontier *frontier;
 
     saveData = FieldSystem_GetSaveData(fieldSystem);
     gameRecords = SaveData_GetGameRecords(saveData);
     varsFlags = SaveData_GetVarsFlags(saveData);
-    v4 = SaveData_SecretBaseRecord(saveData);
+    undergroundRecord = SaveData_UndergroundRecord(saveData);
     frontier = SaveData_GetBattleFrontier(saveData);
-    v0 = 0;
+    trainerCardStars = 0;
 
     if (SystemFlag_CheckGameCompleted(varsFlags)) {
-        v0++;
+        trainerCardStars++;
     }
 
     if (Pokedex_NationalDexCompleted(SaveData_GetPokedex(saveData))) {
-        v0++;
+        trainerCardStars++;
     }
 
     if ((sub_02030698(frontier, 0, 0xff) >= 100) || (sub_02030698(frontier, 2, 0xff) >= 100) || (sub_02030698(frontier, 4, 0xff) >= 100) || (sub_02030698(frontier, 6, 0xff) >= 100) || (sub_02030698(frontier, 8, 0xff) >= 100)) {
-        v0++;
+        trainerCardStars++;
     }
 
     if (SystemFlag_CheckContestMaster(varsFlags, 0) || SystemFlag_CheckContestMaster(varsFlags, 1) || SystemFlag_CheckContestMaster(varsFlags, 3) || SystemFlag_CheckContestMaster(varsFlags, 4) || SystemFlag_CheckContestMaster(varsFlags, 2)) {
-        v0++;
+        trainerCardStars++;
     }
 
-    if (sub_020294C0(v4) == 1) {
-        v0++;
+    if (UndergroundRecord_HasPlatBaseFlag(undergroundRecord) == TRUE) {
+        trainerCardStars++;
     }
 
-    return v0;
+    return trainerCardStars;
 }
 
 static void sub_02072014(const u8 param0, const u8 param1, const u8 param2, const u8 param3, const u8 param4, TrainerCard *param5)
@@ -241,11 +241,8 @@ static void sub_02072120(const u32 param0, const u32 param1, const u32 param2, c
 static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerCard *param2)
 {
     u8 v0;
-    UnkStruct_0202C834 *v1;
-    UnkStruct_0202C844 *v2;
-
-    v1 = sub_0202C834(fieldSystem->saveData);
-    v2 = sub_0202C844(v1);
+    UnkStruct_0202C834 *v1 = sub_0202C834(fieldSystem->saveData);
+    UnkStruct_0202C844 *v2 = sub_0202C844(v1);
 
     for (v0 = 0; v0 < 8; v0++) {
         if (TrainerInfo_HasBadge(param0, v0)) {
@@ -261,11 +258,8 @@ static void sub_0207216C(TrainerInfo *param0, FieldSystem *fieldSystem, TrainerC
 void sub_020721D4(FieldSystem *fieldSystem, const TrainerCard *param1)
 {
     u8 v0;
-    UnkStruct_0202C834 *v1;
-    UnkStruct_0202C844 *v2;
-
-    v1 = sub_0202C834(fieldSystem->saveData);
-    v2 = sub_0202C844(v1);
+    UnkStruct_0202C834 *v1 = sub_0202C834(fieldSystem->saveData);
+    UnkStruct_0202C844 *v2 = sub_0202C844(v1);
 
     for (v0 = 0; v0 < 8; v0++) {
         sub_0202C850(v0, param1->unk_48[v0].unk_00_1, v2);

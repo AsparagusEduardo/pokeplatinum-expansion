@@ -5,10 +5,10 @@
 
 #include "generated/items.h"
 
-#include "poketch/poketch_animation.h"
-#include "poketch/poketch_graphics.h"
-#include "poketch/poketch_system.h"
-#include "poketch/poketch_task.h"
+#include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_graphics.h"
+#include "applications/poketch/poketch_system.h"
+#include "applications/poketch/poketch_task.h"
 
 #include "graphics.h"
 #include "heap.h"
@@ -98,9 +98,9 @@ void PartyStatus_StartTaskById(PoketchPartyStatusGraphics *appData, enum PartySt
     PoketchTask_Start(sPartyStatusTasks, taskId, appData, appData->playerParty, appData->activeTaskIds, 2, HEAP_ID_POKETCH_APP);
 }
 
-BOOL PartyStatus_TaskIsNotActive(PoketchPartyStatusGraphics *appData, u32 animId)
+BOOL PartyStatus_TaskIsNotActive(PoketchPartyStatusGraphics *appData, u32 animID)
 {
-    return PoketchTask_TaskIsNotActive(appData->activeTaskIds, animId);
+    return PoketchTask_TaskIsNotActive(appData->activeTaskIds, animID);
 }
 
 BOOL PartyStatus_AllTasksDone(PoketchPartyStatusGraphics *graphicsData)
@@ -136,7 +136,7 @@ static void DrawAppScreen(SysTask *param0, void *param1)
     u32 v3;
 
     v2 = PoketchTask_GetTaskData(param1);
-    Bg_InitFromTemplate(v2->bgConfig, 6, &v0, 0);
+    Bg_InitFromTemplate(v2->bgConfig, BG_LAYER_SUB_2, &v0, 0);
 
     v3 = Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 106, v2->bgConfig, BG_LAYER_SUB_2, 0, 0, TRUE, HEAP_ID_POKETCH_APP);
     v3 /= TILE_SIZE_4BPP;
@@ -417,7 +417,7 @@ static void FreeAppScreen(SysTask *param0, void *param1)
 {
     PoketchPartyStatusGraphics *v0 = PoketchTask_GetTaskData(param1);
 
-    Bg_FreeTilemapBuffer(v0->bgConfig, 6);
+    Bg_FreeTilemapBuffer(v0->bgConfig, BG_LAYER_SUB_2);
     EndPoketchTask(param1);
 }
 

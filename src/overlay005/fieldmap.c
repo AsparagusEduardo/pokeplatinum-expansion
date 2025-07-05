@@ -10,7 +10,6 @@
 
 #include "struct_decls/struct_02020C44_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
-#include "struct_defs/struct_020556C4.h"
 #include "struct_defs/struct_02099F80.h"
 
 #include "field/field_system.h"
@@ -70,6 +69,7 @@
 #include "map_object.h"
 #include "narc.h"
 #include "overlay_manager.h"
+#include "overworld_map_history.h"
 #include "persisted_map_features.h"
 #include "player_avatar.h"
 #include "pltt_transfer.h"
@@ -82,7 +82,6 @@
 #include "unk_02020AEC.h"
 #include "unk_0202419C.h"
 #include "unk_020553DC.h"
-#include "unk_020556C4.h"
 #include "unk_020559DC.h"
 #include "unk_02055C50.h"
 #include "vram_transfer.h"
@@ -222,7 +221,7 @@ static BOOL FieldMap_Init(ApplicationManager *appMan, int *param1)
         sub_020556A0(fieldSystem, fieldSystem->location->mapId);
         sub_0203F5C0(fieldSystem, 3);
 
-        fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(4);
+        fieldSystem->unk_04->hBlankSystem = HBlankSystem_New(HEAP_ID_FIELD);
         HBlankSystem_Start(fieldSystem->unk_04->hBlankSystem);
         fieldSystem->unk_04->unk_20 = ov5_021EF4BC(HEAP_ID_FIELD, fieldSystem->unk_04->hBlankSystem);
         break;
@@ -512,19 +511,16 @@ static void ov5_021D134C(FieldSystem *fieldSystem, u8 param1)
 
 static void ov5_021D13B4(FieldSystem *fieldSystem)
 {
-    UnkStruct_020556C4 *v0;
-    int v1, v2, v3;
-
     if (MapHeader_IsOnMainMatrix(fieldSystem->location->mapId) == 0) {
         return;
     }
 
-    v0 = sub_0203A76C(SaveData_GetFieldOverworldState(fieldSystem->saveData));
-    v1 = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
-    v2 = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
-    v3 = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
+    OverworldMapHistory *mapHistory = FieldOverworldState_GetMapHistory(SaveData_GetFieldOverworldState(fieldSystem->saveData));
+    int mapX = (Player_GetXPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileX(fieldSystem->landDataMan)) / MAP_TILES_COUNT_X;
+    int mapZ = (Player_GetZPos(fieldSystem->playerAvatar) - LandDataManager_GetOffsetTileZ(fieldSystem->landDataMan)) / MAP_TILES_COUNT_Z;
+    int faceDirection = PlayerAvatar_GetDir(fieldSystem->playerAvatar);
 
-    sub_02055740(v0, v1, v2, v3);
+    OverworldMapHistory_Push(mapHistory, mapX, mapZ, faceDirection);
 }
 
 static void ov5_021D1414(void)
@@ -585,9 +581,9 @@ static void ov5_021D1444(BgConfig *bgl)
             0
         };
 
-        Bg_InitFromTemplate(bgl, 1, &v1, 0);
-        Bg_ClearTilesRange(1, 32, 0, HEAP_ID_FIELD);
-        Bg_ClearTilemap(bgl, 1);
+        Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_1, &v1, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilemap(bgl, BG_LAYER_MAIN_1);
     }
 
     {
@@ -607,9 +603,9 @@ static void ov5_021D1444(BgConfig *bgl)
             0
         };
 
-        Bg_InitFromTemplate(bgl, 2, &v2, 0);
-        Bg_ClearTilesRange(2, 32, 0, HEAP_ID_FIELD);
-        Bg_ClearTilemap(bgl, 2);
+        Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_2, &v2, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_2, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilemap(bgl, BG_LAYER_MAIN_2);
     }
     {
         BgTemplate v3 = {
@@ -628,9 +624,9 @@ static void ov5_021D1444(BgConfig *bgl)
             0
         };
 
-        Bg_InitFromTemplate(bgl, 3, &v3, 0);
-        Bg_ClearTilesRange(3, 32, 0, HEAP_ID_FIELD);
-        Bg_ClearTilemap(bgl, 3);
+        Bg_InitFromTemplate(bgl, BG_LAYER_MAIN_3, &v3, 0);
+        Bg_ClearTilesRange(BG_LAYER_MAIN_3, 32, 0, HEAP_ID_FIELD);
+        Bg_ClearTilemap(bgl, BG_LAYER_MAIN_3);
     }
 
     {
@@ -644,9 +640,9 @@ static void ov5_021D1444(BgConfig *bgl)
 static void ov5_021D1524(BgConfig *bgl)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
-    Bg_FreeTilemapBuffer(bgl, 1);
-    Bg_FreeTilemapBuffer(bgl, 2);
-    Bg_FreeTilemapBuffer(bgl, 3);
+    Bg_FreeTilemapBuffer(bgl, BG_LAYER_MAIN_1);
+    Bg_FreeTilemapBuffer(bgl, BG_LAYER_MAIN_2);
+    Bg_FreeTilemapBuffer(bgl, BG_LAYER_MAIN_3);
 }
 
 static void ov5_021D154C(void)
@@ -698,7 +694,7 @@ static void ov5_021D15F4(FieldSystem *fieldSystem)
 
     if (fieldSystem->unk_20 == 1) {
         if (FieldMap_InDistortionWorld(fieldSystem) == TRUE) {
-            ov9_02249F9C(fieldSystem);
+            DistWorld_UpdateCameraAngle(fieldSystem);
         }
 
         Camera_ComputeViewMatrixWithRoll();

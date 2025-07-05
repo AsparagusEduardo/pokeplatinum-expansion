@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/screen.h"
+#include "constants/graphics.h"
 
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -272,7 +272,7 @@ static UnkStruct_ov114_0225CDB4 *ov114_0225CD54(UnkStruct_ov114_0225CCD0 *param0
 static Sprite *ov114_0225CDB4(UnkStruct_ov114_0225CDB4 *param0, SpriteList *param1, s16 param2, s16 param3, u16 param4, u32 param5);
 static void ov114_0225CDE0(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_0225CDB4 *param1, NARC *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, u32 param9);
 static void ov114_0225CEB8(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_0225CDB4 *param1);
-static void ov114_0225CEF0(UnkStruct_ov114_0225CEF0 *param0, const GraphicsModes *param1, const UnkStruct_ov114_02260284 *param2, u32 param3, u32 param4);
+static void ov114_0225CEF0(UnkStruct_ov114_0225CEF0 *param0, const GraphicsModes *param1, const UnkStruct_ov114_02260284 *param2, u32 param3, u32 heapID);
 static void ov114_0225CF84(UnkStruct_ov114_0225CEF0 *param0);
 static void ov114_0225CFC0(UnkStruct_ov114_0225CEF0 *param0);
 static void ov114_0225CFCC(UnkStruct_ov114_0225CFCC *param0, u32 param1, u32 param2, u32 param3, u32 param4);
@@ -1319,11 +1319,11 @@ static void ov114_0225CEB8(UnkStruct_ov114_0225CCD0 *param0, UnkStruct_ov114_022
     }
 }
 
-static void ov114_0225CEF0(UnkStruct_ov114_0225CEF0 *param0, const GraphicsModes *param1, const UnkStruct_ov114_02260284 *param2, u32 param3, u32 param4)
+static void ov114_0225CEF0(UnkStruct_ov114_0225CEF0 *param0, const GraphicsModes *param1, const UnkStruct_ov114_02260284 *param2, u32 param3, u32 heapID)
 {
     SetAllGraphicsModes(param1);
 
-    param0->unk_00 = BgConfig_New(param4);
+    param0->unk_00 = BgConfig_New(heapID);
     param0->unk_04 = param2;
     param0->unk_08 = param3;
 
@@ -1335,7 +1335,7 @@ static void ov114_0225CEF0(UnkStruct_ov114_0225CEF0 *param0, const GraphicsModes
 
         for (v0 = 0; v0 < param3; v0++) {
             Bg_InitFromTemplate(param0->unk_00, param2[v0].unk_00, &param2[v0].unk_04, 0);
-            Bg_ClearTilesRange(param2[v0].unk_00, 32, 0, param4);
+            Bg_ClearTilesRange(param2[v0].unk_00, 32, 0, heapID);
             Bg_ClearTilemap(param0->unk_00, param2[v0].unk_00);
             Bg_SetOffset(param0->unk_00, param2[v0].unk_00, 0, 0);
             Bg_SetOffset(param0->unk_00, param2[v0].unk_00, 3, 0);
@@ -1345,7 +1345,7 @@ static void ov114_0225CEF0(UnkStruct_ov114_0225CEF0 *param0, const GraphicsModes
 
 static void ov114_0225CF84(UnkStruct_ov114_0225CEF0 *param0)
 {
-    Bg_SetOffset(param0->unk_00, 3, 3, 0);
+    Bg_SetOffset(param0->unk_00, BG_LAYER_MAIN_3, 3, 0);
 
     {
         int v0;
@@ -1521,8 +1521,8 @@ static void ov114_0225D290(UnkStruct_ov114_0225D338 *param0, UnkStruct_ov114_022
     u8 v3;
 
     sub_020959F4(1);
-    LoadMessageBoxGraphics(param1->unk_00, 2, 1, 13, v0, heapID);
-    LoadMessageBoxGraphics(param1->unk_00, 4, 1, 13, v0, heapID);
+    LoadMessageBoxGraphics(param1->unk_00, BG_LAYER_MAIN_2, 1, 13, v0, heapID);
+    LoadMessageBoxGraphics(param1->unk_00, BG_LAYER_SUB_0, 1, 13, v0, heapID);
 
     for (v2 = 0; v2 < 2; v2++) {
         if (v2 == 0) {
@@ -1942,8 +1942,8 @@ static void ov114_0225DAC0(UnkStruct_ov114_0225DAC0 *param0, u32 param1, u32 par
         break;
     }
 
-    Bg_SetPriority(1, 2);
-    Bg_SetPriority(0, 1);
+    Bg_SetPriority(BG_LAYER_MAIN_1, 2);
+    Bg_SetPriority(BG_LAYER_MAIN_0, 1);
     Window_Add(param4->unk_00, &param0->unk_00, 0, 5, 1 + Unk_ov114_02260204[param1 - 1].unk_00[v0], 26, 4, 12, 513 + ((26 * 4) * param5));
     Window_FillTilemap(&param0->unk_00, 0);
     Bg_CopyToTilemapRect(param4->unk_00, 1, 0, Unk_ov114_02260204[param1 - 1].unk_00[v0], 32, 6, param3->rawData, 0, Unk_ov114_02260204[param1 - 1].unk_04[param5], param3->screenWidth / 8, param3->screenHeight / 8);
@@ -2390,8 +2390,8 @@ static BOOL ov114_0225E438(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
 
         ov114_0225E4B0(param0, param1, 0);
 
-        Bg_ClearTilemap(param1->unk_00, 0);
-        Bg_ClearTilemap(param1->unk_00, 1);
+        Bg_ClearTilemap(param1->unk_00, BG_LAYER_MAIN_0);
+        Bg_ClearTilemap(param1->unk_00, BG_LAYER_MAIN_1);
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
         return 1;
     }
@@ -2404,12 +2404,12 @@ static void ov114_0225E4B0(UnkStruct_ov114_0225E1A4 *param0, UnkStruct_ov114_022
     switch (param0->unk_10) {
     case UnkEnum_ov66_022324D0_00:
     case UnkEnum_ov66_022324D0_01:
-        Bg_SetOffset(param1->unk_00, 0, 0, param2);
-        Bg_SetOffset(param1->unk_00, 1, 0, param2);
+        Bg_SetOffset(param1->unk_00, BG_LAYER_MAIN_0, 0, param2);
+        Bg_SetOffset(param1->unk_00, BG_LAYER_MAIN_1, 0, param2);
         break;
     case UnkEnum_ov66_022324D0_02:
-        Bg_SetOffset(param1->unk_00, 0, 3, param2);
-        Bg_SetOffset(param1->unk_00, 1, 3, param2);
+        Bg_SetOffset(param1->unk_00, BG_LAYER_MAIN_0, 3, param2);
+        Bg_SetOffset(param1->unk_00, BG_LAYER_MAIN_1, 3, param2);
         break;
     default:
         GF_ASSERT(0);

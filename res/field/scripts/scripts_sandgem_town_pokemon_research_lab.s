@@ -28,12 +28,12 @@ _003E:
 _005A:
     ClearFlag FLAG_UNK_0x0198
     SetObjectEventPos 0, 7, 14
-    ScrCmd_189 0, 1
-    ScrCmd_188 0, 15
+    SetObjectEventDir 0, DIR_SOUTH
+    SetObjectEventMovementType 0, MOVEMENT_TYPE_LOOK_SOUTH
     ClearFlag FLAG_UNK_0x0199
     SetObjectEventPos 3, 6, 14
-    ScrCmd_189 3, 1
-    ScrCmd_188 3, 15
+    SetObjectEventDir 3, DIR_SOUTH
+    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_SOUTH
     Return
 
 _008C:

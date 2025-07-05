@@ -3,12 +3,12 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "applications/poketch/poketch_animation.h"
+#include "applications/poketch/poketch_graphics.h"
+#include "applications/poketch/poketch_system.h"
+#include "applications/poketch/poketch_task.h"
 #include "overlay027/struct_ov27_0225680C_1.h"
 #include "overlay027/struct_ov27_0225680C_decl.h"
-#include "poketch/poketch_animation.h"
-#include "poketch/poketch_graphics.h"
-#include "poketch/poketch_system.h"
-#include "poketch/poketch_task.h"
 
 #include "bg_window.h"
 #include "graphics.h"
@@ -184,9 +184,9 @@ static void ov27_02256A18(SysTask *param0, void *param1)
     GXSDispCnt v1;
     UnkStruct_ov27_0225680C *v2 = PoketchTask_GetTaskData(param1);
 
-    Bg_InitFromTemplate(v2->unk_04, 6, &v0, 0);
-    Graphics_LoadTilesToBgLayer(12, 21, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
-    Graphics_LoadTilemapToBgLayer(12, 20, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    Bg_InitFromTemplate(v2->unk_04, BG_LAYER_SUB_2, &v0, 0);
+    Graphics_LoadTilesToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 21, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
+    Graphics_LoadTilemapToBgLayer(NARC_INDEX_GRAPHIC__POKETCH, 20, v2->unk_04, 6, 0, 0, 1, HEAP_ID_POKETCH_APP);
 
     PoketchGraphics_LoadActivePalette(0, 0);
     Bg_CopyTilemapBufferToVRAM(v2->unk_04, 6);
@@ -377,13 +377,9 @@ static void ov27_02256C2C(SysTask *param0, void *param1)
 
 static void ov27_02256C80(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov27_0225680C_1 *v0;
-    UnkStruct_ov27_0225680C *v1;
-    UnkStruct_ov27_02256E90 *v2;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
-    v2 = PoketchTask_GetExtraData(param1);
+    const UnkStruct_ov27_0225680C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov27_0225680C *v1 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov27_02256E90 *v2 = PoketchTask_GetExtraData(param1);
 
     if (v0->unk_18 != 3) {
         ov27_02256A04(param1);
@@ -410,13 +406,9 @@ static void ov27_02256C80(SysTask *param0, void *param1)
 
 static void ov27_02256D00(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov27_0225680C_1 *v0;
-    UnkStruct_ov27_0225680C *v1;
-    UnkStruct_ov27_02256E90 *v2;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
-    v2 = PoketchTask_GetExtraData(param1);
+    const UnkStruct_ov27_0225680C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov27_0225680C *v1 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov27_02256E90 *v2 = PoketchTask_GetExtraData(param1);
 
     if (v0->unk_18 != 4) {
         ov27_02256A04(param1);
@@ -443,13 +435,9 @@ static void ov27_02256D00(SysTask *param0, void *param1)
 
 static void ov27_02256D80(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov27_0225680C_1 *v0;
-    UnkStruct_ov27_0225680C *v1;
-    UnkStruct_ov27_02256E90 *v2;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
-    v2 = PoketchTask_GetExtraData(param1);
+    const UnkStruct_ov27_0225680C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov27_0225680C *v1 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov27_02256E90 *v2 = PoketchTask_GetExtraData(param1);
 
     if (v0->unk_18 != 5) {
         ov27_02256A04(param1);
@@ -479,13 +467,9 @@ static void ov27_02256D80(SysTask *param0, void *param1)
 
 static void ov27_02256E1C(SysTask *param0, void *param1)
 {
-    const UnkStruct_ov27_0225680C_1 *v0;
-    UnkStruct_ov27_0225680C *v1;
-    UnkStruct_ov27_02256E90 *v2;
-
-    v0 = PoketchTask_GetConstTaskData(param1);
-    v1 = PoketchTask_GetTaskData(param1);
-    v2 = PoketchTask_GetExtraData(param1);
+    const UnkStruct_ov27_0225680C_1 *v0 = PoketchTask_GetConstTaskData(param1);
+    UnkStruct_ov27_0225680C *v1 = PoketchTask_GetTaskData(param1);
+    UnkStruct_ov27_02256E90 *v2 = PoketchTask_GetExtraData(param1);
 
     if (v0->unk_18 != 6) {
         ov27_02256A04(param1);
@@ -562,7 +546,7 @@ static void ov27_02256F24(SysTask *param0, void *param1)
     case 1:
         PoketchAnimation_FreeSpriteData(&(v0->unk_34));
         PoketchAnimation_FreeSpriteData(&(v0->unk_48));
-        Bg_FreeTilemapBuffer(v0->unk_04, 6);
+        Bg_FreeTilemapBuffer(v0->unk_04, BG_LAYER_SUB_2);
         SysTask_Done(v0->unk_84);
         v0->unk_84 = NULL;
         ov27_02256A04(param1);

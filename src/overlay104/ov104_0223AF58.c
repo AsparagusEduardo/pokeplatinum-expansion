@@ -1575,7 +1575,7 @@ FieldBattleDTO *ov104_0223B250(UnkStruct_ov104_0223B5C0 *param0, UnkStruct_ov104
 
     Party_HealAllMembers(v13);
 
-    FieldBattleDTO *v8 = FieldBattleDTO_New(11, ov104_0223B4D4(param0->unk_04));
+    FieldBattleDTO *v8 = FieldBattleDTO_New(HEAP_ID_FIELDMAP, ov104_0223B4D4(param0->unk_04));
     FieldBattleDTO_InitFromGameState(v8, NULL, param1->saveData, param1->unk_1C, param1->journalEntry, param1->bagCursor, param1->unk_20);
 
     v8->background = BACKGROUND_BATTLE_HALL;
@@ -1786,11 +1786,8 @@ u8 ov104_0223B5C0(UnkStruct_ov104_0223B5C0 *param0)
 {
     u32 v0;
     int v1;
-    Party *v2;
-    Pokemon *v3;
-
-    v2 = SaveData_GetParty(param0->saveData);
-    v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
+    Party *v2 = SaveData_GetParty(param0->saveData);
+    Pokemon *v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
     v1 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
 
     return v1 / 10;

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_020298B0_decl.h"
+#include "struct_defs/underground_data.h"
 
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_022515D8.h"
@@ -343,14 +343,14 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
     int v1 = param2 + 1;
     BOOL v2 = 1;
 
-    if (3 > sub_0202958C(SaveData_SecretBaseRecord(param0->fieldSystem->saveData))) {
+    if (BASE_FLAG_GOLD > UndergroundRecord_GetFlagRank(SaveData_UndergroundRecord(param0->fieldSystem->saveData))) {
         v2 = 0;
         v1 -= 1;
     }
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = StringList_New(v1, 4);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, 2);
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -385,7 +385,7 @@ static void ov23_022515D8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     v0.parent = param0;
     ov23_02251238(param0, v1, v0.count);
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD);
 }
 
 static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param2, UnkFuncPtr_ov23_022515D8 param3, int param4)
@@ -396,7 +396,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     ov23_0224FB7C(param0);
 
-    param0->unk_40 = StringList_New(v1, 4);
+    param0->unk_40 = StringList_New(v1, HEAP_ID_FIELD);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_10, 3, 17, 3, 14, v1 * 2, 13, (2 + 14 * 16));
     Window_DrawStandardFrame(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
@@ -431,7 +431,7 @@ static void ov23_022516E8(UnkStruct_ov23_02250CD4 *param0, int param1, int param
 
     v0.parent = param0;
     ov23_02251238(param0, v1, v0.count);
-    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, 4);
+    param0->unk_48 = ListMenu_New(&v0, param0->unk_294, param0->unk_290, HEAP_ID_FIELD);
 }
 
 static BOOL ov23_022517E0(SysTask *param0, void *param1)

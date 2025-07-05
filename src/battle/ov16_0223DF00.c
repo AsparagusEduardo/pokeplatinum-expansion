@@ -7,6 +7,8 @@
 #include "constants/game_options.h"
 #include "constants/heap.h"
 #include "constants/items.h"
+#include "constants/rtc.h"
+#include "generated/battle_backgrounds.h"
 #include "generated/species.h"
 #include "generated/trainer_score_events.h"
 
@@ -110,15 +112,13 @@ int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
 u8 Battler_Side(BattleSystem *battleSystem, int param1);
 void *ov16_0223E220(BattleSystem *battleSystem);
-PCBoxes *ov16_0223E228(BattleSystem *battleSystem);
 enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys);
-int ov16_0223E240(BattleSystem *battleSystem);
 int BattleSystem_MapHeader(BattleSystem *battleSystem);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
 int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
 BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot, int moveSlot, int item);
 u32 ov16_0223EBEC(BattleSystem *battleSystem);
-enum Time BattleSystem_Time(BattleSystem *battleSys);
+enum TimeOfDay BattleSystem_Time(BattleSystem *battleSys);
 int ov16_0223EC04(BattleSystem *battleSystem);
 u8 ov16_0223EC58(BattleSystem *battleSystem, int param1, u8 param2);
 u16 Battle_FindEvolvingPartyMember(FieldBattleDTO *param0, int *param1, int *param2);
@@ -126,7 +126,6 @@ u8 ov16_0223ED60(BattleSystem *battleSystem);
 u8 ov16_0223ED6C(BattleSystem *battleSystem);
 int BattleSystem_NumSafariBalls(BattleSystem *battleSystem);
 void BattleSystem_SetSafariBalls(BattleSystem *battleSystem, int param1);
-Options *BattleSystem_GetOptions(BattleSystem *battleSystem);
 BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem *battleSystem);
 u8 BattleSystem_TextSpeed(BattleSystem *battleSystem);
@@ -496,7 +495,7 @@ void *ov16_0223E220(BattleSystem *battleSystem)
     return battleSystem->unk_1AC;
 }
 
-PCBoxes *ov16_0223E228(BattleSystem *battleSystem)
+PCBoxes *BattleSystem_PCBoxes(BattleSystem *battleSystem)
 {
     return battleSystem->pcBoxes;
 }
@@ -510,9 +509,9 @@ enum BattleTerrain BattleSystem_Terrain(BattleSystem *battleSys)
     return battleSys->terrain;
 }
 
-int ov16_0223E240(BattleSystem *battleSystem)
+enum BattleBackground BattleSystem_Background(BattleSystem *battleSystem)
 {
-    return battleSystem->unk_2400;
+    return battleSystem->background;
 }
 
 int BattleSystem_MapHeader(BattleSystem *battleSystem)
@@ -891,7 +890,7 @@ u32 BattleSystem_BattleStatus(BattleSystem *battleSys)
     return battleSys->battleStatusMask;
 }
 
-enum Time BattleSystem_Time(BattleSystem *battleSys)
+enum TimeOfDay BattleSystem_Time(BattleSystem *battleSys)
 {
     return battleSys->time;
 }
@@ -900,23 +899,23 @@ int ov16_0223EC04(BattleSystem *battleSystem)
 {
     int v0;
 
-    switch (battleSystem->unk_2400) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
+    switch (battleSystem->background) {
+    case BACKGROUND_PLAIN:
+    case BACKGROUND_WATER:
+    case BACKGROUND_CITY:
+    case BACKGROUND_FOREST:
+    case BACKGROUND_MOUNTAIN:
+    case BACKGROUND_SNOW:
         switch (battleSystem->time) {
-        case 0:
-        case 1:
+        case TIMEOFDAY_MORNING:
+        case TIMEOFDAY_DAY:
             v0 = 0;
             break;
-        case 2:
+        case TIMEOFDAY_TWILIGHT:
             v0 = 1;
             break;
-        case 3:
-        case 4:
+        case TIMEOFDAY_NIGHT:
+        case TIMEOFDAY_LATE_NIGHT:
             v0 = 2;
             break;
         }

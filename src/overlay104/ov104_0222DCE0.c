@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/heap.h"
+#include "constants/narc.h"
 #include "constants/trainer.h"
 #include "generated/object_events.h"
 #include "generated/species_data_params.h"
@@ -103,18 +105,18 @@ BattleFrontierTrainerData *ov104_0222DCE0(u16 param0, int param1, enum NarcID na
     return NARC_AllocAndReadWholeMemberByIndexPair(narcID, param0, param1);
 }
 
-void ov104_0222DCF4(BattleFrontierPokemonData *param0, int param1, int narcID)
+void ov104_0222DCF4(BattleFrontierPokemonData *param0, int param1, enum NarcID narcID)
 {
     NARC_ReadWholeMemberByIndexPair(param0, narcID, param1);
 }
 
-BattleFrontierTrainerData *ov104_0222DD04(FrontierTrainerDataDTO *param0, int param1, int param2, int param3)
+BattleFrontierTrainerData *ov104_0222DD04(FrontierTrainerDataDTO *param0, int param1, int heapID, int param3)
 {
-    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, param2);
+    MessageLoader *v1 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_FRONTIER_TRAINER_NAMES, heapID);
 
     MI_CpuClear8(param0, sizeof(FrontierTrainerDataDTO));
 
-    BattleFrontierTrainerData *v0 = ov104_0222DCE0(param1, param2, param3);
+    BattleFrontierTrainerData *v0 = ov104_0222DCE0(param1, heapID, param3);
 
     param0->trainerID = param1;
     param0->unk_18[0] = 0xFFFF;
@@ -137,7 +139,7 @@ static const u16 Unk_ov104_0223F290[] = {
     ITEM_QUICK_CLAW
 };
 
-u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 param3, u8 param4, u8 param5, BOOL param6, int param7, int param8)
+u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 param3, u8 param4, u8 param5, BOOL param6, int param7, enum NarcID narcID)
 {
     int v0;
     int v1;
@@ -145,7 +147,7 @@ u32 ov104_0222DD6C(FrontierPokemonDataDTO *param0, u16 param1, u32 param2, u32 p
     BattleFrontierPokemonData v4;
 
     MI_CpuClear8(param0, sizeof(FrontierPokemonDataDTO));
-    ov104_0222DCF4(&v4, param1, param8);
+    ov104_0222DCF4(&v4, param1, narcID);
 
     param0->species = v4.species;
     param0->form = v4.form;
@@ -403,14 +405,14 @@ u8 ov104_0222E240(u16 param0, u16 param1)
     return 1;
 }
 
-void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int param2, int param3)
+void ov104_0222E278(UnkStruct_ov104_0223A348 *param0, u16 param1, int heapID, int param3)
 {
-    Heap_FreeToHeap(ov104_0222DD04(&param0->unk_00, param1, param2, param3));
+    Heap_FreeToHeap(ov104_0222DD04(&param0->unk_00, param1, heapID, param3));
 
     return;
 }
 
-void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int battlerId, int heapId)
+void ov104_0222E284(FieldBattleDTO *param0, FrontierTrainerDataDTO *param1, int param2, int battlerId, int heapID)
 {
     Sentence *v0;
 
@@ -545,7 +547,7 @@ void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPoke
     FrontierTrainerDataDTO v4;
     BattleFrontierPokemonData v6;
 
-    BattleFrontierTrainerData *v5 = ov104_0222DD04(&v4, param1, 11, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+    BattleFrontierTrainerData *v5 = ov104_0222DD04(&v4, param1, HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
 
     for (v0 = 0; v0 < param0; v0++) {
         param5[v0] = ov104_0222E3A8(param1);
@@ -563,7 +565,7 @@ void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 *param3, FrontierPoke
         }
 
         Heap_FreeToHeap(v5);
-        v5 = ov104_0222DD04(&v4, param2, 11, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
+        v5 = ov104_0222DD04(&v4, param2, HEAP_ID_FIELDMAP, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR);
         ov104_0222E3E4(v5, v2, v3, (param0 / 2), (param0 / 2), &param3[param0 / 2], 11);
 
         for (v0 = 0; v0 < (param0 / 2); v0++) {

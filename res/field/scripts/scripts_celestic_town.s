@@ -84,8 +84,8 @@ _013C:
     RemoveObject 2
     RemoveObject 3
     SetObjectEventPos 3, 0x1D2, 0x213
-    ScrCmd_189 3, 0
-    ScrCmd_188 3, 14
+    SetObjectEventDir 3, DIR_NORTH
+    SetObjectEventMovementType 3, MOVEMENT_TYPE_LOOK_NORTH
     ClearFlag FLAG_UNK_0x01AC
     AddObject 3
     ScrCmd_062 3

@@ -6,7 +6,6 @@
 #include "constants/forms.h"
 #include "generated/gender_ratios.h"
 
-#include "heap.h"
 #include "inlines.h"
 #include "pokedex_language.h"
 #include "pokemon.h"
@@ -53,6 +52,7 @@ typedef struct Pokedex {
     u32 rotomFormsSeen;
     u8 shayminFormsSeen;
     u8 giratinaFormsSeen;
+    // u8 padding[2]; // implicit padding in vanilla
 } Pokedex;
 
 int Pokedex_SaveSize(void)
@@ -60,7 +60,7 @@ int Pokedex_SaveSize(void)
     return sizeof(Pokedex);
 }
 
-Pokedex *Pokedex_New(u32 heapID)
+Pokedex *Pokedex_New(enum HeapId heapID)
 {
     Pokedex *pokedexData = Heap_AllocFromHeap(heapID, sizeof(Pokedex));
     Pokedex_Init(pokedexData);
