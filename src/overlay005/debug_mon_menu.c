@@ -27,6 +27,7 @@
 #include "render_window.h"
 #include "strbuf.h"
 #include "sys_task.h"
+#include "system_vars.h"
 #include "system.h"
 #include "text.h"
 #include "screen_fade.h"
@@ -607,6 +608,9 @@ static u8 DebugMonMenu_AddMon(DebugMonMenu *monMenu)
         party = SaveData_GetParty(monMenu->sys->saveData);
 
         if (Party_AddPokemon(party, monMenu->mon.monData) == TRUE) {
+            if (SystemVars_GetPlayerStarter(SaveData_GetVarsFlags(monMenu->sys->saveData)) == SPECIES_NONE) {
+                SystemVars_SetPlayerStarter(SaveData_GetVarsFlags(monMenu->sys->saveData), monMenu->mon.stats[DEBUG_MON_SPECIES]);
+            }
             return 0;
         }
 
