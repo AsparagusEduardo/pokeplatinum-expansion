@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_town.h"
 
-    .data
 
     ScriptEntry _002E
     ScriptEntry _0030
@@ -157,4 +156,4 @@ _01B3:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

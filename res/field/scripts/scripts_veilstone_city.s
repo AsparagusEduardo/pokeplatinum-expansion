@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city.h"
 
-    .data
 
     ScriptEntry _0082
     ScriptEntry _0C18
@@ -333,18 +332,10 @@ _04D4:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+VeilstoneCity_UnusedMovement:
+    Delay8
+    WalkOnSpotNormalNorth
+    EndMovement
 
     .balign 4, 0
 _04EC:
@@ -592,26 +583,13 @@ _086E:
     GoToIfEq VAR_0x8005, 0x255, _08C3
     End
 
-    .byte 134
-    .byte 1
-    .byte 26
-    .byte 0
-    .byte 180
-    .byte 2
-    .byte 91
-    .byte 2
-    .byte 27
-    .byte 0
-    .byte 134
-    .byte 1
-    .byte 26
-    .byte 0
-    .byte 180
-    .byte 2
-    .byte 93
-    .byte 2
-    .byte 27
-    .byte 0
+VeilstoneCity_Unused:
+    SetObjectEventPos 26, 692, 603
+    Return
+
+VeilstoneCity_Unused2:
+    SetObjectEventPos 26, 692, 605
+    Return
 
 _08A9:
     ApplyMovement 26, _0AAC
@@ -813,82 +791,34 @@ _0AD4:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 62
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 75
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 13
-    .byte 0
-    .byte 6
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+VeilstoneCity_UnusedMovement2:
+    Delay4
+    WalkOnSpotNormalWest
+    EmoteExclamationMark
+    Delay8
+    EndMovement
+
+VeilstoneCity_UnusedMovement3:
+    WalkNormalWest 4
+    EndMovement
+
+VeilstoneCity_UnusedMovement4:
+    WalkNormalSouth 2
+    WalkNormalWest 2
+    WalkNormalSouth 6
+    EndMovement
+
+VeilstoneCity_UnusedMovement5:
+    Delay8
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalWest
+    EndMovement
+
+VeilstoneCity_UnusedMovement6:
+    Delay8
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0B2C:
@@ -927,38 +857,17 @@ _0B64:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+VeilstoneCity_UnusedMovement7:
+    Delay8
+    WalkOnSpotNormalSouth
+    WalkOnSpotNormalWest
+    EndMovement
+
+VeilstoneCity_UnusedMovement8:
+    Delay8
+    WalkOnSpotNormalNorth
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0B8C:
@@ -975,18 +884,10 @@ _0B9C:
     WalkOnSpotNormalWest
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+VeilstoneCity_UnusedMovement9:
+    Delay8
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _0BB0:
@@ -1376,10 +1277,7 @@ _0FB0:
     CallCommonScript 0x807
     GoToIfSet FLAG_UNK_0x009B, _0EF4
     GoTo _0ED8
-
-    .byte 2
-    .byte 0
-    .byte 0
+    End
 
     .balign 4, 0
 _0FE0:
@@ -1566,6 +1464,4 @@ _123E:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

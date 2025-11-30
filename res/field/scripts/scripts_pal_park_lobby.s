@@ -7,7 +7,6 @@
 #define LOCALID_OAK 1
 #define LOCALID_RECEPCIONIST 7
 
-    .data
 
     ScriptEntry PalParkLobby_OnLoad
     ScriptEntry PalParkLobby_Receptionist
@@ -764,5 +763,4 @@ PalParkLobby_SetPrize_TamatoBerry:
     SetVar VAR_0x8006, ITEM_TAMATO_BERRY
     Return
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

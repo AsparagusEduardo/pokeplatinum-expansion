@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_206_cycling_road_north_gate.h"
 
-    .data
 
     ScriptEntry _003B
     ScriptEntry _004E
@@ -128,5 +127,4 @@ _015F:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

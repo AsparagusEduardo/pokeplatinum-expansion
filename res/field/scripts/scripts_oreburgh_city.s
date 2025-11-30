@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city.h"
 
-    .data
 
     ScriptEntry _005A
     ScriptEntry _0090
@@ -631,4 +630,4 @@ _0754:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

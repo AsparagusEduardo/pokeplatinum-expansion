@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/galactic_hq_3f.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0021
@@ -77,6 +76,4 @@ _00B8:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

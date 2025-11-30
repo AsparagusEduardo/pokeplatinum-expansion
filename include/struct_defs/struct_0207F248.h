@@ -1,10 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_0207F248_H
 #define POKEPLATINUM_STRUCT_0207F248_H
 
-#include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "struct_defs/funcptr_0207F248_sub1.h"
-#include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_020831B4.h"
 #include "struct_defs/struct_02083D1C.h"
 #include "struct_defs/struct_02098C44.h"
@@ -13,6 +11,8 @@
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
 #include "bg_window.h"
+#include "font_special_chars.h"
+#include "g3d_pipeline.h"
 #include "grid_menu_cursor_position.h"
 #include "menu.h"
 #include "message.h"
@@ -35,7 +35,7 @@ typedef struct {
     SpriteManager *unk_5AC;
     Sprite *unk_5B0[29];
     ManagedSprite *unk_624[29];
-    UnkStruct_0200C440 *unk_698;
+    FontSpecialCharsContext *unk_698;
     MessageLoader *messageLoader;
     StringTemplate *template;
     Strbuf *unk_6A4;
@@ -61,7 +61,7 @@ typedef struct {
     u16 monStats[6];
     HeightWeightData *unk_B20;
     OverlayMetadata *unk_B24;
-    GenericPointerData *unk_B28;
+    G3DPipelineBuffers *unk_B28;
 } GameWindowLayout;
 
 #endif // POKEPLATINUM_STRUCT_0207F248_H

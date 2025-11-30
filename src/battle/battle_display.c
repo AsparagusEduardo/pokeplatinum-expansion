@@ -95,14 +95,13 @@
 #include "battle/struct_ov16_0226C378.h"
 #include "battle/struct_ov16_0226D160_decl.h"
 #include "battle/trainer_ai.h"
+#include "overlay012/battle_anim_system.h"
 #include "overlay012/const_ov12_0223B0A0.h"
 #include "overlay012/const_ov12_0223B0B8.h"
 #include "overlay012/const_ov12_0223B0DC.h"
-#include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02235E94.h"
 #include "overlay012/ov12_02237EFC.h"
 #include "overlay012/ov12_022380BC.h"
-#include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02236030.h"
 #include "overlay012/struct_ov12_02237728.h"
 #include "overlay012/struct_ov12_02237F38.h"
@@ -202,7 +201,7 @@ static void ov16_022641B4(BattleSystem *battleSys, BattlerData *param1, BattleMe
 static void ov16_02264270(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_0225C9F0 *param2, BattleMessage *param3);
 static void ov16_02264360(BattleSystem *battleSys, BattlerData *param1, BattleMessage *param2);
 static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int param2, int param3, s16 param4, s16 param5);
-static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov12_0221FCDC *param2, UnkStruct_ov16_02265BBC *param3);
+static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *param2, UnkStruct_ov16_02265BBC *param3);
 static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *param1, UnkStruct_ov12_022380DC *param2, int param3);
 static void ov16_022645B8(u8 *param0, u8 *param1, int param2, int param3, u16 param4);
 static BOOL ov16_02264650(UnkStruct_ov16_02264650_1 *param0, ManagedSprite *param1);
@@ -264,11 +263,11 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     if (param1->battlerType & 0x1) {
         v4->unk_13 = 2;
         v4->unk_0C = ov16_0223E020(battleSys, 1);
-        ManagedSprite_SetPositionXY(v4->unk_0C->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], (8 * 11));
+        ManagedSprite_SetPositionXY(v4->unk_0C->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], 8 * 11);
     } else {
         v4->unk_13 = 0;
         v4->unk_0C = ov16_0223E020(battleSys, 0);
-        ManagedSprite_SetPositionXY(v4->unk_0C->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], (128 + 8));
+        ManagedSprite_SetPositionXY(v4->unk_0C->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], 128 + 8);
     }
 
     if (param2->unk_01_2) {
@@ -299,7 +298,7 @@ void ov16_0225CBDC(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
         v10 = ((24 * 8) - -80) / 2;
 
         PokemonSprite_SetAttribute(v4->unk_08, MON_SPRITE_SHADOW_SIZE, 0);
-        PokemonSprite_SetAttribute(v4->unk_08, MON_SPRITE_X_CENTER, (256 - 64));
+        PokemonSprite_SetAttribute(v4->unk_08, MON_SPRITE_X_CENTER, 256 - 64);
         PokemonSprite_SetAttribute(v4->unk_08, MON_SPRITE_Y_CENTER, v11 - v10);
 
         v4->unk_14 = v11;
@@ -487,11 +486,11 @@ void ov16_0225D228(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
     if (param1->battlerType & 0x1) {
         v1->unk_0F = 2;
         v1->unk_04 = ov16_0223E020(battleSys, 1);
-        ManagedSprite_SetPositionXY(v1->unk_04->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], (8 * 11));
+        ManagedSprite_SetPositionXY(v1->unk_04->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], 8 * 11);
     } else {
         v1->unk_0F = 0;
         v1->unk_04 = ov16_0223E020(battleSys, 0);
-        ManagedSprite_SetPositionXY(v1->unk_04->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], (128 + 8));
+        ManagedSprite_SetPositionXY(v1->unk_04->unk_00, Unk_ov12_0223B0B8[param1->battlerType & 1][0], 128 + 8);
     }
 
     if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) || ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) && (param1->battlerType & BATTLE_TYPE_TRAINER))) {
@@ -1435,13 +1434,13 @@ void ov16_0225E468(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 
     switch (param2->unk_01) {
     case 0:
-        Sound_PlayPannedEffect(1790, v0);
+        Sound_PlayPannedEffect(SEQ_SE_DP_KOUKA_M, v0);
         break;
     case 2:
-        Sound_PlayPannedEffect(1788, v0);
+        Sound_PlayPannedEffect(SEQ_SE_DP_KOUKA_H, v0);
         break;
     case 1:
-        Sound_PlayPannedEffect(1789, v0);
+        Sound_PlayPannedEffect(SEQ_SE_DP_KOUKA_L, v0);
         break;
     }
 
@@ -1457,7 +1456,7 @@ void ov16_0225E4C8(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov16_
 static void ov16_0225E4E8(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225E4E8 *v0 = (UnkStruct_ov16_0225E4E8 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
     s16 v2, v3;
 
     switch (v0->unk_12) {
@@ -1478,7 +1477,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
                 if (v2 < (24 * 8)) {
                     ManagedSprite_OffsetPositionXY(v0->unk_0C->unk_00, 8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, (24 * 8), (8 * 11));
+                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 24 * 8, 8 * 11);
                 }
             }
 
@@ -1508,11 +1507,11 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
                 {
                     u8 v4;
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v4, v0->unk_16, v0->unk_1C);
-                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, 117, 127, NULL, 5, v4);
+                    Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, 117, 127, NULL, 5, v4);
                 }
 
                 if ((v0->unk_1C == 1) || (v0->unk_1C == 3)) {
-                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, (24 * 8), (8 * 11));
+                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 24 * 8, 8 * 11);
                 }
 
                 PokemonSprite_StartFade(v0->unk_08, 8, 0, 0, 0x0);
@@ -1525,7 +1524,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
                 if (v2 > 64) {
                     ManagedSprite_OffsetPositionXY(v0->unk_0C->unk_00, -8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 64, (128 + 8));
+                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 64, 128 + 8);
                 }
             }
 
@@ -1551,11 +1550,11 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
                     u8 v5;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v5, v0->unk_16, v0->unk_1C);
-                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, -117, 127, NULL, 5, v5);
+                    Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, -117, 127, NULL, 5, v5);
                 }
 
                 if ((v0->unk_1C == 0) || (v0->unk_1C == 2)) {
-                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 64, (128 + 8));
+                    ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 64, 128 + 8);
                 }
 
                 v0->unk_12++;
@@ -1578,17 +1577,17 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_12 = 0xff;
         }
         break;
     default:
         Sound_Set2PokemonCriesAllowed(0);
         ClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -1597,7 +1596,7 @@ static void ov16_0225E4E8(SysTask *param0, void *param1)
 static void ov16_0225E894(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225E4E8 *v0 = (UnkStruct_ov16_0225E4E8 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
     s16 v2, v3;
 
     switch (v0->unk_12) {
@@ -1617,7 +1616,7 @@ static void ov16_0225E894(SysTask *param0, void *param1)
             if (v2 < (24 * 8)) {
                 ManagedSprite_OffsetPositionXY(v0->unk_0C->unk_00, 8, 0);
             } else {
-                ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, (24 * 8), (8 * 11));
+                ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 24 * 8, 8 * 11);
             }
         }
 
@@ -1635,10 +1634,10 @@ static void ov16_0225E894(SysTask *param0, void *param1)
                 u8 v4;
 
                 PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v4, v0->unk_16, v0->unk_1C);
-                Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, 117, 127, NULL, 5, v4);
+                Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_11), v0->unk_18, v0->unk_16, v0->unk_2C, 117, 127, NULL, 5, v4);
             }
 
-            ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, (24 * 8), (8 * 11));
+            ManagedSprite_SetPositionXY(v0->unk_0C->unk_00, 24 * 8, 8 * 11);
             PokemonSprite_StartFade(v0->unk_08, 8, 0, 0, 0x0);
 
             v0->unk_12++;
@@ -1660,17 +1659,17 @@ static void ov16_0225E894(SysTask *param0, void *param1)
         }
         break;
     case 4:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_12 = 0xff;
         }
         break;
     default:
         Sound_Set2PokemonCriesAllowed(0);
         ClearCommand(v0->unk_00, v0->unk_11, v0->unk_10);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -1768,9 +1767,9 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
             ov12_022363B4(v0->unk_08);
 
             if (v0->unk_84 == 2) {
-                Sound_PlayPannedEffect(1798, 117);
+                Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, 117);
             } else {
-                Sound_PlayPannedEffect(1798, -117);
+                Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, -117);
             }
 
             if (v0->unk_10) {
@@ -1795,7 +1794,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                     u8 v4;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v4, v0->unk_86, v0->unk_82);
-                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v4);
+                    Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v4);
                 }
             } else {
                 PokemonSprite_InitAnim(v0->unk_04->unk_20, 1);
@@ -1804,7 +1803,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                     u8 v5;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v5, v0->unk_86, v0->unk_82);
-                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v5);
+                    Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v5);
                 }
             }
 
@@ -1824,7 +1823,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                     u8 v6;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v6, v0->unk_86, v0->unk_82);
-                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v6);
+                    Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v6);
                 }
             } else {
                 PokemonSprite_InitAnim(v0->unk_04->unk_20, 1);
@@ -1833,7 +1832,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                     u8 v7;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v7, v0->unk_86, v0->unk_82);
-                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v7);
+                    Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v7);
                 }
             }
 
@@ -1862,7 +1861,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
                 {
                     UnkStruct_ov16_02265BBC v8;
 
-                    v0->unk_24 = ov12_0221FCDC(HEAP_ID_BATTLE);
+                    v0->unk_24 = BattleAnimSystem_New(HEAP_ID_BATTLE);
                     ov16_02266B78(v0->unk_00, NULL, &v8, 1, 11, v0->unk_81, v0->unk_81, NULL);
                     ov16_02264408(v0->unk_00, v0->unk_04, v0->unk_24, &v8);
                 }
@@ -1873,18 +1872,18 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
         }
         break;
     case 7:
-        ov12_0222016C(v0->unk_24);
+        BattleAnimSystem_ExecuteScript(v0->unk_24);
 
-        if (ov12_02220188(v0->unk_24) == 0) {
-            ov12_02220198(v0->unk_24);
-            ov12_0221FDF4(v0->unk_24);
+        if (BattleAnimSystem_IsMoveActive(v0->unk_24) == 0) {
+            BattleAnimSystem_FreeScriptData(v0->unk_24);
+            BattleAnimSystem_Delete(v0->unk_24);
             v0->unk_83 = 0xff;
         }
         break;
     default:
         Sound_Set2PokemonCriesAllowed(0);
         ClearCommand(v0->unk_00, v0->unk_81, v0->unk_80);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -1893,7 +1892,7 @@ static void ov16_0225EA80(SysTask *param0, void *param1)
 static void ov16_0225F0C0(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225EA80 *v0 = (UnkStruct_ov16_0225EA80 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
 
     switch (v0->unk_83) {
     case 0: {
@@ -1967,9 +1966,9 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
             ov12_022363B4(v0->unk_08);
 
             if (v0->unk_84 == 2) {
-                Sound_PlayPannedEffect(1798, 117);
+                Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, 117);
             } else {
-                Sound_PlayPannedEffect(1798, -117);
+                Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, -117);
             }
 
             v0->unk_83++;
@@ -1989,7 +1988,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
                     u8 v6;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v6, v0->unk_86, v0->unk_82);
-                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v6);
+                    Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v6);
                 }
             } else {
                 PokemonSprite_InitAnim(v0->unk_04->unk_20, 1);
@@ -1998,7 +1997,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
                     u8 v7;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v7, v0->unk_86, v0->unk_82);
-                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v7);
+                    Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v7);
                 }
             }
 
@@ -2017,7 +2016,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
                     u8 v8;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v8, v0->unk_86, v0->unk_82);
-                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v8);
+                    Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, 117, 127, NULL, 5, v8);
                 }
             } else {
                 PokemonSprite_InitAnim(v0->unk_04->unk_20, 1);
@@ -2026,7 +2025,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
                     u8 v9;
 
                     PokeSprite_LoadCryDelay(v0->unk_04->unk_1A0, &v9, v0->unk_86, v0->unk_82);
-                    Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v9);
+                    Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_81), v0->unk_88, v0->unk_86, v0->unk_97, -117, 127, NULL, 5, v9);
                 }
             }
 
@@ -2065,10 +2064,10 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
     case 7:
     case 9:
     case 11:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_83++;
         }
         break;
@@ -2100,7 +2099,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
         break;
     default:
         ClearCommand(v0->unk_00, v0->unk_81, v0->unk_80);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -2109,7 +2108,7 @@ static void ov16_0225F0C0(SysTask *param0, void *param1)
 static void ov16_0225F764(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225F764 *v0 = (UnkStruct_ov16_0225F764 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
 
     switch (v0->unk_6B) {
     case 0:
@@ -2139,10 +2138,10 @@ static void ov16_0225F764(SysTask *param0, void *param1)
         break;
     case 1:
     case 3:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_6B++;
         }
         break;
@@ -2187,12 +2186,12 @@ static void ov16_0225F764(SysTask *param0, void *param1)
         case 0:
         case 2:
         case 4:
-            Sound_PlayPannedEffect(1798, -117);
+            Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, -117);
             break;
         case 1:
         case 3:
         case 5:
-            Sound_PlayPannedEffect(1798, 117);
+            Sound_PlayPannedEffect(SEQ_SE_DP_BOWA2, 117);
             break;
         }
         break;
@@ -2225,7 +2224,7 @@ static void ov16_0225F764(SysTask *param0, void *param1)
         break;
     case 8:
         ClearCommand(v0->unk_00, v0->unk_69, v0->unk_68);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -2252,7 +2251,7 @@ static void ov16_0225FA00(SysTask *param0, void *param1)
         break;
     case 1:
         ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -2293,7 +2292,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
                 if (v1 < (24 * 8)) {
                     ManagedSprite_OffsetPositionXY(v0->unk_04->unk_00, 8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, (24 * 8), (8 * 11));
+                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 24 * 8, 8 * 11);
                 }
             }
 
@@ -2319,7 +2318,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
                 ManagedSprite_SetPositionXY(v0->unk_08, v0->unk_10, v4);
 
                 if ((v0->unk_14 == 1) || (v0->unk_14 == 3)) {
-                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, (24 * 8), (8 * 11));
+                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 24 * 8, 8 * 11);
                 }
 
                 if (ManagedSprite_GetNumFrames(v0->unk_08) > 1) {
@@ -2336,7 +2335,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
                 if (v1 > 64) {
                     ManagedSprite_OffsetPositionXY(v0->unk_04->unk_00, -8, 0);
                 } else {
-                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 64, (128 + 8));
+                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 64, 128 + 8);
                 }
             }
 
@@ -2362,7 +2361,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
                 ManagedSprite_SetPositionXY(v0->unk_08, v0->unk_10, v4);
 
                 if ((v0->unk_14 == 0) || (v0->unk_14 == 2)) {
-                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 64, (128 + 8));
+                    ManagedSprite_SetPositionXY(v0->unk_04->unk_00, 64, 128 + 8);
                 }
 
                 v0->unk_0E = 4;
@@ -2379,7 +2378,7 @@ static void ov16_0225FA70(SysTask *param0, void *param1)
         v0->unk_0E = 4;
     case 4:
         ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -2663,7 +2662,7 @@ static void ov16_0225FD5C(SysTask *param0, void *param1)
         break;
     case 6:
         ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -2706,7 +2705,7 @@ static void ov16_02260284(SysTask *param0, void *param1)
         SpriteManager_UnloadAnimObjById(v3, 20007 + v0->unk_04->battlerType);
     }
         ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -2741,7 +2740,7 @@ static void ov16_02260384(SysTask *param0, void *param1)
         break;
     case 1:
         ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -3071,7 +3070,7 @@ static void ov16_022604C8(SysTask *param0, void *param1)
         if (ov16_0226BCD0(v2) == 1) {
             ov16_022656D4(v0->unk_00, v0->unk_09, v0->unk_0C);
             ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
-            Heap_FreeToHeap(param1);
+            Heap_Free(param1);
             SysTask_Done(param0);
         }
         break;
@@ -3086,7 +3085,7 @@ static void ov16_02260AB4(SysTask *param0, void *param1)
     ov16_022656D4(v0->unk_00, v0->unk_09, v1);
     ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -3095,7 +3094,7 @@ static void ov16_02260AE4(SysTask *param0, void *param1)
     UnkStruct_ov16_0225D5B8 *v0 = (UnkStruct_ov16_0225D5B8 *)param1;
 
     ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -3133,7 +3132,7 @@ static void ov16_02260B04(SysTask *param0, void *param1)
 
     ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -3144,7 +3143,7 @@ static void ov16_02260B84(SysTask *param0, void *param1)
     ov16_022656D4(v0->unk_00, v0->unk_09, 4);
     ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -3164,7 +3163,7 @@ static void ov16_02260BAC(SysTask *param0, void *param1)
     ov16_022656D4(v0->unk_00, v0->unk_09, v1);
     ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -3256,7 +3255,7 @@ static void ov16_02260C00(SysTask *param0, void *param1)
         if (ov16_0226BCD0(v2) == 1) {
             ov16_0223F234(v0->unk_00, 1);
             ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
-            Heap_FreeToHeap(param1);
+            Heap_Free(param1);
             SysTask_Done(param0);
         }
         break;
@@ -3306,7 +3305,7 @@ static void ov16_02260DB0(SysTask *param0, void *param1)
     ov16_02265790(v0->unk_00, v0->unk_1D, v2);
     ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -3315,7 +3314,7 @@ static void ov16_02260E78(SysTask *param0, void *param1)
     UnkStruct_ov16_0225D698 *v0 = (UnkStruct_ov16_0225D698 *)param1;
 
     ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -3345,7 +3344,7 @@ static void ov16_02260E98(SysTask *param0, void *param1)
     ov16_02265790(v0->unk_00, v0->unk_1D, v1);
     ClearCommand(v0->unk_00, v0->unk_1D, v0->unk_1C);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -3439,7 +3438,7 @@ static void ov16_02260F14(SysTask *param0, void *param1)
 
                 ov16_022658CC(v0->unk_00, v0->unk_0D, v12);
                 ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
-                Heap_FreeToHeap(param1);
+                Heap_Free(param1);
                 SysTask_Done(param0);
             }
         }
@@ -3461,7 +3460,7 @@ static void ov16_022610A8(SysTask *param0, void *param1)
     ov16_022658CC(v0->unk_00, v0->unk_0D, v2);
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -3471,7 +3470,7 @@ static void ov16_022610EC(SysTask *param0, void *param1)
 
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -3521,7 +3520,7 @@ static void ov16_0226110C(SysTask *param0, void *param1)
     ov16_022658CC(v0->unk_00, v0->unk_0D, v1);
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -3534,8 +3533,8 @@ static void ov16_022611DC(SysTask *param0, void *param1)
     case 0:
         v0->unk_10 = ov16_0226CD08(ov16_0223E02C(v0->unk_00));
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
-        PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 0, 7, 0x0);
-        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
+        PaletteData_StartFade(v1, 0x1 | 0x4, 0xc00, -8, 0, 7, 0x0);
+        PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 0, 16, 0x0);
         v0->unk_0E++;
         break;
     case 1:
@@ -3647,8 +3646,8 @@ static void ov16_022611DC(SysTask *param0, void *param1)
     case 6:
         ov16_0223B430(v0->unk_00);
         ov16_0226CD10(ov16_0223E02C(v0->unk_00), v0->unk_10);
-        PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 7, 0, 0x0);
-        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
+        PaletteData_StartFade(v1, 0x1 | 0x4, 0xc00, -8, 7, 0, 0x0);
+        PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 16, 0, 0x0);
         v0->unk_0E++;
         break;
     case 7:
@@ -3667,14 +3666,14 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 17;
                             } else {
-                                Sound_PlayPannedEffect(1516, -117);
+                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU, -117);
                                 v0->unk_12 = 21;
                             }
                         } else {
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 25;
                             } else {
-                                Sound_PlayPannedEffect(1516, -117);
+                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU, -117);
                                 v0->unk_12 = 29;
                             }
                         }
@@ -3687,7 +3686,7 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                         if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                             v0->unk_12 = 17;
                         } else {
-                            Sound_PlayPannedEffect(1516, -117);
+                            Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU, -117);
                             v0->unk_12 = 21;
                         }
                     } else {
@@ -3702,14 +3701,14 @@ static void ov16_022611DC(SysTask *param0, void *param1)
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 13;
                             } else {
-                                Sound_PlayPannedEffect(1516, -117);
+                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU, -117);
                                 v0->unk_12 = 15;
                             }
                         } else {
                             if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 11;
                             } else {
-                                Sound_PlayPannedEffect(1516, -117);
+                                Sound_PlayPannedEffect(SEQ_SE_DP_KAIFUKU, -117);
                                 v0->unk_12 = 15;
                             }
                         }
@@ -3745,11 +3744,11 @@ static void ov16_022611DC(SysTask *param0, void *param1)
         ov16_02265A70(v0->unk_00, v0->unk_0D, v7);
         ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-        Heap_FreeToHeap(v0->unk_08->unk_04->party);
-        Heap_FreeToHeap(v0->unk_08->unk_04);
-        Heap_FreeToHeap(v0->unk_08);
-        Heap_FreeToHeap(v0->unk_04);
-        Heap_FreeToHeap(param1);
+        Heap_Free(v0->unk_08->unk_04->party);
+        Heap_Free(v0->unk_08->unk_04);
+        Heap_Free(v0->unk_08);
+        Heap_Free(v0->unk_04);
+        Heap_Free(param1);
         SysTask_Done(param0);
     } break;
     case 9: {
@@ -4024,10 +4023,10 @@ static void ov16_022611DC(SysTask *param0, void *param1)
     case 20:
     case 26:
     case 28:
-        ov12_0222016C(ov16_0223E008(v0->unk_00));
+        BattleAnimSystem_ExecuteScript(ov16_0223E008(v0->unk_00));
 
-        if (ov12_02220188(ov16_0223E008(v0->unk_00)) == 0) {
-            ov12_02220198(ov16_0223E008(v0->unk_00));
+        if (BattleAnimSystem_IsMoveActive(ov16_0223E008(v0->unk_00)) == 0) {
+            BattleAnimSystem_FreeScriptData(ov16_0223E008(v0->unk_00));
             v0->unk_0E++;
         }
         break;
@@ -4054,10 +4053,10 @@ static void ov16_02261D50(SysTask *param0, void *param1)
     ov16_02265A70(v0->unk_00, v0->unk_0D, v1);
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(v0->unk_08->unk_04->party);
-    Heap_FreeToHeap(v0->unk_08->unk_04);
-    Heap_FreeToHeap(v0->unk_08);
-    Heap_FreeToHeap(param1);
+    Heap_Free(v0->unk_08->unk_04->party);
+    Heap_Free(v0->unk_08->unk_04);
+    Heap_Free(v0->unk_08);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -4067,10 +4066,10 @@ static void ov16_02261DA8(SysTask *param0, void *param1)
 
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(v0->unk_08->unk_04->party);
-    Heap_FreeToHeap(v0->unk_08->unk_04);
-    Heap_FreeToHeap(v0->unk_08);
-    Heap_FreeToHeap(param1);
+    Heap_Free(v0->unk_08->unk_04->party);
+    Heap_Free(v0->unk_08->unk_04);
+    Heap_Free(v0->unk_08);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -4102,10 +4101,10 @@ static void ov16_02261DE0(SysTask *param0, void *param1)
     ov16_02265A70(v0->unk_00, v0->unk_0D, v1);
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(v0->unk_08->unk_04->party);
-    Heap_FreeToHeap(v0->unk_08->unk_04);
-    Heap_FreeToHeap(v0->unk_08);
-    Heap_FreeToHeap(param1);
+    Heap_Free(v0->unk_08->unk_04->party);
+    Heap_Free(v0->unk_08->unk_04);
+    Heap_Free(v0->unk_08);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -4126,8 +4125,8 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
 
         v0->unk_17 = ov16_0226CD08(ov16_0223E02C(v0->unk_00));
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
-        PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 0, 7, 0x0);
-        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
+        PaletteData_StartFade(v1, 0x1 | 0x4, 0xc00, -8, 0, 7, 0x0);
+        PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 0, 16, 0x0);
         v0->unk_0A++;
         break;
     case 1:
@@ -4160,7 +4159,7 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
                         Party_AddPokemon(v0->unk_04->party, v9);
                     }
 
-                    Heap_FreeToHeap(v9);
+                    Heap_Free(v9);
 
                     for (i = 0; i < BattleSystem_PartyCount(v0->unk_00, v6); i++) {
                         v9 = BattleSystem_PartyPokemon(v0->unk_00, v6, v0->unk_1C[v6][i]);
@@ -4236,8 +4235,8 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
         if (v0->unk_04->battlePartyExited) {
             ov16_0223B430(v0->unk_00);
             ov16_0226CD10(ov16_0223E02C(v0->unk_00), v0->unk_04->isCursorEnabled);
-            PaletteData_StartFade(v1, (0x1 | 0x4), 0xc00, -8, 7, 0, 0x0);
-            PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
+            PaletteData_StartFade(v1, 0x1 | 0x4, 0xc00, -8, 7, 0, 0x0);
+            PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 16, 0, 0x0);
             v0->unk_0A++;
         }
         break;
@@ -4252,9 +4251,9 @@ static void ov16_02261E8C(SysTask *param0, void *param1)
             }
 
             ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
-            Heap_FreeToHeap(v0->unk_04->party);
-            Heap_FreeToHeap(v0->unk_04);
-            Heap_FreeToHeap(param1);
+            Heap_Free(v0->unk_04->party);
+            Heap_Free(v0->unk_04);
+            Heap_Free(param1);
             SysTask_Done(param0);
         }
         break;
@@ -4298,7 +4297,7 @@ static void ov16_02262258(SysTask *param0, void *param1)
     ov16_02265B10(v0->unk_00, v0->unk_09, 1 + v1);
     ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -4308,7 +4307,7 @@ static void ov16_0226230C(SysTask *param0, void *param1)
 
     ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -4352,7 +4351,7 @@ static void ov16_0226232C(SysTask *param0, void *param1)
     ov16_02265B10(v0->unk_00, v0->unk_09, v1);
     ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -4475,7 +4474,7 @@ static void ov16_022623F0(SysTask *param0, void *param1)
         if (ov16_0226BCD0(v2) == 1) {
             ov16_022656D4(v0->unk_00, v0->unk_0D, v0->unk_08);
             ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
-            Heap_FreeToHeap(param1);
+            Heap_Free(param1);
             SysTask_Done(param0);
         }
         break;
@@ -4488,7 +4487,7 @@ static void ov16_0226262C(SysTask *param0, void *param1)
 
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -4498,7 +4497,7 @@ static void ov16_0226264C(SysTask *param0, void *param1)
 
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -4518,7 +4517,7 @@ static void ov16_0226266C(SysTask *param0, void *param1)
     ov16_022656D4(v0->unk_00, v0->unk_0D, v1);
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -4605,7 +4604,7 @@ static void ov16_022626C0(SysTask *param0, void *param1)
         break;
     case 10:
         ClearCommand(v0->unk_00, v0->unk_69, v0->unk_68);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     case 1:
@@ -4613,10 +4612,10 @@ static void ov16_022626C0(SysTask *param0, void *param1)
     case 5:
     case 7:
     case 9:
-        ov12_0222016C(v0->unk_0C);
+        BattleAnimSystem_ExecuteScript(v0->unk_0C);
 
-        if (ov12_02220188(v0->unk_0C) == 0) {
-            ov12_02220198(v0->unk_0C);
+        if (BattleAnimSystem_IsMoveActive(v0->unk_0C) == 0) {
+            BattleAnimSystem_FreeScriptData(v0->unk_0C);
             v0->unk_6A++;
         }
         break;
@@ -4642,7 +4641,7 @@ static void ov16_0226292C(SysTask *param0, void *param1)
         v1 = 0;
         PokemonSprite_SetAttribute(v0->unk_04, MON_SPRITE_HIDE, v1);
         ClearCommand(v0->unk_00, v0->unk_08, 23);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
     }
 }
@@ -4717,7 +4716,7 @@ static void ov16_022629DC(SysTask *param0, void *param1)
 static void ov16_02262A9C(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225DB74 *v0 = (UnkStruct_ov16_0225DB74 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
     int v2;
     int v3;
 
@@ -4750,10 +4749,10 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
         break;
     case 1:
     case 3:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_66++;
         }
         break;
@@ -4766,7 +4765,7 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
             v7 = -117;
         }
 
-        Pokemon_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_65), 5, v0->unk_68, v0->unk_6B, v7, 127, v0->unk_72, 5, 0);
+        Species_PlayDelayedCry(BattleSystem_ChatotVoice(v0->unk_00, v0->unk_65), 5, v0->unk_68, v0->unk_6B, v7, 127, v0->unk_72, 5, 0);
         v0->unk_66++;
     }
     case 5:
@@ -4776,9 +4775,9 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
         break;
     case 6:
         if (v0->unk_67 == 2) {
-            Sound_PlayPannedEffect(1795, 117);
+            Sound_PlayPannedEffect(SEQ_SE_DP_POKE_DEAD3, 117);
         } else {
-            Sound_PlayPannedEffect(1795, -117);
+            Sound_PlayPannedEffect(SEQ_SE_DP_POKE_DEAD3, -117);
         }
 
         if (PokemonSprite_GetAttribute(v0->unk_08, MON_SPRITE_SHADOW_HEIGHT) > 0) {
@@ -4828,7 +4827,7 @@ static void ov16_02262A9C(SysTask *param0, void *param1)
         break;
     case 10:
         ClearCommand(v0->unk_00, v0->unk_65, v0->unk_64);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -4843,7 +4842,7 @@ static void ov16_02262D28(SysTask *param0, void *param1)
     switch (v0->unk_06) {
     case 0:
         sub_02015738(ov16_0223E220(v0->unk_00), 1);
-        PaletteData_StartFade(v1, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
+        PaletteData_StartFade(v1, 0x1 | 0x2 | 0x4 | 0x8, 0xffff, 1, 0, 16, 0x0);
         PokemonSpriteManager_StartFadeAll(v2, 0, 16, 0, 0x0);
         Sound_FadeOutBGM(0, 16);
         v0->unk_06++;
@@ -4854,7 +4853,7 @@ static void ov16_02262D28(SysTask *param0, void *param1)
         break;
     case 2:
         ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -4863,7 +4862,7 @@ static void ov16_02262D28(SysTask *param0, void *param1)
 static void ov16_02262DC4(SysTask *param0, void *param1)
 {
     UnkStruct_ov16_0225DCB0 *v0 = (UnkStruct_ov16_0225DCB0 *)param1;
-    UnkStruct_ov12_0221FCDC *v1 = ov16_0223E008(v0->unk_00);
+    BattleAnimSystem *v1 = ov16_0223E008(v0->unk_00);
 
     switch (v0->unk_62) {
     case 0:
@@ -4907,16 +4906,16 @@ static void ov16_02262DC4(SysTask *param0, void *param1)
         break;
     case 2:
     case 4:
-        ov12_0222016C(v1);
+        BattleAnimSystem_ExecuteScript(v1);
 
-        if (ov12_02220188(v1) == 0) {
-            ov12_02220198(v1);
+        if (BattleAnimSystem_IsMoveActive(v1) == 0) {
+            BattleAnimSystem_FreeScriptData(v1);
             v0->unk_62++;
         }
         break;
     default:
         ClearCommand(v0->unk_00, v0->unk_61, v0->unk_60);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -4935,7 +4934,7 @@ static void ov16_02262F30(SysTask *param0, void *param1)
     case 1:
         if (v0->unk_0B == 1) {
             ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
-            Heap_FreeToHeap(param1);
+            Heap_Free(param1);
             SysTask_Done(param0);
         }
         break;
@@ -4953,7 +4952,7 @@ static void WaitForBattleMessagePrint(SysTask *task, void *data)
 
     if (Text_IsPrinterActive(waitTask->msgIdx) == FALSE) {
         ClearCommand(waitTask->battleSys, waitTask->battler, waitTask->command);
-        Heap_FreeToHeap(data);
+        Heap_Free(data);
         SysTask_Done(task);
     }
 }
@@ -4973,7 +4972,7 @@ static void ov16_02262FC0(SysTask *param0, void *param1)
         if (++v0->unk_08 == 40) {
             ov16_022661B0(v0->unk_00, v0->unk_05);
             ClearCommand(v0->unk_00, v0->unk_05, v0->unk_04);
-            Heap_FreeToHeap(param1);
+            Heap_Free(param1);
             SysTask_Done(param0);
         }
         break;
@@ -5118,7 +5117,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
 
             PaletteData_StartFade(v2, 0x1, 0xf3ff, 0, 16, 0, v4);
             PaletteData_StartFade(v2, 0x4, 0x3fff, 0, 16, 0, v4);
-            PaletteData_StartFade(v2, (0x2 | 0x8), 0xffff, 0, 16, 0, v4);
+            PaletteData_StartFade(v2, 0x2 | 0x8, 0xffff, 0, 16, 0, v4);
         }
 
         if (v0->unk_15 >= 50) {
@@ -5134,7 +5133,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
         break;
     case 3:
         sub_02015738(ov16_0223E220(v0->unk_00), 0);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     case 4:
@@ -5156,7 +5155,7 @@ static void ov16_02263014(SysTask *param0, void *param1)
 
         PaletteData_StartFade(v2, 0x1, 0xffff, 0, 0, 0, 0x7fff);
         PaletteData_StartFade(v2, 0x4, 0x3fff, 0, 0, 0, 0xffff);
-        PaletteData_StartFade(v2, (0x2 | 0x8), 0xffff, 0, 0, 0, 0x7fff);
+        PaletteData_StartFade(v2, 0x2 | 0x8, 0xffff, 0, 0, 0, 0x7fff);
         v0->unk_14 = 3;
         break;
     }
@@ -5169,7 +5168,7 @@ static void ov16_022633A4(SysTask *param0, void *param1)
 
     switch (v0->unk_0A) {
     case 0:
-        PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 0, 16, 0x0);
+        PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 0, 16, 0x0);
         v0->unk_0A++;
         break;
     case 1:
@@ -5196,7 +5195,7 @@ static void ov16_022633A4(SysTask *param0, void *param1)
     case 2:
         if (v0->unk_04->battlePartyExited) {
             ov16_0223B430(v0->unk_00);
-            PaletteData_StartFade(v1, (0x2 | 0x8), 0xffff, -8, 16, 0, 0x0);
+            PaletteData_StartFade(v1, 0x2 | 0x8, 0xffff, -8, 16, 0, 0x0);
             v0->unk_0A++;
         }
         break;
@@ -5210,8 +5209,8 @@ static void ov16_022633A4(SysTask *param0, void *param1)
 
             ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
 
-            Heap_FreeToHeap(v0->unk_04);
-            Heap_FreeToHeap(param1);
+            Heap_Free(v0->unk_04);
+            Heap_Free(param1);
             SysTask_Done(param0);
         }
         break;
@@ -5246,7 +5245,7 @@ static void ov16_022634DC(SysTask *param0, void *param1)
         break;
     case 1:
         ClearCommand(v0->unk_00, v0->unk_09, v0->unk_08);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -5301,7 +5300,7 @@ static void ShowPartyGaugeTask(SysTask *param0, void *param1)
         break;
     default:
         ClearCommand(v0->battleSys, v0->battler, v0->command);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -5345,7 +5344,7 @@ static void HidePartyGaugeTask(SysTask *param0, void *param1)
         break;
     default:
         ClearCommand(v0->battleSys, v0->battler, v0->command);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -5363,7 +5362,7 @@ static void ov16_02263688(SysTask *param0, void *param1)
         break;
     default:
         ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
-        Heap_FreeToHeap(param1);
+        Heap_Free(param1);
         SysTask_Done(param0);
         break;
     }
@@ -5386,7 +5385,7 @@ static void ov16_022636D4(SysTask *param0, void *param1)
     v0->unk_04->unk_88 = NULL;
     ClearCommand(v0->unk_00, v0->unk_0D, v0->unk_0C);
 
-    Heap_FreeToHeap(param1);
+    Heap_Free(param1);
     SysTask_Done(param0);
 }
 
@@ -6082,7 +6081,7 @@ static ManagedSprite *ov16_022643B8(BattleSystem *battleSys, int param1, int par
     return v3;
 }
 
-static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, UnkStruct_ov12_0221FCDC *param2, UnkStruct_ov16_02265BBC *param3)
+static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, BattleAnimSystem *param2, UnkStruct_ov16_02265BBC *param3)
 {
     UnkStruct_ov16_02264408 v0;
     int i;
@@ -6124,7 +6123,7 @@ static void ov16_02264408(BattleSystem *battleSys, BattlerData *param1, UnkStruc
     v0.unk_54.unk_10 = 0;
     v0.unk_54.unk_14 = 8;
 
-    ov12_0221FE30(param2, param3, v2, &v0);
+    BattleAnimSystem_StartMove(param2, param3, v2, &v0);
 }
 
 static void ov16_02264530(BattleSystem *battleSys, UnkStruct_ov16_02265BBC *param1, UnkStruct_ov12_022380DC *param2, int param3)
@@ -6243,7 +6242,7 @@ static void ov16_022646C8(SysTask *param0, void *param1)
         break;
     case 2:
         if (BrightnessController_IsTransitionComplete(BRIGHTNESS_MAIN_SCREEN) == TRUE) {
-            Heap_FreeToHeap(param1);
+            Heap_Free(param1);
             SysTask_Done(param0);
         }
         break;

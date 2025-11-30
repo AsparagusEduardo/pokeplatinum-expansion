@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area_ribbon_syndicate_2f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _02E8
@@ -266,6 +265,4 @@ _030E:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

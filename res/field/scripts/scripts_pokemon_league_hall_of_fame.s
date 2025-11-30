@@ -2,7 +2,6 @@
 #include "generated/hidden_locations.h"
 #include "res/text/bank/pokemon_league_hall_of_fame.h"
 
-    .data
 
     ScriptEntry _0006
     ScriptEntryEnd
@@ -207,4 +206,4 @@ _02BD:
     ClearFlag FLAG_UNK_0x0185
     Return
 
-    .byte 0
+    .balign 4, 0

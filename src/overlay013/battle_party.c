@@ -15,6 +15,7 @@
 #include "bag.h"
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
@@ -35,7 +36,6 @@
 #include "text.h"
 #include "touch_screen.h"
 #include "unk_0200679C.h"
-#include "unk_0200C440.h"
 #include "unk_0208C098.h"
 #include "unk_02094EDC.h"
 
@@ -1247,13 +1247,13 @@ static void LoadGraphicsData(BattleParty *battleParty)
     void *buffer = NARC_AllocAndReadWholeMember(narc, 20, battleParty->context->heapID);
     NNS_G2dGetUnpackedScreenData(buffer, &screenData);
     ov13_02225710(battleParty, (u16 *)screenData->rawData);
-    Heap_FreeToHeap(buffer);
+    Heap_Free(buffer);
 
     buffer = NARC_AllocAndReadWholeMember(narc, 21, battleParty->context->heapID);
     NNS_G2dGetUnpackedScreenData(buffer, &screenData);
 
     ov13_02225A3C(battleParty, (u16 *)screenData->rawData);
-    Heap_FreeToHeap(buffer);
+    Heap_Free(buffer);
 
     PaletteData_LoadBufferFromFileStart(battleParty->palette, NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, 23, battleParty->context->heapID, PLTTBUF_SUB_BG, PALETTE_SIZE_BYTES * 16, 0);
     NARC_dtor(narc);
@@ -1277,13 +1277,13 @@ static void LoadGraphicsData(BattleParty *battleParty)
     memcpy(&paletteData[3], &rawPaletteData[156], 4);
 
     PaletteData_LoadBuffer(battleParty->palette, paletteData, PLTTBUF_SUB_BG, 208, PALETTE_SIZE_BYTES);
-    Heap_FreeToHeap(paletteData);
+    Heap_Free(paletteData);
 }
 
 static void InitializeMessageLoader(BattleParty *battleParty)
 {
     battleParty->messageLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BATTLE_PARTY, battleParty->context->heapID);
-    battleParty->unk_1FA0 = sub_0200C440(15, 14, 0, battleParty->context->heapID);
+    battleParty->unk_1FA0 = FontSpecialChars_Init(15, 14, 0, battleParty->context->heapID);
     battleParty->stringTemplate = StringTemplate_Default(battleParty->context->heapID);
     battleParty->strbuf = Strbuf_Init(512, battleParty->context->heapID);
 }
@@ -1291,7 +1291,7 @@ static void InitializeMessageLoader(BattleParty *battleParty)
 static void CleanupMessageLoader(BattleParty *battleParty)
 {
     MessageLoader_Free(battleParty->messageLoader);
-    sub_0200C560(battleParty->unk_1FA0);
+    FontSpecialChars_Free(battleParty->unk_1FA0);
     StringTemplate_Free(battleParty->stringTemplate);
     Strbuf_Free(battleParty->strbuf);
 }
@@ -1685,7 +1685,7 @@ static void DrawScreenBackground(BattleParty *battleParty, enum BattlePartyScree
         NNS_G2dGetUnpackedScreenData(buffer, &screenData);
         Bg_LoadToTilemapRect(battleParty->background, BG_LAYER_SUB_2 + i, (u16 *)screenData->rawData, 0, 0, 32, 24);
         Bg_ScheduleTilemapTransfer(battleParty->background, BG_LAYER_SUB_2 + i);
-        Heap_FreeToHeap(buffer);
+        Heap_Free(buffer);
     }
 }
 

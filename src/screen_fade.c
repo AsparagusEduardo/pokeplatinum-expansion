@@ -78,11 +78,11 @@ static void Task_ResetScreenMasterBrightness(SysTask *task, void *data);
 static void DummyHBlankCallback(void *data);
 
 static const ScreenFadeFunc sScreenFadeFuncs[FADE_TYPE_MAX] = {
-    [FADE_TYPE_UNK_0] = sub_0200F85C,
-    [FADE_TYPE_UNK_1] = sub_0200F878,
+    [FADE_TYPE_BRIGHTNESS_OUT] = sub_0200F85C,
+    [FADE_TYPE_BRIGHTNESS_IN] = sub_0200F878,
     [FADE_TYPE_UNK_2] = sub_0200F898,
-    [FADE_TYPE_UNK_3] = sub_0200F8D4,
-    [FADE_TYPE_UNK_4] = sub_0200F90C,
+    [FADE_TYPE_DOWNWARD_IN] = sub_0200F8D4,
+    [FADE_TYPE_UPWARD_OUT] = sub_0200F90C,
     [FADE_TYPE_UNK_5] = sub_0200F948,
     [FADE_TYPE_UNK_6] = sub_0200F980,
     [FADE_TYPE_UNK_7] = sub_0200F9AC,
@@ -202,12 +202,12 @@ void ResetScreenMasterBrightness(enum DSScreen screen)
 
 void SetScreenColorBrightness(enum DSScreen screen, u16 color)
 {
-    if (color == FADE_TO_SAVED_COLOR) {
+    if (color == COLOR_SAVED) {
         color = sScreenFadeManager.savedColor;
     }
 
     int brightness;
-    if (color == FADE_TO_WHITE) {
+    if (color == COLOR_WHITE) {
         brightness = BRIGHTNESS_WHITE;
     } else {
         brightness = BRIGHTNESS_BLACK;
@@ -218,12 +218,12 @@ void SetScreenColorBrightness(enum DSScreen screen, u16 color)
 
 void SetColorBrightness(u16 color)
 {
-    if (color == FADE_TO_SAVED_COLOR) {
+    if (color == COLOR_SAVED) {
         color = sScreenFadeManager.savedColor;
     }
 
     int brightness;
-    if (color == FADE_TO_WHITE) {
+    if (color == COLOR_WHITE) {
         brightness = BRIGHTNESS_WHITE;
     } else {
         brightness = BRIGHTNESS_BLACK;
@@ -236,7 +236,7 @@ void SetColorBrightness(u16 color)
 
 void SetupScreenFadeRegisters(enum DSScreen screen, u16 color)
 {
-    if (color == FADE_TO_SAVED_COLOR) {
+    if (color == COLOR_SAVED) {
         color = sScreenFadeManager.savedColor;
     }
 
@@ -458,7 +458,7 @@ static void Task_EnableScreenHBlank(SysTask *task, void *data)
     EnableHBlankTemplate *template = data;
     EnableScreenHBlank(template->hblanks, template->data, template->callback, template->screen);
     SysTask_Done(task);
-    Heap_FreeToHeap(data);
+    Heap_Free(data);
 }
 
 static void Task_DisableScreenHBlank(SysTask *task, void *data)
@@ -466,7 +466,7 @@ static void Task_DisableScreenHBlank(SysTask *task, void *data)
     DisableHBlankTemplate *template = data;
     DisableScreenHBlank(template->hblanks, template->screen);
     SysTask_Done(task);
-    Heap_FreeToHeap(data);
+    Heap_Free(data);
 }
 
 static void DummyHBlankCallback(void *data)
@@ -476,7 +476,7 @@ static void DummyHBlankCallback(void *data)
 
 static u16 GetFadeColor(ScreenFadeManager *manager, u16 color)
 {
-    if (color == FADE_TO_SAVED_COLOR) {
+    if (color == COLOR_SAVED) {
         return manager->savedColor;
     }
 
@@ -509,7 +509,7 @@ static void Task_ResetScreenMasterBrightness(SysTask *task, void *data)
 static void RequestResetScreenMasterBrightness(ScreenFade *fade)
 {
     if (fade->direction == FADE_IN
-        && (fade->color == FADE_TO_WHITE || fade->color == FADE_TO_BLACK)
+        && (fade->color == COLOR_WHITE || fade->color == COLOR_BLACK)
         && fade->method == FADE_BY_WINDOW) {
         SysTask_ExecuteAfterVBlank(Task_ResetScreenMasterBrightness, fade, LOCAL_TASK_PRIORIITY);
     }
@@ -518,7 +518,7 @@ static void RequestResetScreenMasterBrightness(ScreenFade *fade)
 static void ResetWindowScreenFade(ScreenFade *fade)
 {
     if (fade->direction == FADE_OUT
-        && (fade->color == FADE_TO_WHITE || fade->color == FADE_TO_BLACK)
+        && (fade->color == COLOR_WHITE || fade->color == COLOR_BLACK)
         && fade->method == FADE_BY_WINDOW) {
         SetScreenColorBrightness(fade->screen, fade->color);
         ResetVisibleHardwareWindows(fade->screen);

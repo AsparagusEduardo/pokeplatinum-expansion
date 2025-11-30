@@ -8,6 +8,7 @@
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 
+#include "applications/naming_screen.h"
 #include "overlay004/ov4_021D0D80.h"
 #include "overlay063/ov63_0222BE18.h"
 #include "overlay063/ov63_0222CCE4.h"
@@ -92,12 +93,10 @@
 #include "unk_020366A0.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
-#include "unk_0208694C.h"
 #include "unk_0209B6F8.h"
 #include "vars_flags.h"
 
 #include "constdata/const_020EA358.h"
-#include "constdata/const_020F2DAC.h"
 
 typedef struct {
     s16 unk_00;
@@ -1428,7 +1427,7 @@ static void ov104_0223088C(UnkStruct_ov104_0222E930 *param0, int param1, int par
     }
 
     ov104_0223D860(v0->unk_00, v2, 1, v1, 3);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 static BOOL ov104_022308E0(UnkStruct_ov104_0222E930 *param0)
@@ -1448,16 +1447,16 @@ static BOOL ov104_02230900(UnkStruct_ov104_0222E930 *param0)
 static BOOL ov104_02230910(UnkStruct_ov104_0222E930 *param0)
 {
     UnkStruct_ov104_02230BE4 *v1 = sub_0209B970(param0->unk_00->unk_00);
-    void *v0 = sub_0208712C(HEAP_ID_FIELDMAP, 0, 0, 8, (void *)v1->options);
+    void *v0 = NamingScreenArgs_Init(HEAP_ID_FIELDMAP, NAMING_SCREEN_TYPE_PLAYER, 0, 8, (void *)v1->options);
 
-    sub_0209B988(param0->unk_00->unk_00, &Unk_020F2DAC, v0, 0, ov104_02230950);
+    sub_0209B988(param0->unk_00->unk_00, &gNamingScreenAppTemplate, v0, 0, ov104_02230950);
 
     return 1;
 }
 
 static void ov104_02230950(void *param0)
 {
-    sub_0208716C(param0);
+    NamingScreenArgs_Free(param0);
 }
 
 static BOOL ov104_02230958(UnkStruct_ov104_0222E930 *param0)
@@ -2046,7 +2045,7 @@ static BOOL ov104_02231148(UnkStruct_ov104_02231148 *param0)
 
         ResetVisibleHardwareWindows(DS_SCREEN_MAIN);
         ResetVisibleHardwareWindows(DS_SCREEN_SUB);
-        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, FADE_TO_BLACK, 12, 1, HEAP_ID_FIELDMAP);
+        StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_UNK_32, FADE_TYPE_UNK_32, COLOR_BLACK, 12, 1, HEAP_ID_FIELDMAP);
         param0->unk_04++;
         break;
     default:
@@ -2100,8 +2099,8 @@ static BOOL ov104_022311BC(UnkStruct_ov104_02231148 *param0)
             Window_ClearAndCopyToVRAM(param0->unk_28);
             Window_Remove(param0->unk_28);
             Windows_Delete(param0->unk_28, 1);
-            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
             Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
 
@@ -2156,8 +2155,8 @@ static BOOL ov104_022312D8(UnkStruct_ov104_02231148 *param0)
             Window_Remove(param0->unk_28);
             Windows_Delete(param0->unk_28, 1);
 
-            SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-            SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+            SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
             Bg_ClearTilesRange(BG_LAYER_MAIN_1, 32, 0, HEAP_ID_FIELDMAP);
             Bg_ClearTilemap(param0->unk_00->unk_00, 1);
@@ -2249,7 +2248,7 @@ static void ov104_022313FC(SysTask *param0, void *param1)
 
         ov104_0223F258(v4->unk_600);
 
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
         SysTask_Done(param0);
 
         return;
@@ -2492,10 +2491,10 @@ static BOOL ov104_02231AA8(UnkStruct_ov104_0222E930 *param0)
     v0 = Unk_ov104_0223F65C[v1->unk_08](v1);
 
     if (v0 == 0) {
-        SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-        SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+        SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
         sub_0209B980(param0->unk_00->unk_00, v1->unk_14);
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
     }
 
     return !v0;

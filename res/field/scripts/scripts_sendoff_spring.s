@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/sendoff_spring.h"
 
-    .data
 
     ScriptEntry _0021
     ScriptEntry _00C0
@@ -87,4 +86,4 @@ _00EB:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

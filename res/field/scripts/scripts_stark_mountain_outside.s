@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/stark_mountain_outside.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0018
@@ -58,14 +57,9 @@ _00AC:
     WalkNormalNorth
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+StarkMountainOutside_UnusedMovement:
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0
 _00C4:

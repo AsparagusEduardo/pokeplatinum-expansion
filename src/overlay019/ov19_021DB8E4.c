@@ -17,6 +17,7 @@
 
 #include "bg_window.h"
 #include "font.h"
+#include "font_special_chars.h"
 #include "graphics.h"
 #include "heap.h"
 #include "item.h"
@@ -29,7 +30,6 @@
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "text.h"
-#include "unk_0200C440.h"
 
 typedef struct {
     UnkStruct_ov19_021DBA9C *unk_00;
@@ -87,11 +87,11 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
 
         v2 = Graphics_GetPlttDataFromOpenNARC(param5, 27, &v1, HEAP_ID_BOX_GRAPHICS);
         MI_CpuCopy16(v1->pRawData, &(param0->unk_E4[0][0]), 0x40);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
 
         v2 = Graphics_GetPlttDataFromOpenNARC(param5, 20, &v1, HEAP_ID_BOX_GRAPHICS);
         MI_CpuCopy16(v1->pRawData, &(param0->unk_E4[0][32]), 0x20);
-        Heap_FreeToHeap(v2);
+        Heap_Free(v2);
 
         {
             int v3;
@@ -116,7 +116,7 @@ BOOL ov19_021DB8E4(UnkStruct_ov19_021DBA9C *param0, UnkStruct_ov19_021D61B0 *par
     param0->unk_1C = Graphics_GetCellBankFromOpenNARC(param5, 18, 1, &(param0->unk_20), HEAP_ID_BOX_GRAPHICS);
     param0->unk_34 = Graphics_GetScrnDataFromOpenNARC(param5, 2, 1, &(param0->unk_38), HEAP_ID_BOX_GRAPHICS);
     param0->unk_2C = Graphics_GetScrnDataFromOpenNARC(param5, 3, 1, &(param0->unk_30), HEAP_ID_BOX_GRAPHICS);
-    param0->unk_44 = sub_0200C440(2, 13, 4, HEAP_ID_BOX_GRAPHICS);
+    param0->unk_44 = FontSpecialChars_Init(2, 13, 4, HEAP_ID_BOX_GRAPHICS);
     param0->unk_4BFC = Strbuf_Init(500, HEAP_ID_BOX_GRAPHICS);
     param0->unk_10 = NULL;
     param0->unk_3C.pixels = param0->unk_18->pRawData;
@@ -161,23 +161,23 @@ void ov19_021DBAD0(UnkStruct_ov19_021DBA9C *param0)
     }
 
     if (param0->unk_14) {
-        Heap_FreeToHeap(param0->unk_14);
+        Heap_Free(param0->unk_14);
     }
 
     if (param0->unk_1C) {
-        Heap_FreeToHeap(param0->unk_1C);
+        Heap_Free(param0->unk_1C);
     }
 
     if (param0->unk_2C) {
-        Heap_FreeToHeap(param0->unk_2C);
+        Heap_Free(param0->unk_2C);
     }
 
     if (param0->unk_34) {
-        Heap_FreeToHeap(param0->unk_34);
+        Heap_Free(param0->unk_34);
     }
 
     if (param0->unk_44) {
-        sub_0200C560(param0->unk_44);
+        FontSpecialChars_Free(param0->unk_44);
     }
 
     if (param0->unk_4BFC) {
@@ -191,7 +191,7 @@ void ov19_021DBAD0(UnkStruct_ov19_021DBA9C *param0)
             Window_Remove(&(param0->unk_10[v0]));
         }
 
-        Heap_FreeToHeap(param0->unk_10);
+        Heap_Free(param0->unk_10);
     }
 }
 
@@ -377,7 +377,7 @@ static void ov19_021DBDF4(UnkStruct_ov19_021DBA9C *param0)
 
         GF_ASSERT(param0->unk_48[v4] != NULL);
 
-        Sprite_SetDrawFlag(param0->unk_48[v4], 0);
+        Sprite_SetDrawFlag(param0->unk_48[v4], FALSE);
         VEC_Set(&v3, FX32_CONST(32 + v4 * 32), FX32_CONST(88), 0);
         Sprite_SetPosition(param0->unk_48[v4], &v3);
         ov19_021DBD68(param0, v5);
@@ -412,7 +412,7 @@ static void ov19_021DBF18(UnkStruct_ov19_021DBA9C *param0)
 
     for (v1 = 0; v1 < 7; v1++) {
         ov19_021DBD9C(param0, v1, v0);
-        Sprite_SetDrawFlag(param0->unk_48[v1], 1);
+        Sprite_SetDrawFlag(param0->unk_48[v1], TRUE);
 
         if (++v0 >= 18) {
             v0 = 0;
@@ -455,7 +455,7 @@ static void ov19_021DBFC4(UnkStruct_ov19_021DBA9C *param0)
     v0 = ov19_021DBD40(param0);
 
     for (v1 = 0; v1 < 7; v1++) {
-        sub_0200C5BC(param0->unk_44, param0->unk_94[v0], 2, 2, v2, 32 * v1, 0);
+        FontSpecialChars_DrawPartyScreenHPText(param0->unk_44, param0->unk_94[v0], 2, 2, v2, 32 * v1, 0);
 
         if (++v0 >= 18) {
             v0 = 0;
@@ -489,7 +489,7 @@ static void ov19_021DC034(UnkStruct_ov19_021DBA9C *param0, int param1)
         param0->unk_DC = SysTask_Start(v0[param1], v1, 0);
 
         if (param0->unk_DC == NULL) {
-            Heap_FreeToHeap(v1);
+            Heap_Free(v1);
         }
     }
 }
@@ -500,7 +500,7 @@ static void ov19_021DC074(SysTask *param0, void *param1)
 
     v0->unk_00->unk_DC = NULL;
 
-    Heap_FreeToHeap(v0);
+    Heap_Free(v0);
     SysTask_Done(param0);
 }
 
@@ -729,7 +729,7 @@ static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C *param0, u32 param1)
             Sprite_SetExplicitPalette(param0->unk_90, 6);
         }
 
-        Heap_FreeToHeap(v4);
+        Heap_Free(v4);
     }
 }
 

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_meadow.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _0024
@@ -52,22 +51,13 @@ _0088:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+FloaromaMeadow_UnusedMovement:
+    WalkNormalNorth 9
+    EndMovement
+
+FloaromaMeadow_UnusedMovement2:
+    WalkNormalNorth 9
+    EndMovement
 
     .balign 4, 0
 _00A0:
@@ -155,12 +145,10 @@ _01C6:
     WaitMovement
     Return
 
-    .byte 235
-    .byte 0
-    .byte 97
-    .byte 0
-    .byte 2
-    .byte 0
+FloaromaMeadow_Unused:
+    BlackOutFromBattle
+    ReleaseAll
+    End
 
 _01D8:
     End

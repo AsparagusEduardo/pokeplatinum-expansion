@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/valor_lakefront.h"
 
-    .data
 
     ScriptEntry _0026
     ScriptEntry _0061
@@ -421,18 +420,10 @@ _05BC:
     WalkNormalNorth 9
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+ValorLakefront_UnusedMovement:
+    Delay8
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _05D0:
@@ -452,18 +443,10 @@ _05E8:
     WalkOnSpotNormalNorth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+ValorLakefront_UnusedMovement2:
+    Delay8 3
+    WalkOnSpotNormalNorth
+    EndMovement
 
     .balign 4, 0
 _0600:

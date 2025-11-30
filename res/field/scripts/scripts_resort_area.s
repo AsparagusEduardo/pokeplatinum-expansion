@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/resort_area.h"
 
-    .data
 
     ScriptEntry _00DA
     ScriptEntry _00ED
@@ -437,4 +436,4 @@ _05BC:
     ShowLandmarkSign 27
     End
 
-    .byte 0
+    .balign 4, 0

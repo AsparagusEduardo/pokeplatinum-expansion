@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/twinleaf_town.h"
 
-    .data
 
     ScriptEntry _0026
     ScriptEntry _04D0
@@ -518,4 +517,4 @@ _0659:
     ShowLandmarkSign 14
     End
 
-    .byte 0
+    .balign 4, 0

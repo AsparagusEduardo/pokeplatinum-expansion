@@ -190,7 +190,7 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
 
 BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 {
-    if (input->debugKey == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
+    if (input->debugKey == FALSE && FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIRST_MATCH) == TRUE) {
         return TRUE;
     }
 
@@ -295,7 +295,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         enum AvatarDistortionState distortionState = PlayerAvatar_MapDistortionState(fieldSystem->playerAvatar);
 
         if (distortionState == AVATAR_DISTORTION_STATE_NONE || distortionState == AVATAR_DISTORTION_STATE_ACTIVE) {
-            int event = sub_0203CA6C(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
+            int event = FieldEvent_GetInteractedBgEventScript(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
 
             if (event != 0xffff) {
                 ScriptManager_Set(fieldSystem, event, NULL);
@@ -368,7 +368,7 @@ static BOOL Field_CheckSign(FieldSystem *fieldSystem)
         return TRUE;
     }
 
-    int event = sub_0203CB80(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
+    int event = FieldEvent_GetInteractedWallSignScript(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
 
     if (event != 0xffff) {
         ScriptManager_Set(fieldSystem, event, NULL);
@@ -380,7 +380,7 @@ static BOOL Field_CheckSign(FieldSystem *fieldSystem)
 
 BOOL FieldInput_Process_Underground(FieldInput *input, FieldSystem *fieldSystem)
 {
-    if (input->debugKey == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
+    if (input->debugKey == FALSE && FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIRST_MATCH) == TRUE) {
         return TRUE;
     }
 
@@ -527,7 +527,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
 
 int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSystem)
 {
-    if (input->debugKey == FALSE && sub_0203F5C0(fieldSystem, 1) == TRUE) {
+    if (input->debugKey == FALSE && FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIRST_MATCH) == TRUE) {
         return TRUE;
     }
 
@@ -548,7 +548,7 @@ int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSy
             return TRUE;
         }
 
-        int v2 = sub_0203CA6C(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
+        int v2 = FieldEvent_GetInteractedBgEventScript(fieldSystem, MapHeaderData_GetBgEvents(fieldSystem), MapHeaderData_GetNumBgEvents(fieldSystem));
 
         if (v2 != 0xffff) {
             ScriptManager_Set(fieldSystem, v2, NULL);
@@ -1114,7 +1114,7 @@ static BOOL Field_DistortionInteract(FieldSystem *fieldSystem, MapObject **objec
 
     sub_020617BC(fieldSystem->playerAvatar, &playerX, &playerY, &playerZ);
 
-    while (sub_020625B0(fieldSystem->mapObjMan, object, &objectIndex, (1 << 0))) {
+    while (sub_020625B0(fieldSystem->mapObjMan, object, &objectIndex, 1 << 0)) {
         objectX = MapObject_GetX(*object);
         objectY = MapObject_GetY(*object) / 2;
         objectZ = MapObject_GetZ(*object);

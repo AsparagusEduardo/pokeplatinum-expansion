@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_battle_room.h"
 
-    .data
 
     ScriptEntry _0016
     ScriptEntry _0101
@@ -298,34 +297,14 @@ _04CE:
     WaitMovement
     Return
 
-    .byte 62
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 2
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 14
-    .byte 0
-    .byte 5
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 12
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 3
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+BattleTowerBattleRoom_UnusedMovement:
+    Delay4
+    FaceWest
+    WalkNormalWest 5
+    FaceNorth
+    WalkNormalNorth 3
+    FaceEast
+    EndMovement
 
     .balign 4, 0
 _0504:

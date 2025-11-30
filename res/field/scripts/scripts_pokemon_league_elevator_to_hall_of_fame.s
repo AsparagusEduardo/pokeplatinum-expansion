@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_league_elevator_to_hall_of_fame.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _000A
@@ -14,7 +13,7 @@ _000A:
     SetObjectEventPos 0, 6, 14
     ClearFlag FLAG_UNK_0x023A
     AddObject 0
-    ScrCmd_062 0
+    LockObject 0
     ApplyMovement 0, _0138
     ApplyMovement LOCALID_PLAYER, _017C
     WaitMovement
@@ -23,7 +22,7 @@ _000A:
     SetObjectEventPos 1, 4, 14
     ClearFlag FLAG_UNK_0x023B
     AddObject 1
-    ScrCmd_062 1
+    LockObject 1
     ApplyMovement 1, _0114
     WaitMovement
     ApplyMovement LOCALID_PLAYER, _0190
@@ -123,14 +122,9 @@ _017C:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+PokemonLeagueElevatorToHallOfFame_UnusedMovement:
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _0190:

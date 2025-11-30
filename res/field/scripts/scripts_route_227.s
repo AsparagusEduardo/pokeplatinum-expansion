@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_227.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _01CC
@@ -86,14 +85,9 @@ _0118:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 32
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement:
+    WalkOnSpotNormalNorth
+    EndMovement
 
     .balign 4, 0
 _012C:
@@ -103,26 +97,12 @@ _012C:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 62
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement2:
+    Delay8
+    WalkOnSpotNormalWest
+    Delay4
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _0154:
@@ -150,14 +130,9 @@ _0178:
     WalkFastSouth 9
     EndMovement
 
-    .byte 17
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement3:
+    WalkFastSouth 9
+    EndMovement
 
     .balign 4, 0
 _0188:
@@ -175,26 +150,14 @@ _019C:
     WalkOnSpotNormalSouth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement4:
+    Delay8
+    WalkOnSpotNormalEast
+    EndMovement
+
+Route227_UnusedMovement5:
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _01B8:
@@ -202,14 +165,9 @@ _01B8:
     WalkNormalSouth 9
     EndMovement
 
-    .byte 13
-    .byte 0
-    .byte 9
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement6:
+    WalkNormalSouth 9
+    EndMovement
 
 _01CC:
     ShowArrowSign 12
@@ -263,18 +221,10 @@ _026C:
     FaceNorth
     EndMovement
 
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+Route227_UnusedMovement7:
+    Delay8
+    WalkOnSpotNormalEast
+    EndMovement
 
     .balign 4, 0
 _0280:

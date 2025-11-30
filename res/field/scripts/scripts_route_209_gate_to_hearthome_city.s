@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_209_gate_to_hearthome_city.h"
 
-    .data
 
     ScriptEntry _000A
     ScriptEntry _001D
@@ -128,20 +127,11 @@ _01BA:
     WaitMovement
     Return
 
-    .byte 0
-    .byte 0
-    .byte 18
-    .byte 0
-    .byte 4
-    .byte 0
-    .byte 75
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
+Route209GateToHearthomeCity_UnusedMovement:
+    WalkFastWest 4
+    EmoteExclamationMark
+    EndMovement
 
     .balign 4, 0
 _01D4:

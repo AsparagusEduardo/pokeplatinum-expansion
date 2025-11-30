@@ -5,28 +5,28 @@
 
 #include "constants/items.h"
 #include "constants/species.h"
+#include "constants/string.h"
 
 #include "struct_decls/pc_boxes_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
 #include "struct_defs/chatot_cry.h"
-#include "struct_defs/struct_02042434.h"
-#include "struct_defs/struct_0208737C.h"
 
+#include "applications/naming_screen.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "overlay019/box_cursor.h"
 #include "overlay019/box_customization.h"
 #include "overlay019/box_menu.h"
 #include "overlay019/box_mon_selection.h"
 #include "overlay019/box_settings.h"
-#include "overlay019/ov19_021D603C.h"
 #include "overlay019/ov19_021D61B0.h"
 #include "overlay019/pc_compare_mon.h"
 #include "overlay019/pc_mon_preview.h"
+#include "overlay019/pokemon_storage_session.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D4EE4.h"
 #include "overlay019/struct_ov19_021D4F34.h"
-#include "overlay019/struct_ov19_021D6104.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
+#include "overlay019/touch_dial.h"
 #include "overlay084/const_ov84_02241130.h"
 #include "savedata/save_table.h"
 
@@ -56,9 +56,7 @@
 #include "unk_0202CC64.h"
 #include "unk_0202D778.h"
 #include "unk_0207CB08.h"
-#include "unk_0208694C.h"
 
-#include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F410C.h"
 #include "res/text/bank/box_messages.h"
 
@@ -129,11 +127,11 @@ typedef struct {
 typedef struct UnkStruct_ov19_021D5DF8_t {
     UnkStruct_ov19_021D4DF0 unk_00;
     UnkStruct_ov19_021D61B0 *unk_114;
-    UnkStruct_02042434 *unk_118;
+    PokemonStorageSession *pokemonStorageSession;
     SaveData *saveData;
     PCBoxes *pcBoxes;
     Party *party;
-    UnkStruct_0208737C *unk_128;
+    NamingScreenArgs *unk_128;
     PokemonSummary monSummary;
     ReleaseMon releaseMon;
     TouchScreenActions *mainBoxAndCompareButtonsAction;
@@ -157,7 +155,7 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     };
     BoxSelectorPopup boxSelector;
     u32 unk_1C4;
-    UnkStruct_ov19_021D6104 unk_1C8;
+    TouchDial touchDial;
     int unk_1FC;
     u32 unk_200;
     BOOL unk_204;
@@ -223,7 +221,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1);
 static BOOL ov19_021D4B88(UnkStruct_ov19_021D5DF8 *param0);
 static void ov19_BoxTouchScreenMarkingsButtonHandler(u32 buttonIndex, enum TouchScreenButtonState buttonTouchState, void *context);
-static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *param1);
+static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, PokemonStorageSession *pokemonStorageSession);
 static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0);
 static void BoxSettings_Init(BoxSettings *param0, enum BoxMode boxMode);
 static void ov19_InitCursor(UnkStruct_ov19_021D5DF8 *param0);
@@ -388,7 +386,7 @@ static CursorLocationInputHandler ov19_GetCursorLocationInputHandler(UnkStruct_o
 
 static void ov19_FlagRecordBoxUseInJournal(UnkStruct_ov19_021D5DF8 *param0)
 {
-    param0->unk_118->recordBoxUseInJournal = TRUE;
+    param0->pokemonStorageSession->recordBoxUseInJournal = TRUE;
 }
 
 static void ov19_021D0F20(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
@@ -2543,7 +2541,7 @@ static void ov19_RenameBoxAction(UnkStruct_ov19_021D5DF8 *param0, u32 *state)
             BoxGraphics_Free(param0->unk_114);
             Heap_Destroy(HEAP_ID_BOX_GRAPHICS);
             PCBoxes_BufferBoxName(param0->pcBoxes, PCBoxes_GetCurrentBoxID(param0->pcBoxes), param0->unk_128->textInputStr);
-            param0->ApplicationManager = ApplicationManager_New(&Unk_020F2DAC, param0->unk_128, HEAP_ID_BOX_DATA);
+            param0->ApplicationManager = ApplicationManager_New(&gNamingScreenAppTemplate, param0->unk_128, HEAP_ID_BOX_DATA);
             (*state)++;
         }
         break;
@@ -2672,7 +2670,7 @@ static void ov19_GiveItemFromBagAction(UnkStruct_ov19_021D5DF8 *param0, u32 *sta
             item = sub_0207CB94((UnkStruct_0207CB08 *)(param0->unk_214));
 
             ApplicationManager_Free(param0->ApplicationManager);
-            Heap_FreeToHeap(param0->unk_214);
+            Heap_Free(param0->unk_214);
             Overlay_UnloadByID(FS_OVERLAY_ID(overlay84));
 
             if (item == ITEM_GRISEOUS_ORB && BoxPokemon_GetValue(param0->unk_00.pcMonPreview.mon, MON_DATA_SPECIES, NULL) != SPECIES_GIRATINA) {
@@ -3084,7 +3082,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         ov19_021D5D94(&param0->unk_00, 1);
         ov19_021D5D9C(&(param0->unk_00), ov19_GetCurrentBox(&param0->unk_00));
         ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D7278);
-        ov19_021D603C(&(param0->unk_1C8), 0, 192, 56, 88);
+        TouchDial_Init(&(param0->touchDial), 0, 192, 56, 88);
         param0->unk_204 = 0;
         param0->unk_208 = 1;
         (*param1) = 1;
@@ -3136,17 +3134,17 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             }
         }
 
-        switch (ov19_021D60A8(&param0->unk_1C8)) {
-        case 1:
+        switch (TouchDial_HandleAction(&param0->touchDial)) {
+        case TOUCH_DIAL_INITIAL_TOUCH:
             param0->unk_1FC = ov19_021D5EB8(&param0->unk_00);
             param0->unk_204 = 0;
             param0->unk_20C = 0;
             param0->unk_208 = 0;
             break;
-        case 2: {
+        case TOUCH_DIAL_SCROLLING: {
             int v1;
 
-            v1 = ov19_021D614C(&param0->unk_1C8);
+            v1 = TouchDial_CalcScrollAmount(&param0->touchDial);
 
             if (v1 != param0->unk_20C) {
                 int v2, v3;
@@ -3168,7 +3166,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 (*param1) = 2;
             }
         } break;
-        case 3: {
+        case TOUCH_DIAL_END_SCROLL: {
             int v4, v5;
 
             v4 = ov19_GetCurrentBox(&param0->unk_00);
@@ -3182,7 +3180,7 @@ static void ov19_021D4640(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 2:
         if (param0->unk_208 == 0) {
-            if (ov19_021D60A8(&param0->unk_1C8) == 3) {
+            if (TouchDial_HandleAction(&param0->touchDial) == TOUCH_DIAL_END_SCROLL) {
                 int v6, v7;
 
                 v6 = ov19_GetCurrentBox(&param0->unk_00);
@@ -3230,7 +3228,7 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         ov19_SetMarkingsButtonsScrollOffset(&(param0->unk_00), 0);
         ov19_021D5D9C(&(param0->unk_00), 0);
         ov19_BoxTaskHandler(param0->unk_114, FUNC_ov19_021D7278);
-        ov19_021D603C(&(param0->unk_1C8), 255, 192, 56, 88);
+        TouchDial_Init(&(param0->touchDial), 255, 192, 56, 88);
         param0->unk_204 = 0;
         param0->unk_208 = 1;
         (*param1) = 1;
@@ -3261,17 +3259,17 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
             break;
         }
 
-        switch (ov19_021D60A8(&param0->unk_1C8)) {
-        case 1:
+        switch (TouchDial_HandleAction(&param0->touchDial)) {
+        case TOUCH_DIAL_INITIAL_TOUCH:
             param0->unk_1FC = ov19_021D5EB8(&param0->unk_00);
             param0->unk_204 = 0;
             param0->unk_20C = 0;
             param0->unk_208 = 0;
             break;
-        case 2: {
+        case TOUCH_DIAL_SCROLLING: {
             int v0;
 
-            v0 = ov19_021D614C(&param0->unk_1C8);
+            v0 = TouchDial_CalcScrollAmount(&param0->touchDial);
 
             if (v0 != param0->unk_20C) {
                 int v1, offset;
@@ -3295,7 +3293,7 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
                 (*param1) = 2;
             }
         } break;
-        case 3: {
+        case TOUCH_DIAL_END_SCROLL: {
             int v3, v4;
 
             v3 = ov19_GetCurrentBox(&param0->unk_00);
@@ -3309,7 +3307,7 @@ static void ov19_021D4938(UnkStruct_ov19_021D5DF8 *param0, u32 *param1)
         break;
     case 2:
         if (param0->unk_208 == 0) {
-            if (ov19_021D60A8(&param0->unk_1C8) == 3) {
+            if (TouchDial_HandleAction(&param0->touchDial) == TOUCH_DIAL_END_SCROLL) {
                 int v5, v6;
 
                 v5 = ov19_GetCurrentBox(&param0->unk_00);
@@ -3365,14 +3363,14 @@ static void ov19_BoxTouchScreenMarkingsButtonHandler(u32 buttonIndex, enum Touch
     }
 }
 
-static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *param1)
+static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, PokemonStorageSession *pokemonStorageSession)
 {
-    param0->pcBoxes = SaveData_GetPCBoxes(param1->saveData);
-    param0->saveData = param1->saveData;
-    param0->party = SaveData_GetParty(param1->saveData);
-    param0->options = SaveData_GetOptions(param1->saveData);
-    param0->unk_118 = param1;
-    param1->recordBoxUseInJournal = FALSE;
+    param0->pcBoxes = SaveData_GetPCBoxes(pokemonStorageSession->saveData);
+    param0->saveData = pokemonStorageSession->saveData;
+    param0->party = SaveData_GetParty(pokemonStorageSession->saveData);
+    param0->options = SaveData_GetOptions(pokemonStorageSession->saveData);
+    param0->pokemonStorageSession = pokemonStorageSession;
+    pokemonStorageSession->recordBoxUseInJournal = FALSE;
     param0->boxMessagesLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_BOX_MESSAGES, HEAP_ID_BOX_DATA);
     param0->speciesNameLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_BOX_DATA);
     param0->natureNameLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_NATURE_NAMES, HEAP_ID_BOX_DATA);
@@ -3381,9 +3379,9 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->mon = Heap_AllocFromHeap(HEAP_ID_BOX_DATA, Pokemon_StructSize());
 
     GF_ASSERT(param0->MessageVariableBuffer);
-    param0->unk_128 = sub_0208712C(HEAP_ID_BOX_DATA, 2, 0, 8, param0->options);
+    param0->unk_128 = NamingScreenArgs_Init(HEAP_ID_BOX_DATA, NAMING_SCREEN_TYPE_BOX, 0, BOX_NAME_LEN, param0->options);
 
-    if (param1->boxMode != PC_MODE_COMPARE) {
+    if (pokemonStorageSession->boxMode != PC_MODE_COMPARE) {
         param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sMainPcButtons, NELEMS(sMainPcButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_BOX_DATA);
     } else {
         param0->mainBoxAndCompareButtonsAction = TouchScreenActions_RegisterHandler(sComparePokemonButtons, NELEMS(sComparePokemonButtons), ov19_BoxTouchScreenButtonHandler, param0, HEAP_ID_BOX_DATA);
@@ -3395,7 +3393,7 @@ static void ov19_021D4BE0(UnkStruct_ov19_021D5DF8 *param0, UnkStruct_02042434 *p
     param0->unk_00.unk_110 = 0;
     param0->unk_00.cursorItem = ITEM_NONE;
 
-    BoxSettings_Init(&(param0->unk_00.boxSettings), param1->boxMode);
+    BoxSettings_Init(&(param0->unk_00.boxSettings), pokemonStorageSession->boxMode);
     PCMonPreviewInit(&(param0->unk_00.pcMonPreview));
     PCBoxes_InitCustomization(param0->pcBoxes, &(param0->unk_00.customization));
     ov19_PCCompareMonsInit(&(param0->unk_00.unk_A4));
@@ -3410,7 +3408,7 @@ static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0)
     TouchScreenActions_Free(param0->mainBoxAndCompareButtonsAction);
 
     if (param0->mon) {
-        Heap_FreeToHeap(param0->mon);
+        Heap_Free(param0->mon);
     }
 
     StringTemplate_Free(param0->MessageVariableBuffer);
@@ -3418,14 +3416,14 @@ static void ov19_021D4D58(UnkStruct_ov19_021D5DF8 *param0)
     MessageLoader_Free(param0->speciesNameLoader);
     MessageLoader_Free(param0->natureNameLoader);
     MessageLoader_Free(param0->abilityNameLoader);
-    sub_0208716C(param0->unk_128);
+    NamingScreenArgs_Free(param0->unk_128);
 
     PCMonPreviewFree(&(param0->unk_00.pcMonPreview));
     ov19_MonSelectionFree(&(param0->unk_00.selection));
     Customization_Free(&(param0->unk_00.customization));
     ov19_PCCompareMonsFree(&(param0->unk_00.unk_A4));
 
-    Heap_FreeToHeap(param0);
+    Heap_Free(param0);
 }
 
 static void BoxSettings_Init(BoxSettings *boxSettings, enum BoxMode boxMode)
@@ -3469,7 +3467,7 @@ static void ov19_InitMonSelection(BoxMonSelection *selection)
 
 static void ov19_MonSelectionFree(BoxMonSelection *selection)
 {
-    Heap_FreeToHeap(selection->boxMon);
+    Heap_Free(selection->boxMon);
 }
 
 static void PCBoxes_InitCustomization(PCBoxes *pcBoxes, BoxCustomization *customization)

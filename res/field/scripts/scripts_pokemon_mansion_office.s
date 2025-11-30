@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/pokemon_mansion_office.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _0067
@@ -333,5 +332,4 @@ _0416:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_city_underground_man_house.h"
 
-    .data
 
     ScriptEntry _001A
     ScriptEntry _0634
@@ -540,5 +539,4 @@ _0747:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

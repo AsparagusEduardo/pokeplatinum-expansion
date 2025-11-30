@@ -17,7 +17,6 @@
 #include "party.h"
 #include "pokemon.h"
 
-#define MAX_PP_UP_BONUSES 3
 #define PP_UP_REQUIREMENT 5 // Moves with fewer max PP can't benefit from PP Ups (e.g. Sketch)
 
 #define MAX_EV_VITAMIN 100
@@ -47,7 +46,7 @@
     do {                                              \
         if (Item_Get(item, __itemParam)               \
             && (vCheckStatus & (__condition)) != 0) { \
-            Heap_FreeToHeap(item);                    \
+            Heap_Free(item);                          \
             return TRUE;                              \
         }                                             \
     } while (0)
@@ -58,16 +57,16 @@
             vCheckEVChange = Item_Get(item, __itemParamEVsGiven);                               \
             if (vCheckEVChange > 0) {                                                           \
                 if (__currentEV < MAX_EV_VITAMIN && CHECK_EFFECTS_EV_SUM < MAX_EVS_ALL_STATS) { \
-                    Heap_FreeToHeap(item);                                                      \
+                    Heap_Free(item);                                                            \
                     return TRUE;                                                                \
                 }                                                                               \
             } else if (vCheckEVChange < 0) {                                                    \
                 if (__currentEV > 0) {                                                          \
-                    Heap_FreeToHeap(item);                                                      \
+                    Heap_Free(item);                                                            \
                     return TRUE;                                                                \
                 }                                                                               \
                 if (CheckFriendshipItemEffect(mon, item) == TRUE) {                             \
-                    Heap_FreeToHeap(item);                                                      \
+                    Heap_Free(item);                                                            \
                     return TRUE;                                                                \
                 }                                                                               \
             }                                                                                   \
@@ -142,7 +141,7 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
     ItemData *item = Item_Load(itemId, ITEM_FILE_TYPE_DATA, heapID);
 
     if (Item_Get(item, ITEM_PARAM_PARTY_USE) != TRUE) {
-        Heap_FreeToHeap(item);
+        Heap_Free(item);
         return FALSE;
     }
 
@@ -159,26 +158,26 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
     if ((Item_Get(item, ITEM_PARAM_REVIVE) || Item_Get(item, ITEM_PARAM_REVIVE_ALL))
         && Item_Get(item, ITEM_PARAM_LEVEL_UP) == FALSE) {
         if (vCheckCurrentHP == 0) {
-            Heap_FreeToHeap(item);
+            Heap_Free(item);
             return TRUE;
         }
     } else if (Item_Get(item, ITEM_PARAM_HP_RESTORE)) {
         if (vCheckCurrentHP != 0 && vCheckCurrentHP < Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL)) {
-            Heap_FreeToHeap(item);
+            Heap_Free(item);
             return TRUE;
         }
     }
 
     if (Item_Get(item, ITEM_PARAM_LEVEL_UP)) {
         if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) < MAX_POKEMON_LEVEL) {
-            Heap_FreeToHeap(item);
+            Heap_Free(item);
             return TRUE;
         }
     }
 
     if (Item_Get(item, ITEM_PARAM_EVOLVE)) {
         if (Pokemon_GetEvolutionTargetSpecies(NULL, mon, EVO_CLASS_BY_ITEM, itemId, NULL) != SPECIES_NONE) {
-            Heap_FreeToHeap(item);
+            Heap_Free(item);
             return TRUE;
         }
     }
@@ -186,14 +185,14 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
     if (Item_Get(item, ITEM_PARAM_PP_UP) || Item_Get(item, ITEM_PARAM_PP_MAX)) {
         if (Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + moveSlot, NULL) < MAX_PP_UP_BONUSES
             && MoveTable_CalcMaxPP(Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL), 0) >= PP_UP_REQUIREMENT) {
-            Heap_FreeToHeap(item);
+            Heap_Free(item);
             return TRUE;
         }
     }
 
     if (Item_Get(item, ITEM_PARAM_PP_RESTORE)) {
         if (IsMoveMissingPP(mon, moveSlot) == TRUE) {
-            Heap_FreeToHeap(item);
+            Heap_Free(item);
             return TRUE;
         }
     }
@@ -201,7 +200,7 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
     if (Item_Get(item, ITEM_PARAM_PP_RESTORE_ALL)) {
         for (vCheckMoveIndex = 0; vCheckMoveIndex < LEARNED_MOVES_MAX; vCheckMoveIndex++) {
             if (IsMoveMissingPP(mon, vCheckMoveIndex) == TRUE) {
-                Heap_FreeToHeap(item);
+                Heap_Free(item);
                 return TRUE;
             }
         }
@@ -224,7 +223,7 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapId 
     CHECK_EV_ITEM_EFFECT(ITEM_PARAM_GIVE_SPATK_EVS, ITEM_PARAM_SPATK_EVS, vCheckEVSpAttack);
     CHECK_EV_ITEM_EFFECT(ITEM_PARAM_GIVE_SPDEF_EVS, ITEM_PARAM_SPDEF_EVS, vCheckEVSpDefense);
 
-    Heap_FreeToHeap(item);
+    Heap_Free(item);
 
     return FALSE;
 }
@@ -245,7 +244,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
     ItemData *item = Item_Load(itemId, ITEM_FILE_TYPE_DATA, heapID);
 
     if (Item_Get(item, ITEM_PARAM_PARTY_USE) != TRUE) {
-        Heap_FreeToHeap(item);
+        Heap_Free(item);
         return FALSE;
     }
 
@@ -357,7 +356,7 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
     APPLY_EV_EFFECT(ITEM_PARAM_GIVE_SPDEF_EVS, ITEM_PARAM_SPDEF_EVS, MON_DATA_SPDEF_EV, vApplyEVSpDefense, APPLY_EFFECTS_EV_SUM_EXCLUDE_SPDEFENSE);
 
     if ((effectApplied == FALSE) && (effectFound == TRUE)) {
-        Heap_FreeToHeap(item);
+        Heap_Free(item);
         return 0;
     }
 
@@ -366,27 +365,27 @@ u8 Pokemon_ApplyItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, u16 location
     if (vApplyFriendship < LOW_FRIENDSHIP_LIMIT) {
         if (Item_Get(item, ITEM_PARAM_GIVE_FRIENDSHIP_LOW)) {
             if (UpdatePokemonFriendship(mon, vApplyFriendship, Item_Get(item, ITEM_PARAM_FRIENDSHIP_LOW), location, heapID) == 0) {
-                Heap_FreeToHeap(item);
+                Heap_Free(item);
                 return effectApplied;
             }
         }
     } else if (vApplyFriendship >= LOW_FRIENDSHIP_LIMIT && vApplyFriendship < MED_FRIENDSHIP_LIMIT) {
         if (Item_Get(item, ITEM_PARAM_GIVE_FRIENDSHIP_MED)) {
             if (UpdatePokemonFriendship(mon, vApplyFriendship, Item_Get(item, ITEM_PARAM_FRIENDSHIP_MED), location, heapID) == 0) {
-                Heap_FreeToHeap(item);
+                Heap_Free(item);
                 return effectApplied;
             }
         }
     } else if (vApplyFriendship >= MED_FRIENDSHIP_LIMIT && vApplyFriendship <= HIGH_FRIENDSHIP_LIMIT) {
         if (Item_Get(item, ITEM_PARAM_GIVE_FRIENDSHIP_HIGH)) {
             if (UpdatePokemonFriendship(mon, vApplyFriendship, Item_Get(item, ITEM_PARAM_FRIENDSHIP_HIGH), location, heapID) == 0) {
-                Heap_FreeToHeap(item);
+                Heap_Free(item);
                 return effectApplied;
             }
         }
     }
 
-    Heap_FreeToHeap(item);
+    Heap_Free(item);
     return effectApplied;
 }
 

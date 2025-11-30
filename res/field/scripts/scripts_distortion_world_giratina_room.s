@@ -2,7 +2,6 @@
 #include "generated/hidden_locations.h"
 #include "res/text/bank/distortion_world_giratina_room.h"
 
-    .data
 
     ScriptEntry _0022
     ScriptEntry _0026
@@ -110,8 +109,8 @@ _016E:
 _0194:
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
-    ScrCmd_066 VAR_0x8004, VAR_0x8005
-    ApplyMovement 241, _0280
+    AddFreeCamera VAR_0x8004, VAR_0x8005
+    ApplyFreeCameraMovement _0280
     ApplyMovement 130, _026C
     ApplyMovement 129, _0258
     ApplyMovement LOCALID_PLAYER, _0244
@@ -124,9 +123,9 @@ _0194:
     ApplyMovement 130, _0274
     WaitMovement
     ScrCmd_312 130
-    ApplyMovement 241, _0288
+    ApplyFreeCameraMovement _0288
     WaitMovement
-    ScrCmd_067
+    RestoreCamera
     Message 11
     ApplyMovement 129, _0264
     WaitMovement

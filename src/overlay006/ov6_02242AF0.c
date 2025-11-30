@@ -79,7 +79,7 @@ static const fx32 Unk_ov6_02249074[] = {
     FX32_ONE * 2,
     FX32_ONE * 2,
     FX32_ONE * 1,
-    FX32_ONE / 2
+    FX32_ONE / 2,
 };
 
 void GreatMarsh_DynamicMapFeaturesInit(FieldSystem *fieldSystem)
@@ -242,7 +242,7 @@ static BOOL ov6_02242C5C(FieldTask *taskMan)
         (v1->unk_05)++;
         break;
     case 5:
-        Heap_FreeToHeap(v1);
+        Heap_Free(v1);
         return 1;
     }
 

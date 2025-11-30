@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_205_south.h"
 
-    .data
 
     ScriptEntry _002A
     ScriptEntry _00F8
@@ -244,4 +243,4 @@ _02AE:
     ShowScrollingSign 9
     End
 
-    .byte 0
+    .balign 4, 0

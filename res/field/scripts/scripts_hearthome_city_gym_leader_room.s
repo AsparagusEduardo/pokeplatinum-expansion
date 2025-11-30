@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/hearthome_city_gym_leader_room.h"
 
-    .data
 
     ScriptEntry _0039
     ScriptEntry _0158
@@ -168,5 +167,4 @@ _0248:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

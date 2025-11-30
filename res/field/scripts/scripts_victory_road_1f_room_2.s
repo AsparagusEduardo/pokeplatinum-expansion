@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/victory_road_1f_room_2.h"
 
-    .data
 
     ScriptEntry _0027
     ScriptEntry _0190
@@ -187,14 +186,9 @@ _0274:
     WalkOnSpotNormalEast
     EndMovement
 
-    .byte 12
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+VictoryRoad1FRoom2_UnusedMovement:
+    WalkNormalNorth
+    EndMovement
 
     .balign 4, 0
 _0284:

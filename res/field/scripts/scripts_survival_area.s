@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/survival_area.h"
 
-    .data
 
     ScriptEntry _005C
     ScriptEntry _006F
@@ -242,5 +241,4 @@ _02DC:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

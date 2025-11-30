@@ -34,7 +34,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov113_02260D6C[][2] = {
     { 0x2D4A, 0x5651 }
 };
 
-#include "res/pokemon/species_footprints.h"
+#include "res/pokemon/species_footprint_sizes.h"
 
 static const TouchScreenRect Unk_ov113_02260D4C[] = {
     { 0xA0, 0xC0, 0x0, 0x20 },
@@ -107,7 +107,7 @@ void ov113_02260620(MessageLoader *param0, StringTemplate *param1, Window param2
     Strbuf_Free(v4);
     Strbuf_Free(v2);
     Strbuf_Free(v3);
-    Heap_FreeToHeap(v1);
+    Heap_Free(v1);
 }
 
 void ov113_02260714(Window param0[], u32 param1)

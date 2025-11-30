@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/oreburgh_city_pokecenter_1f.h"
 
-    .data
 
     ScriptEntry _001E
     ScriptEntry _002A
@@ -125,4 +124,4 @@ _014C:
     ReleaseAll
     End
 
-    .byte 0
+    .balign 4, 0

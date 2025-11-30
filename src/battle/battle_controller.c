@@ -11,9 +11,9 @@
 #include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "constants/species.h"
-#include "constants/trainer.h"
 #include "generated/abilities.h"
 #include "generated/game_records.h"
+#include "generated/trainer_classes.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/trainer.h"
@@ -210,8 +210,8 @@ BOOL BattleController_Main(BattleSystem *battleSys, BattleContext *battleCtx)
 
 void BattleContext_Free(BattleContext *battleCtx)
 {
-    Heap_FreeToHeap(battleCtx->aiContext.itemTable);
-    Heap_FreeToHeap(battleCtx);
+    Heap_Free(battleCtx->aiContext.itemTable);
+    Heap_Free(battleCtx);
 }
 
 void BattleController_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)

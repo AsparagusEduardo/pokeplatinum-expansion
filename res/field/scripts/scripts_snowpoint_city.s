@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/snowpoint_city.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _00B4
@@ -244,7 +243,7 @@ _0276:
 _02A0:
     ClearFlag FLAG_UNK_0x0256
     AddObject 10
-    ScrCmd_062 10
+    LockObject 10
     CloseMessage
     ApplyMovement 10, _0320
     WaitMovement

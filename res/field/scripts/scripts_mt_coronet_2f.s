@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/mt_coronet_2f.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _0036
@@ -165,5 +164,4 @@ _01F0:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
+    .balign 4, 0

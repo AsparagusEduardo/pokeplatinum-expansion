@@ -2,7 +2,6 @@
 #include "res/text/bank/route_222_east_house.h"
 #include "generated/size_contest_results.h"
 
-    .data
 
     ScriptEntry Route222EastHouse_OnLoad
     ScriptEntry Route222EastHouse_Fisherman
@@ -91,6 +90,4 @@ Route222EastHouse_ShowNoPokemon:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

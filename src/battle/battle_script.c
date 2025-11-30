@@ -8,7 +8,7 @@
 #include "constants/pokemon.h"
 #include "constants/rtc.h"
 #include "constants/species.h"
-#include "constants/trainer.h"
+#include "constants/string.h"
 #include "generated/abilities.h"
 #include "generated/genders.h"
 
@@ -17,9 +17,9 @@
 #include "struct_defs/battle_system.h"
 #include "struct_defs/fraction.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0208737C.h"
 #include "struct_defs/trainer.h"
 
+#include "applications/naming_screen.h"
 #include "applications/pokedex/ov21_021E8D48.h"
 #include "applications/pokedex/struct_ov21_021E8E0C.h"
 #include "battle/battle_context.h"
@@ -70,10 +70,8 @@
 #include "trainer_info.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
-#include "unk_0208694C.h"
 #include "unk_0208C098.h"
 
-#include "constdata/const_020F2DAC.h"
 #include "res/battle/scripts/sub_seq.naix.h"
 
 typedef BOOL (*BtlCmd)(BattleSystem *, BattleContext *);
@@ -3907,7 +3905,7 @@ static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *b
         prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trainer.header.trainerType];
     }
 
-    Heap_FreeToHeap(rawParty);
+    Heap_Free(rawParty);
     return prize;
 }
 
@@ -10222,7 +10220,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             BattleScript_FreePartyLevelUpIcon(data->battleSys, data);
         }
 
-        Heap_FreeToHeap(data->battleCtx->tmpData);
+        Heap_Free(data->battleCtx->tmpData);
         data->seqNum = 15;
         break;
     }
@@ -10422,7 +10420,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
     case SEQ_GET_EXP_DONE:
         data->battleCtx->taskData = NULL;
-        Heap_FreeToHeap(inData);
+        Heap_Free(inData);
         SysTask_Done(task);
         break;
     }
@@ -10609,11 +10607,11 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 u32 battleType = BattleSystem_BattleType(v2->battleSys);
 
                 if (battleType & BATTLE_TYPE_TRAINER) {
-                    Sound_PlayPannedEffect(1510, 117);
+                    Sound_PlayPannedEffect(SEQ_SE_DP_KON, 117);
                     ov12_022368C8(v2->ballRotation, 2);
                     v2->seqNum = 25;
                 } else {
-                    Sound_PlayPannedEffect(1800, 117);
+                    Sound_PlayPannedEffect(SEQ_SE_DP_BOWA4, 117);
                     ov12_022368C8(v2->ballRotation, 1);
 
                     v2->seqNum = 2;
@@ -10672,7 +10670,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 7:
         if (--v2->tmpData[1] == 0) {
             ov12_022368C8(v2->ballRotation, 6);
-            Sound_PlayPannedEffect(1801, 117);
+            Sound_PlayPannedEffect(SEQ_SE_DP_GETTING, 117);
             v2->seqNum = 8;
         }
         break;
@@ -10854,13 +10852,18 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 20:
         if (PaletteData_GetSelectedBuffersMask(v4) == 0) {
             {
-                UnkStruct_0208737C *v16;
+                NamingScreenArgs *v16;
 
-                SetScreenColorBrightness(DS_SCREEN_MAIN, FADE_TO_BLACK);
-                SetScreenColorBrightness(DS_SCREEN_SUB, FADE_TO_BLACK);
+                SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
+                SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
 
                 v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
-                v16 = sub_0208712C(HEAP_ID_BATTLE, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, BattleSystem_GetOptions(v2->battleSys));
+                v16 = NamingScreenArgs_Init(
+                    HEAP_ID_BATTLE,
+                    NAMING_SCREEN_TYPE_POKEMON,
+                    Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL),
+                    MON_NAME_LEN,
+                    BattleSystem_GetOptions(v2->battleSys));
                 v2->tmpPtr[1] = v16;
 
                 if (BattleSystem_PartyCount(v2->battleSys, 0) < 6) {
@@ -10872,7 +10875,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                 v16->unk_08 = Pokemon_GetValue(v3, MON_DATA_FORM, NULL);
                 v16->pcBoxes = BattleSystem_PCBoxes(v2->battleSys);
                 v16->unk_10 = Pokemon_GetValue(v3, MON_DATA_GENDER, NULL);
-                v2->tmpPtr[0] = ApplicationManager_New(&Unk_020F2DAC, v16, HEAP_ID_BATTLE);
+                v2->tmpPtr[0] = ApplicationManager_New(&gNamingScreenAppTemplate, v16, HEAP_ID_BATTLE);
                 v2->seqNum = 21;
 
                 ov16_0223F414(v2->battleSys);
@@ -10899,7 +10902,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
     case 21:
         if (ApplicationManager_Exec(v2->tmpPtr[0])) {
             {
-                UnkStruct_0208737C *v19;
+                NamingScreenArgs *v19;
                 int v20;
 
                 v19 = v2->tmpPtr[1];
@@ -10910,7 +10913,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
                     ov16_0223F24C(v2->battleSys, (1 + 48));
                 }
 
-                sub_0208716C(v19);
+                NamingScreenArgs_Free(v19);
                 ApplicationManager_Free(v2->tmpPtr[0]);
                 ov16_0223F314(v2->battleSys, 2);
 
@@ -11042,7 +11045,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             if (--v2->tmpData[1] == 0) {
                 v2->battleCtx->taskData = NULL;
-                Heap_FreeToHeap(param1);
+                Heap_Free(param1);
                 SysTask_Done(param0);
             }
         }
@@ -11075,7 +11078,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
         if (Text_IsPrinterActive(v2->tmpData[0]) == 0) {
             if (--v2->tmpData[1] == 0) {
                 v2->battleCtx->taskData = NULL;
-                Heap_FreeToHeap(param1);
+                Heap_Free(param1);
                 SysTask_Done(param0);
             }
         }
@@ -11090,7 +11093,7 @@ static void BattleScript_CatchMonTask(SysTask *param0, void *param1)
             v2->battleSys->resultMask = 0x4;
             v2->battleCtx->taskData = NULL;
 
-            Heap_FreeToHeap(param1);
+            Heap_Free(param1);
             SysTask_Done(param0);
         }
         break;

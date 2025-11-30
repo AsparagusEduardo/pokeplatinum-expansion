@@ -2,7 +2,6 @@
 #include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city_harbor_inn.h"
 
-    .data
 
     ScriptEntry _000E
     ScriptEntry _0093
@@ -119,4 +118,4 @@ _0197:
     SetVar VAR_UNK_0x40F8, 3
     Return
 
-    .byte 0
+    .balign 4, 0

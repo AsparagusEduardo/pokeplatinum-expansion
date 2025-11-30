@@ -37,7 +37,7 @@ MapPropManager *MapPropManager_New(const u8 heapID)
 
 void MapPropManager_Free(MapPropManager *mapPropManager)
 {
-    Heap_FreeToHeap(mapPropManager);
+    Heap_Free(mapPropManager);
     mapPropManager = NULL;
 }
 
@@ -116,7 +116,7 @@ void MapPropManager_Load(NARC *landDataNARC, const int mapPropFilesSize, AreaDat
     }
 
     if (mapPropFiles != NULL) {
-        Heap_FreeToHeap(mapPropFiles);
+        Heap_Free(mapPropFiles);
     }
 }
 
@@ -132,7 +132,7 @@ void MapPropManager_Render(const VecFx32 *positionOffset, const AreaDataManager 
         0,
         0,
         0,
-        FX32_ONE
+        FX32_ONE,
     };
 
     for (int i = 0; i < MAX_LOADED_MAP_PROPS; i++) {
@@ -312,7 +312,7 @@ void MapPropManager_Render2(MapPropManager *mapPropManager, AreaDataManager *con
         0,
         0,
         0,
-        FX32_ONE
+        FX32_ONE,
     };
 
     for (u8 i = 0; i < MAX_LOADED_MAP_PROPS; i++) {

@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/verity_lakefront.h"
 
-    .data
 
     ScriptEntry _0012
     ScriptEntry _004E
@@ -89,6 +88,4 @@ _014C:
     ShowScrollingSign 3
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

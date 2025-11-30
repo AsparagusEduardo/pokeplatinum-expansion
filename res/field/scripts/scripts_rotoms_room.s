@@ -7,7 +7,6 @@
 #define LOCALID_MOVE_TO_LEARN VAR_0x8001
 #define LOCALID_ROTOM_FORM VAR_0x8004
 
-    .data
 
     ScriptEntry RotomsRoom_MicrowaveOven
     ScriptEntry RotomsRoom_Refrigerator
@@ -293,7 +292,7 @@ RotomsRoom_PokemonEnteredMotor:
 RotomsRoom_Text_PokemonTryingToLearnMove:
     BufferPartyMonNickname 0, LOCALID_PARTY_SLOT
     BufferMoveName 1, LOCALID_MOVE_TO_LEARN
-    Message RotomsRoom_Text_PokemonEnteredTheMotorTryingToLearnMove
+    Message RotomsRoom_Text_PokemonEnteredMotorTryingToLearnMove
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, RotomsRoom_DidNotLearnMoveEmergedFromTheMotor
     GoTo RotomsRoom_LearnMove
@@ -566,34 +565,18 @@ _08AC:
     EmoteExclamationMark
     EndMovement
 
-    .byte 34
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 35
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 63
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 33
-    .byte 0
-    .byte 1
-    .byte 0
-    .byte 254
-    .byte 0
-    .byte 0
-    .byte 0
+RotomsRoom_UnusedMovement:
+    WalkOnSpotNormalWest
+    EndMovement
+
+RotomsRoom_UnusedMovement2:
+    WalkOnSpotNormalEast
+    EndMovement
+
+RotomsRoom_UnusedMovement3:
+    Delay8
+    WalkOnSpotNormalSouth
+    EndMovement
 
     .balign 4, 0
 _08D4:
@@ -666,6 +649,4 @@ _09D5:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0

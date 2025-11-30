@@ -1,7 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/trainers_school.h"
 
-    .data
 
     ScriptEntry _0032
     ScriptEntry _0154
@@ -390,6 +389,4 @@ _049C:
     ReleaseAll
     End
 
-    .byte 0
-    .byte 0
-    .byte 0
+    .balign 4, 0
