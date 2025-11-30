@@ -120,13 +120,13 @@ static void DebugMenu_Free(DebugMenu *menu)
     StringList_Free(menu->stringList);
     ListMenu_Free(menu->listMenu, &(menu->debugList), &(menu->cursor));
     Window_Remove(menu->window);
-    Heap_FreeToHeap(menu->window);
+    Heap_Free(menu->window);
 }
 
 static void CB_DebugMenu_Exit(SysTask *task, DebugMenu *menu)
 {
     DebugMenu_Free(menu);
-    Heap_FreeToHeap(menu);
+    Heap_Free(menu);
     SysTask_Done(task);
 }
 
@@ -138,7 +138,7 @@ static void DebugMenu_Exit(SysTask *task, DebugMenu *menu)
 
 static void Task_DebugMenu_Exit(SysTask *task, void *data)
 {
-    Heap_FreeToHeap(data);
+    Heap_Free(data);
     SysTask_Done(task);
     FieldSystem_ResumeProcessing();
 }
@@ -324,8 +324,8 @@ static void Task_DebugMenu_Fly(SysTask *task, void *data)
         FieldTask_StartMapChangeFly(fly->sys, destloc.mapId, (-1), destloc.x, destloc.z, DIR_SOUTH);
         break;
     case 6:
-        Heap_FreeToHeap(fly->data);
-        Heap_FreeToHeap(fly);
+        Heap_Free(fly->data);
+        Heap_Free(fly);
         SysTask_Done(task);
         return;
     }

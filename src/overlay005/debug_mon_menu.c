@@ -436,7 +436,7 @@ void DebugMonMenu_Init(DebugMonMenu *monMenu)
 
 void DebugMonMenu_Free(DebugMonMenu *monMenu)
 {
-    Heap_FreeToHeap(monMenu->mon.monData);
+    Heap_Free(monMenu->mon.monData);
 
     Window_EraseStandardFrame(&monMenu->titleWindow, TRUE);
     Window_EraseStandardFrame(&monMenu->mainWindow, FALSE);
