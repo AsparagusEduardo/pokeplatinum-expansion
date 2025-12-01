@@ -279,7 +279,7 @@ Static main
 	Object main.nef.p/src_unk_0207064C.c.o
 	Object main.nef.p/src_field_move_tasks.c.o
 	Object main.nef.p/src_unk_020711C8.c.o
-	Object main.nef.p/src_unk_020711EC.c.o
+	Object main.nef.p/src_overworld_anim_manager.c.o
 	Object main.nef.p/src_platform_lift.c.o
 	Object main.nef.p/src_persisted_map_features_init.c.o
 	Object main.nef.p/src_map_header_util.c.o
@@ -812,7 +812,7 @@ Overlay pokedex
 	Object main.nef.p/src_applications_pokedex_pokedex_height_check.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E68F4.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E737C.c.o
-	Object main.nef.p/src_applications_pokedex_ov21_021E8484.c.o
+	Object main.nef.p/src_applications_pokedex_formsub.c.o
 	Object main.nef.p/src_applications_pokedex_ov21_021E8D48.c.o
 }
 
@@ -844,7 +844,7 @@ Overlay overlay23
 	Object main.nef.p/src_overlay023_ov23_0223E140.c.o
 	Object main.nef.p/src_overlay023_underground_spheres.c.o
 	Object main.nef.p/src_overlay023_ov23_02241F74.c.o
-	Object main.nef.p/src_overlay023_ov23_0224340C.c.o
+	Object main.nef.p/src_overlay023_underground_traps.c.o
 	Object main.nef.p/src_overlay023_underground_item_list_menu.c.o
 	Object main.nef.p/src_overlay023_ov23_02248F1C.c.o
 	Object main.nef.p/src_overlay023_ov23_02249918.c.o
@@ -1035,11 +1035,11 @@ Overlay poketch_marking_map
 	Object main.nef.p/src_applications_poketch_marking_map_graphics.c.o
 }
 
-Overlay overlay48
+Overlay poketch_berry_searcher
 {
 	After overlay25
-	Object main.nef.p/src_overlay048_ov48_022561C0.c.o
-	Object main.nef.p/src_overlay048_ov48_0225650C.c.o
+	Object main.nef.p/src_applications_poketch_berry_searcher_main.c.o
+	Object main.nef.p/src_applications_poketch_berry_searcher_graphics.c.o
 }
 
 Overlay poketch_color_changer
@@ -1049,11 +1049,11 @@ Overlay poketch_color_changer
 	Object main.nef.p/src_applications_poketch_color_changer_graphics.c.o
 }
 
-Overlay overlay50
+Overlay poketch_calendar
 {
 	After overlay25
-	Object main.nef.p/src_overlay050_ov50_022561C0.c.o
-	Object main.nef.p/src_overlay050_ov50_02256510.c.o
+	Object main.nef.p/src_applications_poketch_calendar_main.c.o
+	Object main.nef.p/src_applications_poketch_calendar_graphics.c.o
 }
 
 Overlay poketch_unused_3
@@ -1063,11 +1063,11 @@ Overlay poketch_unused_3
 	Object main.nef.p/src_applications_poketch_unused_3_graphics.c.o
 }
 
-Overlay overlay52
+Overlay poketch_link_searcher
 {
 	After overlay25
-	Object main.nef.p/src_overlay052_ov52_022561C0.c.o
-	Object main.nef.p/src_overlay052_ov52_02256694.c.o
+	Object main.nef.p/src_applications_poketch_link_searcher_main.c.o
+	Object main.nef.p/src_applications_poketch_link_searcher_graphics.c.o
 }
 
 Overlay poketch_trainer_counter

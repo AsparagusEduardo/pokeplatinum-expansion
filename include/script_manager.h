@@ -8,12 +8,12 @@
 #include "field/field_system_decl.h"
 #include "overlay005/field_menu.h"
 #include "overlay005/save_info_window.h"
-#include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "bg_window.h"
 #include "field_script_context.h"
 #include "field_task.h"
 #include "menu.h"
+#include "overworld_anim_manager.h"
 #include "string_template.h"
 #include "sys_task_manager.h"
 
@@ -93,6 +93,7 @@ enum ScriptContextType {
 #define SCRIPT_ID_OFFSET_SAFARI_GAME            8800
 #define SCRIPT_ID_OFFSET_INIT_NEW_GAME          9600
 #define SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS      9700
+#define SCRIPT_ID_OFFSET_POKEDEX_RATINGS        9950
 #define SCRIPT_ID_OFFSET_FIELD_MOVES            10000
 #define SCRIPT_ID_OFFSET_TV_BROADCAST           10100
 #define SCRIPT_ID_OFFSET_TV_REPORTER_INTERVIEWS 10150
@@ -148,7 +149,7 @@ typedef struct ScriptManager {
     FieldSysFunc function;
     void *partyManagementDataPtr;
     void *dataPtr; // used as a generic pointer to data in many different script commands
-    UnkStruct_ov101_021D5D90 *unk_B0;
+    OverworldAnimManager *unk_B0;
     SysTask *playerTask; // used to set player sprite animations while saving
     Window specialCurrencyWindow;
     Window moneyWindow;
