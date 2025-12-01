@@ -939,11 +939,11 @@ _0E86:
     LockAll
     FacePlayer
     GetTrainerID VAR_0x8004
-    ScrCmd_2AD VAR_0x8001, VAR_LAST_TALKED
-    CallIfEq VAR_0x8001, 51, _0FE7
-    CallIfEq VAR_0x8001, 52, _0FE7
-    CallIfEq VAR_0x8001, 53, _0FE7
-    CallIfEq VAR_0x8001, 54, _0FE7
+    GetMovementType VAR_0x8001, VAR_LAST_TALKED
+    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_SNOW, _0FE7
+    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_SAND, _0FE7
+    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_ROCK, _0FE7
+    CallIfEq VAR_0x8001, MOVEMENT_TYPE_DISGUISE_GRASS, _0FE7
     GoToIfDefeated VAR_0x8004, _0F40
     CheckIsTrainerDoubleBattle VAR_RESULT
     GoToIfNe VAR_RESULT, 1, _0F01
@@ -971,8 +971,8 @@ _0F1D:
     End
 
 _0F40:
-    ScrCmd_09B VAR_0x8004, VAR_RESULT
-    GoToIfNe VAR_RESULT, 0, _0F73
+    GetRematchTrainerID VAR_0x8004, VAR_RESULT
+    GoToIfNe VAR_RESULT, TRAINER_NONE, _0F73
     GoTo _0F5B
     End
 
@@ -1058,12 +1058,12 @@ _1054:
     End
 
 _1083:
-    ScrCmd_0B9 0, VAR_RESULT
+    GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8004
     ScrCmd_0B6 0
     Call _10DE
-    ScrCmd_0B9 0, VAR_RESULT
+    GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
     PrintTrainerDialogue VAR_0x8004, TRMSG_PRE_BATTLE
@@ -1071,30 +1071,30 @@ _1083:
     StartTrainerBattle VAR_0x8004
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _0FC5
-    ScrCmd_0B9 0, VAR_RESULT
+    GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetTrainerFlag VAR_0x8004
     ReleaseAll
     End
 
 _10DE:
-    ScrCmd_0B7 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _10DE
+    CheckIsApproachingTrainerTaskDone 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _10DE
     Return
 
 _10F3:
-    ScrCmd_0B9 0, VAR_RESULT
+    GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8004
     ScrCmd_0B6 0
     ScrCmd_0B6 1
     Call _1178
-    ScrCmd_0B9 0, VAR_RESULT
+    GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
     PrintTrainerDialogue VAR_0x8004, TRMSG_PRE_DOUBLE_BATTLE_1
     CloseMessage
-    ScrCmd_0B9 1, VAR_RESULT
+    GetApproachingTrainerID 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_RESULT
     OpenMessage
     PrintTrainerDialogue VAR_0x8005, TRMSG_PRE_DOUBLE_BATTLE_2
@@ -1102,39 +1102,39 @@ _10F3:
     StartTrainerBattle VAR_0x8004, VAR_0x8005
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _0FC5
-    ScrCmd_0B9 0, VAR_RESULT
+    GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetTrainerFlag VAR_0x8004
-    ScrCmd_0B9 1, VAR_RESULT
+    GetApproachingTrainerID 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_RESULT
     SetTrainerFlag VAR_0x8005
     ReleaseAll
     End
 
 _1178:
-    ScrCmd_0B7 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _1178
-    ScrCmd_0B7 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _1178
+    CheckIsApproachingTrainerTaskDone 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _1178
+    CheckIsApproachingTrainerTaskDone 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _1178
     Return
 
 _11A0:
-    ScrCmd_0B9 0, VAR_RESULT
+    GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8004
     ScrCmd_0B6 0
     Call _123B
-    ScrCmd_0B9 0, VAR_RESULT
+    GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     OpenMessage
     PrintTrainerDialogue VAR_0x8004, TRMSG_PRE_BATTLE
     CloseMessage
-    ScrCmd_0B9 1, VAR_RESULT
+    GetApproachingTrainerID 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_RESULT
     PlayTrainerEncounterBGM VAR_0x8005
     ScrCmd_0B6 1
     Call _1250
-    ScrCmd_0B9 1, VAR_RESULT
+    GetApproachingTrainerID 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_RESULT
     OpenMessage
     PrintTrainerDialogue VAR_0x8005, TRMSG_PRE_BATTLE
@@ -1142,23 +1142,23 @@ _11A0:
     StartTrainerBattle VAR_0x8004, VAR_0x8005
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, _0FC5
-    ScrCmd_0B9 0, VAR_RESULT
+    GetApproachingTrainerID 0, VAR_RESULT
     SetVar VAR_0x8004, VAR_RESULT
     SetTrainerFlag VAR_0x8004
-    ScrCmd_0B9 1, VAR_RESULT
+    GetApproachingTrainerID 1, VAR_RESULT
     SetVar VAR_0x8005, VAR_RESULT
     SetTrainerFlag VAR_0x8005
     ReleaseAll
     End
 
 _123B:
-    ScrCmd_0B7 0, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _123B
+    CheckIsApproachingTrainerTaskDone 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _123B
     Return
 
 _1250:
-    ScrCmd_0B7 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _1250
+    CheckIsApproachingTrainerTaskDone 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, _1250
     Return
 
     .balign 4, 0

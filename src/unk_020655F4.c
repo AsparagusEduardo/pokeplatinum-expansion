@@ -184,7 +184,7 @@ void sub_020656DC(MapObject *mapObj)
 
 SysTask *MapObject_StartAnimation(MapObject *mapObj, const MapObjectAnimCmd *animCmd)
 {
-    MoveAnimData *data = Heap_AllocFromHeapAtEnd(HEAP_ID_FIELD, sizeof(MoveAnimData));
+    MoveAnimData *data = Heap_AllocAtEnd(HEAP_ID_FIELD1, sizeof(MoveAnimData));
     GF_ASSERT(data != NULL);
     memset(data, 0, sizeof(MoveAnimData));
 
@@ -211,7 +211,7 @@ void MapObject_FinishAnimation(SysTask *task)
     GF_ASSERT(LocalMapObj_CheckAnimationFinished(data->mapObj) == TRUE);
 
     sub_020656AC(data->mapObj);
-    Heap_FreeExplicit(HEAP_ID_FIELD, data);
+    Heap_FreeExplicit(HEAP_ID_FIELD1, data);
     SysTask_Done(task);
 }
 
@@ -1225,7 +1225,7 @@ static BOOL MovementAction_EmoteExclamationMark_Step0(MapObject *mapObj)
     return FALSE;
 }
 
-static BOOL MovementAction_EmoteQuestionMark_Step0(MapObject *mapObj)
+static BOOL MovementAction_EmoteDoubleExclamationMark_Step0(MapObject *mapObj)
 {
     sub_020664A0(mapObj, 1, 0);
     return FALSE;
@@ -2501,8 +2501,8 @@ BOOL (*const gMovementActionFuncs_EmoteExclamationMark[])(MapObject *) = {
     MovementAction_End,
 };
 
-BOOL (*const gMovementActionFuncs_EmoteQuestionMark[])(MapObject *) = {
-    MovementAction_EmoteQuestionMark_Step0,
+BOOL (*const gMovementActionFuncs_EmoteDoubleExclamationMark[])(MapObject *) = {
+    MovementAction_EmoteDoubleExclamationMark_Step0,
     MovementAction_Emote_Step1,
     MovementAction_End,
 };

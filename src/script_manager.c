@@ -51,7 +51,7 @@ void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object
     FieldSystem_CreateTask(fieldSystem, FieldTask_RunScript, scriptManager);
 }
 
-void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int trainerType, int approachNum)
+void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *object, int sightRange, int direction, int scriptID, int trainerID, int param6, int approachNum)
 {
     ScriptManager *scriptManager = FieldTask_GetEnv(fieldSystem->task);
     ApproachingTrainer *trainer = &scriptManager->trainers[approachNum];
@@ -60,7 +60,7 @@ void ScriptManager_SetApproachingTrainer(FieldSystem *fieldSystem, MapObject *ob
     trainer->direction = direction;
     trainer->scriptID = scriptID;
     trainer->trainerID = trainerID;
-    trainer->trainerType = trainerType;
+    trainer->unk_10 = param6;
     trainer->object = object;
 }
 
@@ -94,9 +94,9 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
     case 0:
         scriptManager->ctx[SCRIPT_CONTEXT_MAIN] = ScriptContext_CreateAndStart(fieldSystem, scriptManager->scriptID);
         scriptManager->numActiveContexts = 1;
-        scriptManager->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELDMAP);
-        scriptManager->msgBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
-        scriptManager->tmpBuf = Strbuf_Init(1024, HEAP_ID_FIELDMAP);
+        scriptManager->strTemplate = StringTemplate_New(8, 64, HEAP_ID_FIELD2);
+        scriptManager->msgBuf = Strbuf_Init(1024, HEAP_ID_FIELD2);
+        scriptManager->tmpBuf = Strbuf_Init(1024, HEAP_ID_FIELD2);
         scriptManager->state++;
     case 1:
         for (i = 0; i < NUM_SCRIPT_CONTEXTS; i++) {
@@ -135,7 +135,7 @@ static BOOL FieldTask_RunScript(FieldTask *taskManager)
 
 static ScriptManager *ScriptManager_New()
 {
-    ScriptManager *scriptManager = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ScriptManager));
+    ScriptManager *scriptManager = Heap_Alloc(HEAP_ID_FIELD2, sizeof(ScriptManager));
 
     GF_ASSERT(scriptManager != NULL);
 
@@ -164,14 +164,14 @@ static void ScriptManager_Init(FieldSystem *fieldSystem, ScriptManager *scriptMa
         *targetID = MapObject_GetLocalID(object);
     }
 
-    if (scriptID >= SCRIPT_ID_OFFSET_HIDDEN_ITEMS && scriptID <= SCRIPT_ID_OFFSET_SAFARI_ZONE - 1) {
+    if (scriptID >= SCRIPT_ID_OFFSET_HIDDEN_ITEMS && scriptID <= SCRIPT_ID_OFFSET_SAFARI_GAME - 1) {
         ScriptManager_SetHiddenItem(scriptManager, scriptID);
     }
 }
 
 ScriptContext *ScriptContext_CreateAndStart(FieldSystem *fieldSystem, u16 scriptID)
 {
-    ScriptContext *ctx = Heap_AllocFromHeap(HEAP_ID_FIELDMAP, sizeof(ScriptContext));
+    ScriptContext *ctx = Heap_Alloc(HEAP_ID_FIELD2, sizeof(ScriptContext));
 
     GF_ASSERT(ctx != NULL);
 
@@ -205,7 +205,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_pokemon_center_daily_trainers, TEXT_BANK_POKEMON_CENTER_DAILY_TRAINERS);
         retScriptID -= SCRIPT_ID_POKEMON_CENTER_DAILY_TRAINERS;
     } else if (retScriptID >= 10300) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1051, TEXT_BANK_UNK_0552);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_1051, TEXT_BANK_COUNTERPART_TALK);
         retScriptID -= 10300;
     } else if (retScriptID >= 10200) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0407, TEXT_BANK_MYSTERY_GIFT_DELIVERYMAN);
@@ -226,7 +226,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0397, TEXT_BANK_COMMON_STRINGS);
         retScriptID -= 9900;
     } else if (retScriptID >= 9800) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0212, TEXT_BANK_UNK_0217);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0212, TEXT_BANK_CONTEST_REGISTRATION);
         retScriptID -= 9800;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_FOLLOWER_PARTNERS) {
         ScriptContext_Load(fieldSystem, ctx, scripts_follower_partners, TEXT_BANK_FOLLOWER_PARTNERS);
@@ -253,7 +253,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0213, TEXT_BANK_UNK_0221);
         retScriptID -= 9000;
     } else if (retScriptID >= 8970) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0425, TEXT_BANK_UNK_0007);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0425, TEXT_BANK_BAG);
         retScriptID -= 8970;
     } else if (retScriptID >= 8950) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0498, TEXT_BANK_UNK_0539);
@@ -261,9 +261,9 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
     } else if (retScriptID >= 8900) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0424, TEXT_BANK_UNK_0431);
         retScriptID -= 8900;
-    } else if (retScriptID >= SCRIPT_ID_OFFSET_SAFARI_ZONE) {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0497, TEXT_BANK_UNK_0538);
-        retScriptID -= SCRIPT_ID_OFFSET_SAFARI_ZONE;
+    } else if (retScriptID >= SCRIPT_ID_OFFSET_SAFARI_GAME) {
+        ScriptContext_Load(fieldSystem, ctx, scripts_safari_game, TEXT_BANK_SAFARI_GAME);
+        retScriptID -= SCRIPT_ID_OFFSET_SAFARI_GAME;
     } else if (retScriptID >= SCRIPT_ID_OFFSET_HIDDEN_ITEMS) {
         ScriptContext_Load(fieldSystem, ctx, scripts_unk_0408, TEXT_BANK_UNK_0380);
         retScriptID -= SCRIPT_ID_OFFSET_HIDDEN_ITEMS;
@@ -289,7 +289,7 @@ static u16 ScriptContext_LoadAndOffsetID(FieldSystem *fieldSystem, ScriptContext
         ScriptContext_LoadFromCurrentMap(fieldSystem, ctx);
         retScriptID -= 1;
     } else {
-        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0402, TEXT_BANK_UNK_0355);
+        ScriptContext_Load(fieldSystem, ctx, scripts_unk_0402, TEXT_BANK_DUMMY_0355);
         retScriptID = 0;
     }
 
@@ -300,14 +300,14 @@ static void ScriptContext_Load(FieldSystem *fieldSystem, ScriptContext *ctx, int
 {
     u8 *scripts = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, scriptFile, 11);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, HEAP_ID_FIELDMAP);
+    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, textBank, HEAP_ID_FIELD2);
 }
 
 static void ScriptContext_LoadFromCurrentMap(FieldSystem *fieldSystem, ScriptContext *ctx)
 {
     u8 *scripts = ScriptContext_LoadScripts(fieldSystem->location->mapId);
     ctx->scripts = scripts;
-    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELDMAP);
+    ctx->loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MapHeaderToMsgArchive(fieldSystem->location->mapId), HEAP_ID_FIELD2);
 }
 
 void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
@@ -377,7 +377,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &trainer->trainerID;
     case SCRIPT_MANAGER_TRAINER_0_TYPE:
         trainer = &scriptManager->trainers[0];
-        return &trainer->trainerType;
+        return &trainer->unk_10;
     case SCRIPT_MANAGER_TRAINER_0_MAP_OBJECT:
         trainer = &scriptManager->trainers[0];
         return &trainer->object;
@@ -398,7 +398,7 @@ void *ScriptManager_GetMemberPtr(ScriptManager *scriptManager, u32 member)
         return &trainer->trainerID;
     case SCRIPT_MANAGER_TRAINER_1_TYPE:
         trainer = &scriptManager->trainers[1];
-        return &trainer->trainerType;
+        return &trainer->unk_10;
     case SCRIPT_MANAGER_TRAINER_1_MAP_OBJECT:
         trainer = &scriptManager->trainers[1];
         return &trainer->object;
@@ -677,7 +677,7 @@ HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSyste
     itemIndex = 0;
     numBgEvents = MapHeaderData_GetNumBgEvents(fieldSystem);
     numBgEvents++;
-    hiddenItems = Heap_AllocFromHeap(heapID, sizeof(HiddenItemTilePosition) * numBgEvents);
+    hiddenItems = Heap_Alloc(heapID, sizeof(HiddenItemTilePosition) * numBgEvents);
 
     if (numBgEvents == 1) {
         hiddenItems[0].range = 0xff;

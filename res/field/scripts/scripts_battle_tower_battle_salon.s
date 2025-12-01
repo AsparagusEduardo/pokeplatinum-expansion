@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/battle_tower_battle_salon.h"
+#include "constants/map_object.h"
 
 
     ScriptEntry _01AC
@@ -83,11 +84,11 @@ _015D:
     End
 
 _0179:
-    ScrCmd_1B2 0xFF
+    HideObject LOCALID_PLAYER
     Return
 
 _017F:
-    ScrCmd_187 0, 8, 0, 3, 1
+    SetPosition 0, 8, 0, 3, 1
     End
 
 _018D:
@@ -117,10 +118,10 @@ _01D4:
     CloseMessage
     ReleaseAll
     SetVar VAR_UNK_0x40D8, 3
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER, 0, 11, 6, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     End
 
@@ -131,10 +132,10 @@ _0204:
     CloseMessage
     Call _04E0
     SetVar VAR_UNK_0x40DB, 2
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_ELEVATOR, 0, 3, 6, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End
@@ -155,10 +156,10 @@ _0275:
     GoToIfEq VAR_UNK_0x40DF, 2, _02D2
     SetVar VAR_MAP_LOCAL_9, 0
     ScrCmd_1DE VAR_MAP_LOCAL_9, 0, VAR_0x8004, VAR_0x8005
-    ScrCmd_341 0, VAR_0x8004, 0, 0
+    BufferSpeciesNameWithArticle 0, VAR_0x8004
     BufferMoveName 1, VAR_0x8005
     ScrCmd_1DE VAR_MAP_LOCAL_9, 1, VAR_0x8004, VAR_0x8005
-    ScrCmd_341 2, VAR_0x8004, 0, 0
+    BufferSpeciesNameWithArticle 2, VAR_0x8004
     BufferMoveName 3, VAR_0x8005
     Message 6
     ShowYesNoMenu VAR_RESULT
@@ -291,22 +292,22 @@ _0467:
     End
 
 _0488:
-    ScrCmd_168 0, 0, 8, 2, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 0, 0, 8, 2, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     Return
 
 _049B:
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     Return
 
 _04A6:
     Call _0488
     ApplyMovement 0, _06C8
     WaitMovement
-    ScrCmd_1B1 0xFF
+    ShowObject LOCALID_PLAYER
     ApplyMovement LOCALID_PLAYER, _06B8
     WaitMovement
     Call _049B
@@ -335,10 +336,10 @@ _0500:
     Call _049B
     ApplyMovement 0, _06F4
     WaitMovement
-    FadeScreen 6, 1, 0, 0
+    FadeScreenOut
     WaitFadeScreen
     Warp MAP_HEADER_BATTLE_TOWER_BATTLE_SALON, 0, 8, 4, 0
-    FadeScreen 6, 1, 1, 0
+    FadeScreenIn
     WaitFadeScreen
     ReleaseAll
     End

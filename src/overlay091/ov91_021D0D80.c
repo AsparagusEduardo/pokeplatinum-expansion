@@ -67,7 +67,7 @@ typedef int (*GenericFunctionPtr_1)(UnkStruct_ov91_021D0ED8 *);
 typedef struct {
     GenericFunctionPtr_1 unk_00;
     GenericFunctionPtr_1 unk_04;
-} GameWindowLayout_1;
+} PartyMenuApplication_1;
 
 static void ov91_021D0ED8(UnkStruct_ov91_021D0ED8 *param0);
 static void ov91_021D0F6C(UnkStruct_ov91_021D0ED8 *param0);
@@ -174,7 +174,7 @@ static const u32 Unk_ov91_021D282C[2][11] = {
     { 0xB, 0xC, 0xD, 0xE, 0xF, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15 }
 };
 
-static const GameWindowLayout_1 Unk_ov91_021D27DC[] = {
+static const PartyMenuApplication_1 Unk_ov91_021D27DC[] = {
     { ov91_021D1EC8, ov91_021D1EE8 },
     { ov91_021D1F38, ov91_021D1F44 },
     { ov91_021D1F94, ov91_021D1FA0 },
@@ -443,7 +443,7 @@ static void ov91_021D0ED8(UnkStruct_ov91_021D0ED8 *param0)
 
     param0->unk_04 = BgConfig_New(HEAP_ID_67);
 
-    sub_0208C120(0, HEAP_ID_67);
+    App_StartScreenFade(FALSE, HEAP_ID_67);
 
     v0 = NARC_ctor(NARC_INDEX_GRAPHIC__WAZA_OSHIE_GRA, HEAP_ID_67);
 
@@ -765,7 +765,7 @@ static int ov91_021D1450(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D1480(UnkStruct_ov91_021D0ED8 *param0)
 {
-    sub_0208C120(1, HEAP_ID_67);
+    App_StartScreenFade(TRUE, HEAP_ID_67);
     param0->unk_180 = 9;
     return 0;
 }
@@ -1479,7 +1479,7 @@ static void ov91_021D25E4(UnkStruct_ov91_021D0ED8 *param0)
 
 static int ov91_021D2604(UnkStruct_ov91_021D0ED8 *param0)
 {
-    sub_0208C120(1, HEAP_ID_67);
+    App_StartScreenFade(TRUE, HEAP_ID_67);
     param0->unk_180 = 11;
     return 0;
 }

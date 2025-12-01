@@ -725,7 +725,7 @@ int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
     case 0:
         v1 = ApplicationManager_Args(appMan);
 
-        if (sub_020389B8()) {
+        if (CommMan_IsConnectedToWifi()) {
             switch (v1->unk_04) {
             case 8:
             case 9:
@@ -738,13 +738,13 @@ int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
             case 6:
             case 12:
             case 7:
-                Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_121, 0x10000);
+                Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_PARTY_MENU1, 0x10000);
                 break;
             default:
                 break;
             }
         } else {
-            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_121, 0x10000);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_PARTY_MENU1, 0x10000);
         }
 
         Overlay_LoadByID(FS_OVERLAY_ID(overlay63), 2);
@@ -775,7 +775,7 @@ int ov65_0222E2A8(ApplicationManager *appMan, int *param1)
 
         StartScreenFade(FADE_BOTH_SCREENS, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 6, 1, HEAP_ID_54);
 
-        if (sub_020389B8()) {
+        if (CommMan_IsConnectedToWifi()) {
             sub_02039734();
         } else {
             sub_02099550();
@@ -909,7 +909,7 @@ int ov65_0222E548(ApplicationManager *appMan, int *param1)
     case 6:
     case 12:
     case 7:
-        Heap_Destroy(HEAP_ID_121);
+        Heap_Destroy(HEAP_ID_PARTY_MENU1);
         break;
     default:
         break;
@@ -1585,7 +1585,7 @@ static int ov65_0222F010(UnkStruct_ov65_0222EBE0 *param0, int param1)
 {
     u32 v0;
 
-    if (sub_020389B8()) {
+    if (CommMan_IsConnectedToWifi()) {
         ov65_02232DC0(param0, ov4_021D2388());
         param0->unk_04 = sub_020388E8();
         param0->unk_04->unk_00.unk_21 = param0->unk_04->unk_00.unk_22;
@@ -1807,7 +1807,7 @@ static void ov65_0222F4C4(UnkStruct_ov65_0222EBE0 *param0, int param1)
     param0->unk_04->unk_00.unk_1D = TrainerInfo_Appearance(v0);
     param0->unk_04->unk_00.unk_1E = TrainerInfo_Gender(v0);
     param0->unk_04->unk_00.unk_1F = WiFiHistory_GetCountry(wiFiHistory);
-    param0->unk_04->unk_00.unk_20 = sub_0202C8C4(wiFiHistory);
+    param0->unk_04->unk_00.unk_20 = WiFiHistory_GetRegion(wiFiHistory);
     param0->unk_04->unk_00.unk_21 = 1;
     param0->unk_04->unk_00.unk_22 = 1;
 
@@ -1889,7 +1889,7 @@ static void ov65_0222F6EC(UnkStruct_ov65_0222EBE0 *param0)
 {
     UnkStruct_ov65_0222F6EC *v0 = sub_020382F8();
     int v1, v2 = v0->unk_00;
-    int v3 = ov4_021D1F3C(v0->unk_00, v0->unk_04);
+    int v3 = NintendoWFC_GetErrorCode(v0->unk_00, v0->unk_04);
 
     if ((v3 == 11) || (v2 == ((DWC_ERROR_NUM) + 5))) {
         v1 = 14;
@@ -2021,7 +2021,7 @@ static int ov65_0222F90C(UnkStruct_ov65_0222EBE0 *param0, int param1)
     int v0;
     NARC *v1;
 
-    if (!sub_020334A4()) {
+    if (!WirelessDriver_IsReady()) {
         if (ov65_02235194(&param0->unk_3EC) == 1) {
             SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
             SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
@@ -6121,9 +6121,9 @@ static BOOL ov65_02234FCC(UnkStruct_ov65_0222EBE0 *param0, int param1, int param
     ov4_021D2584(param0->unk_04->unk_00.unk_21);
 
     if (ov65_0222DD64(param2) == 1) {
-        ov4_021D2618(1, HEAP_ID_121);
+        ov4_021D2618(1, HEAP_ID_PARTY_MENU1);
     } else {
-        ov4_021D2618(0, HEAP_ID_121);
+        ov4_021D2618(0, HEAP_ID_PARTY_MENU1);
     }
 
     sub_0209C3AC();

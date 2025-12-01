@@ -27,9 +27,9 @@
 #include "trainer_info.h"
 
 FS_EXTERN_OVERLAY(poketch_digital_watch);
-FS_EXTERN_OVERLAY(overlay27);
+FS_EXTERN_OVERLAY(poketch_stopwatch);
 FS_EXTERN_OVERLAY(overlay28);
-FS_EXTERN_OVERLAY(overlay29);
+FS_EXTERN_OVERLAY(poketch_memo_pad);
 FS_EXTERN_OVERLAY(overlay30);
 FS_EXTERN_OVERLAY(overlay31);
 FS_EXTERN_OVERLAY(overlay32);
@@ -40,7 +40,7 @@ FS_EXTERN_OVERLAY(overlay36);
 FS_EXTERN_OVERLAY(overlay37);
 FS_EXTERN_OVERLAY(overlay38);
 FS_EXTERN_OVERLAY(overlay39);
-FS_EXTERN_OVERLAY(overlay40);
+FS_EXTERN_OVERLAY(poketch_daycare_checker);
 FS_EXTERN_OVERLAY(overlay41);
 FS_EXTERN_OVERLAY(overlay42);
 FS_EXTERN_OVERLAY(poketch_move_tester);
@@ -85,9 +85,9 @@ static const struct {
     FSOverlayID overlayID;
 } sAppOverlayIDs[] = {
     { POKETCH_APPID_DIGITALWATCH, FS_OVERLAY_ID(poketch_digital_watch) },
-    { POKETCH_APPID_UNUSED_STOPWATCH, FS_OVERLAY_ID(overlay27) },
+    { POKETCH_APPID_UNUSED_STOPWATCH, FS_OVERLAY_ID(poketch_stopwatch) },
     { POKETCH_APPID_CALCULATOR, FS_OVERLAY_ID(overlay28) },
-    { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(overlay29) },
+    { POKETCH_APPID_MEMOPAD, FS_OVERLAY_ID(poketch_memo_pad) },
     { POKETCH_APPID_ANALOGWATCH, FS_OVERLAY_ID(overlay30) },
     { POKETCH_APPID_DOTART, FS_OVERLAY_ID(overlay31) },
     { POKETCH_APPID_PARTYSTATUS, FS_OVERLAY_ID(overlay32) },
@@ -95,7 +95,7 @@ static const struct {
     { POKETCH_APPID_DOWSINGMACHINE, FS_OVERLAY_ID(overlay34) },
     { POKETCH_APPID_COUNTER, FS_OVERLAY_ID(overlay35) },
     { POKETCH_APPID_PEDOMETER, FS_OVERLAY_ID(overlay36) },
-    { POKETCH_APPID_DAYCARECHECKER, FS_OVERLAY_ID(overlay40) },
+    { POKETCH_APPID_DAYCARECHECKER, FS_OVERLAY_ID(poketch_daycare_checker) },
     { POKETCH_APPID_ROULETTE, FS_OVERLAY_ID(overlay41) },
     { POKETCH_APPID_COINTOSS, FS_OVERLAY_ID(overlay42) },
     { POKETCH_APPID_MOVETESTER, FS_OVERLAY_ID(poketch_move_tester) },
@@ -121,7 +121,7 @@ void PoketchSystem_Create(FieldSystem *fieldSystem, PoketchSystem **poketchSys, 
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_MAIN, HEAP_SIZE_POKETCH_MAIN);
     Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_POKETCH_APP, HEAP_SIZE_POKETCH_APP);
 
-    PoketchSystem *new_system = Heap_AllocFromHeap(HEAP_ID_POKETCH_MAIN, sizeof(PoketchSystem));
+    PoketchSystem *new_system = Heap_Alloc(HEAP_ID_POKETCH_MAIN, sizeof(PoketchSystem));
 
     if (new_system != NULL) {
         *poketchSys = new_system;

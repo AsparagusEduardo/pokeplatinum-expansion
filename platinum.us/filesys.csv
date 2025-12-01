@@ -49,7 +49,7 @@ res/prebuilt/data/miniasasea.nsbtx,/data/miniasasea.nsbtx
 res/prebuilt/data/minihamabe.nsbtx,/data/minihamabe.nsbtx
 res/prebuilt/data/minimum.nsbtx,/data/minimum.nsbtx
 res/prebuilt/data/minirhana.nsbtx,/data/minirhana.nsbtx
-res/prebuilt/data/namein.narc,/data/namein.narc
+res/graphics/naming_screen/namein.narc,/data/namein.narc
 res/prebuilt/data/nfont.NCGR,/data/nfont.NCGR
 res/prebuilt/data/nfont.NCLR,/data/nfont.NCLR
 res/prebuilt/data/pc.nsbca,/data/pc.nsbca
@@ -165,8 +165,8 @@ res/pokemon/pms.narc,/poketool/personal/pms.narc
 res/pokemon/wotbl.narc,/poketool/personal/wotbl.narc
 res/trainers/trdata.narc,/poketool/trainer/trdata.narc
 res/trainers/trpoke.narc,/poketool/trainer/trpoke.narc
-res/prebuilt/poketool/trmsg/trtbl.narc,/poketool/trmsg/trtbl.narc
-res/prebuilt/poketool/trmsg/trtblofs.narc,/poketool/trmsg/trtblofs.narc
+res/trainers/trtbl.narc,/poketool/trmsg/trtbl.narc
+res/trainers/trtblofs.narc,/poketool/trmsg/trtblofs.narc
 res/prebuilt/battle/graphic/b_bag_gra.narc,/battle/graphic/b_bag_gra.narc
 res/prebuilt/battle/graphic/b_plist_gra.narc,/battle/graphic/b_plist_gra.narc
 res/prebuilt/battle/graphic/batt_bg.narc,/battle/graphic/batt_bg.narc
@@ -200,7 +200,7 @@ res/prebuilt/graphic/ev_pokeselect.narc,/graphic/ev_pokeselect.narc
 res/prebuilt/graphic/f_note_gra.narc,/graphic/f_note_gra.narc
 res/graphics/signposts/field_board.narc,/graphic/field_board.narc
 res/prebuilt/graphic/field_encounteffect.narc,/graphic/field_encounteffect.narc
-res/prebuilt/graphic/fld_comact.narc,/graphic/fld_comact.narc
+res/graphics/scroll_prompts/fld_comact.narc,/graphic/fld_comact.narc
 res/prebuilt/graphic/font.narc,/graphic/font.narc
 res/prebuilt/graphic/fontoam.narc,/graphic/fontoam.narc
 res/prebuilt/graphic/footprint_board.narc,/graphic/footprint_board.narc
@@ -246,7 +246,7 @@ res/prebuilt/graphic/winframe.narc,/graphic/winframe.narc
 res/prebuilt/graphic/worldtimer.narc,/graphic/worldtimer.narc
 res/prebuilt/graphic/worldtrade.narc,/graphic/worldtrade.narc
 res/prebuilt/itemtool/itemdata/item_data.narc,/itemtool/itemdata/item_data.narc
-res/prebuilt/itemtool/itemdata/item_icon.narc,/itemtool/itemdata/item_icon.narc
+res/graphics/item_icons/item_icon.narc,/itemtool/itemdata/item_icon.narc
 res/items/nuts_data.narc,/itemtool/itemdata/nuts_data.narc
 res/items/pl_item_data.narc,/itemtool/itemdata/pl_item_data.narc
 res/pokemon/pl_poke_icon.narc,/poketool/icongra/pl_poke_icon.narc
@@ -305,7 +305,7 @@ res/prebuilt/poketool/pokeanm/pl_pokeanm.narc,/poketool/pokeanm/pl_pokeanm.narc
 res/prebuilt/demo/shinka/data/particle/shinka_demo_particle.narc,/demo/shinka/data/particle/shinka_demo_particle.narc
 res/prebuilt/demo/intro/intro.narc,/demo/intro/intro.narc
 res/prebuilt/demo/intro/intro_tv.narc,/demo/intro/intro_tv.narc
-res/prebuilt/demo/syoujyou/syoujyou.narc,/demo/syoujyou/syoujyou.narc
+res/graphics/diploma/diploma.narc,/demo/syoujyou/syoujyou.narc
 res/prebuilt/battle/b_tower/btdpm.narc,/battle/b_tower/btdpm.narc
 res/prebuilt/battle/b_tower/btdtr.narc,/battle/b_tower/btdtr.narc
 res/prebuilt/application/zukanlist/zkn_data/zukan_enc_diamond.narc,/application/zukanlist/zkn_data/zukan_enc_diamond.narc

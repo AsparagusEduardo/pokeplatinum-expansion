@@ -541,7 +541,7 @@ _0796:
     CallIfEq VAR_0x8004, 1, _0871
     CallIfEq VAR_0x8004, 3, _088B
     CallIfEq VAR_0x8004, 0, _08A5
-    ScrCmd_23D 3, 3, 0x120, 100, 0x1F6
+    TakeShipFromCanalave DIR_EAST, MAP_HEADER_IRON_ISLAND, 100, 502
     ReleaseAll
     End
 
@@ -550,7 +550,7 @@ _07D1:
     CallIfEq VAR_0x8004, 1, _0871
     CallIfEq VAR_0x8004, 3, _088B
     CallIfEq VAR_0x8004, 0, _08A5
-    ScrCmd_23D 3, 2, 0x104, 39, 0x115
+    TakeShipFromCanalave DIR_WEST, MAP_HEADER_FULLMOON_ISLAND, 39, 277
     ReleaseAll
     End
 
@@ -559,7 +559,7 @@ _080C:
     CallIfEq VAR_0x8004, 1, _0871
     CallIfEq VAR_0x8004, 3, _088B
     CallIfEq VAR_0x8004, 0, _08A5
-    ScrCmd_23D 3, 3, 0x140, 152, 0x115
+    TakeShipFromCanalave DIR_EAST, MAP_HEADER_NEWMOON_ISLAND, 152, 277
     ReleaseAll
     End
 
@@ -715,14 +715,14 @@ _09FA:
     CloseMessage
     ApplyMovement 18, _0A38
     WaitMovement
-    ScrCmd_168 1, 22, 5, 14, 77
-    ScrCmd_16B 77
-    ScrCmd_169 77
+    LoadDoorAnimation 1, 22, 5, 14, ANIMATION_TAG_DOOR_1
+    PlayDoorOpenAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
     ApplyMovement 18, _0A40
     WaitMovement
-    ScrCmd_16C 77
-    ScrCmd_169 77
-    ScrCmd_16A 77
+    PlayDoorCloseAnimation ANIMATION_TAG_DOOR_1
+    WaitForAnimation ANIMATION_TAG_DOOR_1
+    UnloadAnimation ANIMATION_TAG_DOOR_1
     RemoveObject 18
     ReleaseAll
     End

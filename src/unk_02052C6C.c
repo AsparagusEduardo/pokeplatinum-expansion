@@ -5,7 +5,6 @@
 
 #include "generated/game_records.h"
 
-#include "struct_defs/struct_0202DF8C.h"
 #include "struct_defs/struct_0203E234.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_02099F80.h"
@@ -20,6 +19,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "gx_layers.h"
+#include "hall_of_fame.h"
 #include "heap.h"
 #include "item_use_pokemon.h"
 #include "location.h"
@@ -37,7 +37,6 @@
 #include "string_template.h"
 #include "system_flags.h"
 #include "trainer_info.h"
-#include "unk_0202DF8C.h"
 #include "unk_0203D1B8.h"
 #include "unk_02054884.h"
 #include "unk_020559DC.h"
@@ -77,7 +76,7 @@ static void sub_02052C6C(FieldSystem *fieldSystem, BOOL param1)
     v1 = SaveData_GetParty(fieldSystem->saveData);
 
     GetCurrentDate(&v2);
-    sub_0202DFA8(v0, v1, &v2);
+    HallOfFame_AddEntry(v0, v1, &v2);
     SaveData_SaveHallOfFame(fieldSystem->saveData, v0);
     Heap_Free(v0);
 }
@@ -98,9 +97,9 @@ static BOOL sub_02052CBC(FieldTask *param0)
         break;
     case 1:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
-            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD, 0x20000);
+            Heap_Create(HEAP_ID_APPLICATION, HEAP_ID_FIELD1, HEAP_SIZE_FIELD1);
             sub_02052F28(fieldSystem, v3);
-            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
+            StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_IN, FADE_TYPE_BRIGHTNESS_IN, COLOR_BLACK, 8, 1, HEAP_ID_FIELD3);
             (*v4)++;
         }
         break;
@@ -145,7 +144,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
         }
         break;
     case 7:
-        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_FIELD_TASK);
+        StartScreenFade(FADE_MAIN_ONLY, FADE_TYPE_BRIGHTNESS_OUT, FADE_TYPE_BRIGHTNESS_OUT, COLOR_BLACK, 8, 1, HEAP_ID_FIELD3);
         (*v4)++;
         break;
     case 8:
@@ -158,7 +157,7 @@ static BOOL sub_02052CBC(FieldTask *param0)
     case 9:
         if (!FieldSystem_IsRunningApplication(fieldSystem)) {
             Heap_Free(v3);
-            Heap_Destroy(HEAP_ID_FIELD);
+            Heap_Destroy(HEAP_ID_FIELD1);
             OS_ResetSystem(0);
             return 1;
         }
@@ -179,7 +178,7 @@ void sub_02052E58(FieldTask *param0)
     Party *v7;
 
     fieldSystem = FieldTask_GetFieldSystem(param0);
-    v5 = Heap_AllocFromHeap(HEAP_ID_FIELD_TASK, sizeof(UnkStruct_0205300C));
+    v5 = Heap_Alloc(HEAP_ID_FIELD3, sizeof(UnkStruct_0205300C));
     v3 = SaveData_GetVarsFlags(fieldSystem->saveData);
     v4 = SaveData_GetTrainerInfo(fieldSystem->saveData);
     v1 = FieldOverworldState_GetSpecialLocation(SaveData_GetFieldOverworldState(fieldSystem->saveData));
@@ -258,7 +257,7 @@ static void sub_02052F28(FieldSystem *fieldSystem, UnkStruct_0205300C *param1)
     SetAllGraphicsModes(&v1);
     Bg_MaskPalette(BG_LAYER_MAIN_3, 0x0);
     Bg_InitFromTemplate(fieldSystem->bgConfig, BG_LAYER_MAIN_3, &v2, 0);
-    Bg_ClearTilesRange(BG_LAYER_MAIN_3, 0x20, 0, HEAP_ID_FIELD_TASK);
+    Bg_ClearTilesRange(BG_LAYER_MAIN_3, 0x20, 0, HEAP_ID_FIELD3);
     Bg_FillTilemapRect(fieldSystem->bgConfig, 3, 0x0, 0, 0, 32, 32, 17);
     Bg_CopyTilemapBufferToVRAM(fieldSystem->bgConfig, 3);
 }
@@ -290,14 +289,14 @@ static void sub_0205300C(UnkStruct_0205300C *param0)
 
 static void sub_02053028(FieldSystem *fieldSystem, UnkStruct_0205300C *param1, int param2)
 {
-    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD);
+    MessageLoader *v0 = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_COMMON_STRINGS, HEAP_ID_FIELD1);
 
     if (param2 == 2) {
         StringTemplate *v1;
 
-        v1 = StringTemplate_Default(HEAP_ID_FIELD);
+        v1 = StringTemplate_Default(HEAP_ID_FIELD1);
         StringTemplate_SetPlayerName(v1, 0, SaveData_GetTrainerInfo(fieldSystem->saveData));
-        param1->unk_2C = MessageUtil_ExpandedStrbuf(v1, v0, 16, HEAP_ID_FIELD);
+        param1->unk_2C = MessageUtil_ExpandedStrbuf(v1, v0, 16, HEAP_ID_FIELD1);
         StringTemplate_Free(v1);
     } else {
         param1->unk_2C = MessageLoader_GetNewStrbuf(v0, 18);

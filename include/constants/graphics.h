@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_CONSTANTS_GRAPHICS_H
 #define POKEPLATINUM_CONSTANTS_GRAPHICS_H
 
+#include "constants/colors.h"
+
 enum DSScreen {
     DS_SCREEN_MAIN = 0,
     DS_SCREEN_SUB,
@@ -41,6 +43,9 @@ enum DSScreen {
 #define MON_SPRITE_FRAME_MAX_SIZE_TILES (MON_SPRITE_FRAME_WIDTH_TILES * MON_SPRITE_FRAME_HEIGHT_TILES)
 #define MON_SPRITE_FRAME_MAX_SIZE_BYTES (TILE_SIZE_4BPP * MON_SPRITE_FRAME_MAX_SIZE_TILES)
 
+#define MON_AFFINE_SHIFT    8
+#define MON_AFFINE_SCALE(i) (i << MON_AFFINE_SHIFT)
+
 #define SHADOW_SPRITE_FRAME_WIDTH_TILES  8
 #define SHADOW_SPRITE_FRAME_HEIGHT_TILES 2
 #define SHADOW_SPRITE_FRAME_WIDTH        (SHADOW_SPRITE_FRAME_WIDTH_TILES * TILE_WIDTH_PIXELS)
@@ -53,10 +58,25 @@ enum DSScreen {
 
 #define G3X_DEPTH_MAX 0x7FFF
 
-#define COLOR_BLACK       GX_RGB(0, 0, 0)
-#define COLOR_DARK_GRAY   GX_RGB(4, 4, 4)
-#define COLOR_WHITE       GX_RGB(31, 31, 31)
-#define COLOR_TRANSPARENT GX_RGB(31, 31, 16)
-#define COLOR_SAVED       0xFFFF
+#define RGBA_BLACK GX_RGBA(0, 0, 0, 0)
+#define RGBA_WHITE GX_RGBA(31, 31, 31, 1)
+
+#define RGB_TO_GRAYSCALE(r, g, b) (((r) * 76 + (g) * 151 + (b) * 29) >> 8)
+
+// Below are some typical window sizes
+
+// This is for the typical window frame used by menus and choice-boxes
+#define STANDARD_WINDOW_TILE_W    3
+#define STANDARD_WINDOW_TILE_H    3
+#define STANDARD_WINDOW_TILE_SIZE (STANDARD_WINDOW_TILE_W * STANDARD_WINDOW_TILE_H)
+
+// This is for the typical dialogue window used in conversations in the field
+#define MESSAGE_BOX_TILE_W    6
+#define MESSAGE_BOX_TILE_H    3
+#define MESSAGE_BOX_TILE_SIZE (MESSAGE_BOX_TILE_W * MESSAGE_BOX_TILE_H)
+
+// This is for the scroll arrow used on message boxes that must wrap their text or
+// which wait for player input
+#define SCROLL_CURSOR_TILE_SIZE 12
 
 #endif // POKEPLATINUM_CONSTANTS_GRAPHICS_H

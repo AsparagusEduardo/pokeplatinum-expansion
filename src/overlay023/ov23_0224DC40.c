@@ -8,9 +8,8 @@
 #include "field/field_system.h"
 #include "overlay023/funcptr_ov23_0224DCB8.h"
 #include "overlay023/ov23_02241F74.h"
-#include "overlay023/ov23_0224F294.h"
 #include "overlay023/ov23_02253598.h"
-#include "overlay023/struct_ov23_02250CD4.h"
+#include "overlay023/underground_menu.h"
 #include "overlay023/underground_text_printer.h"
 
 #include "bg_window.h"
@@ -55,7 +54,7 @@ typedef struct {
 
 typedef struct {
     SysTask *unk_00;
-    UnkStruct_ov23_02250CD4 *unk_04;
+    UndergroundMenu *unk_04;
     FieldSystem *fieldSystem;
     Window unk_0C;
     StringList *unk_1C;
@@ -207,7 +206,7 @@ void ov23_0224DCB8(int param0, UnkFuncPtr_ov23_0224DCB8 param1, FieldSystem *fie
     UnkStruct_ov23_0224E280 *v0;
     ListMenuTemplate v1;
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_33, sizeof(UnkStruct_ov23_0224E280));
+    v0 = Heap_Alloc(HEAP_ID_33, sizeof(UnkStruct_ov23_0224E280));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_0224E280));
 
     Unk_ov23_022577B4 = v0;
@@ -231,7 +230,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
 {
     ListMenuTemplate v0;
 
-    param0->unk_1C = StringList_New(NELEMS(Unk_ov23_022568B4), HEAP_ID_FIELD);
+    param0->unk_1C = StringList_New(NELEMS(Unk_ov23_022568B4), HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_0C, 3, 1, 1, 10, NELEMS(Unk_ov23_022568B4) * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * NELEMS(Unk_ov23_022568B4) * 2));
     Window_DrawStandardFrame(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
@@ -240,7 +239,7 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
         MessageLoader *v1;
         int v2;
 
-        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_FIELD);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_COMMON, HEAP_ID_FIELD1);
 
         for (v2 = 0; v2 < NELEMS(Unk_ov23_022568B4); v2++) {
             StringList_AddFromMessageBank(param0->unk_1C, v1, Unk_ov23_022568B4[v2].unk_00, Unk_ov23_022568B4[v2].unk_04);
@@ -257,10 +256,10 @@ static void ov23_0224DD2C(UnkStruct_ov23_0224E280 *param0)
     v0.maxDisplay = NELEMS(Unk_ov23_022568B4);
 
     param0->unk_3A = 0;
-    param0->unk_20 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD);
+    param0->unk_20 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD1);
 
     Window_CopyToVRAM(&param0->unk_0C);
-    sub_020594FC();
+    CommPlayerMan_PauseFieldSystem();
 }
 
 static void ov23_0224DDE4(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
@@ -282,7 +281,7 @@ static void ov23_0224DDE4(SysTask *param0, UnkStruct_ov23_0224E280 *param1)
     }
 
     Heap_Free(param1);
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
     SysTask_Done(param0);
 
     Unk_ov23_022577B4 = NULL;
@@ -292,7 +291,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
 {
     ListMenuTemplate v0;
 
-    param0->unk_1C = StringList_New(4, HEAP_ID_FIELD);
+    param0->unk_1C = StringList_New(4, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
     Window_DrawStandardFrame(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
@@ -302,7 +301,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
         int v2, v3;
         u8 v4[4];
 
-        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_QUESTIONS, HEAP_ID_FIELD);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_QUESTIONS, HEAP_ID_FIELD1);
 
         for (v2 = 0; v2 < 4; v2++) {
             u32 v5 = MTRNG_Next() % 12;
@@ -329,7 +328,7 @@ static void ov23_0224DE3C(UnkStruct_ov23_0224E280 *param0)
     v0.window = &param0->unk_0C;
 
     param0->unk_3A = 0;
-    param0->unk_20 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD);
+    param0->unk_20 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD1);
 
     Window_CopyToVRAM(&param0->unk_0C);
 }
@@ -380,7 +379,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
 {
     ListMenuTemplate v0;
 
-    param0->unk_1C = StringList_New(4, HEAP_ID_FIELD);
+    param0->unk_1C = StringList_New(4, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_0C, 3, 1, 1, 16, 4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * 4 * 2));
     Window_DrawStandardFrame(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
@@ -389,7 +388,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
         MessageLoader *v1;
         int v2;
 
-        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD);
+        v1 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD1);
 
         for (v2 = 0; v2 < 4; v2++) {
             u32 v3 = 4 * param0->unk_32 + v2;
@@ -405,7 +404,7 @@ static void ov23_0224DFA0(UnkStruct_ov23_0224E280 *param0)
     v0.window = &param0->unk_0C;
 
     param0->unk_3A = 0;
-    param0->unk_20 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD);
+    param0->unk_20 = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD1);
 
     Window_CopyToVRAM(&param0->unk_0C);
 }
@@ -460,7 +459,7 @@ static void ov23_0224E124(UnkStruct_ov23_0224E280 *param0)
     UndergroundTextPrinter_PrintText(CommManUnderground_GetCommonTextPrinter(), 14, FALSE, NULL);
 
     UndergroundRecord_IncrementGiftsGiven(SaveData_UndergroundRecord(FieldSystem_GetSaveData(param0->fieldSystem)));
-    ov23_0224F634(param0->unk_28.unk_02);
+    UndergroundMenu_RemoveSelectedGoodBag(param0->unk_28.unk_02);
     Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
 }
 
@@ -893,7 +892,7 @@ static void ov23_0224E93C(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
     }
 
     if (v0 == 0) {
-        if (ov23_0224F744(param1->unk_24.unk_02)) {
+        if (UndergroundInventory_TryAddGoodBag(param1->unk_24.unk_02)) {
             sub_0202977C(SaveData_UndergroundRecord(FieldSystem_GetSaveData(param1->fieldSystem)));
             Sound_PlayEffect(SEQ_SE_DP_PIRORIRO2);
             ov23_0224DC40(param1, 22);
@@ -929,7 +928,7 @@ static void ov23_0224E9C4(SysTask *param0, UnkStruct_ov23_022577B0 *param1)
     ov23_0224EA08(param0, param1);
 
     Heap_Free(param1);
-    sub_02059514();
+    CommPlayerMan_ResumeFieldSystem();
     SysTask_Done(param0);
 
     Unk_ov23_022577B0 = NULL;
@@ -966,7 +965,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
     ListMenuTemplate v0;
     const int v1 = 4 + 1;
 
-    param0->unk_18 = StringList_New(v1, HEAP_ID_FIELD);
+    param0->unk_18 = StringList_New(v1, HEAP_ID_FIELD1);
 
     Window_Add(param0->fieldSystem->bgConfig, &param0->unk_08, 3, 1, 1, 16, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * v1 * 2));
     Window_DrawStandardFrame(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
@@ -974,7 +973,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
         MessageLoader *v2;
         int v3;
 
-        v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD);
+        v2 = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_UNDERGROUND_ANSWERS, HEAP_ID_FIELD1);
 
         for (v3 = 0; v3 < 4; v3++) {
             u32 v4 = 4 * param0->unk_2E + v3;
@@ -993,7 +992,7 @@ static void ov23_0224EAA4(UnkStruct_ov23_022577B0 *param0)
     v0.maxDisplay = v1;
 
     param0->unk_36 = 0;
-    param0->unk_1C = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD);
+    param0->unk_1C = ListMenu_New(&v0, 0, 0, HEAP_ID_FIELD1);
 
     Window_CopyToVRAM(&param0->unk_08);
 }
@@ -1267,7 +1266,7 @@ void ov23_0224F07C(int param0, int param1, FieldSystem *fieldSystem)
         return;
     }
 
-    v0 = Heap_AllocFromHeap(HEAP_ID_33, sizeof(UnkStruct_ov23_022577B0));
+    v0 = Heap_Alloc(HEAP_ID_33, sizeof(UnkStruct_ov23_022577B0));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_022577B0));
 
     Unk_ov23_022577B0 = v0;

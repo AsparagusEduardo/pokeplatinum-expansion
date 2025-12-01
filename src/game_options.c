@@ -12,7 +12,7 @@
 
 Options *Options_New(u32 heapID)
 {
-    Options *options = Heap_AllocFromHeap(heapID, sizeof(Options));
+    Options *options = Heap_Alloc(heapID, sizeof(Options));
     Options_Init(options);
 
     return options;
