@@ -11,9 +11,9 @@
 #include "generated/species.h"
 #include "generated/text_banks.h"
 
-#include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_02090800.h"
 
+#include "applications/town_map/main.h"
 #include "field/field_system.h"
 #include "overlay005/debug_mon_menu.h"
 #include "overlay006/hm_cut_in.h"
@@ -24,15 +24,16 @@
 #include "message.h"
 #include "move_table.h"
 #include "party.h"
+#include "player_avatar.h"
 #include "render_window.h"
 #include "strbuf.h"
 #include "sys_task.h"
 #include "system.h"
 #include "text.h"
 #include "screen_fade.h"
+#include "unk_0200679C.h"
 #include "unk_0203A7D8.h"
 #include "unk_0203D1B8.h"
-#include "unk_0206B70C.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
 
@@ -250,7 +251,7 @@ static void DebugMenu_Fly_CreateTask(FieldSystem *sys)
 static void Task_DebugMenu_Fly(SysTask *task, void *data)
 {
     DebugFly *fly = (DebugFly *)data;
-    UnkStruct_0203D8AC *map;
+    TownMapContext *map;
 
     switch (fly->sequence) {
     case 0:
@@ -262,16 +263,16 @@ static void Task_DebugMenu_Fly(SysTask *task, void *data)
             return;
         }
 
-        fly->data = Heap_Alloc(HEAP_ID_APPLICATION, sizeof(UnkStruct_0203D8AC));
+        fly->data = Heap_Alloc(HEAP_ID_APPLICATION, sizeof(TownMapContext));
 
         // map data set
-        sub_0206B70C(fly->sys, fly->data, 1);
+        TownMapContext_Init(fly->sys, fly->data, 1);
 
-        map = (UnkStruct_0203D8AC *)fly->data;
+        map = (TownMapContext *)fly->data;
         map->debugActive = TRUE;
 
         // map set process
-        sub_0203D884(fly->sys, fly->data);
+        FieldSystem_OpenTownMap(fly->sys, fly->data);
         break;
     case 2:
         if (FieldSystem_IsRunningApplication(fly->sys)) {
@@ -293,8 +294,8 @@ static void Task_DebugMenu_Fly(SysTask *task, void *data)
             return;
         }
 
-        map = (UnkStruct_0203D8AC *)fly->data;
-        if (!map->unk_10) {
+        map = (TownMapContext *)fly->data;
+        if (!map->flyLocationSelected) {
             fly->sequence = 6;
             return;
         }
@@ -312,10 +313,10 @@ static void Task_DebugMenu_Fly(SysTask *task, void *data)
         // end cut in
         SysTask_HMCutIn_SetTaskDone(fly->taskCutIn);
 
-        map = (UnkStruct_0203D8AC *)fly->data;
+        map = (TownMapContext *)fly->data;
 
         // get warp data for heal spot?
-        u16 warpID = sub_0203A8A0(map->unk_1C, map->unk_14, map->unk_18);
+        u16 warpID = sub_0203A8A0(map->flyLocationMapHeader, map->flyLocationX, map->flyLocationZ);
 
         Location destloc;
         // set location from warp?

@@ -11,7 +11,6 @@
 #include "generated/species.h"
 #include "generated/text_banks.h"
 
-#include "struct_defs/struct_0203D8AC.h"
 #include "struct_defs/struct_02090800.h"
 
 #include "field/field_system.h"
@@ -32,7 +31,6 @@
 #include "text.h"
 #include "screen_fade.h"
 #include "unk_0203D1B8.h"
-#include "unk_0206B70C.h"
 #include "unk_02092494.h"
 
 #include "res/text/bank/unk_0336.h"

@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_APPLICATIONS_TOWN_MAP_MAIN_H
 #define POKEPLATINUM_APPLICATIONS_TOWN_MAP_MAIN_H
 
+#include "nitro/types.h"
 #include "generated/map_headers.h"
 
 #include "field/field_system_decl.h"
@@ -49,6 +50,7 @@ typedef struct TownMapContext {
     u8 numDescChecks;
     u8 padding_13B;
     u16 unlockedHiddenLocations;
+    BOOL debugActive;
 } TownMapContext;
 
 void TownMapContext_Init(FieldSystem *fieldSystem, TownMapContext *townMapCtx, enum TownMapMode townMapMode);
