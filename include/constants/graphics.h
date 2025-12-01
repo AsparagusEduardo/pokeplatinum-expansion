@@ -18,6 +18,9 @@ enum DSScreen {
 #define TILE_SIZE_4BPP (TILE_HEIGHT_PIXELS * TILE_WIDTH_4BPP)
 #define TILE_SIZE_8BPP (TILE_HEIGHT_PIXELS * TILE_WIDTH_PIXELS)
 
+#define BG_TILE_FLIP_H (1 << 10)
+#define BG_TILE_FLIP_V (1 << 11)
+
 #define SLOTS_PER_PALETTE      16
 #define PALETTE_SIZE           (SLOTS_PER_PALETTE)
 #define PALETTE_SIZE_EXT       (SLOTS_PER_PALETTE * 16)
@@ -62,21 +65,5 @@ enum DSScreen {
 #define RGBA_WHITE GX_RGBA(31, 31, 31, 1)
 
 #define RGB_TO_GRAYSCALE(r, g, b) (((r) * 76 + (g) * 151 + (b) * 29) >> 8)
-
-// Below are some typical window sizes
-
-// This is for the typical window frame used by menus and choice-boxes
-#define STANDARD_WINDOW_TILE_W    3
-#define STANDARD_WINDOW_TILE_H    3
-#define STANDARD_WINDOW_TILE_SIZE (STANDARD_WINDOW_TILE_W * STANDARD_WINDOW_TILE_H)
-
-// This is for the typical dialogue window used in conversations in the field
-#define MESSAGE_BOX_TILE_W    6
-#define MESSAGE_BOX_TILE_H    3
-#define MESSAGE_BOX_TILE_SIZE (MESSAGE_BOX_TILE_W * MESSAGE_BOX_TILE_H)
-
-// This is for the scroll arrow used on message boxes that must wrap their text or
-// which wait for player input
-#define SCROLL_CURSOR_TILE_SIZE 12
 
 #endif // POKEPLATINUM_CONSTANTS_GRAPHICS_H

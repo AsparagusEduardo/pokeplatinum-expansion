@@ -190,7 +190,7 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
 
 BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 {
-    if (input->debugKey == FALSE && FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIRST_MATCH) == TRUE) {
+    if (input->debugKey == FALSE && FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_FRAME_TABLE) == TRUE) {
         return TRUE;
     }
 
@@ -380,7 +380,7 @@ static BOOL Field_CheckSign(FieldSystem *fieldSystem)
 
 BOOL FieldInput_Process_Underground(FieldInput *input, FieldSystem *fieldSystem)
 {
-    if (input->debugKey == FALSE && FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIRST_MATCH) == TRUE) {
+    if (input->debugKey == FALSE && FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_FRAME_TABLE) == TRUE) {
         return TRUE;
     }
 
@@ -527,7 +527,7 @@ BOOL FieldInput_Process_UnionRoom(const FieldInput *input, FieldSystem *fieldSys
 
 int FieldInput_Process_BattleTower(const FieldInput *input, FieldSystem *fieldSystem)
 {
-    if (input->debugKey == FALSE && FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_TYPE_FIRST_MATCH) == TRUE) {
+    if (input->debugKey == FALSE && FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_FRAME_TABLE) == TRUE) {
         return TRUE;
     }
 
@@ -594,7 +594,7 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
 
     if (SystemFlag_CheckInPalPark(SaveData_GetVarsFlags(fieldSystem->saveData)) == TRUE) {
         if (CatchingShow_CheckWildEncounter(fieldSystem, playerX, playerZ) == TRUE) {
-            Encounter_NewVsPalParkTransfer(fieldSystem, CatchingShow_GetBattleDTO(fieldSystem));
+            Encounter_NewVsPalParkTransfer(fieldSystem, CatchingShow_GetBattleDataTransfer(fieldSystem));
             return TRUE;
         } else {
             return FALSE;

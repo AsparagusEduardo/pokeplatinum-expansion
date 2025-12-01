@@ -184,7 +184,7 @@ _0261:
     End
 
 _02B6:
-    IncrementGameRecord RECORD_UNK_049
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
     Return
 
 _02BC:
@@ -246,7 +246,7 @@ _0375:
 _0394:
     Message 12
     GivePokedex
-    SetFlag FLAG_UNK_0x0090
+    SetFlag FLAG_HAS_POKEDEX
     BufferPlayerName 0
     Message 13
     PlaySound SEQ_FANFA4
@@ -593,7 +593,7 @@ _0677:
     WaitMovement
     BufferPlayerName 0
     Message 43
-    SetVar VAR_0x8004, 0x1AF
+    SetVar VAR_0x8004, ITEM_POKE_RADAR
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Message 44

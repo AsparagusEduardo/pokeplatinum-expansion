@@ -21,6 +21,7 @@ struct PngToGbaOptions {
     int bitDepth;
     int colsPerChunk;
     int rowsPerChunk;
+    char *embedName;
 };
 
 struct PngToNtrOptions {
@@ -34,11 +35,14 @@ struct PngToNtrOptions {
     bool byteOrder;
     bool version101;
     bool sopc;
-    uint32_t scanMode;
+    bool scan;
+    uint32_t encodeMode;
     bool wrongSize;
     bool handleEmpty;
     bool vramTransfer;
     int mappingType;
+    bool convertTo4Bpp;
+    int rotate;
 };
 
 struct NtrToPngOptions {
@@ -52,8 +56,10 @@ struct NtrToPngOptions {
     int colsPerChunk;
     int rowsPerChunk;
     int palIndex;
-    bool scanFrontToBack;
     bool handleEmpty;
+    bool convertTo8Bpp;
+    bool verbose;
+    uint32_t encodeMode;
 };
 
 struct CellVramTransferData {

@@ -1,6 +1,7 @@
 nitrofs_files = []
 naix_headers = []
 h_headers = []
+embed_headers = []
 
 ### PREBUILT FILES ###
 subdir('prebuilt')
@@ -10,8 +11,28 @@ ncgr_gen = generator(nitrogfx_exe,
     output: '@BASENAME@.NCGR',
 )
 
+ncgr_cell_gen = generator(nitrogfx_exe,
+    arguments: [
+        '@INPUT@',
+        '@OUTPUT@',
+        '-cell', '@CURRENT_SOURCE_DIR@/@BASENAME@_cell.json',
+        '@EXTRA_ARGS@',
+    ],
+    output: '@BASENAME@.NCGR',
+)
+
 ncgr_lz_gen = generator(nitrogfx_exe,
     arguments: [ '@INPUT@', '@OUTPUT@', '@EXTRA_ARGS@', ],
+    output: '@BASENAME@.NCGR.lz',
+)
+
+ncgr_cell_lz_gen = generator(nitrogfx_exe,
+    arguments: [
+        '@INPUT@',
+        '@OUTPUT@',
+        '-cell', '@CURRENT_SOURCE_DIR@/@BASENAME@_cell.json',
+        '@EXTRA_ARGS@',
+    ],
     output: '@BASENAME@.NCGR.lz',
 )
 

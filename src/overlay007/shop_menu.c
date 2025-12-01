@@ -14,7 +14,7 @@
 #include "overlay005/ov5_021D2F14.h"
 
 #include "bag.h"
-#include "bag_system.h"
+#include "bag_context.h"
 #include "bg_window.h"
 #include "camera.h"
 #include "field_message.h"
@@ -456,7 +456,7 @@ static u8 Shop_Exit(FieldSystem *fieldSystem, ShopMenu *shopMenu)
         Strbuf_Free(shopMenu->strbuf);
 
         if (shopMenu->martType == MART_TYPE_NORMAL && MapHeader_GetMapLabelTextID(fieldSystem->location->mapId) != LocationNames_Text_VeilstoneStore
-            && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_NORTH_HOUSE
+            && fieldSystem->location->mapId != MAP_HEADER_ETERNA_CITY_HERB_SHOP
             && fieldSystem->location->mapId != MAP_HEADER_CELESTIC_TOWN_NORTHWEST_HOUSE) {
             if (shopMenu->itemPurchaseCount != 0 && shopMenu->itemSoldCount != 0) {
                 journalEntryLocationEvent = JournalEntry_CreateEventBusinessAtMart(HEAP_ID_FIELD2);
@@ -1617,9 +1617,9 @@ static void Shop_FinishScreenTransition(FieldTask *task)
     Shop_CloseContextMenu(shopMenu);
 
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
-    shopMenu->unk_04 = sub_0207D824(bag, sShop_BagPockets, HEAP_ID_FIELD2);
+    shopMenu->unk_04 = BagContext_CreateWithPockets(bag, sShop_BagPockets, HEAP_ID_FIELD2);
 
-    BagSystem_Init(shopMenu->unk_04, fieldSystem->saveData, 2, fieldSystem->bagCursor);
+    BagContext_Init(shopMenu->unk_04, fieldSystem->saveData, 2, fieldSystem->bagCursor);
     sub_0203D1E4(fieldSystem, shopMenu->unk_04);
     FieldTask_InitJump(task, FieldTask_ShopMisc, shopMenu);
 

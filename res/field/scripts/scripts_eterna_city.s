@@ -189,7 +189,7 @@ _0286:
     CallIfEq VAR_0x8005, 0x20A, _0377
     CallIfNe VAR_0x8005, 0x20A, _0383
     Message 7
-    SetVar VAR_0x8004, 0x1A4
+    SetVar VAR_0x8004, ITEM_HM01
     SetVar VAR_0x8005, 1
     CallCommonScript 0x7FC
     Message 8
@@ -439,7 +439,7 @@ _056E:
     End
 
 _057F:
-    GoToIfSet FLAG_UNK_0x0079, _059D
+    GoToIfSet FLAG_EXPLORER_KIT_RECEIVED, _059D
     PlayFanfare SEQ_SE_CONFIRM
     LockAll
     FacePlayer
