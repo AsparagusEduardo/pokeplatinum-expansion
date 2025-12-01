@@ -16,7 +16,7 @@
 
 #include "field/field_system.h"
 #include "overlay005/debug_mon_menu.h"
-#include "overlay006/ov6_02243258.h"
+#include "overlay006/hm_cut_in.h"
 
 #include "camera.h"
 #include "field_map_change.h"
@@ -145,7 +145,7 @@ static void Task_DebugMenu_Exit(SysTask *task, void *data)
 
 static DebugMenu *DebugMenu_CreateMultichoice(FieldSystem *sys, int arcID, const DebugMenuItem *list, int count, SysTaskFunc taskFunc)
 {
-    DebugMenu *menu = Heap_AllocFromHeap(HEAP_ID_FIELD, sizeof(DebugMenu));
+    DebugMenu *menu = Heap_Alloc(HEAP_ID_FIELD1, sizeof(DebugMenu));
 
     if (menu == NULL) {
         return NULL;
@@ -163,8 +163,8 @@ static DebugMenu *DebugMenu_CreateMultichoice(FieldSystem *sys, int arcID, const
     }
 
     DebugMenu_List_Init(menu, list);
-    LoadStandardWindowGraphics(menu->sys->bgConfig, BG_LAYER_MAIN_3, 660, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD);
-    menu->window = Window_New(HEAP_ID_FIELD, 1);
+    LoadStandardWindowGraphics(menu->sys->bgConfig, BG_LAYER_MAIN_3, 660, 11, STANDARD_WINDOW_SYSTEM, HEAP_ID_FIELD1);
+    menu->window = Window_New(HEAP_ID_FIELD1, 1);
     Window_AddFromTemplate(menu->sys->bgConfig, menu->window, &DebugMenu_List_WindowTemplate);
     Window_DrawStandardFrame(menu->window, TRUE, 660, 11);
 
@@ -177,15 +177,15 @@ static DebugMenu *DebugMenu_CreateMultichoice(FieldSystem *sys, int arcID, const
     listHeader.window = menu->window;
     listHeader.count = count;
 
-    menu->listMenu = ListMenu_New(&listHeader, menu->debugList, menu->cursor, HEAP_ID_FIELD);
+    menu->listMenu = ListMenu_New(&listHeader, menu->debugList, menu->cursor, HEAP_ID_FIELD1);
 
     return menu;
 }
 
 static StringList *DebugMenu_CreateList(int arcID, const DebugMenuItem *list, int count)
 {
-    StringList *stringList = StringList_New(count, HEAP_ID_FIELD);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, arcID, HEAP_ID_FIELD);
+    StringList *stringList = StringList_New(count, HEAP_ID_FIELD1);
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, arcID, HEAP_ID_FIELD1);
 
     for (int i = 0; i < count; i++) {
         StringList_AddFromMessageBank(stringList, msgLoader, list[i].index + 1, list[i].function);
@@ -241,7 +241,7 @@ static void DebugFunction_Fly(SysTask *task, DebugMenu *menu)
 
 static void DebugMenu_Fly_CreateTask(FieldSystem *sys)
 {
-    DebugFly *fly = Heap_AllocFromHeap(HEAP_ID_APPLICATION, sizeof(DebugFly));
+    DebugFly *fly = Heap_Alloc(HEAP_ID_APPLICATION, sizeof(DebugFly));
     MI_CpuClear8(fly, sizeof(DebugFly));
     fly->sys = sys;
     SysTask_Start(Task_DebugMenu_Fly, fly, 0);
@@ -262,7 +262,7 @@ static void Task_DebugMenu_Fly(SysTask *task, void *data)
             return;
         }
 
-        fly->data = Heap_AllocFromHeap(HEAP_ID_APPLICATION, sizeof(UnkStruct_0203D8AC));
+        fly->data = Heap_Alloc(HEAP_ID_APPLICATION, sizeof(UnkStruct_0203D8AC));
 
         // map data set
         sub_0206B70C(fly->sys, fly->data, 1);
@@ -301,16 +301,16 @@ static void Task_DebugMenu_Fly(SysTask *task, void *data)
 
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fly->sys->saveData), 0);
         // init cut in, get gender
-        fly->taskCutIn = ov6_02243F88(fly->sys, 1, mon, PlayerAvatar_Gender(fly->sys->playerAvatar));
+        fly->taskCutIn = SysTask_HMCutIn_New(fly->sys, 1, mon, PlayerAvatar_Gender(fly->sys->playerAvatar));
 
         break;
     case 5:
         // check if cut in is finished
-        if (ov6_02243FBC(fly->taskCutIn) == FALSE) {
+        if (CheckHMCutInFinished(fly->taskCutIn) == FALSE) {
             return;
         }
         // end cut in
-        ov6_02243FC8(fly->taskCutIn);
+        SysTask_HMCutIn_SetTaskDone(fly->taskCutIn);
 
         map = (UnkStruct_0203D8AC *)fly->data;
 
@@ -319,7 +319,7 @@ static void Task_DebugMenu_Fly(SysTask *task, void *data)
 
         Location destloc;
         // set location from warp?
-        sub_0203A7F0(warpID, &destloc);
+        Location_InitFly(warpID, &destloc);
 
         FieldTask_StartMapChangeFly(fly->sys, destloc.mapId, (-1), destloc.x, destloc.z, DIR_SOUTH);
         break;

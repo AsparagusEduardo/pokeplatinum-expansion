@@ -16,7 +16,7 @@
 
 #include "field/field_system.h"
 #include "overlay005/debug_menu.h"
-#include "overlay006/ov6_02243258.h"
+#include "overlay006/hm_cut_in.h"
 
 #include "field_map_change.h"
 #include "field_system.h"
