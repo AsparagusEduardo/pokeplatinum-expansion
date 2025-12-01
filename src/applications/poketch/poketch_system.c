@@ -37,22 +37,22 @@ FS_EXTERN_OVERLAY(poketch_friendship_checker);
 FS_EXTERN_OVERLAY(poketch_dowsing_machine);
 FS_EXTERN_OVERLAY(poketch_counter);
 FS_EXTERN_OVERLAY(poketch_pedometer);
-FS_EXTERN_OVERLAY(overlay37);
+FS_EXTERN_OVERLAY(poketch_backlight_toggle);
 FS_EXTERN_OVERLAY(overlay38);
 FS_EXTERN_OVERLAY(overlay39);
 FS_EXTERN_OVERLAY(poketch_daycare_checker);
-FS_EXTERN_OVERLAY(overlay41);
+FS_EXTERN_OVERLAY(poketch_roulette);
 FS_EXTERN_OVERLAY(overlay42);
 FS_EXTERN_OVERLAY(poketch_move_tester);
 FS_EXTERN_OVERLAY(overlay44);
-FS_EXTERN_OVERLAY(overlay45);
+FS_EXTERN_OVERLAY(poketch_alarm_clock);
 FS_EXTERN_OVERLAY(overlay46);
-FS_EXTERN_OVERLAY(overlay47);
+FS_EXTERN_OVERLAY(poketch_marking_map);
 FS_EXTERN_OVERLAY(overlay48);
-FS_EXTERN_OVERLAY(overlay49);
+FS_EXTERN_OVERLAY(poketch_color_changer);
 FS_EXTERN_OVERLAY(overlay50);
 FS_EXTERN_OVERLAY(overlay52);
-FS_EXTERN_OVERLAY(overlay53);
+FS_EXTERN_OVERLAY(poketch_trainer_counter);
 FS_EXTERN_OVERLAY(overlay54);
 FS_EXTERN_OVERLAY(overlay55);
 
@@ -96,18 +96,18 @@ static const struct {
     { POKETCH_APPID_COUNTER, FS_OVERLAY_ID(poketch_counter) },
     { POKETCH_APPID_PEDOMETER, FS_OVERLAY_ID(poketch_pedometer) },
     { POKETCH_APPID_DAYCARECHECKER, FS_OVERLAY_ID(poketch_daycare_checker) },
-    { POKETCH_APPID_ROULETTE, FS_OVERLAY_ID(overlay41) },
+    { POKETCH_APPID_ROULETTE, FS_OVERLAY_ID(poketch_roulette) },
     { POKETCH_APPID_COINTOSS, FS_OVERLAY_ID(overlay42) },
     { POKETCH_APPID_MOVETESTER, FS_OVERLAY_ID(poketch_move_tester) },
     { POKETCH_APPID_MATCHUPCHECKER, FS_OVERLAY_ID(overlay44) },
-    { POKETCH_APPID_UNUSED_ALARMCLOCK, FS_OVERLAY_ID(overlay45) },
+    { POKETCH_APPID_UNUSED_ALARMCLOCK, FS_OVERLAY_ID(poketch_alarm_clock) },
     { POKETCH_APPID_KITCHENTIMER, FS_OVERLAY_ID(overlay46) },
-    { POKETCH_APPID_MARKINGMAP, FS_OVERLAY_ID(overlay47) },
+    { POKETCH_APPID_MARKINGMAP, FS_OVERLAY_ID(poketch_marking_map) },
     { POKETCH_APPID_BERRYSEARCHER, FS_OVERLAY_ID(overlay48) },
-    { POKETCH_APPID_COLORCHANGER, FS_OVERLAY_ID(overlay49) },
+    { POKETCH_APPID_COLORCHANGER, FS_OVERLAY_ID(poketch_color_changer) },
     { POKETCH_APPID_CALENDAR, FS_OVERLAY_ID(overlay50) },
     { POKETCH_APPID_LINKSEARCHER, FS_OVERLAY_ID(overlay52) },
-    { POKETCH_APPID_RADARCHAINCOUNTER, FS_OVERLAY_ID(overlay53) },
+    { POKETCH_APPID_TRAINERCOUNTER, FS_OVERLAY_ID(poketch_trainer_counter) },
     { POKETCH_APPID_POKEMONHISTORY, FS_OVERLAY_ID(overlay54) }
 };
 

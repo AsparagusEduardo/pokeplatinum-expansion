@@ -26,6 +26,8 @@ typedef struct PoketchAnalogWatch {
     PoketchSystem *poketchSys;
 } PoketchAnalogWatch;
 
+typedef BOOL (*StateFunc)(PoketchAnalogWatch *);
+
 enum AnalogWatchState {
     STATE_LOAD_APP = 0,
     STATE_UPDATE,
@@ -83,7 +85,7 @@ static BOOL Init(PoketchAnalogWatch *appData, PoketchSystem *poketchSys, BgConfi
         appData->brightnessChangePending = FALSE;
         appData->watchData.isBright = FALSE;
 
-        GetCurrentTime(&appData->watchData.time);
+        RTC_GetCurrentTime(&appData->watchData.time);
 
         if (appData->watchData.time.hour >= 24) {
             appData->watchData.time.hour %= 24;
@@ -116,7 +118,7 @@ static void Free(PoketchAnalogWatch *appData)
 
 static void Task_Main(SysTask *task, void *taskMan)
 {
-    static BOOL (*const stateFuncs[])(PoketchAnalogWatch *) = {
+    static const StateFunc stateFuncs[] = {
         State_LoadApp,
         State_UpdateApp,
         State_UnloadApp
@@ -199,7 +201,7 @@ static BOOL State_UpdateApp(PoketchAnalogWatch *appData)
 
     if (PoketchAnalogWatchGraphics_TaskIsNotActive(appData->graphics, ANALOG_WATCH_GRAPHICS_TIME)) {
         appData->lastUpdateMinute = appData->watchData.time.minute;
-        GetCurrentTime(&appData->watchData.time);
+        RTC_GetCurrentTime(&appData->watchData.time);
 
         if (appData->lastUpdateMinute != appData->watchData.time.minute) {
             PoketchAnalogWatchGraphics_StartTask(appData->graphics, ANALOG_WATCH_GRAPHICS_TIME);
