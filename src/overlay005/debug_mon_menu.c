@@ -8,6 +8,7 @@
 #include "generated/genders.h"
 #include "generated/items.h"
 #include "generated/moves.h"
+#include "generated/pokemon_data_params.h"
 #include "generated/species.h"
 #include "generated/text_banks.h"
 
@@ -623,15 +624,15 @@ static u8 DebugMonMenu_AddMon(DebugMonMenu *monMenu)
 
         if (monMenu->mon.stats[DEBUG_MON_IS_EGG]) {
             buf = MessageLoader_GetNewStrbuf(monMenu->msgLoader, 112);
-            Pokemon_SetValue(monMenu->mon.monData, MON_DATA_NICKNAME_STRBUF, buf);
+            Pokemon_SetValue(monMenu->mon.monData, MON_DATA_NICKNAME_STRING, buf);
             Strbuf_Free(buf);
         }
 
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, monMenu->partySlot);
 
         buf = Strbuf_Init(16, HEAP_ID_APPLICATION);
-        Pokemon_GetValue(mon, MON_DATA_OTNAME_STRBUF, buf);
-        Pokemon_SetValue(monMenu->mon.monData, MON_DATA_OTNAME_STRBUF, buf);
+        Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, buf);
+        Pokemon_SetValue(monMenu->mon.monData, MON_DATA_OT_NAME_STRING, buf);
         Strbuf_Free(buf);
 
         u8 gender = Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL);
@@ -694,7 +695,7 @@ static void DebugMon_CalcInitialStats(DebugMon *mon)
     mon->stats[DEBUG_MON_MOVE2] = Pokemon_GetValue(mon->monData, MON_DATA_MOVE2, NULL);
     mon->stats[DEBUG_MON_MOVE3] = Pokemon_GetValue(mon->monData, MON_DATA_MOVE3, NULL);
     mon->stats[DEBUG_MON_MOVE4] = Pokemon_GetValue(mon->monData, MON_DATA_MOVE4, NULL);
-    mon->stats[DEBUG_MON_EXP] = Pokemon_GetValue(mon->monData, MON_DATA_EXP, NULL);
+    mon->stats[DEBUG_MON_EXP] = Pokemon_GetValue(mon->monData, MON_DATA_EXPERIENCE, NULL);
     mon->stats[DEBUG_MON_MAX_HP] = Pokemon_GetValue(mon->monData, MON_DATA_MAX_HP, NULL);
     mon->stats[DEBUG_MON_ATK] = Pokemon_GetValue(mon->monData, MON_DATA_ATK, NULL);
     mon->stats[DEBUG_MON_DEF] = Pokemon_GetValue(mon->monData, MON_DATA_DEF, NULL);
@@ -730,7 +731,7 @@ static void DebugMon_CalcFullStats(DebugMonMenu *monMenu, DebugMon *mon)
         DebugMon_SetMoveAtPosition(mon->monData, mon->stats[DEBUG_MON_MOVE4], 3);
     }
 
-    Pokemon_SetValue(mon->monData, MON_DATA_EXP, &mon->stats[DEBUG_MON_EXP]);
+    Pokemon_SetValue(mon->monData, MON_DATA_EXPERIENCE, &mon->stats[DEBUG_MON_EXP]);
     Pokemon_SetValue(mon->monData, MON_DATA_HP_IV, &mon->stats[DEBUG_MON_HP_IV]);
     Pokemon_SetValue(mon->monData, MON_DATA_HP_EV, &mon->stats[DEBUG_MON_HP_EV]);
     Pokemon_SetValue(mon->monData, MON_DATA_ATK_IV, &mon->stats[DEBUG_MON_ATK_IV]);
@@ -761,9 +762,9 @@ static void DebugMon_CalcFullStats(DebugMonMenu *monMenu, DebugMon *mon)
     Pokemon_SetValue(mon->monData, MON_DATA_MET_LEVEL, &mon->stats[DEBUG_MON_MET_LEVEL]);
     Pokemon_SetValue(mon->monData, MON_DATA_MET_GAME, &mon->stats[DEBUG_MON_MET_GAME]);
     Pokemon_SetValue(mon->monData, MON_DATA_POKEBALL, &mon->stats[DEBUG_MON_POKEBALL]);
-    Pokemon_SetValue(mon->monData, MON_DATA_MET_GAME_REGION_CODE, &mon->stats[DEBUG_MON_MET_GAME_REGION_CODE]);
+    Pokemon_SetValue(mon->monData, MON_DATA_MET_GAME, &mon->stats[DEBUG_MON_MET_GAME_REGION_CODE]);
     Pokemon_SetValue(mon->monData, MON_DATA_FORM, &mon->stats[DEBUG_MON_FORM]);
-    Pokemon_SetValue(mon->monData, MON_DATA_STATUS_CONDITION, &sStatusConditionTable[mon->stats[DEBUG_MON_STATUS_CONDITION]][1]);
+    Pokemon_SetValue(mon->monData, MON_DATA_STATUS, &sStatusConditionTable[mon->stats[DEBUG_MON_STATUS_CONDITION]][1]);
 
     if (mon->stats[DEBUG_MON_IS_EGG]) {
         mon->stats[DEBUG_MON_MET_LOCATION] = 0;
@@ -776,26 +777,26 @@ static void DebugMon_CalcFullStats(DebugMonMenu *monMenu, DebugMon *mon)
         }
     }
 
-    Pokemon_SetValue(mon->monData, MON_DATA_MET_LOCATION, &mon->stats[DEBUG_MON_MET_LOCATION]);
-    Pokemon_SetValue(mon->monData, MON_DATA_MET_YEAR, &mon->stats[DEBUG_MON_MET_YEAR]);
-    Pokemon_SetValue(mon->monData, MON_DATA_MET_MONTH, &mon->stats[DEBUG_MON_MET_MONTH]);
-    Pokemon_SetValue(mon->monData, MON_DATA_MET_DAY, &mon->stats[DEBUG_MON_MET_DAY]);
-    Pokemon_SetValue(mon->monData, MON_DATA_HATCH_LOCATION, &mon->stats[DEBUG_MON_HATCH_LOCATION]);
-    Pokemon_SetValue(mon->monData, MON_DATA_HATCH_YEAR, &mon->stats[DEBUG_MON_HATCH_YEAR]);
-    Pokemon_SetValue(mon->monData, MON_DATA_HATCH_MONTH, &mon->stats[DEBUG_MON_HATCH_MONTH]);
-    Pokemon_SetValue(mon->monData, MON_DATA_HATCH_DAY, &mon->stats[DEBUG_MON_HATCH_DAY]);
+    Pokemon_SetValue(mon->monData, MON_DATA_EGG_LOCATION, &mon->stats[DEBUG_MON_MET_LOCATION]);
+    Pokemon_SetValue(mon->monData, MON_DATA_EGG_YEAR, &mon->stats[DEBUG_MON_MET_YEAR]);
+    Pokemon_SetValue(mon->monData, MON_DATA_EGG_MONTH, &mon->stats[DEBUG_MON_MET_MONTH]);
+    Pokemon_SetValue(mon->monData, MON_DATA_EGG_DAY, &mon->stats[DEBUG_MON_MET_DAY]);
+    Pokemon_SetValue(mon->monData, MON_DATA_MET_LOCATION, &mon->stats[DEBUG_MON_HATCH_LOCATION]);
+    Pokemon_SetValue(mon->monData, MON_DATA_MET_YEAR, &mon->stats[DEBUG_MON_HATCH_YEAR]);
+    Pokemon_SetValue(mon->monData, MON_DATA_MET_MONTH, &mon->stats[DEBUG_MON_HATCH_MONTH]);
+    Pokemon_SetValue(mon->monData, MON_DATA_MET_DAY, &mon->stats[DEBUG_MON_HATCH_DAY]);
     Pokemon_SetValue(mon->monData, MON_DATA_IS_EGG, &mon->stats[DEBUG_MON_IS_EGG]);
 
     Strbuf *buf;
 
     if (mon->stats[DEBUG_MON_IS_EGG]) {
         buf = MessageLoader_GetNewStrbuf(monMenu->msgLoader, dmm_debug_egg_name);
-        Pokemon_SetValue(mon->monData, MON_DATA_NICKNAME_STRBUF, buf);
+        Pokemon_SetValue(mon->monData, MON_DATA_NICKNAME_STRING, buf);
         Strbuf_Free(buf);
     }
 
     buf = MessageLoader_GetNewStrbuf(monMenu->msgLoader, dmm_debug_ot);
-    Pokemon_SetValue(mon->monData, MON_DATA_OTNAME_STRBUF, buf);
+    Pokemon_SetValue(mon->monData, MON_DATA_OT_NAME_STRING, buf);
     Strbuf_Free(buf);
 
     Pokemon_CalcLevelAndStats(mon->monData);
@@ -829,7 +830,7 @@ static void DebugMon_CalcBaseStats(DebugMon *mon)
 static void DebugMon_CalcStatsFromExp(DebugMon *mon)
 {
     u32 nullData = 0;
-    Pokemon_SetValue(mon->monData, MON_DATA_EXP, &mon->stats[DEBUG_MON_EXP]);
+    Pokemon_SetValue(mon->monData, MON_DATA_EXPERIENCE, &mon->stats[DEBUG_MON_EXP]);
     Pokemon_SetValue(mon->monData, MON_DATA_MOVE1, &nullData);
     Pokemon_SetValue(mon->monData, MON_DATA_MOVE2, &nullData);
     Pokemon_SetValue(mon->monData, MON_DATA_MOVE3, &nullData);
@@ -856,7 +857,7 @@ static void DebugMon_SetStatsFromMonData(DebugMon *mon)
 {
     mon->stats[DEBUG_MON_SPECIES] = Pokemon_GetValue(mon->monData, MON_DATA_SPECIES, NULL);
     mon->stats[DEBUG_MON_LEVEL] = Pokemon_GetValue(mon->monData, MON_DATA_LEVEL, NULL);
-    mon->stats[DEBUG_MON_EXP] = Pokemon_GetValue(mon->monData, MON_DATA_EXP, NULL);
+    mon->stats[DEBUG_MON_EXP] = Pokemon_GetValue(mon->monData, MON_DATA_EXPERIENCE, NULL);
     mon->stats[DEBUG_MON_OT_ID] = Pokemon_GetValue(mon->monData, MON_DATA_OT_ID, NULL);
     mon->stats[DEBUG_MON_PERSONALITY] = Pokemon_GetValue(mon->monData, MON_DATA_PERSONALITY, NULL);
     mon->stats[DEBUG_MON_GENDER] = Pokemon_GetValue(mon->monData, MON_DATA_GENDER, NULL);
@@ -896,7 +897,7 @@ static void DebugMon_SetStatsFromMonData(DebugMon *mon)
     mon->stats[DEBUG_MON_POKERUS] = Pokemon_GetValue(mon->monData, MON_DATA_POKERUS, NULL);
     mon->stats[DEBUG_MON_IS_EGG] = Pokemon_GetValue(mon->monData, MON_DATA_IS_EGG, NULL);
 
-    u32 statusCondition = Pokemon_GetValue(mon->monData, MON_DATA_STATUS_CONDITION, NULL);
+    u32 statusCondition = Pokemon_GetValue(mon->monData, MON_DATA_STATUS, NULL);
     mon->stats[DEBUG_MON_STATUS_CONDITION] = 0;
     for (u32 i = 0; i < 7; i++) {
         if (statusCondition == sStatusConditionTable[i][1]) {
@@ -916,23 +917,23 @@ static void DebugMon_SetStatsFromMonData(DebugMon *mon)
     mon->stats[DEBUG_MON_MET_LEVEL] = Pokemon_GetValue(mon->monData, MON_DATA_MET_LEVEL, NULL);
     mon->stats[DEBUG_MON_MET_GAME] = Pokemon_GetValue(mon->monData, MON_DATA_MET_GAME, NULL);
     mon->stats[DEBUG_MON_POKEBALL] = Pokemon_GetValue(mon->monData, MON_DATA_POKEBALL, NULL);
-    mon->stats[DEBUG_MON_MET_GAME_REGION_CODE] = Pokemon_GetValue(mon->monData, MON_DATA_MET_GAME_REGION_CODE, NULL);
+    mon->stats[DEBUG_MON_MET_GAME_REGION_CODE] = Pokemon_GetValue(mon->monData, MON_DATA_MET_GAME, NULL);
     mon->stats[DEBUG_MON_FORM] = Pokemon_GetValue(mon->monData, MON_DATA_FORM, NULL);
-    mon->stats[DEBUG_MON_MET_LOCATION] = Pokemon_GetValue(mon->monData, MON_DATA_MET_LOCATION, NULL);
-    mon->stats[DEBUG_MON_MET_YEAR] = Pokemon_GetValue(mon->monData, MON_DATA_MET_YEAR, NULL);
-    mon->stats[DEBUG_MON_MET_MONTH] = Pokemon_GetValue(mon->monData, MON_DATA_MET_MONTH, NULL);
-    mon->stats[DEBUG_MON_MET_DAY] = Pokemon_GetValue(mon->monData, MON_DATA_MET_DAY, NULL);
-    mon->stats[DEBUG_MON_HATCH_LOCATION] = Pokemon_GetValue(mon->monData, MON_DATA_HATCH_LOCATION, NULL);
-    mon->stats[DEBUG_MON_HATCH_YEAR] = Pokemon_GetValue(mon->monData, MON_DATA_HATCH_YEAR, NULL);
-    mon->stats[DEBUG_MON_HATCH_MONTH] = Pokemon_GetValue(mon->monData, MON_DATA_HATCH_MONTH, NULL);
-    mon->stats[DEBUG_MON_HATCH_DAY] = Pokemon_GetValue(mon->monData, MON_DATA_HATCH_DAY, NULL);
+    mon->stats[DEBUG_MON_MET_LOCATION] = Pokemon_GetValue(mon->monData, MON_DATA_EGG_LOCATION, NULL);
+    mon->stats[DEBUG_MON_MET_YEAR] = Pokemon_GetValue(mon->monData, MON_DATA_EGG_YEAR, NULL);
+    mon->stats[DEBUG_MON_MET_MONTH] = Pokemon_GetValue(mon->monData, MON_DATA_EGG_MONTH, NULL);
+    mon->stats[DEBUG_MON_MET_DAY] = Pokemon_GetValue(mon->monData, MON_DATA_EGG_DAY, NULL);
+    mon->stats[DEBUG_MON_HATCH_LOCATION] = Pokemon_GetValue(mon->monData, MON_DATA_MET_LOCATION, NULL);
+    mon->stats[DEBUG_MON_HATCH_YEAR] = Pokemon_GetValue(mon->monData, MON_DATA_MET_YEAR, NULL);
+    mon->stats[DEBUG_MON_HATCH_MONTH] = Pokemon_GetValue(mon->monData, MON_DATA_MET_MONTH, NULL);
+    mon->stats[DEBUG_MON_HATCH_DAY] = Pokemon_GetValue(mon->monData, MON_DATA_MET_DAY, NULL);
 }
 
 static void DebugMon_SetMonDataFromStats(DebugMon *mon)
 {
     Pokemon_SetValue(mon->monData, MON_DATA_SPECIES, &mon->stats[DEBUG_MON_SPECIES]);
     Pokemon_SetValue(mon->monData, MON_DATA_LEVEL, &mon->stats[DEBUG_MON_LEVEL]);
-    Pokemon_SetValue(mon->monData, MON_DATA_EXP, &mon->stats[DEBUG_MON_EXP]);
+    Pokemon_SetValue(mon->monData, MON_DATA_EXPERIENCE, &mon->stats[DEBUG_MON_EXP]);
     Pokemon_SetValue(mon->monData, MON_DATA_OT_ID, &mon->stats[DEBUG_MON_OT_ID]);
     Pokemon_SetValue(mon->monData, MON_DATA_PERSONALITY, &mon->stats[DEBUG_MON_PERSONALITY]);
     Pokemon_SetValue(mon->monData, MON_DATA_GENDER, &mon->stats[DEBUG_MON_GENDER]);
@@ -977,7 +978,7 @@ static void DebugMon_SetMonDataFromStats(DebugMon *mon)
     Pokemon_SetValue(mon->monData, MON_DATA_POKERUS, &mon->stats[DEBUG_MON_POKERUS]);
     Pokemon_SetValue(mon->monData, MON_DATA_IS_EGG, &mon->stats[DEBUG_MON_IS_EGG]);
 
-    Pokemon_SetValue(mon->monData, MON_DATA_STATUS_CONDITION, &sStatusConditionTable[mon->stats[DEBUG_MON_STATUS_CONDITION]][1]);
+    Pokemon_SetValue(mon->monData, MON_DATA_STATUS, &sStatusConditionTable[mon->stats[DEBUG_MON_STATUS_CONDITION]][1]);
 
     Pokemon_SetValue(mon->monData, MON_DATA_MAX_HP, &mon->stats[DEBUG_MON_MAX_HP]);
     Pokemon_SetValue(mon->monData, MON_DATA_ATK, &mon->stats[DEBUG_MON_ATK]);
@@ -990,7 +991,7 @@ static void DebugMon_SetMonDataFromStats(DebugMon *mon)
     Pokemon_SetValue(mon->monData, MON_DATA_MET_LEVEL, &mon->stats[DEBUG_MON_MET_LEVEL]);
     Pokemon_SetValue(mon->monData, MON_DATA_MET_GAME, &mon->stats[DEBUG_MON_MET_GAME]);
     Pokemon_SetValue(mon->monData, MON_DATA_POKEBALL, &mon->stats[DEBUG_MON_POKEBALL]);
-    Pokemon_SetValue(mon->monData, MON_DATA_MET_GAME_REGION_CODE, &mon->stats[DEBUG_MON_MET_GAME_REGION_CODE]);
+    Pokemon_SetValue(mon->monData, MON_DATA_MET_GAME, &mon->stats[DEBUG_MON_MET_GAME_REGION_CODE]);
     Pokemon_SetValue(mon->monData, MON_DATA_FORM, &mon->stats[DEBUG_MON_FORM]);
 
     if (mon->stats[DEBUG_MON_IS_EGG]) {
@@ -998,20 +999,20 @@ static void DebugMon_SetMonDataFromStats(DebugMon *mon)
         mon->stats[DEBUG_MON_MET_YEAR] = 0;
         mon->stats[DEBUG_MON_MET_MONTH] = 0;
         mon->stats[DEBUG_MON_MET_DAY] = 0;
-        if (mon->stats[MON_DATA_HATCH_LOCATION] == 0) {
-            mon->stats[MON_DATA_HATCH_LOCATION] = 1;
+        if (mon->stats[MON_DATA_MET_LOCATION] == 0) {
+            mon->stats[MON_DATA_MET_LOCATION] = 1;
         }
     } else {
-        Pokemon_SetValue(mon->monData, MON_DATA_MET_LOCATION, &mon->stats[DEBUG_MON_MET_LOCATION]);
-        Pokemon_SetValue(mon->monData, MON_DATA_MET_YEAR, &mon->stats[DEBUG_MON_MET_YEAR]);
-        Pokemon_SetValue(mon->monData, MON_DATA_MET_MONTH, &mon->stats[DEBUG_MON_MET_MONTH]);
-        Pokemon_SetValue(mon->monData, MON_DATA_MET_DAY, &mon->stats[DEBUG_MON_MET_DAY]);
+        Pokemon_SetValue(mon->monData, MON_DATA_EGG_LOCATION, &mon->stats[DEBUG_MON_MET_LOCATION]);
+        Pokemon_SetValue(mon->monData, MON_DATA_EGG_YEAR, &mon->stats[DEBUG_MON_MET_YEAR]);
+        Pokemon_SetValue(mon->monData, MON_DATA_EGG_MONTH, &mon->stats[DEBUG_MON_MET_MONTH]);
+        Pokemon_SetValue(mon->monData, MON_DATA_EGG_DAY, &mon->stats[DEBUG_MON_MET_DAY]);
     }
 
-    Pokemon_SetValue(mon->monData, MON_DATA_HATCH_LOCATION, &mon->stats[DEBUG_MON_HATCH_LOCATION]);
-    Pokemon_SetValue(mon->monData, MON_DATA_HATCH_YEAR, &mon->stats[DEBUG_MON_HATCH_YEAR]);
-    Pokemon_SetValue(mon->monData, MON_DATA_HATCH_MONTH, &mon->stats[DEBUG_MON_HATCH_MONTH]);
-    Pokemon_SetValue(mon->monData, MON_DATA_HATCH_DAY, &mon->stats[DEBUG_MON_HATCH_DAY]);
+    Pokemon_SetValue(mon->monData, MON_DATA_MET_LOCATION, &mon->stats[DEBUG_MON_HATCH_LOCATION]);
+    Pokemon_SetValue(mon->monData, MON_DATA_MET_YEAR, &mon->stats[DEBUG_MON_HATCH_YEAR]);
+    Pokemon_SetValue(mon->monData, MON_DATA_MET_MONTH, &mon->stats[DEBUG_MON_HATCH_MONTH]);
+    Pokemon_SetValue(mon->monData, MON_DATA_MET_DAY, &mon->stats[DEBUG_MON_HATCH_DAY]);
 
     Pokemon_CalcLevelAndStats(mon->monData);
 }
@@ -1020,7 +1021,7 @@ static void DebugMon_SetMoveAtPosition(Pokemon *mon, u16 moveID, u16 movePos)
 {
     u8 pp = MoveTable_LoadParam(moveID, MOVEATTRIBUTE_PP);
     Pokemon_SetValue(mon, MON_DATA_MOVE1 + movePos, &moveID);
-    Pokemon_SetValue(mon, MON_DATA_MOVE1_CUR_PP + movePos, &pp);
+    Pokemon_SetValue(mon, MON_DATA_MOVE1_PP + movePos, &pp);
 }
 
 static u8 DebugMonValue_Display(DebugMonMenu *monMenu, u8 statID, u32 color, u8 y)
@@ -1226,7 +1227,7 @@ static u32 DebugMonValue_GetColor(DebugMon *mon, u8 digit, u32 color)
 
 static void DebugMonValue_PrintSpeciesName(Window *window, u32 species, u32 x, u32 y, u32 delay, u32 color)
 {
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_APPLICATION);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_APPLICATION);
     Strbuf *buf = MessageLoader_GetNewStrbuf(msgLoader, species);
 
     Text_AddPrinterWithParamsAndColor(window, 0, buf, x, y, delay, color, NULL);

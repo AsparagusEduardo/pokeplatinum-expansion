@@ -186,7 +186,7 @@ static DebugMenu *DebugMenu_CreateMultichoice(FieldSystem *sys, int arcID, const
 static StringList *DebugMenu_CreateList(int arcID, const DebugMenuItem *list, int count)
 {
     StringList *stringList = StringList_New(count, HEAP_ID_FIELD1);
-    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, arcID, HEAP_ID_FIELD1);
+    MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, arcID, HEAP_ID_FIELD1);
 
     for (int i = 0; i < count; i++) {
         StringList_AddFromMessageBank(stringList, msgLoader, list[i].index + 1, list[i].function);
@@ -354,7 +354,7 @@ static void DebugMenu_CreateOrEditMon_CreateTask(FieldSystem *sys, enum DebugMon
     monMenu->sys = sys;
     monMenu->state = DMM_STATE_DRAW_MENU;
     monMenu->mode = mode;
-    monMenu->msgLoader = MessageLoader_Init(MESSAGE_LOADER_BANK_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, DEBUG_MON_MENU_MESSAGE_BANK, HEAP_ID_APPLICATION);
+    monMenu->msgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, DEBUG_MON_MENU_MESSAGE_BANK, HEAP_ID_APPLICATION);
     monMenu->strTemplate = StringTemplate_Default(HEAP_ID_APPLICATION);
     monMenu->cursor = ColoredArrow_New(HEAP_ID_APPLICATION);
     monMenu->partySlot = 0;
