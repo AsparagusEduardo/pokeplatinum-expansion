@@ -1872,6 +1872,374 @@
     {
       "id": "pl_msg_00000648_00467",
       "en_US": "SHADOW FORCE"
+    },
+    {
+      "id": "pl_msg_00000648_00468",
+      "en_US": "HONE CLAWS"
+    },
+    {
+      "id": "pl_msg_00000648_00469",
+      "en_US": "WIDE GUARD"
+    },
+    {
+      "id": "pl_msg_00000648_00470",
+      "en_US": "GUARD SPLIT"
+    },
+    {
+      "id": "pl_msg_00000648_00471",
+      "en_US": "POWER SPLIT"
+    },
+    {
+      "id": "pl_msg_00000648_00472",
+      "en_US": "WONDER ROOM"
+    },
+    {
+      "id": "pl_msg_00000648_00473",
+      "en_US": "PSYSHOCK"
+    },
+    {
+      "id": "pl_msg_00000648_00474",
+      "en_US": "VENOSHOCK"
+    },
+    {
+      "id": "pl_msg_00000648_00475",
+      "en_US": "AUTOTOMIZE"
+    },
+    {
+      "id": "pl_msg_00000648_00476",
+      "en_US": "RAGE POWDER"
+    },
+    {
+      "id": "pl_msg_00000648_00477",
+      "en_US": "TELEKINESIS"
+    },
+    {
+      "id": "pl_msg_00000648_00478",
+      "en_US": "MAGIC ROOM"
+    },
+    {
+      "id": "pl_msg_00000648_00479",
+      "en_US": "SMACK DOWN"
+    },
+    {
+      "id": "pl_msg_00000648_00480",
+      "en_US": "STORM THROW"
+    },
+    {
+      "id": "pl_msg_00000648_00481",
+      "en_US": "FLAME BURST"
+    },
+    {
+      "id": "pl_msg_00000648_00482",
+      "en_US": "SLUDGE WAVE"
+    },
+    {
+      "id": "pl_msg_00000648_00483",
+      "en_US": "QUIVER DANCE"
+    },
+    {
+      "id": "pl_msg_00000648_00484",
+      "en_US": "HEAVY SLAM"
+    },
+    {
+      "id": "pl_msg_00000648_00485",
+      "en_US": "SYNCHRONOISE"
+    },
+    {
+      "id": "pl_msg_00000648_00486",
+      "en_US": "ELECTRO BALL"
+    },
+    {
+      "id": "pl_msg_00000648_00487",
+      "en_US": "SOAK"
+    },
+    {
+      "id": "pl_msg_00000648_00488",
+      "en_US": "FLAME CHARGE"
+    },
+    {
+      "id": "pl_msg_00000648_00489",
+      "en_US": "COIL"
+    },
+    {
+      "id": "pl_msg_00000648_00490",
+      "en_US": "LOW SWEEP"
+    },
+    {
+      "id": "pl_msg_00000648_00491",
+      "en_US": "ACID SPRAY"
+    },
+    {
+      "id": "pl_msg_00000648_00492",
+      "en_US": "FOUL PLAY"
+    },
+    {
+      "id": "pl_msg_00000648_00493",
+      "en_US": "SIMPLE BEAM"
+    },
+    {
+      "id": "pl_msg_00000648_00494",
+      "en_US": "ENTRAINMENT"
+    },
+    {
+      "id": "pl_msg_00000648_00495",
+      "en_US": "AFTER YOU"
+    },
+    {
+      "id": "pl_msg_00000648_00496",
+      "en_US": "ROUND"
+    },
+    {
+      "id": "pl_msg_00000648_00497",
+      "en_US": "ECHOED VOICE"
+    },
+    {
+      "id": "pl_msg_00000648_00498",
+      "en_US": "CHIP AWAY"
+    },
+    {
+      "id": "pl_msg_00000648_00499",
+      "en_US": "CLEAR SMOG"
+    },
+    {
+      "id": "pl_msg_00000648_00500",
+      "en_US": "STORED POWER"
+    },
+    {
+      "id": "pl_msg_00000648_00501",
+      "en_US": "QUICK GUARD"
+    },
+    {
+      "id": "pl_msg_00000648_00502",
+      "en_US": "ALLY SWITCH"
+    },
+    {
+      "id": "pl_msg_00000648_00503",
+      "en_US": "SCALD"
+    },
+    {
+      "id": "pl_msg_00000648_00504",
+      "en_US": "SHELL SMASH"
+    },
+    {
+      "id": "pl_msg_00000648_00505",
+      "en_US": "HEAL PULSE"
+    },
+    {
+      "id": "pl_msg_00000648_00506",
+      "en_US": "HEX"
+    },
+    {
+      "id": "pl_msg_00000648_00507",
+      "en_US": "SKY DROP"
+    },
+    {
+      "id": "pl_msg_00000648_00508",
+      "en_US": "SHIFT GEAR"
+    },
+    {
+      "id": "pl_msg_00000648_00509",
+      "en_US": "CIRCLE THROW"
+    },
+    {
+      "id": "pl_msg_00000648_00510",
+      "en_US": "INCINERATE"
+    },
+    {
+      "id": "pl_msg_00000648_00511",
+      "en_US": "QUASH"
+    },
+    {
+      "id": "pl_msg_00000648_00512",
+      "en_US": "ACROBATICS"
+    },
+    {
+      "id": "pl_msg_00000648_00513",
+      "en_US": "REFLECT TYPE"
+    },
+    {
+      "id": "pl_msg_00000648_00514",
+      "en_US": "RETALIATE"
+    },
+    {
+      "id": "pl_msg_00000648_00515",
+      "en_US": "FINAL GAMBIT"
+    },
+    {
+      "id": "pl_msg_00000648_00516",
+      "en_US": "BESTOW"
+    },
+    {
+      "id": "pl_msg_00000648_00517",
+      "en_US": "INFERNO"
+    },
+    {
+      "id": "pl_msg_00000648_00518",
+      "en_US": "WATER PLEDGE"
+    },
+    {
+      "id": "pl_msg_00000648_00519",
+      "en_US": "FIRE PLEDGE"
+    },
+    {
+      "id": "pl_msg_00000648_00520",
+      "en_US": "GRASS PLEDGE"
+    },
+    {
+      "id": "pl_msg_00000648_00521",
+      "en_US": "VOLT SWITCH"
+    },
+    {
+      "id": "pl_msg_00000648_00522",
+      "en_US": "STRUGGLE BUG"
+    },
+    {
+      "id": "pl_msg_00000648_00523",
+      "en_US": "BULLDOZE"
+    },
+    {
+      "id": "pl_msg_00000648_00524",
+      "en_US": "FROST BREATH"
+    },
+    {
+      "id": "pl_msg_00000648_00525",
+      "en_US": "DRAGON TAIL"
+    },
+    {
+      "id": "pl_msg_00000648_00526",
+      "en_US": "WORK UP"
+    },
+    {
+      "id": "pl_msg_00000648_00527",
+      "en_US": "ELECTROWEB"
+    },
+    {
+      "id": "pl_msg_00000648_00528",
+      "en_US": "WILD CHARGE"
+    },
+    {
+      "id": "pl_msg_00000648_00529",
+      "en_US": "DRILL RUN"
+    },
+    {
+      "id": "pl_msg_00000648_00530",
+      "en_US": "DUAL CHOP"
+    },
+    {
+      "id": "pl_msg_00000648_00531",
+      "en_US": "HEART STAMP"
+    },
+    {
+      "id": "pl_msg_00000648_00532",
+      "en_US": "HORN LEECH"
+    },
+    {
+      "id": "pl_msg_00000648_00533",
+      "en_US": "SACRED SWORD"
+    },
+    {
+      "id": "pl_msg_00000648_00534",
+      "en_US": "RAZOR SHELL"
+    },
+    {
+      "id": "pl_msg_00000648_00535",
+      "en_US": "HEAT CRASH"
+    },
+    {
+      "id": "pl_msg_00000648_00536",
+      "en_US": "LEAF TORNADO"
+    },
+    {
+      "id": "pl_msg_00000648_00537",
+      "en_US": "STEAMROLLER"
+    },
+    {
+      "id": "pl_msg_00000648_00538",
+      "en_US": "COTTON GUARD"
+    },
+    {
+      "id": "pl_msg_00000648_00539",
+      "en_US": "NIGHT DAZE"
+    },
+    {
+      "id": "pl_msg_00000648_00540",
+      "en_US": "PSYSTRIKE"
+    },
+    {
+      "id": "pl_msg_00000648_00541",
+      "en_US": "TAIL SLAP"
+    },
+    {
+      "id": "pl_msg_00000648_00542",
+      "en_US": "HURRICANE"
+    },
+    {
+      "id": "pl_msg_00000648_00543",
+      "en_US": "HEAD CHARGE"
+    },
+    {
+      "id": "pl_msg_00000648_00544",
+      "en_US": "GEAR GRIND"
+    },
+    {
+      "id": "pl_msg_00000648_00545",
+      "en_US": "SEARING SHOT"
+    },
+    {
+      "id": "pl_msg_00000648_00546",
+      "en_US": "TECHNO BLAST"
+    },
+    {
+      "id": "pl_msg_00000648_00547",
+      "en_US": "RELIC SONG"
+    },
+    {
+      "id": "pl_msg_00000648_00548",
+      "en_US": "SECRET SWORD"
+    },
+    {
+      "id": "pl_msg_00000648_00549",
+      "en_US": "GLACIATE"
+    },
+    {
+      "id": "pl_msg_00000648_00550",
+      "en_US": "BOLT STRIKE"
+    },
+    {
+      "id": "pl_msg_00000648_00551",
+      "en_US": "BLUE FLARE"
+    },
+    {
+      "id": "pl_msg_00000648_00552",
+      "en_US": "FIERY DANCE"
+    },
+    {
+      "id": "pl_msg_00000648_00553",
+      "en_US": "FREEZE SHOCK"
+    },
+    {
+      "id": "pl_msg_00000648_00554",
+      "en_US": "ICE BURN"
+    },
+    {
+      "id": "pl_msg_00000648_00555",
+      "en_US": "SNARL"
+    },
+    {
+      "id": "pl_msg_00000648_00556",
+      "en_US": "ICICLE CRASH"
+    },
+    {
+      "id": "pl_msg_00000648_00557",
+      "en_US": "V CREATE"
+    },
+    {
+      "id": "pl_msg_00000648_00558",
+      "en_US": "FUSION FLARE"
+    },
+    {
+      "id": "pl_msg_00000648_00559",
+      "en_US": "FUSION BOLT"
     }
   ]
 }
