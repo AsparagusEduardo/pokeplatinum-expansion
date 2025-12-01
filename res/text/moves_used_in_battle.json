@@ -11709,6 +11709,6054 @@
         "The foe’s {STRVAR_1 1, 0, 0} used\n",
         "Fusion Bolt!"
       ]
+    },
+    {
+      "id": "pl_msg_00000000_01674",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Flying Press!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01675",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Flying Press!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01676",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Flying Press!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01677",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Mat Block!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01678",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Mat Block!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01679",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Mat Block!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01680",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Belch!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01681",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Belch!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01682",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Belch!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01683",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Rototiller!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01684",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Rototiller!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01685",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Rototiller!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01686",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Sticky Web!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01687",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Sticky Web!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01688",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Sticky Web!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01689",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Fell Stinger!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01690",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Fell Stinger!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01691",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Fell Stinger!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01692",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Phantom Force!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01693",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Phantom Force!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01694",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Phantom Force!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01695",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Trick Or Treat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01696",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Trick Or Treat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01697",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Trick Or Treat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01698",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Noble Roar!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01699",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Noble Roar!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01700",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Noble Roar!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01701",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Ion Deluge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01702",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Ion Deluge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01703",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Ion Deluge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01704",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Parabolic Charge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01705",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Parabolic Charge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01706",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Parabolic Charge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01707",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Forests Curse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01708",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Forests Curse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01709",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Forests Curse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01710",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Petal Blizzard!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01711",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Petal Blizzard!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01712",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Petal Blizzard!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01713",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Freeze Dry!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01714",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Freeze Dry!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01715",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Freeze Dry!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01716",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Disarming Voice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01717",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Disarming Voice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01718",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Disarming Voice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01719",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Parting Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01720",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Parting Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01721",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Parting Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01722",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Topsy Turvy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01723",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Topsy Turvy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01724",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Topsy Turvy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01725",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Draining Kiss!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01726",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Draining Kiss!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01727",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Draining Kiss!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01728",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Crafty Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01729",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Crafty Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01730",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Crafty Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01731",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Flower Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01732",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Flower Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01733",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Flower Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01734",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Grassy Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01735",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Grassy Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01736",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Grassy Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01737",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Misty Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01738",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Misty Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01739",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Misty Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01740",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Electrify!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01741",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Electrify!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01742",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Electrify!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01743",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Play Rough!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01744",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Play Rough!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01745",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Play Rough!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01746",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Fairy Wind!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01747",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Fairy Wind!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01748",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Fairy Wind!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01749",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Moonblast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01750",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Moonblast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01751",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Moonblast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01752",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Boomburst!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01753",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Boomburst!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01754",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Boomburst!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01755",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Fairy Lock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01756",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Fairy Lock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01757",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Fairy Lock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01758",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Kings Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01759",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Kings Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01760",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Kings Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01761",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Play Nice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01762",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Play Nice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01763",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Play Nice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01764",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Confide!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01765",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Confide!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01766",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Confide!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01767",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Diamond Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01768",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Diamond Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01769",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Diamond Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01770",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Steam Eruption!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01771",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Steam Eruption!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01772",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Steam Eruption!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01773",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Hyperspace Hole!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01774",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Hyperspace Hole!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01775",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Hyperspace Hole!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01776",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Water Shuriken!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01777",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Water Shuriken!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01778",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Water Shuriken!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01779",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Mystical Fire!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01780",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Mystical Fire!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01781",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Mystical Fire!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01782",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Spiky Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01783",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Spiky Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01784",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Spiky Shield!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01785",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Aromatic Mist!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01786",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Aromatic Mist!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01787",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Aromatic Mist!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01788",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Eerie Impulse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01789",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Eerie Impulse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01790",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Eerie Impulse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01791",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Venom Drench!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01792",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Venom Drench!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01793",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Venom Drench!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01794",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Powder!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01795",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Powder!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01796",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Powder!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01797",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Geomancy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01798",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Geomancy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01799",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Geomancy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01800",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Magnetic Flux!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01801",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Magnetic Flux!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01802",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Magnetic Flux!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01803",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Happy Hour!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01804",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Happy Hour!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01805",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Happy Hour!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01806",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Electric Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01807",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Electric Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01808",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Electric Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01809",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Dazzling Gleam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01810",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Dazzling Gleam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01811",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Dazzling Gleam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01812",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Celebrate!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01813",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Celebrate!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01814",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Celebrate!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01815",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Hold Hands!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01816",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Hold Hands!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01817",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Hold Hands!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01818",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Baby Doll Eyes!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01819",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Baby Doll Eyes!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01820",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Baby Doll Eyes!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01821",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Nuzzle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01822",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Nuzzle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01823",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Nuzzle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01824",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Hold Back!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01825",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Hold Back!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01826",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Hold Back!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01827",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Infestation!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01828",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Infestation!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01829",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Infestation!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01830",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Power Up Punch!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01831",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Power Up Punch!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01832",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Power Up Punch!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01833",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Oblivion Wing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01834",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Oblivion Wing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01835",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Oblivion Wing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01836",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Thousand Arrows!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01837",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Thousand Arrows!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01838",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Thousand Arrows!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01839",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Thousand Waves!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01840",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Thousand Waves!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01841",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Thousand Waves!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01842",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Lands Wrath!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01843",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Lands Wrath!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01844",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Lands Wrath!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01845",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Light Of Ruin!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01846",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Light Of Ruin!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01847",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Light Of Ruin!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01848",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Origin Pulse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01849",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Origin Pulse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01850",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Origin Pulse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01851",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Precipice Blades!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01852",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Precipice Blades!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01853",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Precipice Blades!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01854",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Dragon Ascent!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01855",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Dragon Ascent!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01856",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Dragon Ascent!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01857",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Hyperspace Fury!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01858",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Hyperspace Fury!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01859",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Hyperspace Fury!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01860",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Shore Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01861",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Shore Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01862",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Shore Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01863",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "First Impression!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01864",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "First Impression!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01865",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "First Impression!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01866",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Baneful Bunker!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01867",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Baneful Bunker!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01868",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Baneful Bunker!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01869",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Spirit Shackle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01870",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Spirit Shackle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01871",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Spirit Shackle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01872",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Darkest Lariat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01873",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Darkest Lariat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01874",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Darkest Lariat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01875",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Sparkling Aria!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01876",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Sparkling Aria!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01877",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Sparkling Aria!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01878",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Ice Hammer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01879",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Ice Hammer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01880",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Ice Hammer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01881",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Floral Healing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01882",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Floral Healing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01883",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Floral Healing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01884",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "High Horsepower!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01885",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "High Horsepower!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01886",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "High Horsepower!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01887",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Strength Sap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01888",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Strength Sap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01889",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Strength Sap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01890",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Solar Blade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01891",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Solar Blade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01892",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Solar Blade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01893",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Leafage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01894",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Leafage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01895",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Leafage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01896",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Spotlight!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01897",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Spotlight!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01898",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Spotlight!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01899",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Toxic Thread!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01900",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Toxic Thread!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01901",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Toxic Thread!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01902",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Laser Focus!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01903",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Laser Focus!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01904",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Laser Focus!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01905",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Gear Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01906",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Gear Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01907",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Gear Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01908",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Throat Chop!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01909",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Throat Chop!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01910",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Throat Chop!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01911",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Pollen Puff!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01912",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Pollen Puff!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01913",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Pollen Puff!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01914",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Anchor Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01915",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Anchor Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01916",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Anchor Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01917",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Psychic Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01918",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Psychic Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01919",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Psychic Terrain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01920",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Lunge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01921",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Lunge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01922",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Lunge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01923",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Fire Lash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01924",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Fire Lash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01925",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Fire Lash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01926",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Power Trip!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01927",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Power Trip!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01928",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Power Trip!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01929",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Burn Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01930",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Burn Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01931",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Burn Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01932",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Speed Swap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01933",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Speed Swap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01934",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Speed Swap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01935",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Smart Strike!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01936",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Smart Strike!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01937",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Smart Strike!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01938",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Purify!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01939",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Purify!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01940",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Purify!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01941",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Revelation Dance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01942",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Revelation Dance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01943",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Revelation Dance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01944",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Core Enforcer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01945",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Core Enforcer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01946",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Core Enforcer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01947",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Trop Kick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01948",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Trop Kick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01949",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Trop Kick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01950",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Instruct!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01951",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Instruct!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01952",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Instruct!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01953",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Beak Blast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01954",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Beak Blast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01955",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Beak Blast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01956",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Clanging Scales!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01957",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Clanging Scales!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01958",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Clanging Scales!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01959",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Dragon Hammer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01960",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Dragon Hammer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01961",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Dragon Hammer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01962",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Brutal Swing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01963",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Brutal Swing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01964",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Brutal Swing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01965",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Aurora Veil!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01966",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Aurora Veil!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01967",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Aurora Veil!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01968",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Shell Trap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01969",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Shell Trap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01970",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Shell Trap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01971",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Fleur Cannon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01972",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Fleur Cannon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01973",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Fleur Cannon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01974",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Psychic Fangs!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01975",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Psychic Fangs!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01976",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Psychic Fangs!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01977",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Stomping Tantrum!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01978",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Stomping Tantrum!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01979",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Stomping Tantrum!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01980",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Shadow Bone!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01981",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Shadow Bone!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01982",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Shadow Bone!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01983",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Accelerock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01984",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Accelerock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01985",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Accelerock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01986",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Liquidation!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01987",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Liquidation!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01988",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Liquidation!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01989",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Prismatic Laser!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01990",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Prismatic Laser!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01991",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Prismatic Laser!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01992",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Spectral Thief!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01993",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Spectral Thief!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01994",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Spectral Thief!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01995",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Sunsteel Strike!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01996",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Sunsteel Strike!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01997",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Sunsteel Strike!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01998",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Moongeist Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_01999",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Moongeist Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02000",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Moongeist Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02001",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Tearful Look!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02002",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Tearful Look!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02003",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Tearful Look!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02004",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Zing Zap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02005",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Zing Zap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02006",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Zing Zap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02007",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Natures Madness!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02008",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Natures Madness!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02009",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Natures Madness!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02010",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Multi Attack!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02011",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Multi Attack!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02012",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Multi Attack!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02013",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Mind Blown!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02014",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Mind Blown!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02015",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Mind Blown!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02016",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Plasma Fists!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02017",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Plasma Fists!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02018",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Plasma Fists!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02019",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Photon Geyser!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02020",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Photon Geyser!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02021",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Photon Geyser!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02022",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Zippy Zap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02023",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Zippy Zap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02024",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Zippy Zap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02025",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Splishy Splash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02026",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Splishy Splash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02027",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Splishy Splash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02028",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Floaty Fall!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02029",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Floaty Fall!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02030",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Floaty Fall!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02031",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Pika Papow!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02032",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Pika Papow!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02033",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Pika Papow!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02034",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Bouncy Bubble!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02035",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Bouncy Bubble!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02036",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Bouncy Bubble!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02037",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Buzzy Buzz!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02038",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Buzzy Buzz!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02039",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Buzzy Buzz!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02040",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Sizzly Slide!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02041",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Sizzly Slide!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02042",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Sizzly Slide!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02043",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Glitzy Glow!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02044",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Glitzy Glow!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02045",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Glitzy Glow!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02046",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Baddy Bad!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02047",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Baddy Bad!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02048",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Baddy Bad!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02049",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Sappy Seed!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02050",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Sappy Seed!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02051",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Sappy Seed!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02052",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Freezy Frost!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02053",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Freezy Frost!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02054",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Freezy Frost!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02055",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Sparkly Swirl!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02056",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Sparkly Swirl!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02057",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Sparkly Swirl!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02058",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Veevee Volley!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02059",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Veevee Volley!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02060",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Veevee Volley!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02061",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Double Iron Bash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02062",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Double Iron Bash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02063",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Double Iron Bash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02064",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Dynamax Cannon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02065",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Dynamax Cannon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02066",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Dynamax Cannon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02067",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Snipe Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02068",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Snipe Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02069",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Snipe Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02070",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Jaw Lock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02071",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Jaw Lock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02072",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Jaw Lock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02073",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Stuff Cheeks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02074",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Stuff Cheeks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02075",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Stuff Cheeks!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02076",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "No Retreat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02077",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "No Retreat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02078",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "No Retreat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02079",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Tar Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02080",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Tar Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02081",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Tar Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02082",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Magic Powder!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02083",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Magic Powder!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02084",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Magic Powder!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02085",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Dragon Darts!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02086",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Dragon Darts!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02087",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Dragon Darts!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02088",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Teatime!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02089",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Teatime!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02090",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Teatime!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02091",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Octolock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02092",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Octolock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02093",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Octolock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02094",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Bolt Beak!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02095",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Bolt Beak!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02096",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Bolt Beak!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02097",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Fishious Rend!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02098",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Fishious Rend!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02099",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Fishious Rend!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02100",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Court Change!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02101",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Court Change!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02102",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Court Change!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02103",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Clangorous Soul!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02104",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Clangorous Soul!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02105",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Clangorous Soul!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02106",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Body Press!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02107",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Body Press!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02108",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Body Press!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02109",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Decorate!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02110",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Decorate!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02111",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Decorate!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02112",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Drum Beating!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02113",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Drum Beating!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02114",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Drum Beating!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02115",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Snap Trap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02116",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Snap Trap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02117",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Snap Trap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02118",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Pyro Ball!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02119",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Pyro Ball!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02120",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Pyro Ball!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02121",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Behemoth Blade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02122",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Behemoth Blade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02123",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Behemoth Blade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02124",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Behemoth Bash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02125",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Behemoth Bash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02126",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Behemoth Bash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02127",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Aura Wheel!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02128",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Aura Wheel!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02129",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Aura Wheel!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02130",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Breaking Swipe!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02131",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Breaking Swipe!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02132",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Breaking Swipe!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02133",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Branch Poke!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02134",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Branch Poke!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02135",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Branch Poke!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02136",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Overdrive!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02137",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Overdrive!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02138",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Overdrive!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02139",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Apple Acid!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02140",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Apple Acid!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02141",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Apple Acid!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02142",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Grav Apple!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02143",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Grav Apple!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02144",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Grav Apple!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02145",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Spirit Break!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02146",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Spirit Break!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02147",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Spirit Break!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02148",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Strange Steam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02149",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Strange Steam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02150",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Strange Steam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02151",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Life Dew!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02152",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Life Dew!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02153",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Life Dew!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02154",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Obstruct!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02155",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Obstruct!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02156",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Obstruct!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02157",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "False Surrender!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02158",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "False Surrender!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02159",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "False Surrender!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02160",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Meteor Assault!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02161",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Meteor Assault!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02162",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Meteor Assault!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02163",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Eternabeam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02164",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Eternabeam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02165",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Eternabeam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02166",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Steel Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02167",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Steel Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02168",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Steel Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02169",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Expanding Force!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02170",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Expanding Force!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02171",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Expanding Force!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02172",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Steel Roller!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02173",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Steel Roller!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02174",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Steel Roller!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02175",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Scale Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02176",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Scale Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02177",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Scale Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02178",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Meteor Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02179",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Meteor Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02180",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Meteor Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02181",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Shell Side Arm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02182",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Shell Side Arm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02183",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Shell Side Arm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02184",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Misty Explosion!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02185",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Misty Explosion!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02186",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Misty Explosion!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02187",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Grassy Glide!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02188",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Grassy Glide!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02189",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Grassy Glide!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02190",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Rising Voltage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02191",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Rising Voltage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02192",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Rising Voltage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02193",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Terrain Pulse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02194",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Terrain Pulse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02195",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Terrain Pulse!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02196",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Skitter Smack!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02197",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Skitter Smack!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02198",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Skitter Smack!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02199",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Burning Jealousy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02200",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Burning Jealousy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02201",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Burning Jealousy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02202",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Lash Out!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02203",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Lash Out!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02204",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Lash Out!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02205",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Poltergeist!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02206",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Poltergeist!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02207",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Poltergeist!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02208",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Corrosive Gas!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02209",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Corrosive Gas!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02210",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Corrosive Gas!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02211",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Coaching!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02212",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Coaching!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02213",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Coaching!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02214",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Flip Turn!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02215",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Flip Turn!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02216",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Flip Turn!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02217",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Triple Axel!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02218",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Triple Axel!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02219",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Triple Axel!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02220",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Dual Wingbeat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02221",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Dual Wingbeat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02222",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Dual Wingbeat!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02223",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Scorching Sands!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02224",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Scorching Sands!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02225",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Scorching Sands!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02226",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Jungle Healing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02227",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Jungle Healing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02228",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Jungle Healing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02229",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Wicked Blow!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02230",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Wicked Blow!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02231",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Wicked Blow!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02232",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Surging Strikes!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02233",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Surging Strikes!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02234",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Surging Strikes!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02235",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Thunder Cage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02236",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Thunder Cage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02237",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Thunder Cage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02238",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Dragon Energy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02239",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Dragon Energy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02240",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Dragon Energy!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02241",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Freezing Glare!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02242",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Freezing Glare!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02243",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Freezing Glare!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02244",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Fiery Wrath!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02245",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Fiery Wrath!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02246",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Fiery Wrath!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02247",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Thunderous Kick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02248",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Thunderous Kick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02249",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Thunderous Kick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02250",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Glacial Lance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02251",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Glacial Lance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02252",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Glacial Lance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02253",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Astral Barrage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02254",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Astral Barrage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02255",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Astral Barrage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02256",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Eerie Spell!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02257",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Eerie Spell!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02258",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Eerie Spell!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02259",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Dire Claw!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02260",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Dire Claw!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02261",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Dire Claw!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02262",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Psyshield Bash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02263",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Psyshield Bash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02264",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Psyshield Bash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02265",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Power Shift!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02266",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Power Shift!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02267",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Power Shift!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02268",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Stone Axe!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02269",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Stone Axe!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02270",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Stone Axe!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02271",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Springtide Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02272",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Springtide Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02273",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Springtide Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02274",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Mystical Power!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02275",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Mystical Power!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02276",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Mystical Power!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02277",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Raging Fury!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02278",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Raging Fury!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02279",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Raging Fury!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02280",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Wave Crash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02281",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Wave Crash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02282",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Wave Crash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02283",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Chloroblast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02284",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Chloroblast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02285",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Chloroblast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02286",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Mountain Gale!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02287",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Mountain Gale!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02288",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Mountain Gale!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02289",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Victory Dance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02290",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Victory Dance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02291",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Victory Dance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02292",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Headlong Rush!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02293",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Headlong Rush!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02294",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Headlong Rush!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02295",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Barb Barrage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02296",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Barb Barrage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02297",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Barb Barrage!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02298",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Esper Wing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02299",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Esper Wing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02300",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Esper Wing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02301",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Bitter Malice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02302",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Bitter Malice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02303",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Bitter Malice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02304",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Shelter!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02305",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Shelter!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02306",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Shelter!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02307",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Triple Arrows!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02308",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Triple Arrows!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02309",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Triple Arrows!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02310",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Infernal Parade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02311",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Infernal Parade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02312",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Infernal Parade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02313",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Ceaseless Edge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02314",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Ceaseless Edge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02315",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Ceaseless Edge!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02316",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Bleakwind Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02317",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Bleakwind Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02318",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Bleakwind Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02319",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Wildbolt Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02320",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Wildbolt Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02321",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Wildbolt Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02322",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Sandsear Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02323",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Sandsear Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02324",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Sandsear Storm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02325",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Lunar Blessing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02326",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Lunar Blessing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02327",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Lunar Blessing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02328",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Take Heart!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02329",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Take Heart!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02330",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Take Heart!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02331",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Tera Blast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02332",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Tera Blast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02333",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Tera Blast!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02334",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Silk Trap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02335",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Silk Trap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02336",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Silk Trap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02337",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Axe Kick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02338",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Axe Kick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02339",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Axe Kick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02340",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Last Respects!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02341",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Last Respects!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02342",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Last Respects!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02343",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Lumina Crash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02344",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Lumina Crash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02345",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Lumina Crash!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02346",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Order Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02347",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Order Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02348",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Order Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02349",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Jet Punch!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02350",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Jet Punch!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02351",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Jet Punch!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02352",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Spicy Extract!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02353",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Spicy Extract!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02354",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Spicy Extract!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02355",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Spin Out!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02356",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Spin Out!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02357",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Spin Out!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02358",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Population Bomb!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02359",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Population Bomb!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02360",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Population Bomb!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02361",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Ice Spinner!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02362",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Ice Spinner!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02363",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Ice Spinner!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02364",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Glaive Rush!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02365",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Glaive Rush!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02366",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Glaive Rush!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02367",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Revival Blessing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02368",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Revival Blessing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02369",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Revival Blessing!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02370",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Salt Cure!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02371",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Salt Cure!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02372",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Salt Cure!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02373",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Triple Dive!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02374",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Triple Dive!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02375",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Triple Dive!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02376",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Mortal Spin!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02377",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Mortal Spin!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02378",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Mortal Spin!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02379",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Doodle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02380",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Doodle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02381",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Doodle!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02382",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Fillet Away!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02383",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Fillet Away!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02384",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Fillet Away!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02385",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Kowtow Cleave!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02386",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Kowtow Cleave!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02387",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Kowtow Cleave!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02388",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Flower Trick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02389",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Flower Trick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02390",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Flower Trick!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02391",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Torch Song!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02392",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Torch Song!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02393",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Torch Song!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02394",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Aqua Step!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02395",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Aqua Step!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02396",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Aqua Step!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02397",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Raging Bull!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02398",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Raging Bull!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02399",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Raging Bull!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02400",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Make It Rain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02401",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Make It Rain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02402",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Make It Rain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02403",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Ruination!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02404",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Ruination!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02405",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Ruination!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02406",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Collision Course!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02407",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Collision Course!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02408",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Collision Course!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02409",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Electro Drift!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02410",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Electro Drift!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02411",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Electro Drift!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02412",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Shed Tail!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02413",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Shed Tail!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02414",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Shed Tail!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02415",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Chilly Reception!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02416",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Chilly Reception!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02417",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Chilly Reception!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02418",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Tidy Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02419",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Tidy Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02420",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Tidy Up!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02421",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Snowscape!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02422",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Snowscape!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02423",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Snowscape!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02424",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Pounce!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02425",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Pounce!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02426",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Pounce!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02427",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Trailblaze!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02428",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Trailblaze!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02429",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Trailblaze!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02430",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Chilling Water!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02431",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Chilling Water!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02432",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Chilling Water!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02433",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Hyper Drill!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02434",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Hyper Drill!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02435",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Hyper Drill!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02436",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Twin Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02437",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Twin Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02438",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Twin Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02439",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Rage Fist!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02440",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Rage Fist!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02441",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Rage Fist!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02442",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Armor Cannon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02443",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Armor Cannon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02444",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Armor Cannon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02445",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Bitter Blade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02446",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Bitter Blade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02447",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Bitter Blade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02448",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Double Shock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02449",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Double Shock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02450",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Double Shock!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02451",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Gigaton Hammer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02452",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Gigaton Hammer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02453",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Gigaton Hammer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02454",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Comeuppance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02455",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Comeuppance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02456",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Comeuppance!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02457",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Aqua Cutter!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02458",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Aqua Cutter!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02459",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Aqua Cutter!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02460",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Blazing Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02461",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Blazing Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02462",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Blazing Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02463",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Wicked Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02464",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Wicked Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02465",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Wicked Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02466",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Noxious Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02467",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Noxious Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02468",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Noxious Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02469",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Combat Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02470",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Combat Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02471",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Combat Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02472",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Magical Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02473",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Magical Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02474",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Magical Torque!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02475",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Psyblade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02476",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Psyblade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02477",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Psyblade!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02478",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Hydro Steam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02479",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Hydro Steam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02480",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Hydro Steam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02481",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Blood Moon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02482",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Blood Moon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02483",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Blood Moon!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02484",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Matcha Gotcha!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02485",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Matcha Gotcha!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02486",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Matcha Gotcha!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02487",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Syrup Bomb!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02488",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Syrup Bomb!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02489",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Syrup Bomb!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02490",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Ivy Cudgel!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02491",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Ivy Cudgel!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02492",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Ivy Cudgel!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02493",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Electro Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02494",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Electro Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02495",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Electro Shot!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02496",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Tera Starstorm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02497",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Tera Starstorm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02498",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Tera Starstorm!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02499",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Fickle Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02500",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Fickle Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02501",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Fickle Beam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02502",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Burning Bulwark!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02503",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Burning Bulwark!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02504",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Burning Bulwark!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02505",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Thunderclap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02506",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Thunderclap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02507",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Thunderclap!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02508",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Mighty Cleave!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02509",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Mighty Cleave!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02510",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Mighty Cleave!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02511",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Tachyon Cutter!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02512",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Tachyon Cutter!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02513",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Tachyon Cutter!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02514",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Hard Press!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02515",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Hard Press!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02516",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Hard Press!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02517",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Dragon Cheer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02518",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Dragon Cheer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02519",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Dragon Cheer!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02520",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Alluring Voice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02521",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Alluring Voice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02522",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Alluring Voice!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02523",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Temper Flare!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02524",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Temper Flare!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02525",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Temper Flare!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02526",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Supercell Slam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02527",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Supercell Slam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02528",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Supercell Slam!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02529",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Psychic Noise!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02530",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Psychic Noise!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02531",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Psychic Noise!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02532",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Upper Hand!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02533",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Upper Hand!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02534",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Upper Hand!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02535",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "Malignant Chain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02536",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "Malignant Chain!"
+      ]
+    },
+    {
+      "id": "pl_msg_00000000_02537",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "Malignant Chain!"
+      ]
     }
   ]
 }
