@@ -191,7 +191,7 @@ Static main
 	Object main.nef.p/src_scrcmd_sound.c.o
 	Object main.nef.p/src_scrcmd_trainer.c.o
 	Object main.nef.p/src_unk_02048BD0.c.o
-	Object main.nef.p/src_unk_02048DD8.c.o
+	Object main.nef.p/src_scrcmd_tv_broadcast.c.o
 	Object main.nef.p/src_unk_020494DC.c.o
 	Object main.nef.p/src_unk_02049D08.c.o
 	Object main.nef.p/src_unk_0204AEE8.c.o
@@ -266,14 +266,14 @@ Static main
 	Object main.nef.p/src_scroll_prompts.c.o
 	Object main.nef.p/src_system_flags.c.o
 	Object main.nef.p/src_system_vars.c.o
-	Object main.nef.p/src_unk_0206B70C.c.o
+	Object main.nef.p/src_applications_town_map_context.c.o
 	Object main.nef.p/src_unk_0206B9D8.c.o
 	Object main.nef.p/src_great_marsh_lookout.c.o
 	Object main.nef.p/src_trainer_card_badge_dirt.c.o
 	Object main.nef.p/src_roaming_pokemon.c.o
 	Object main.nef.p/src_unk_0206C660.c.o
 	Object main.nef.p/src_cutscenes_boat_cutscene_boat_cutscene.c.o
-	Object main.nef.p/src_unk_0206CCB0.c.o
+	Object main.nef.p/src_tv_episode_segment.c.o
 	Object main.nef.p/src_unk_0206F314.c.o
 	Object main.nef.p/src_unk_02070428.c.o
 	Object main.nef.p/src_unk_0207064C.c.o
@@ -965,18 +965,18 @@ Overlay poketch_backlight_toggle
 	Object main.nef.p/src_applications_poketch_backlight_toggle_graphics.c.o
 }
 
-Overlay overlay38
+Overlay poketch_unused_1
 {
 	After overlay25
-	Object main.nef.p/src_overlay038_ov38_022561C0.c.o
-	Object main.nef.p/src_overlay038_ov38_0225632C.c.o
+	Object main.nef.p/src_applications_poketch_unused_1_main.c.o
+	Object main.nef.p/src_applications_poketch_unused_1_graphics.c.o
 }
 
-Overlay overlay39
+Overlay poketch_unused_2
 {
 	After overlay25
-	Object main.nef.p/src_overlay039_ov39_022561C0.c.o
-	Object main.nef.p/src_overlay039_ov39_022563DC.c.o
+	Object main.nef.p/src_applications_poketch_unused_2_main.c.o
+	Object main.nef.p/src_applications_poketch_unused_2_graphics.c.o
 }
 
 Overlay poketch_daycare_checker
@@ -993,11 +993,11 @@ Overlay poketch_roulette
 	Object main.nef.p/src_applications_poketch_roulette_graphics.c.o
 }
 
-Overlay overlay42
+Overlay poketch_coin_toss
 {
 	After overlay25
-	Object main.nef.p/src_overlay042_ov42_022561C0.c.o
-	Object main.nef.p/src_overlay042_ov42_022563D4.c.o
+	Object main.nef.p/src_applications_poketch_coin_toss_main.c.o
+	Object main.nef.p/src_applications_poketch_coin_toss_graphics.c.o
 }
 
 Overlay poketch_move_tester
@@ -1007,11 +1007,11 @@ Overlay poketch_move_tester
 	Object main.nef.p/src_applications_poketch_move_tester_graphics.c.o
 }
 
-Overlay overlay44
+Overlay poketch_matchup_checker
 {
 	After overlay25
-	Object main.nef.p/src_overlay044_ov44_022561C0.c.o
-	Object main.nef.p/src_overlay044_ov44_022565BC.c.o
+	Object main.nef.p/src_applications_poketch_matchup_checker_main.c.o
+	Object main.nef.p/src_applications_poketch_matchup_checker_graphics.c.o
 }
 
 Overlay poketch_alarm_clock
@@ -1021,11 +1021,11 @@ Overlay poketch_alarm_clock
 	Object main.nef.p/src_applications_poketch_alarm_clock_graphics.c.o
 }
 
-Overlay overlay46
+Overlay poketch_kitchen_timer
 {
 	After overlay25
-	Object main.nef.p/src_overlay046_ov46_022561C0.c.o
-	Object main.nef.p/src_overlay046_ov46_02256BCC.c.o
+	Object main.nef.p/src_applications_poketch_kitchen_timer_main.c.o
+	Object main.nef.p/src_applications_poketch_kitchen_timer_graphics.c.o
 }
 
 Overlay poketch_marking_map
@@ -1056,11 +1056,11 @@ Overlay overlay50
 	Object main.nef.p/src_overlay050_ov50_02256510.c.o
 }
 
-Overlay overlay51
+Overlay poketch_unused_3
 {
 	After overlay25
-	Object main.nef.p/src_overlay051_ov51_022561C0.c.o
-	Object main.nef.p/src_overlay051_ov51_0225632C.c.o
+	Object main.nef.p/src_applications_poketch_unused_3_main.c.o
+	Object main.nef.p/src_applications_poketch_unused_3_graphics.c.o
 }
 
 Overlay overlay52
@@ -1084,11 +1084,11 @@ Overlay overlay54
 	Object main.nef.p/src_overlay054_ov54_0225642C.c.o
 }
 
-Overlay overlay55
+Overlay poketch_unused_4
 {
 	After overlay25
-	Object main.nef.p/src_overlay055_ov55_022561C0.c.o
-	Object main.nef.p/src_overlay055_ov55_0225632C.c.o
+	Object main.nef.p/src_applications_poketch_unused_4_main.c.o
+	Object main.nef.p/src_applications_poketch_unused_4_graphics.c.o
 }
 
 Overlay overlay56
@@ -1314,13 +1314,14 @@ Overlay overlay79
 	Object main.nef.p/src_overlay079_ov79_021D3768.c.o
 }
 
-Overlay overlay80
+Overlay town_map
 {
 	After main
-	Object main.nef.p/src_overlay080_ov80_021D0D80.c.o
-	Object main.nef.p/src_overlay080_ov80_021D1458.c.o
-	Object main.nef.p/src_overlay080_ov80_021D2A08.c.o
-	Object main.nef.p/src_overlay080_ov80_021D2AF4.c.o
+	Object main.nef.p/src_applications_town_map_main.c.o
+	Object main.nef.p/src_applications_town_map_graphics.c.o
+	Object main.nef.p/src_applications_town_map_sprites.c.o
+	Object main.nef.p/src_applications_town_map_fly_locations.c.o
+	Object main.nef.p/src_applications_town_map_map_blocks.c.o
 }
 
 Overlay journal_display

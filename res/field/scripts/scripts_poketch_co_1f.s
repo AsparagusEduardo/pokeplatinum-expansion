@@ -10,7 +10,7 @@
     ScriptEntryEnd
 
 _0016:
-    ScrCmd_238 6, VAR_MAP_LOCAL_0
+    CheckTVInterviewEligible TV_PROGRAM_SEGMENT_THE_POKETCH_WATCH, VAR_MAP_LOCAL_0
     GoToIfEq VAR_MAP_LOCAL_0, 0, _003C
     GoToIfLt VAR_UNK_0x4077, 2, _003C
     ClearFlag FLAG_UNK_0x0212
@@ -62,7 +62,7 @@ _010A:
 _0121:
     Message 2
     SetVar VAR_0x8004, POKETCH_APPID_MEMOPAD
-    CallCommonScript 0x7D9
+    GivePoketchApp
     Message 3
     WaitABXPadPress
     CloseMessage
@@ -72,7 +72,7 @@ _0121:
 _0139:
     Message 5
     SetVar VAR_0x8004, POKETCH_APPID_MARKINGMAP
-    CallCommonScript 0x7D9
+    GivePoketchApp
     Message 6
     WaitABXPadPress
     CloseMessage
@@ -82,7 +82,7 @@ _0139:
 _0151:
     Message 8
     SetVar VAR_0x8004, POKETCH_APPID_LINKSEARCHER
-    CallCommonScript 0x7D9
+    GivePoketchApp
     Message 9
     WaitABXPadPress
     CloseMessage
@@ -92,7 +92,7 @@ _0151:
 _0169:
     Message 11
     SetVar VAR_0x8004, POKETCH_APPID_MOVETESTER
-    CallCommonScript 0x7D9
+    GivePoketchApp
     Message 12
     WaitABXPadPress
     CloseMessage

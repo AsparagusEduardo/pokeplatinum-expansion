@@ -1,7 +1,10 @@
 #include "generated/accessories.h"
 #include "generated/badges.h"
+#include "generated/battle_tower_modes.h"
+#include "generated/battle_tower_functions.h"
 #include "generated/berry_growth_stages.h"
 #include "generated/catching_show_points_category.h"
+#include "generated/comm_club_ret_codes.h"
 #include "generated/days_of_week.h"
 #include "generated/fade_types.h"
 #include "generated/game_records.h"
@@ -39,6 +42,7 @@
 #include "constants/map_object.h"
 #include "constants/savedata/vars_flags.h"
 #include "constants/scrcmd.h"
+#include "constants/tv_broadcast.h"
 #include "constants/battle.h"
 
 #include "macros/movement.inc"
@@ -1052,7 +1056,7 @@
     .short 169
     .endm
 
-    .macro ScrCmd_0AA
+    .macro OpenRegionMap
     .short 170
     .endm
 
@@ -1441,20 +1445,20 @@
     .long \offset-.-4
     .endm
 
-    .macro ScrCmd_0F2 arg0, arg1, arg2, arg3
+    .macro StartBattleClient commType, arg1, arg2, destVarID
     .short 242
-    .short \arg0
+    .short \commType
     .short \arg1
     .short \arg2
-    .short \arg3
+    .short \destVarID
     .endm
 
-    .macro ScrCmd_0F3 arg0, arg1, arg2, arg3
+    .macro StartBattleServer commType, arg1, arg2, destVarID
     .short 243
-    .short \arg0
+    .short \commType
     .short \arg1
     .short \arg2
-    .short \arg3
+    .short \destVarID
     .endm
 
     .macro ScrCmd_Unused_0F4 arg0
@@ -1795,12 +1799,12 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_135 arg0
+    .macro ScrCmd_135 syncNo
     .short 309
-    .short \arg0
+    .short \syncNo
     .endm
 
-    .macro ScrCmd_136
+    .macro ClearReceivedTempDataAllPlayers
     .short 310
     .endm
 
@@ -1924,7 +1928,7 @@
     .short 335
     .endm
 
-    .macro ScrCmd_150
+    .macro EndCommunication
     .short 336
     .endm
 
@@ -2649,6 +2653,22 @@
     .short \destVarID
     .endm
 
+    .macro GivePoketchApp
+    CallCommonScript 0x7D9
+    .endm
+
+    .macro GiveAccessoryWaitForConfirm
+    CallCommonScript 0x7DF
+    .endm
+
+    .macro MessageBagIsFull
+    CallCommonScript 0x7E1
+    .endm
+
+    .macro GiveItemQuantity
+    CallCommonScript 0x7FC
+    .endm
+
     .macro ScrCmd_Unused_1D4 arg0, arg1, arg2
     .short 468
     .short \arg0
@@ -2684,25 +2704,25 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1DA
+    .macro SetBattleTowerNull
     .short 474
     .endm
 
-    .macro ScrCmd_1DB arg0, arg1
+    .macro InitBattleTower arg0, challengeMode
     .short 475
     .short \arg0
-    .short \arg1
+    .short \challengeMode
     .endm
 
-    .macro ScrCmd_1DC
+    .macro FreeBattleTower
     .short 476
     .endm
 
-    .macro ScrCmd_1DD arg0, arg1, arg2
+    .macro CallBattleTowerFunction functionIndex, functionArgument, destVar
     .short 477
-    .short \arg0
-    .short \arg1
-    .short \arg2
+    .short \functionIndex
+    .short \functionArgument
+    .short \destVar
     .endm
 
     .macro ScrCmd_1DE arg0, arg1, arg2, arg3
@@ -2864,10 +2884,10 @@
     .short \arg1
     .endm
 
-    .macro ScrCmd_1FB arg0, arg1
+    .macro ExternalMessage bankID, messageID
     .short 507
-    .short \arg0
-    .short \arg1
+    .short \bankID
+    .short \messageID
     .endm
 
     .macro ScrCmd_Unused_1FC arg0, arg1, arg2, arg3
@@ -2891,12 +2911,12 @@
     .byte \arg0
     .endm
 
-    .macro ScrCmd_1FF arg0, arg1, arg2, arg3
+    .macro PrintBattleFrontierBanlist messageID, numRequiredEligiblePokemon, unused2, unused3
     .short 511
-    .byte \arg0
-    .short \arg1
-    .short \arg2
-    .byte \arg3
+    .byte \messageID
+    .short \numRequiredEligiblePokemon
+    .short \unused2
+    .byte \unused3
     .endm
 
     .macro GetPreviousMapID destVarID
@@ -2943,9 +2963,9 @@
     .short 518
     .endm
 
-    .macro ScrCmd_207 arg0
+    .macro GetCurNetID destVarID
     .short 519
-    .short \arg0
+    .short \destVarID
     .endm
 
     .macro DrawPokemonPreview species, gender
@@ -3193,22 +3213,72 @@
     .short \destVarID
     .endm
 
-    .macro ScrCmd_235 arg0, arg1=0, arg2=0, arg3=0
+    .macro CallTVBroadcast callID, arg1=0, arg2=0, arg3=0
     .short 565
-    .short \arg0
-    .if \arg0 == 0 || \arg0 == 6
+    .short \callID
+    .if \callID == 0 || \callID == 6
         .short \arg1
     .else
-        .if \arg0 == 1 || \arg0 == 3 || \arg0 == 5
+        .if \callID == 1 || \callID == 3 || \callID == 5
             .short \arg1
             .short \arg2
             .short \arg3
         .else
-            .if \arg0 == 4
+            .if \callID == 4
                 .short \arg1
                 .short \arg2
             .endif
         .endif
+    .endif
+    .endm
+
+    .macro CheckBroadcastStatus destVar
+    CallTVBroadcast TV_BROADCAST_CALL_CHECK_STATUS, \destVar
+    .endm
+
+    .macro LoadTVCommercial bankDestVar, messageDestVar
+    CallTVBroadcast TV_BROADCAST_CALL_LOAD_COMMERCIAL, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVFramingMessage framingMessageType, bankDestVar, messageDestVar
+    CallTVBroadcast TV_BROADCAST_CALL_LOAD_FRAMING_MESSAGE, \framingMessageType, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVSegment segmentID, bankDestVar, messageDestVar
+    CallTVBroadcast TV_BROADCAST_CALL_LOAD_SEGMENT \segmentID, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVGreeting bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_GREETING \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVSegmentIntro bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_SEGMENT_INTRO \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVFarewell bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_FAREWELL \bankDestVar, \messageDestVar
+    .endm
+
+    .macro LoadTVFarewellExtended bankDestVar, messageDestVar
+    LoadTVFramingMessage TV_PROGRAM_FRAMING_MESSAGE_FAREWELL_EXTENDED \bankDestVar, \messageDestVar
+    .endm
+
+    .macro GetNextTVSegmentID destVar
+    CallTVBroadcast TV_BROADCAST_CALL_GET_NEXT_SEGMENT_ID, \destVar
+    .endm
+
+    .macro FinishTVProgram
+    CallTVBroadcast TV_BROADCAST_CALL_FINISH_PROGRAM
+    .endm
+
+    .macro TVBroadcastDummy arg0, arg1, arg2
+    Dummy1F9 \arg0
+    .ifnb \arg1
+        Dummy1F9 \arg1
+    .endif
+    .ifnb \arg2
+        Dummy1F9 \arg2
     .endif
     .endm
 
@@ -3217,18 +3287,26 @@
     .short \arg0
     .endm
 
-    .macro ScrCmd_237 arg0, arg1, arg2, arg3
+    .macro CallTVInterview callID, interviewSegmentID, arg2, arg3
     .short 567
-    .short \arg0
-    .short \arg1
+    .short \callID
+    .short \interviewSegmentID
     .short \arg2
     .short \arg3
     .endm
 
-    .macro ScrCmd_238 arg0, arg1
+    .macro LoadTVInterviewMessage interviewSegmentID, bankDestVar, messageDestVar
+    CallTVInterview TV_INTERVIEW_CALL_LOAD_MESSAGE, \interviewSegmentID, \bankDestVar, \messageDestVar
+    .endm
+
+    .macro SaveTVInterviewResponse interviewSegmentID, customWordMessage, unused=VAR_0x8005
+    CallTVInterview TV_INTERVIEW_CALL_SAVE_RESPONSE, \interviewSegmentID, \customWordMessage, \unused
+    .endm
+
+    .macro CheckTVInterviewEligible interviewSegmentID, destVar
     .short 568
-    .short \arg0
-    .short \arg1
+    .short \interviewSegmentID
+    .short \destVar
     .endm
 
     .macro ScrCmd_239 arg0
@@ -4711,7 +4789,7 @@
     .short \destVar
     .endm
 
-    .macro ScrCmd_330
+    .macro LogLinkInfoInWiFiHistory
     .short 816
     .endm
 
