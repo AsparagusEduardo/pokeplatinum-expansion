@@ -14,7 +14,6 @@
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_defs/choose_starter_data.h"
 #include "struct_defs/gts_player_data.h"
-#include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_0203DA00.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0203DE34.h"
@@ -39,6 +38,7 @@
 #include "applications/pc_boxes/box_app_manager.h"
 #include "applications/pc_boxes/pokemon_storage_session.h"
 #include "applications/pc_hall_of_fame/manager.h"
+#include "applications/poffin_case/main.h"
 #include "applications/pokedex/pokedex_main.h"
 #include "applications/pokemon_summary_screen/main.h"
 #include "applications/town_map/main.h"
@@ -107,7 +107,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "savedata_misc.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "system_data.h"
 #include "system_flags.h"
 #include "system_vars.h"
@@ -128,7 +128,6 @@
 #include "unk_0209747C.h"
 #include "unk_02097624.h"
 #include "unk_02098218.h"
-#include "unk_020989DC.h"
 #include "vars_flags.h"
 
 #include "constdata/const_020EA02C.h"
@@ -205,7 +204,7 @@ typedef struct {
     int unk_04;
     u16 *unk_08;
     NamingScreenArgs *unk_0C;
-    Strbuf *unk_10;
+    String *unk_10;
 } UnkStruct_0203DE98;
 
 typedef struct {
@@ -791,17 +790,17 @@ UnkStruct_02097728 *sub_0203D984(FieldSystem *fieldSystem, Pokemon *param1, int 
     return v0;
 }
 
-static void sub_0203D9A8(FieldSystem *fieldSystem, UnkStruct_0203D9B8 *param1)
+static void OpenPoffinCaseApp(FieldSystem *fieldSystem, PoffinCaseAppData *poffinCaseAppData)
 {
-    FieldSystem_StartChildProcess(fieldSystem, &Unk_020F6890, param1);
+    FieldSystem_StartChildProcess(fieldSystem, &gPoffinCaseAppTemplate, poffinCaseAppData);
 }
 
-UnkStruct_0203D9B8 *sub_0203D9B8(FieldSystem *fieldSystem, int heapID)
+PoffinCaseAppData *FieldSystem_LaunchPoffinCaseApp(FieldSystem *fieldSystem, int heapID)
 {
-    UnkStruct_0203D9B8 *v0 = sub_020989DC(FieldSystem_GetSaveData(fieldSystem), heapID);
-    sub_0203D9A8(fieldSystem, v0);
+    PoffinCaseAppData *appData = PoffinCaseAppData_New(FieldSystem_GetSaveData(fieldSystem), heapID);
+    OpenPoffinCaseApp(fieldSystem, appData);
 
-    return v0;
+    return appData;
 }
 
 void sub_0203D9D8(FieldSystem *fieldSystem, UnkStruct_ov90_021D0D80 *param1)
@@ -1155,11 +1154,11 @@ static BOOL sub_0203DE98(FieldTask *param0)
         break;
     case 3:
         if (v2->unk_0C->type == NAMING_SCREEN_TYPE_POKEMON) {
-            if (Strbuf_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
+            if (String_Compare(v2->unk_0C->textInputStr, v2->unk_10) == 0) {
                 v2->unk_0C->returnCode = 1;
             }
         } else if (v2->unk_0C->type == NAMING_SCREEN_TYPE_GROUP) {
-            const u16 *v3 = Strbuf_GetData(v2->unk_0C->textInputStr);
+            const u16 *v3 = String_GetData(v2->unk_0C->textInputStr);
             RecordMixedRNG *v4 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
 
             if (RecordMixedRNG_DoesCollectionContainGroup(v4, v3)) {
@@ -1178,7 +1177,7 @@ static BOOL sub_0203DE98(FieldTask *param0)
         }
 
         NamingScreenArgs_Free(v2->unk_0C);
-        Strbuf_Free(v2->unk_10);
+        String_Free(v2->unk_10);
         Heap_Free(v2);
 
         return 1;
@@ -1206,7 +1205,7 @@ static void sub_0203DF68(FieldTask *param0)
     } break;
     case NAMING_SCREEN_TYPE_GROUP: {
         RecordMixedRNG *v5 = SaveData_GetRecordMixedRNG(fieldSystem->saveData);
-        RecordMixedRNG_GetEntryNameAsStrbuf(v5, 0, 0, v1->unk_0C->textInputStr);
+        RecordMixedRNG_GetEntryNameAsString(v5, 0, 0, v1->unk_0C->textInputStr);
     } break;
     case NAMING_SCREEN_TYPE_UNK6: {
         MiscSaveBlock *v6 = SaveData_MiscSaveBlock(fieldSystem->saveData);
@@ -1234,7 +1233,7 @@ void sub_0203DFE8(
     v2->unk_04 = param4;
     v2->unk_08 = param6;
     v2->unk_0C = NamingScreenArgs_Init(HEAP_ID_FIELD2, type, param2, param3, SaveData_GetOptions(fieldSystem->saveData));
-    v2->unk_10 = Strbuf_Init(12, HEAP_ID_FIELD2);
+    v2->unk_10 = String_Init(12, HEAP_ID_FIELD2);
 
     switch (type) {
     case NAMING_SCREEN_TYPE_POKEMON:
@@ -1243,15 +1242,15 @@ void sub_0203DFE8(
         v2->unk_0C->monForm = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
         if (param5 != NULL) {
-            Strbuf_CopyChars(v2->unk_10, param5);
+            String_CopyChars(v2->unk_10, param5);
         }
         break;
     case NAMING_SCREEN_TYPE_GROUP:
-        Strbuf_CopyChars(v2->unk_10, param5);
+        String_CopyChars(v2->unk_10, param5);
         break;
     default:
         if (param5 != NULL) {
-            Strbuf_CopyChars(v2->unk_0C->textInputStr, param5);
+            String_CopyChars(v2->unk_0C->textInputStr, param5);
         }
         break;
     }

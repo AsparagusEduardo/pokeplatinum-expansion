@@ -41,7 +41,7 @@
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -283,7 +283,7 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
 
     v0->unk_14.unk_84 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_DANCE_COMPETITION, HEAP_ID_23);
     v0->unk_14.unk_88 = StringTemplate_Default(HEAP_ID_23);
-    v0->unk_14.unk_8C = Strbuf_Init(2 * 160, HEAP_ID_23);
+    v0->unk_14.unk_8C = String_Init(2 * 160, HEAP_ID_23);
     v0->unk_14.unk_94 = sub_02012744(3 * 3, HEAP_ID_23);
 
     {
@@ -311,7 +311,7 @@ int ov17_0223DAD0(ApplicationManager *appMan, int *param1)
     ov17_0224B59C(v0);
 
     sub_02039734();
-    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_UNK_17, FADE_TYPE_UNK_37, COLOR_BLACK, 6, 1, HEAP_ID_23);
+    StartScreenFade(FADE_MAIN_THEN_SUB, FADE_TYPE_CIRCLE_IN, FADE_TYPE_UNK_37, COLOR_BLACK, 6, 1, HEAP_ID_23);
 
     v0->unk_04 = SysTask_Start(ov17_0223E1FC, v0, 80000);
     v0->unk_1098 = 1;
@@ -431,7 +431,7 @@ int ov17_0223DF0C(ApplicationManager *appMan, int *param1)
     PaletteData_FreeBuffer(v0->unk_14.unk_90, 2);
     PaletteData_FreeBuffer(v0->unk_14.unk_90, 3);
     PaletteData_Free(v0->unk_14.unk_90);
-    Strbuf_Free(v0->unk_14.unk_8C);
+    String_Free(v0->unk_14.unk_8C);
     StringTemplate_Free(v0->unk_14.unk_88);
     MessageLoader_Free(v0->unk_14.unk_84);
     Heap_Free(v0->unk_14.unk_60);

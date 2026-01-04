@@ -33,7 +33,7 @@
 #include "sound_playback.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "string_template.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -181,7 +181,7 @@ int ov17_0223CB1C(ApplicationManager *appMan, int *param1)
 
     v0->unk_0C.unk_38 = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_CONTEST_VISUAL_COMPETITION, HEAP_ID_22);
     v0->unk_0C.unk_3C = StringTemplate_Default(HEAP_ID_22);
-    v0->unk_0C.unk_40 = Strbuf_Init(2 * 160, HEAP_ID_22);
+    v0->unk_0C.unk_40 = String_Init(2 * 160, HEAP_ID_22);
 
     {
         NARC *v1;
@@ -255,7 +255,7 @@ int ov17_0223CDDC(ApplicationManager *appMan, int *param1)
             } else if ((v1 == 3) && (v0->unk_F14 == 1)) {
                 *param1 = 2;
                 MI_CpuClear8(&v0->unk_F0C, sizeof(UnkStruct_ov17_0223D60C));
-                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, HEAP_ID_22);
+                StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, HEAP_ID_22);
                 break;
             }
         }
@@ -266,7 +266,7 @@ int ov17_0223CDDC(ApplicationManager *appMan, int *param1)
         if ((v0->unk_F14 == 1) && (ov17_0224F3D0(&v0->unk_4F8) == 0) && (sub_02094EDC(v0->unk_00) == 0)) {
             *param1 = 2;
             MI_CpuClear8(&v0->unk_F0C, sizeof(UnkStruct_ov17_0223D60C));
-            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_UNK_16, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, HEAP_ID_22);
+            StartScreenFade(FADE_SUB_THEN_MAIN, FADE_TYPE_CIRCLE_OUT, FADE_TYPE_UNK_36, COLOR_BLACK, 6, 1, HEAP_ID_22);
         }
         break;
     case 2:
@@ -325,7 +325,7 @@ int ov17_0223CF8C(ApplicationManager *appMan, int *param1)
     PaletteData_FreeBuffer(v0->unk_0C.unk_44, 3);
     PaletteData_Free(v0->unk_0C.unk_44);
     StringTemplate_Free(v0->unk_0C.unk_3C);
-    Strbuf_Free(v0->unk_0C.unk_40);
+    String_Free(v0->unk_0C.unk_40);
     MessageLoader_Free(v0->unk_0C.unk_38);
     Heap_Free(v0->unk_0C.unk_24);
     SysTask_Done(v0->unk_04);

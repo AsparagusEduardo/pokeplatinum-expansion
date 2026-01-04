@@ -26,7 +26,7 @@
 #include "party.h"
 #include "player_avatar.h"
 #include "render_window.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "system.h"
 #include "text.h"

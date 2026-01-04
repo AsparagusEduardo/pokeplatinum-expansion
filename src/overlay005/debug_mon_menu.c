@@ -25,7 +25,7 @@
 #include "party.h"
 #include "pc_boxes.h"
 #include "render_window.h"
-#include "strbuf.h"
+#include "string_gf.h"
 #include "sys_task.h"
 #include "system_vars.h"
 #include "system.h"
@@ -453,9 +453,9 @@ void DebugMonMenu_Free(DebugMonMenu *monMenu)
 
 static void DebugMonMenu_PrintString(Window *window, MessageLoader *msgLoader, u32 entryID, u32 x, u32 y, u32 delay, u32 color)
 {
-    Strbuf *buf = MessageLoader_GetNewStrbuf(msgLoader, entryID);
-    Text_AddPrinterWithParamsAndColor(window, 0, buf, x, y, delay, color, NULL);
-    Strbuf_Free(buf);
+    String *string = MessageLoader_GetNewString(msgLoader, entryID);
+    Text_AddPrinterWithParamsAndColor(window, 0, string, x, y, delay, color, NULL);
+    String_Free(string);
 }
 
 #define DISPLAY_INFO_PRINT(info)                                                                                                          \
@@ -620,20 +620,20 @@ static u8 DebugMonMenu_AddMon(DebugMonMenu *monMenu)
     } else if (monMenu->mode == DEBUG_MON_MENU_MODE_EDIT) {
         party = SaveData_GetParty(monMenu->sys->saveData);
 
-        Strbuf *buf;
+        String *string;
 
         if (monMenu->mon.stats[DEBUG_MON_IS_EGG]) {
-            buf = MessageLoader_GetNewStrbuf(monMenu->msgLoader, 112);
-            Pokemon_SetValue(monMenu->mon.monData, MON_DATA_NICKNAME_STRING, buf);
-            Strbuf_Free(buf);
+            string = MessageLoader_GetNewString(monMenu->msgLoader, 112);
+            Pokemon_SetValue(monMenu->mon.monData, MON_DATA_NICKNAME_STRING, string);
+            String_Free(string);
         }
 
         Pokemon *mon = Party_GetPokemonBySlotIndex(party, monMenu->partySlot);
 
-        buf = Strbuf_Init(16, HEAP_ID_APPLICATION);
-        Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, buf);
-        Pokemon_SetValue(monMenu->mon.monData, MON_DATA_OT_NAME_STRING, buf);
-        Strbuf_Free(buf);
+        string = String_Init(16, HEAP_ID_APPLICATION);
+        Pokemon_GetValue(mon, MON_DATA_OT_NAME_STRING, string);
+        Pokemon_SetValue(monMenu->mon.monData, MON_DATA_OT_NAME_STRING, string);
+        String_Free(string);
 
         u8 gender = Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL);
         Pokemon_SetValue(monMenu->mon.monData, MON_DATA_OT_GENDER, &gender);
@@ -787,17 +787,17 @@ static void DebugMon_CalcFullStats(DebugMonMenu *monMenu, DebugMon *mon)
     Pokemon_SetValue(mon->monData, MON_DATA_MET_DAY, &mon->stats[DEBUG_MON_HATCH_DAY]);
     Pokemon_SetValue(mon->monData, MON_DATA_IS_EGG, &mon->stats[DEBUG_MON_IS_EGG]);
 
-    Strbuf *buf;
+    String *string;
 
     if (mon->stats[DEBUG_MON_IS_EGG]) {
-        buf = MessageLoader_GetNewStrbuf(monMenu->msgLoader, dmm_debug_egg_name);
-        Pokemon_SetValue(mon->monData, MON_DATA_NICKNAME_STRING, buf);
-        Strbuf_Free(buf);
+        string = MessageLoader_GetNewString(monMenu->msgLoader, dmm_debug_egg_name);
+        Pokemon_SetValue(mon->monData, MON_DATA_NICKNAME_STRING, string);
+        String_Free(string);
     }
 
-    buf = MessageLoader_GetNewStrbuf(monMenu->msgLoader, dmm_debug_ot);
-    Pokemon_SetValue(mon->monData, MON_DATA_OT_NAME_STRING, buf);
-    Strbuf_Free(buf);
+    string = MessageLoader_GetNewString(monMenu->msgLoader, dmm_debug_ot);
+    Pokemon_SetValue(mon->monData, MON_DATA_OT_NAME_STRING, string);
+    String_Free(string);
 
     Pokemon_CalcLevelAndStats(mon->monData);
 }
@@ -1164,28 +1164,28 @@ static u8 DebugMonValue_Display(DebugMonMenu *monMenu, u8 statID, u32 color, u8 
 
 static void DebugMonValue_PrintStr(Window *window, MessageLoader *msgLoader, u32 entryID, u32 x, u32 y, u32 delay, u32 color)
 {
-    Strbuf *buf = MessageLoader_GetNewStrbuf(msgLoader, entryID);
-    Text_AddPrinterWithParamsAndColor(window, 0, buf, x, y, delay, color, NULL);
-    Strbuf_Free(buf);
+    String *string = MessageLoader_GetNewString(msgLoader, entryID);
+    Text_AddPrinterWithParamsAndColor(window, 0, string, x, y, delay, color, NULL);
+    String_Free(string);
 }
 
 static void DebugMonValue_PrintStrExpanded(Window *window, MessageLoader *msgLoader, StringTemplate *strTemplate, u32 entryID, u32 x, u32 y, u32 delay, u32 color)
 {
-    Strbuf *buf = MessageLoader_GetNewStrbuf(msgLoader, entryID);
-    Strbuf *bufExp = Strbuf_Init(128, HEAP_ID_APPLICATION);
+    String *string = MessageLoader_GetNewString(msgLoader, entryID);
+    String *stringExp = String_Init(128, HEAP_ID_APPLICATION);
 
-    StringTemplate_Format(strTemplate, bufExp, buf);
+    StringTemplate_Format(strTemplate, stringExp, string);
 
-    Text_AddPrinterWithParamsAndColor(window, 0, bufExp, x, y, delay, color, NULL);
+    Text_AddPrinterWithParamsAndColor(window, 0, stringExp, x, y, delay, color, NULL);
 
-    Strbuf_Free(buf);
-    Strbuf_Free(bufExp);
+    String_Free(string);
+    String_Free(stringExp);
 }
 
 static void DebugMonValue_PrintNum(Window *window, MessageLoader *msgLoader, StringTemplate *strTemplate, DebugMon *mon, u32 num, u32 digits, u32 x, u32 y, u32 delay, u32 color)
 {
-    Strbuf *buf = MessageLoader_GetNewStrbuf(msgLoader, dmm_template_number);
-    Strbuf *bufExp = Strbuf_Init(32, HEAP_ID_APPLICATION);
+    String *string = MessageLoader_GetNewString(msgLoader, dmm_template_number);
+    String *stringExp = String_Init(32, HEAP_ID_APPLICATION);
 
     u32 i;
     u32 tmp = 1;
@@ -1197,20 +1197,20 @@ static void DebugMonValue_PrintNum(Window *window, MessageLoader *msgLoader, Str
     u32 size = 0;
     for (i = digits; i >= 1; i--) {
         StringTemplate_SetNumber(strTemplate, 0, num / tmp, 1, PADDING_MODE_ZEROES, CHARSET_MODE_EN);
-        StringTemplate_Format(strTemplate, bufExp, buf);
+        StringTemplate_Format(strTemplate, stringExp, string);
 
-        Text_AddPrinterWithParamsAndColor(window, 0, bufExp, x + size, y, TEXT_SPEED_NO_TRANSFER, DebugMonValue_GetColor(mon, i - 1, color), NULL);
+        Text_AddPrinterWithParamsAndColor(window, 0, stringExp, x + size, y, TEXT_SPEED_NO_TRANSFER, DebugMonValue_GetColor(mon, i - 1, color), NULL);
         num %= tmp;
         tmp /= 10;
-        size += Font_CalcStrbufWidth(0, bufExp, 0);
+        size += Font_CalcStringWidth(0, stringExp, 0);
     }
 
     if (delay == 0) {
         Window_ScheduleCopyToVRAM(window);
     }
 
-    Strbuf_Free(buf);
-    Strbuf_Free(bufExp);
+    String_Free(string);
+    String_Free(stringExp);
 }
 
 static u32 DebugMonValue_GetColor(DebugMon *mon, u8 digit, u32 color)
@@ -1228,11 +1228,11 @@ static u32 DebugMonValue_GetColor(DebugMon *mon, u8 digit, u32 color)
 static void DebugMonValue_PrintSpeciesName(Window *window, u32 species, u32 x, u32 y, u32 delay, u32 color)
 {
     MessageLoader *msgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_APPLICATION);
-    Strbuf *buf = MessageLoader_GetNewStrbuf(msgLoader, species);
+    String *string = MessageLoader_GetNewString(msgLoader, species);
 
-    Text_AddPrinterWithParamsAndColor(window, 0, buf, x, y, delay, color, NULL);
+    Text_AddPrinterWithParamsAndColor(window, 0, string, x, y, delay, color, NULL);
 
-    Strbuf_Free(buf);
+    String_Free(string);
     MessageLoader_Free(msgLoader);
 }
 
