@@ -4,8 +4,8 @@
 #include "struct_decls/struct_0209B75C_decl.h"
 
 #include "overlay104/frontier_script_context.h"
+#include "overlay104/ov104_02231F74.h"
 #include "overlay104/struct_ov104_0222E8C8.h"
-#include "overlay104/struct_ov104_02232B5C_decl.h"
 
 #include "bg_window.h"
 #include "menu.h"
@@ -17,26 +17,26 @@ struct UnkStruct_ov104_022320B4_t {
     UnkStruct_0209B75C *unk_00;
     FrontierScriptContext *unk_04[8];
     UnkStruct_ov104_0222E8C8 unk_24;
-    int heapID;
+    enum HeapID heapID;
     u8 unk_38;
     MessageLoader *unk_3C;
     u8 *unk_40;
-    StringTemplate *unk_44;
-    String *unk_48;
-    String *unk_4C;
-    u8 unk_50;
+    StringTemplate *strTemplate;
+    String *string;
+    String *fmtString;
+    u8 printerID;
     s8 unk_51;
     u16 unk_52;
     int unk_54;
     u8 unk_58;
     u8 unk_59;
-    u8 unk_5A;
+    u8 isMsgBoxOpen;
     BOOL unk_5C;
-    UnkStruct_ov104_02232B5C *unk_60;
-    Window unk_64;
-    Menu *unk_74;
+    FrontierMenuManager *unk_60;
+    Window msgWindow;
+    Menu *menu;
     u16 *unk_78;
-    void *unk_7C;
+    void *savingIcon;
     void *unk_80;
     void *unk_84;
     Window unk_88;

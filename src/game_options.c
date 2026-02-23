@@ -10,7 +10,7 @@
 #include "system.h"
 #include "text.h"
 
-Options *Options_New(u32 heapID)
+Options *Options_New(enum HeapID heapID)
 {
     Options *options = Heap_Alloc(heapID, sizeof(Options));
     Options_Init(options);

@@ -9,7 +9,6 @@
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_defs/battle_frontier.h"
 #include "struct_defs/struct_0206BC70.h"
-#include "struct_defs/underground.h"
 
 #include "applications/party_menu/defs.h"
 #include "applications/party_menu/main.h"
@@ -27,7 +26,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "script_manager.h"
-#include "unk_0202854C.h"
+#include "underground.h"
 #include "unk_0202D05C.h"
 #include "unk_0202D778.h"
 #include "unk_0203061C.h"
@@ -66,7 +65,7 @@ typedef struct {
     u16 unk_02;
 } UnkStruct_0206BD88;
 
-static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int heapID)
+static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, enum HeapID heapID)
 {
     u8 v0;
     SaveData *saveData;
@@ -125,7 +124,7 @@ static int sub_0206BA84(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem)
     return 2;
 }
 
-static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, int heapID)
+static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, enum HeapID heapID)
 {
     PokemonSummary *v0;
     SaveData *saveData;
@@ -146,7 +145,7 @@ static int sub_0206BAE0(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, in
     v0->monMax = Party_GetCurrentCount(v0->monData);
     v0->move = 0;
     v0->mode = param0->unk_09;
-    v0->specialRibbons = sub_0202D79C(saveData);
+    v0->specialRibbons = SaveData_GetRibbons(saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(v0, v2);
     PokemonSummaryScreen_SetPlayerProfile(v0, SaveData_GetTrainerInfo(saveData));

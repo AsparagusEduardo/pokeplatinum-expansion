@@ -17,14 +17,14 @@
     ScriptEntryEnd
 
 _0032:
-    SetFlag FLAG_UNK_0x09E5
+    SetFlag FLAG_FIRST_ARRIVAL_BATTLE_PARK
     End
 
 _0038:
     LockAll
     SetVar VAR_UNK_0x4113, 1
-    SetFlag FLAG_UNK_0x0290
-    SetFlag FLAG_UNK_0x0291
+    SetFlag FLAG_HIDE_JUBILIFE_TV_3F_GLOBAL_RANKING_ROOM_WORKER
+    SetFlag FLAG_HIDE_JUBILIFE_TV_3F_GROUP_RANKING_ROOM_WORKER
     Call _02C1
     Message 0
     CloseMessage

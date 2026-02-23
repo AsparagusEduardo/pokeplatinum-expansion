@@ -18,6 +18,11 @@
 
 #include "savedata.h"
 
+#define BATTLE_POINTS_FUNC_NONE 0
+#define BATTLE_POINTS_FUNC_SET  1
+#define BATTLE_POINTS_FUNC_ADD  5
+#define BATTLE_POINTS_FUNC_SUB  6
+
 int sub_0202D05C(void);
 void sub_0202D060(UnkStruct_0202D060 *param0);
 void sub_0202D06C(UnkStruct_0202D750 *param0);
@@ -28,7 +33,7 @@ void sub_0202D140(UnkStruct_0202D060 *param0, int param1, const void *param2);
 void sub_0202D1E8(UnkStruct_0202D060 *param0, u8 param1, u16 param2, u16 param3);
 BOOL sub_0202D214(UnkStruct_0202D060 *param0);
 void sub_0202D21C(UnkStruct_0202D060 *param0, BOOL param1);
-u16 sub_0202D230(UnkStruct_0202D750 *param0, u16 param1, int param2);
+u16 BattlePoints_ApplyFuncAndGet(UnkStruct_0202D750 *param0, u16 value, int func);
 u8 sub_0202D288(UnkStruct_0202D750 *param0, int param1);
 u8 sub_0202D2C0(UnkStruct_0202D750 *param0, int param1);
 void sub_0202D2F0(UnkStruct_0202D750 *param0, int param1, FrontierPokemonDataDTO *param2);
@@ -53,7 +58,7 @@ void sub_0202D628(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1);
 void sub_0202D63C(UnkStruct_0202D764 *param0, FrontierDataDTO *param1, const u8 param2);
 void sub_0202D6DC(UnkStruct_0202D764 *param0, UnkStruct_ov96_0223B450_sub2 *param1, u8 param2, u8 param3);
 void sub_0202D708(UnkStruct_0202D764 *param0, UnkStruct_02049A68 *param1);
-UnkStruct_ov90_021D1750 *sub_0202D71C(UnkStruct_0202D764 *, int heapID);
+UnkStruct_ov90_021D1750 *sub_0202D71C(UnkStruct_0202D764 *, enum HeapID heapID);
 UnkStruct_0202D060 *sub_0202D740(SaveData *saveData);
 UnkStruct_0202D750 *sub_0202D750(SaveData *saveData);
 UnkStruct_0202D764 *sub_0202D764(SaveData *saveData);

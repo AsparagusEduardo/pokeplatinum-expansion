@@ -26,13 +26,13 @@
 #include "party.h"
 #include "player_avatar.h"
 #include "render_window.h"
+#include "spawn_locations.h"
 #include "string_gf.h"
 #include "sys_task.h"
 #include "system.h"
 #include "text.h"
 #include "screen_fade.h"
 #include "unk_0200679C.h"
-#include "unk_0203A7D8.h"
 #include "unk_0203D1B8.h"
 #include "unk_02092494.h"
 #include "vars_flags.h"
@@ -316,7 +316,7 @@ static void Task_DebugMenu_Fly(SysTask *task, void *data)
         map = (TownMapContext *)fly->data;
 
         // get warp data for heal spot?
-        u16 warpID = sub_0203A8A0(map->flyLocationMapHeader, map->flyLocationX, map->flyLocationZ);
+        u16 warpID = GetSpawnIdByMapAndCoords(map->flyLocationMapHeader, map->flyLocationX, map->flyLocationZ);
 
         Location destloc;
         // set location from warp?

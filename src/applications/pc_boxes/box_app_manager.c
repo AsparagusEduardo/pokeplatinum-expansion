@@ -32,6 +32,7 @@
 
 #include "bag.h"
 #include "bag_context.h"
+#include "chatot_cry.h"
 #include "dexmode_checker.h"
 #include "enums.h"
 #include "game_options.h"
@@ -54,7 +55,6 @@
 #include "system.h"
 #include "touch_screen.h"
 #include "touch_screen_actions.h"
-#include "unk_0202CC64.h"
 #include "unk_0202D778.h"
 
 #include "constdata/const_020F410C.h"
@@ -268,7 +268,7 @@ BOOL BoxAppMan_Exit(ApplicationManager *appMan, int *state)
     if (Party_HasSpecies(boxAppMan->party, SPECIES_CHATOT) == FALSE) {
         ChatotCry *chatotCry = SaveData_GetChatotCry(boxAppMan->saveData);
 
-        ResetChatotCryDataStatus(chatotCry);
+        ChatotCry_ResetStatus(chatotCry);
     }
 
     BoxGraphics_Free(boxAppMan->unk_114);
@@ -865,7 +865,7 @@ static void BoxAppMan_InitSummary(BoxApplicationManager *boxAppMan)
     boxAppMan->monSummary.chatotCry = NULL;
     boxAppMan->monSummary.dexMode = SaveData_GetDexMode(boxAppMan->saveData);
     boxAppMan->monSummary.showContest = PokemonSummaryScreen_ShowContestData(boxAppMan->saveData);
-    boxAppMan->monSummary.specialRibbons = sub_0202D79C(boxAppMan->saveData);
+    boxAppMan->monSummary.specialRibbons = SaveData_GetRibbons(boxAppMan->saveData);
 
     PokemonSummaryScreen_FlagVisiblePages(&boxAppMan->monSummary, summaryPages);
     PokemonSummaryScreen_SetPlayerProfile(&boxAppMan->monSummary, SaveData_GetTrainerInfo(boxAppMan->saveData));
