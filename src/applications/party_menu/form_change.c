@@ -24,6 +24,7 @@
 #include "string_template.h"
 #include "text.h"
 #include "unk_0202419C.h"
+#include "unk_0203D1B8.h"
 
 #include "res/graphics/party_menu/form_changes/form_change_effects.naix.h"
 #include "res/text/bank/party_menu.h"
@@ -60,7 +61,7 @@ void PartyMenuFormChange_Init(PartyMenuApplication *app)
 BOOL PartyMenuFormChange_ChangeForm(PartyMenuApplication *app)
 {
     PartyMenuFormChange *formChanger = app->formChanger;
-    Pokemon *mon = Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot);
+    Pokemon *mon = PartyMenuApp_GetCurrentMon(app);
 
     switch (formChanger->state) {
     case 0:

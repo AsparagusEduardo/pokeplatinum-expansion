@@ -29,6 +29,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "text.h"
+#include "unk_0203D1B8.h"
 #include "unk_0208C098.h"
 
 #include "res/text/bank/party_menu.h"
@@ -818,7 +819,7 @@ void PartyMenu_LoadContextMenuPrompt(PartyMenuApplication *application)
     } else if (application->partyMenu->mode == PARTY_MENU_MODE_SELECT_EGG && application->partyMembers[application->currPartySlot].isEgg == TRUE) {
         MessageLoader_GetString(application->messageLoader, PartyMenu_Text_PromptEgg, application->tmpString);
     } else {
-        Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        Pokemon *mon = PartyMenuApp_GetCurrentMon(application);
         String *fmtString = MessageLoader_GetNewString(application->messageLoader, PartyMenu_Text_PromptPokemon);
 
         StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
@@ -1042,7 +1043,7 @@ void PartyMenu_PrintMemberComment_CanUseEvoItem(PartyMenuApplication *applicatio
 
     PartyMenu_PrintMemberLevel(application, slot);
 
-    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+    Pokemon *mon = PartyMenuApp_GetMonBySlotIndex(application, slot);
     if (Pokemon_GetEvolutionTargetSpecies(NULL, mon, EVO_CLASS_BY_ITEM, application->partyMenu->usedItemID, NULL) == SPECIES_NONE) {
         PrintMemberEvoComment(application, slot, EVO_COMMENT_UNABLE);
     } else {
@@ -1063,7 +1064,7 @@ void PartyMenu_PrintMemberComment_CanLearnMove(PartyMenuApplication *application
 
     PartyMenu_PrintMemberLevel(application, slot);
 
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+    Pokemon *v0 = PartyMenuApp_GetMonBySlotIndex(application, slot);
     u8 result = PartyMenu_CanMonLearnMove(application, v0);
     if (result == MON_MOVE_RESULT_CANNOT_LEARN) {
         PrintMemberMoveComment(application, slot, MOVE_COMMENT_UNABLE);
@@ -1359,7 +1360,7 @@ static void PrintMemberSelectionComment(PartyMenuApplication *application, u8 sl
 
 void PartyMenu_DrawLevelUpStatIncreases(PartyMenuApplication *application)
 {
-    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    Pokemon *mon = PartyMenuApp_GetCurrentMon(application);
     u16 stats[STAT_MAX] = {
         Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL),
         Pokemon_GetValue(mon, MON_DATA_ATK, NULL),

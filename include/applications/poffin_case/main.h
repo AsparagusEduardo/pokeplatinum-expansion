@@ -49,6 +49,7 @@ typedef struct PoffinCaseAppData {
     PoffinCase *poffinCase;
     TrainerInfo *trainerInfo;
     Party *party;
+    SaveData *saveData;
     Bag *bag;
     Options *options;
     PoffinCaseAppItem poffins[MAX_POFFINS];

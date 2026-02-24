@@ -1199,7 +1199,7 @@ static int sub_02073524(UnkStruct_02072334 *param0, int mode)
         partyMenu = Heap_Alloc(param0->heapID, sizeof(PartyMenu));
         MI_CpuClear8(partyMenu, sizeof(PartyMenu));
 
-        partyMenu->party = SaveData_GetParty(FieldSystem_GetSaveData(param0->fieldSystem));
+        partyMenu->saveData = FieldSystem_GetSaveData(param0->fieldSystem);
         partyMenu->bag = SaveData_GetBag(FieldSystem_GetSaveData(param0->fieldSystem));
         partyMenu->options = SaveData_GetOptions(FieldSystem_GetSaveData(param0->fieldSystem));
         partyMenu->mailbox = SaveData_GetMailbox(param0->fieldSystem->saveData);

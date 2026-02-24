@@ -61,6 +61,7 @@
 #include "touch_screen.h"
 #include "tv_episode_segment.h"
 #include "unk_020393C8.h"
+#include "unk_0203D1B8.h"
 #include "unk_0206B9D8.h"
 #include "vram_transfer.h"
 
@@ -1090,11 +1091,12 @@ u8 sub_0207EF04(PartyMenuApplication *application, u8 param1)
 u8 PartyMenu_LoadMember(PartyMenuApplication *application, u8 slot)
 {
     application->partyMembers[slot].isPresent = FALSE;
-    if (Party_GetCurrentCount(application->partyMenu->party) <= slot) {
+    Party *party = PartyMenu_GetParty(application->partyMenu);
+    if (Party_GetCurrentCount(party) <= slot) {
         return FALSE;
     }
 
-    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     if (species == SPECIES_NONE) {
         return FALSE;
@@ -1415,7 +1417,7 @@ void PartyMenu_UpdateSlotPalette(PartyMenuApplication *application, u8 slot)
     Pokemon *mon;
     u8 palette;
 
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+    mon = PartyMenuApp_GetMonBySlotIndex(application, slot);
 
     if (application->inSwitchMode == TRUE && (slot == application->currPartySlot || slot == application->switchTargetSlot)) {
         palette = 3 + 4;
@@ -1791,7 +1793,7 @@ static void sub_0207FFC8(PartyMenuApplication *application)
 
 static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8 *menuEntriesBuffer)
 {
-    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    Pokemon *mon = PartyMenuApp_GetCurrentMon(application);
     u16 move;
     u8 fieldMoveIndex = 0, i, count = 0, fieldEffect;
 
@@ -1963,7 +1965,7 @@ static u8 sub_0208031C(PartyMenuApplication *application, u8 *param1)
 u8 PartyMenu_CheckEligibility(PartyMenuApplication *application, u8 partySlot)
 {
     if (application->partyMenu->battleRegulation != NULL) {
-        Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, partySlot);
+        Pokemon *mon = PartyMenuApp_GetMonBySlotIndex(application, partySlot);
         if (BattleRegulation_ValidatePokemon(application->partyMenu->battleRegulation, mon, application->heightWeight) == FALSE) {
             return PARTY_MENU_SELECTION_INELIGIBLE;
         }
@@ -2149,7 +2151,7 @@ static int HandleGameWindowEvent(PartyMenuApplication *application)
     }
 
     if (application->partyMenu->battleRegulation != NULL) {
-        switch (BattleRegulation_ValidatePartySelection(application->partyMenu->battleRegulation, application->partyMenu->party, application->heightWeight, application->partyMenu->selectionOrder)) {
+        switch (BattleRegulation_ValidatePartySelection(application->partyMenu->battleRegulation, PartyMenu_GetParty(application->partyMenu), application->heightWeight, application->partyMenu->selectionOrder)) {
         case BATTLE_REGULATION_VALIDATION_SUCCESS:
             break;
 
@@ -2505,7 +2507,7 @@ static int ProcessWindowInput(PartyMenuApplication *application)
             void *journalEntryLocationEvent;
             FieldSystem *fieldSystem;
 
-            mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+            mon = PartyMenuApp_GetCurrentMon(application);
             v1 = MessageLoader_GetNewString(application->messageLoader, 64);
 
             StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
@@ -2569,7 +2571,7 @@ static BOOL UpdatePokemonStatus(PartyMenuApplication *application, u8 slot, s8 p
         Pokemon *mon;
         u32 v1;
 
-        mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+        mon = PartyMenuApp_GetMonBySlotIndex(application, slot);
         v1 = application->partyMembers[slot].curHP;
         Pokemon_SetValue(mon, MON_DATA_HP, &v1);
         return 1;
@@ -2625,9 +2627,10 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
 static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
 {
     ItemData *itemData = Item_Load(app->partyMenu->usedItemID, 0, HEAP_ID_PARTY_MENU);
+    Party *party = PartyMenuApp_GetParty(app);
 
     if (app->partyMenu->usedItemID == ITEM_GRACIDEA
-        && Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot)) == TRUE) {
+        && Pokemon_CanShayminSkyForm(Party_GetPokemonBySlotIndex(party, app->currPartySlot)) == TRUE) {
         app->partyMenu->evoTargetSpecies = 1;
         Heap_Free(itemData);
         PartyMenu_SetupFormChangeAnim(app);
@@ -2646,11 +2649,11 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
         return 6;
     }
 
-    if (Party_CheckItemEffectsOnMember(app->partyMenu->party, app->partyMenu->usedItemID, app->currPartySlot, 0, HEAP_ID_PARTY_MENU) == 1) {
+    if (Party_CheckItemEffectsOnMember(party, app->partyMenu->usedItemID, app->currPartySlot, 0, HEAP_ID_PARTY_MENU) == 1) {
         Bag_TryRemoveItem(app->partyMenu->bag, app->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
 
         if (Item_Get(itemData, ITEM_PARAM_EVOLVE) != 0) {
-            Pokemon *mon = Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot);
+            Pokemon *mon = Party_GetPokemonBySlotIndex(party, app->currPartySlot);
 
             app->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(NULL, mon, EVO_CLASS_BY_ITEM, app->partyMenu->usedItemID, &app->partyMenu->evoType);
             app->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_EVOLVE_BY_ITEM;
@@ -2659,7 +2662,7 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
         }
 
         if ((Item_IsHerbalMedicine(app->partyMenu->usedItemID) == 1) && (app->partyMenu->broadcast != NULL)) {
-            Pokemon *v2 = Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot);
+            Pokemon *v2 = Party_GetPokemonBySlotIndex(party, app->currPartySlot);
             FieldSystem_SaveTVEpisodeSegment_HerbalMedicineTrainerSightingDummy(app->partyMenu->broadcast, v2, app->partyMenu->usedItemID);
         }
 
@@ -2692,7 +2695,7 @@ static int ProcessItemApplication(PartyMenuApplication *application)
     int v2 = -1, v3;
     FieldSystem *fieldSystem;
 
-    v0 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    v0 = PartyMenuApp_GetCurrentMon(application);
     v1 = &application->windows[34];
     fieldSystem = application->partyMenu->fieldSystem;
 
@@ -2837,7 +2840,7 @@ static int ProcessPokemonItemSwap(PartyMenuApplication *application)
 
     switch (Menu_ProcessInputAndHandleExit(application->contextMenu, 12)) {
     case 0: {
-        Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        Pokemon *mon = PartyMenuApp_GetCurrentMon(application);
         Window *v3 = &application->windows[34];
         u32 v4 = application->partyMenu->usedItemID;
         u32 v5 = application->partyMembers[application->currPartySlot].heldItem;
@@ -2901,7 +2904,7 @@ static int UpdatePokemonFormWithItem(PartyMenuApplication *application)
     u32 item;
     int v4, v5;
 
-    v0 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    v0 = PartyMenuApp_GetCurrentMon(application);
     v1 = &application->windows[34];
     v2 = application->partyMenu->usedItemID;
     item = application->partyMembers[application->currPartySlot].heldItem;

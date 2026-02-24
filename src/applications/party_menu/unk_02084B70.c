@@ -34,6 +34,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "unk_0203D1B8.h"
 
 #include "res/text/bank/party_menu.h"
 
@@ -228,7 +229,7 @@ static void BufferUsedItemMessage(PartyMenuApplication *application, u16 param1,
     Pokemon *mon;
     String *string;
 
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    mon = PartyMenuApp_GetCurrentMon(application);
     StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
 
     switch (sub_02084B70(param1)) {
@@ -423,7 +424,7 @@ static int sub_02085384(void *param0)
 {
     PartyMenuApplication *application = (PartyMenuApplication *)param0;
 
-    Party_ApplyItemEffectsToMember(application->partyMenu->party, application->partyMenu->usedItemID, application->currPartySlot, 0, GetCurrentMapLabel(application), HEAP_ID_PARTY_MENU);
+    Party_ApplyItemEffectsToMember(PartyMenuApp_GetParty(application), application->partyMenu->usedItemID, application->currPartySlot, 0, GetCurrentMapLabel(application), HEAP_ID_PARTY_MENU);
     PartyMenu_LoadMember(application, application->currPartySlot);
     PartyMenu_DrawMemberPanelData(application, application->currPartySlot);
     PartyMenu_LoadMemberWindowTiles(application, application->currPartySlot);
@@ -444,7 +445,8 @@ static int sub_02085424(void *applicationPtr)
     u8 EVs[7];
 
     application = (PartyMenuApplication *)applicationPtr;
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    Party *party = PartyMenuApp_GetParty(application);
+    mon = Party_GetPokemonBySlotIndex(party, application->currPartySlot);
 
     EVs[0] = Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL);
     EVs[1] = Pokemon_GetValue(mon, MON_DATA_ATK_EV, NULL);
@@ -454,7 +456,7 @@ static int sub_02085424(void *applicationPtr)
     EVs[5] = Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL);
     EVs[6] = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
 
-    Party_ApplyItemEffectsToMember(application->partyMenu->party, application->partyMenu->usedItemID, application->currPartySlot, 0, GetCurrentMapLabel(application), 12);
+    Party_ApplyItemEffectsToMember(party, application->partyMenu->usedItemID, application->currPartySlot, 0, GetCurrentMapLabel(application), 12);
     PartyMenu_LoadMember(application, application->currPartySlot);
     PartyMenu_DrawMemberPanelData(application, application->currPartySlot);
     PartyMenu_LoadMemberWindowTiles(application, application->currPartySlot);
@@ -485,10 +487,11 @@ static int sub_020855C4(void *applicationPtr)
     u32 summaryCondition;
 
     application = (PartyMenuApplication *)applicationPtr;
+    Party *party = PartyMenuApp_GetParty(application);
 
-    Party_ApplyItemEffectsToMember(application->partyMenu->party, application->partyMenu->usedItemID, application->currPartySlot, 0, GetCurrentMapLabel(application), HEAP_ID_PARTY_MENU);
+    Party_ApplyItemEffectsToMember(party, application->partyMenu->usedItemID, application->currPartySlot, 0, GetCurrentMapLabel(application), HEAP_ID_PARTY_MENU);
 
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    mon = Party_GetPokemonBySlotIndex(party, application->currPartySlot);
     curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
 
     if (application->partyMembers[application->currPartySlot].curHP == 0) {
@@ -525,7 +528,7 @@ static int PokemonSummaryScreen_UpdateHPBar(PartyMenuApplication *param0)
     Pokemon *mon;
     u32 curHP;
 
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    mon = PartyMenuApp_GetCurrentMon(application);
     curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
 
     if (application->partyMembers[application->currPartySlot].curHP != curHP) {
@@ -597,7 +600,7 @@ int sub_02085804(PartyMenuApplication *application)
         }
     case 1:
 
-        mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        mon = PartyMenuApp_GetCurrentMon(application);
         Pokemon_ApplyItemEffects(mon, application->partyMenu->usedItemID, 0, GetCurrentMapLabel(application), HEAP_ID_PARTY_MENU);
 
         curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
@@ -618,7 +621,7 @@ int sub_02085804(PartyMenuApplication *application)
         application->unk_B0E++;
         break;
     case 2:
-        mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        mon = PartyMenuApp_GetCurrentMon(application);
         curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
 
         application->partyMembers[application->currPartySlot].curHP++;
@@ -669,7 +672,8 @@ static int sub_02085A70(void *applicationPtr)
     u32 summaryCondition;
 
     application = (PartyMenuApplication *)applicationPtr;
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    Party *party = PartyMenuApp_GetParty(application);
+    mon = Party_GetPokemonBySlotIndex(party, application->currPartySlot);
 
     application->monStats[0] = (u16)Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
     application->monStats[1] = (u16)Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
@@ -678,7 +682,7 @@ static int sub_02085A70(void *applicationPtr)
     application->monStats[4] = (u16)Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL);
     application->monStats[5] = (u16)Pokemon_GetValue(mon, MON_DATA_SPEED, NULL);
 
-    Party_ApplyItemEffectsToMember(application->partyMenu->party, application->partyMenu->usedItemID, application->currPartySlot, 0, GetCurrentMapLabel(application), HEAP_ID_PARTY_MENU);
+    Party_ApplyItemEffectsToMember(party, application->partyMenu->usedItemID, application->currPartySlot, 0, GetCurrentMapLabel(application), HEAP_ID_PARTY_MENU);
 
     application->partyMembers[application->currPartySlot].level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
     application->partyMembers[application->currPartySlot].curHP = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
@@ -747,7 +751,7 @@ static int sub_02085C50(void *applicationPtr)
         }
         break;
     case 3:
-        mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        mon = PartyMenuApp_GetCurrentMon(application);
 
         switch (Pokemon_LevelUpMove(mon, &application->partyMenu->unk_34, &application->partyMenu->learnedMove)) {
         case 0x0:
@@ -793,7 +797,7 @@ static int sub_02085C50(void *applicationPtr)
         break;
     case 5:
         if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+            mon = PartyMenuApp_GetCurrentMon(application);
             TeachMove(application, mon, application->partyMenu->selectedMoveSlot);
             string = MessageLoader_GetNewString(application->messageLoader, 61);
 
@@ -810,10 +814,10 @@ static int sub_02085C50(void *applicationPtr)
         FieldSystem *fieldSystem;
         int v5;
 
-        mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        mon = PartyMenuApp_GetCurrentMon(application);
         fieldSystem = application->partyMenu->fieldSystem;
         v5 = MapHeader_GetMapEvolutionMethod(fieldSystem->location->mapId);
-        application->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(application->partyMenu->party, mon, EVO_CLASS_BY_LEVEL, v5, &application->partyMenu->evoType);
+        application->partyMenu->evoTargetSpecies = Pokemon_GetEvolutionTargetSpecies(PartyMenuApp_GetParty(application), mon, EVO_CLASS_BY_LEVEL, v5, &application->partyMenu->evoType);
 
         if (application->partyMenu->evoTargetSpecies != 0) {
             application->partyMenu->menuSelectionResult = PARTY_MENU_EXIT_CODE_EVOLVE_BY_LEVEL;
@@ -835,7 +839,7 @@ int sub_02085EF4(PartyMenuApplication *application)
     application->unk_B00 = sub_02085C50;
     application->unk_B13 = 3;
 
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    mon = PartyMenuApp_GetCurrentMon(application);
     StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
 
     if (application->partyMenu->selectedMoveSlot == 4) {
@@ -950,7 +954,7 @@ int sub_0208615C(PartyMenuApplication *application)
     String *string;
     u32 v2;
 
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    mon = PartyMenuApp_GetCurrentMon(application);
     v2 = PartyMenu_CanMonLearnMove(application, mon);
 
     StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
@@ -1006,7 +1010,7 @@ int sub_020862F8(PartyMenuApplication *application)
     Pokemon *mon;
     String *string;
 
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    mon = PartyMenuApp_GetCurrentMon(application);
     StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
 
     if (application->partyMenu->selectedMoveSlot == 4) {
@@ -1030,7 +1034,7 @@ int sub_020863A0(PartyMenuApplication *application)
     String *string;
 
     if (gSystem.pressedKeys & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        mon = PartyMenuApp_GetCurrentMon(application);
 
         TeachMove(application, mon, application->partyMenu->selectedMoveSlot);
         string = MessageLoader_GetNewString(application->messageLoader, 61);
@@ -1136,7 +1140,7 @@ static u8 BufferLearnedMoveInSlot(PartyMenuApplication *application, u8 moveSlot
     String *string;
     u16 moveID;
 
-    mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    mon = PartyMenuApp_GetCurrentMon(application);
     moveID = (u16)Pokemon_GetValue(mon, MON_DATA_MOVE1 + moveSlot, NULL);
     string = MessageLoader_GetNewString(application->messageLoader, 162 + moveSlot);
 
@@ -1209,8 +1213,9 @@ int sub_02086774(PartyMenuApplication *application)
         Menu_Free(application->contextMenu, NULL);
         StringList_Free(application->contextMenuChoices);
 
-        if (Party_ApplyItemEffectsToMember(application->partyMenu->party, application->partyMenu->usedItemID, application->currPartySlot, (u8)menuAction, GetCurrentMapLabel(application), 12) == 1) {
-            Pokemon *v1 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        Party *party = PartyMenuApp_GetParty(application);
+        if (Party_ApplyItemEffectsToMember(party, application->partyMenu->usedItemID, application->currPartySlot, (u8)menuAction, GetCurrentMapLabel(application), 12) == 1) {
+            Pokemon *v1 = Party_GetPokemonBySlotIndex(party, application->currPartySlot);
             BufferUsedItemMessage(application, application->partyMenu->usedItemID, Pokemon_GetValue(v1, MON_DATA_MOVE1 + menuAction, NULL));
             Bag_TryRemoveItem(application->partyMenu->bag, application->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
             Sound_PlayEffect(SEQ_SE_DP_KAIFUKU);

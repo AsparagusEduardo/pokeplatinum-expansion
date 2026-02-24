@@ -203,7 +203,7 @@ enum PartyMenuSprite {
 };
 
 typedef struct PartyMenu {
-    Party *party;
+    SaveData *saveData;
     Bag *bag;
     Mailbox *mailbox;
     Options *options;

@@ -289,7 +289,7 @@ static int SubTask_SetupPartyMenu(BattleHallTaskEnv *taskEnv, FieldSystem *field
     PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
     MI_CpuClearFast(partyMenu, sizeof(PartyMenu));
 
-    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->saveData = fieldSystem->saveData;
     partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
     partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);

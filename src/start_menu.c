@@ -1264,7 +1264,7 @@ static BOOL StartMenu_ExitBag(FieldTask *taskMan)
         PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
         memset(partyMenu, 0, sizeof(PartyMenu));
 
-        partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+        partyMenu->saveData = fieldSystem->saveData;
         partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
         partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
         partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
@@ -1298,7 +1298,7 @@ static BOOL StartMenu_ExitBag(FieldTask *taskMan)
             PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
             memset(partyMenu, 0, sizeof(PartyMenu));
 
-            partyMenu->party = party;
+            partyMenu->saveData = fieldSystem->saveData;
             partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
             partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
             partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
@@ -1554,7 +1554,7 @@ static BOOL StartMenu_ExitSummary(FieldTask *taskMan)
 
         memset(partyMenu, 0, sizeof(PartyMenu));
 
-        partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+        partyMenu->saveData = fieldSystem->saveData;
         partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
         partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
         partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
@@ -1761,7 +1761,7 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 mode) // 
     PartyMenu *partyMenu = Heap_Alloc(HEAP_ID_FIELD2, sizeof(PartyMenu));
 
     memset(partyMenu, 0, sizeof(PartyMenu));
-    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->saveData = fieldSystem->saveData;
     partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
     partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
@@ -1772,7 +1772,7 @@ static void sub_0203C668(FieldSystem *fieldSystem, StartMenu *menu, u8 mode) // 
     partyMenu->mode = mode;
     partyMenu->fieldSystem = fieldSystem;
 
-    sub_02097750(menu->taskData, Party_GetPokemonBySlotIndex(partyMenu->party, v0->unk_02));
+    sub_02097750(menu->taskData, Party_GetPokemonBySlotIndex(PartyMenu_GetParty(partyMenu), v0->unk_02));
     sub_02097770(menu->taskData);
     FieldSystem_StartChildProcess(fieldSystem, &gPokemonPartyAppTemplate, partyMenu);
 

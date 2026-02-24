@@ -367,7 +367,7 @@ static PartyMenu *PartyMenu_New(enum HeapID heapID, FieldSystem *fieldSystem, in
 
     MI_CpuClearFast(partyMenu, sizeof(PartyMenu));
 
-    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->saveData = fieldSystem->saveData;
     partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
     partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
@@ -407,6 +407,26 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForTrade(int unused, FieldSystem *fie
 int PartyMenu_GetSelectedSlot(PartyMenu *partyMenu)
 {
     return partyMenu->selectedMonSlot;
+}
+
+Party *PartyMenu_GetParty(PartyMenu *partyMenu)
+{
+    return SaveData_GetParty(partyMenu->saveData);
+}
+
+Party *PartyMenuApp_GetParty(PartyMenuApplication *app)
+{
+    return PartyMenu_GetParty(app->partyMenu);
+}
+
+Pokemon *PartyMenuApp_GetMonBySlotIndex(PartyMenuApplication *app, int slot)
+{
+    return Party_GetPokemonBySlotIndex(PartyMenu_GetParty(app->partyMenu), slot);
+}
+
+Pokemon *PartyMenuApp_GetCurrentMon(PartyMenuApplication *app)
+{
+    return PartyMenuApp_GetMonBySlotIndex(app, app->currPartySlot);
 }
 
 PartyMenu *FieldSystem_OpenPartyMenu_SelectForDaycare(int param0, FieldSystem *fieldSystem, int selectedMonSlot)
@@ -1697,7 +1717,7 @@ PartyMenu *FieldSystem_OpenPartyMenu_SelectForItemUsage(FieldSystem *fieldSystem
     PartyMenu *partyMenu = Heap_Alloc(heapID, sizeof(PartyMenu));
     memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->saveData = fieldSystem->saveData;
     partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
     partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);

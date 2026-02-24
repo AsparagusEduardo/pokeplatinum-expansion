@@ -75,7 +75,7 @@ static int sub_0206B9D8(UnkStruct_0206B9D8 *param0, FieldSystem *fieldSystem, en
     MI_CpuClear8(partyMenu, sizeof(PartyMenu));
 
     partyMenu->options = SaveData_GetOptions(saveData);
-    partyMenu->party = SaveData_GetParty(saveData);
+    partyMenu->saveData = saveData;
     partyMenu->bag = SaveData_GetBag(saveData);
     partyMenu->type = PARTY_MENU_TYPE_BASIC;
     partyMenu->mode = param0->unk_08;

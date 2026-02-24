@@ -243,7 +243,7 @@ static int sub_0205037C(UnkStruct_0205037C *param0, FieldSystem *fieldSystem, in
 
     MI_CpuClearFast(partyMenu, sizeof(PartyMenu));
 
-    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->saveData = fieldSystem->saveData;
     partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
     partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);

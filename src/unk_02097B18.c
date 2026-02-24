@@ -354,7 +354,7 @@ static BOOL sub_02097F38(FieldTask *param0)
     case 3: {
         PartyMenu *partyMenu = v0->unk_0C;
 
-        partyMenu->party = v1->unk_1C;
+        partyMenu->saveData = v0->saveData;
         partyMenu->bag = SaveData_GetBag(v0->saveData);
         partyMenu->mailbox = SaveData_GetMailbox(v0->saveData);
         partyMenu->selectedMonSlot = 0;

@@ -108,5 +108,9 @@ void *FieldSystem_OpenSummaryScreenTeachMove(int unused, FieldSystem *fieldSyste
 void sub_0203E6C0(FieldSystem *fieldSystem, int param1, int param2);
 void sub_0203E704(FieldSystem *fieldSystem);
 void sub_0203E714(FieldSystem *fieldSystem);
+Party *PartyMenu_GetParty(PartyMenu *partyMenu);
+Party *PartyMenuApp_GetParty(PartyMenuApplication *app);
+Pokemon *PartyMenuApp_GetMonBySlotIndex(PartyMenuApplication *app, int slot);
+Pokemon *PartyMenuApp_GetCurrentMon(PartyMenuApplication *app);
 
 #endif // POKEPLATINUM_UNK_0203D1B8_H

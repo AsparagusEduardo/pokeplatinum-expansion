@@ -22,6 +22,7 @@
 #include "sprite.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
+#include "unk_0203D1B8.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
@@ -72,7 +73,7 @@ void PartyMenu_DrawMemberSpeciesIcon(PartyMenuApplication *application, u8 slot,
 {
 #define partyMenuMember application->partyMembers[slot]
 
-    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+    Pokemon *mon = PartyMenuApp_GetMonBySlotIndex(application, slot);
     partyMenuMember.spriteXDelta = x;
     partyMenuMember.spriteYDelta = y;
 
@@ -107,7 +108,7 @@ void PartyMenu_DrawMemberSpeciesIcon(PartyMenuApplication *application, u8 slot,
 
 void PartyMenu_LoadMemberSpeciesIcon(PartyMenuApplication *application, u8 slot)
 {
-    Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, slot);
+    Pokemon *mon = PartyMenuApp_GetMonBySlotIndex(application, slot);
     int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     NARC *iconNarc = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, HEAP_ID_PARTY_MENU);

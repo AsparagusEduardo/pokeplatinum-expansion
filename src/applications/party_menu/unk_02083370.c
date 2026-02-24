@@ -29,6 +29,7 @@
 #include "string_template.h"
 #include "system.h"
 #include "text.h"
+#include "unk_0203D1B8.h"
 #include "unk_02097624.h"
 
 #include "res/text/bank/party_menu.h"
@@ -173,14 +174,14 @@ static void PartyMenu_SelectItemTake(PartyMenuApplication *application, int *par
     fieldSystem = application->partyMenu->fieldSystem;
 
     if (application->partyMembers[application->currPartySlot].heldItem == ITEM_NONE) {
-        mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        mon = PartyMenuApp_GetCurrentMon(application);
         MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00081, application->tmpFormat);
         StringTemplate_SetNickname(application->template, 0, Pokemon_GetBoxPokemon(mon));
         StringTemplate_Format(application->template, application->tmpString, application->tmpFormat);
     } else if (Bag_TryAddItem(application->partyMenu->bag, application->partyMembers[application->currPartySlot].heldItem, 1, HEAP_ID_PARTY_MENU) == TRUE) {
         u32 v4;
 
-        mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        mon = PartyMenuApp_GetCurrentMon(application);
         v4 = 0;
 
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &v4);
@@ -308,7 +309,7 @@ static int sub_0208384C(void *applicationPtr)
     Pokemon *v1;
 
     application = applicationPtr;
-    v1 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    v1 = PartyMenuApp_GetCurrentMon(application);
 
     if (sub_02097788(application->partyMenu->mailbox, v1, HEAP_ID_PARTY_MENU) != 0xFFFFFFFF) {
         application->partyMembers[application->currPartySlot].heldItem = ITEM_NONE;
@@ -344,7 +345,7 @@ static int sub_020838F4(void *applicationPtr)
         Pokemon *mon;
         u32 item;
 
-        mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+        mon = PartyMenuApp_GetCurrentMon(application);
         item = 0;
 
         Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
@@ -409,7 +410,7 @@ static void PartyMenu_SelectBallSeal(PartyMenuApplication *application, int *par
 int sub_02083A78(void *applicationPtr)
 {
     PartyMenuApplication *application = applicationPtr;
-    Pokemon *v1 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    Pokemon *v1 = PartyMenuApp_GetCurrentMon(application);
 
     Pokemon_ClearBallCapsuleData(v1);
 
@@ -550,7 +551,7 @@ BOOL sub_02083D1C(PartyMenuApplication *application)
         break;
 
     case 4:
-        Party_SwapSlots(application->partyMenu->party, v0->slots[0], v0->slots[1]);
+        Party_SwapSlots(PartyMenuApp_GetParty(application), v0->slots[0], v0->slots[1]);
         Sprite_SetDrawFlag(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], TRUE);
 
         v0->inProgress = FALSE;
@@ -840,7 +841,7 @@ static void sub_02084760(PartyMenuApplication *application, int *param1)
 
 int sub_02084780(PartyMenuApplication *application)
 {
-    Pokemon *v0 = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
+    Pokemon *v0 = PartyMenuApp_GetCurrentMon(application);
 
     if (Pokemon_GetValue(v0, MON_DATA_BALL_CAPSULE_ID, NULL) == 0) {
         MessageLoader_GetString(application->messageLoader, pl_msg_00000453_00129, application->tmpString);

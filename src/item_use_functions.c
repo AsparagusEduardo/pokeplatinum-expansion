@@ -304,7 +304,7 @@ static void UseHealingItemFromMenu(ItemMenuUseContext *usageContext, const ItemU
 
     memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->saveData = fieldSystem->saveData;
     partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
     partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
@@ -538,7 +538,7 @@ static void UseTMHMFromMenu(ItemMenuUseContext *usageContext, const ItemUseConte
 
     memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->saveData = fieldSystem->saveData;
     partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
     partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);
@@ -915,7 +915,7 @@ static void UseEvoStoneFromMenu(ItemMenuUseContext *usageContext, const ItemUseC
 
     memset(partyMenu, 0, sizeof(PartyMenu));
 
-    partyMenu->party = SaveData_GetParty(fieldSystem->saveData);
+    partyMenu->saveData = fieldSystem->saveData;
     partyMenu->bag = SaveData_GetBag(fieldSystem->saveData);
     partyMenu->mailbox = SaveData_GetMailbox(fieldSystem->saveData);
     partyMenu->options = SaveData_GetOptions(fieldSystem->saveData);

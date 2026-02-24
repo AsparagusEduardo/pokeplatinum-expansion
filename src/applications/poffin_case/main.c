@@ -283,7 +283,7 @@ static int State_InitPartyMenu(PoffinCaseApp *app)
 
     PartyMenu *partyMenu = Heap_Alloc(app->heapID, sizeof(PartyMenu));
     MI_CpuClear8(partyMenu, sizeof(PartyMenu));
-    partyMenu->party = app->data->party;
+    partyMenu->saveData = app->data->saveData;
     partyMenu->bag = app->data->bag;
     partyMenu->type = PARTY_MENU_TYPE_BASIC;
     partyMenu->mode = PARTY_MENU_MODE_FEED_POFFIN;
