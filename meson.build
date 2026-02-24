@@ -1,4 +1,4 @@
-project('pokeplatinum', ['c', 'cpp', 'nasm'],
+project('pokeplatinum_expansion', ['c', 'cpp', 'nasm'],
     version: '1.0',
     meson_version: '>=1.5.0',
     default_options : [
@@ -226,8 +226,8 @@ ichneumon_sub_defs = subproject('NitroSDK'
 ############################################################
 ###                        DS ROM                        ###
 ############################################################
-pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
-    output: 'pokeplatinum.us.nds',
+pokeplatinum_nds = custom_target('pokeplatinum_expansion.us.nds',
+    output: 'pokeplatinum_expansion.us.nds',
     input: [
         main,
         rom_header_template,
@@ -243,7 +243,7 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         '-DICON_PNG=@INPUT2@',        # icon_png
         '-DARM7_STATIC=@INPUT3@',     # ichneumon_sub
         '-DARM7_DEFINE=@INPUT4@',     # ichneumon_sub_defs
-        '--output=@OUTPUT0@',         # pokeplatinum.us.nds
+        '--output=@OUTPUT0@',         # pokeplatinum_expansion.us.nds
         rom_ini,
         filesys_csv,
     ],
